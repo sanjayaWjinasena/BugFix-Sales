@@ -6,13 +6,21 @@
          Conclusion after the totals. Both are rendered from the
          editable per-SO text fields (not from the library records
          directly) so any last-minute wording tweaks on the SO show up
-         in the print. -->
+         in the print.
+
+         Anchor choice: this Odoo 17 install's sale.report_saleorder_document
+         does not carry `<table name="sales_order_table">` (unlike
+         vanilla Odoo 17). We use anchors that DO exist on the
+         staging arch — verified via ir.ui.view read:
+             div[@id='informations']  — customer address block
+             div[@name='total']       — totals block after lines
+             p[@name='order_note']    — fallback conclusion anchor -->
     <template id="bugfix_sales_document_intro_conclusion"
               inherit_id="sale.report_saleorder_document">
 
-        <!-- INTRODUCTION: placed right before the order lines table so
-             it appears after the customer address block. -->
-        <xpath expr="//table[@name='sales_order_table']" position="before">
+        <!-- INTRODUCTION: placed right after the customer address block
+             (before the order lines table renders). -->
+        <xpath expr="//div[@id='informations']" position="after">
             <div t-if="doc.bugfix_sales_intro_text"
                  class="mt-3 mb-3"
                  style="white-space: pre-wrap; font-size: 0.95em;">
