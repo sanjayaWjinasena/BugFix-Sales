@@ -16,6 +16,35 @@
                        options="{'no_create': True, 'no_create_edit': True}"/>
             </xpath>
 
+            <!-- Credit-limit gate on the Confirm button.
+                 Mirrors the visibility of the studio-installed
+                 "Request Credit Limit Approval" button: while the SO
+                 has tripped the credit limit (x_studio_over_credit)
+                 and the approval has not yet been granted
+                 (x_studio_credit_limit_approved), the Confirm button
+                 is hidden so the sales user cannot confirm the order
+                 until approval is completed.
+
+                 There are two Confirm buttons on sale.view_order_form
+                 — the primary (state=='sent') carries id="action_confirm",
+                 the secondary (state=='draft') does not. Each is
+                 patched independently because position="attributes"
+                 in Odoo view inheritance only patches the first match
+                 of the xpath. `separator=" or "` appends the new
+                 predicate to the existing state check with OR. -->
+            <xpath expr="//button[@name='action_confirm' and @id='action_confirm']"
+                   position="attributes">
+                <attribute name="invisible"
+                           add="x_studio_over_credit == True and x_studio_credit_limit_approved != True"
+                           separator=" or "/>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm' and not(@id)]"
+                   position="attributes">
+                <attribute name="invisible"
+                           add="x_studio_over_credit == True and x_studio_credit_limit_approved != True"
+                           separator=" or "/>
+            </xpath>
+
             <!-- Add a new notebook page holding the editable text bodies.
                  Placed inside the existing notebook after Order Lines. -->
             <xpath expr="//notebook" position="inside">
