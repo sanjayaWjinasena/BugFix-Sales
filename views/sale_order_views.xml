@@ -16,45 +16,12 @@
                        options="{'no_create': True, 'no_create_edit': True}"/>
             </xpath>
 
-            <!-- Credit-limit gate on the Confirm button.
-                 Mirrors the visibility of the studio-installed
-                 "Request Credit Limit Approval" button: while the SO
-                 has tripped the credit limit (x_studio_over_credit)
-                 and the approval has not yet been granted
-                 (x_studio_credit_limit_approved), the Confirm button
-                 is hidden so the sales user cannot confirm the order
-                 until approval is completed.
-
-                 There are two Confirm buttons on sale.view_order_form
-                 — the primary (state=='sent') carries id="action_confirm",
-                 the secondary (state=='draft') does not. Each is
-                 patched independently because position="attributes"
-                 in Odoo view inheritance only patches the first match
-                 of the xpath. `separator=" or "` appends the new
-                 predicate to the existing state check with OR.
-
-                 The two x_studio_ fields must be declared in this
-                 view's arch (as invisible fields) because Odoo view
-                 validation requires every field referenced in a
-                 modifier expression to be present in the same view.
-                 Studio-generated views bypass this via noupdate=1,
-                 hand-written module views do not. -->
-            <xpath expr="//header" position="inside">
-                <field name="x_studio_over_credit" invisible="1"/>
-                <field name="x_studio_credit_limit_approved" invisible="1"/>
-            </xpath>
-            <xpath expr="//button[@name='action_confirm' and @id='action_confirm']"
-                   position="attributes">
-                <attribute name="invisible"
-                           add="x_studio_over_credit == True and x_studio_credit_limit_approved != True"
-                           separator=" or "/>
-            </xpath>
-            <xpath expr="//button[@name='action_confirm' and not(@id)]"
-                   position="attributes">
-                <attribute name="invisible"
-                           add="x_studio_over_credit == True and x_studio_credit_limit_approved != True"
-                           separator=" or "/>
-            </xpath>
+            <!-- Credit-limit gate on the Confirm button lives in
+                 Fix-repair's _get_view override (models/sale_order.py),
+                 scoped to Order Payment Type == 'Credit'. XML
+                 inheritance can't win against Python view rewrites
+                 that run after the merge, so the gate is expressed
+                 there rather than here. -->
 
             <!-- Add a new notebook page holding the editable text bodies.
                  Placed inside the existing notebook after Order Lines. -->
