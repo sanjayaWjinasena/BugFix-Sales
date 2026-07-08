@@ -31,7 +31,18 @@
                  patched independently because position="attributes"
                  in Odoo view inheritance only patches the first match
                  of the xpath. `separator=" or "` appends the new
-                 predicate to the existing state check with OR. -->
+                 predicate to the existing state check with OR.
+
+                 The two x_studio_ fields must be declared in this
+                 view's arch (as invisible fields) because Odoo view
+                 validation requires every field referenced in a
+                 modifier expression to be present in the same view.
+                 Studio-generated views bypass this via noupdate=1,
+                 hand-written module views do not. -->
+            <xpath expr="//header" position="inside">
+                <field name="x_studio_over_credit" invisible="1"/>
+                <field name="x_studio_credit_limit_approved" invisible="1"/>
+            </xpath>
             <xpath expr="//button[@name='action_confirm' and @id='action_confirm']"
                    position="attributes">
                 <attribute name="invisible"
