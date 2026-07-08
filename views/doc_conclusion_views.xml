@@ -26,10 +26,10 @@
                         <field name="company_id" groups="base.group_multi_company"/>
                         <field name="active" invisible="1"/>
                     </group>
-                    <group string="Conclusion Text">
-                        <field name="description" nolabel="1"
-                               placeholder="Availability, Terms of Payment, Delivery, Guarantee, closing salutation…"/>
-                    </group>
+                    <separator string="Conclusion Text"/>
+                    <field name="description" nolabel="1"
+                           class="w-100"
+                           placeholder="Availability, Terms of Payment, Delivery, Guarantee, closing salutation…"/>
                 </sheet>
             </form>
         </field>
