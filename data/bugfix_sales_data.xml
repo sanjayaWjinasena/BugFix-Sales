@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Register <function model="..." name="..."/> calls here as new
+         bug-fix seed/patch functions are added.  Each call runs on
+         every install and upgrade of this module. -->
+</odoo>
