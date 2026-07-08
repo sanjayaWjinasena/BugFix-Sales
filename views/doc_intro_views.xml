@@ -26,10 +26,10 @@
                         <field name="company_id" groups="base.group_multi_company"/>
                         <field name="active" invisible="1"/>
                     </group>
-                    <group string="Introduction Text" col="1">
-                        <field name="description" nolabel="1"
-                               placeholder="Multi-line body printed at the top of the quotation..."/>
-                    </group>
+                    <separator string="Introduction Text"/>
+                    <field name="description" nolabel="1"
+                           class="w-100"
+                           placeholder="Multi-line body printed at the top of the quotation..."/>
                 </sheet>
             </form>
         </field>
