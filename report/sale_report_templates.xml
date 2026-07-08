@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Extend the standard quotation/order QWeb template to inject the
+         Document Introduction above the order lines and the Document
+         Conclusion after the totals. Both are rendered from the
+         editable per-SO text fields (not from the library records
+         directly) so any last-minute wording tweaks on the SO show up
+         in the print. -->
+    <template id="bugfix_sales_document_intro_conclusion"
+              inherit_id="sale.report_saleorder_document">
+
+        <!-- INTRODUCTION: placed right before the order lines table so
+             it appears after the customer address block. -->
+        <xpath expr="//table[@name='sales_order_table']" position="before">
+            <div t-if="doc.bugfix_sales_intro_text"
+                 class="mt-3 mb-3"
+                 style="white-space: pre-wrap; font-size: 0.95em;">
+                <t t-out="doc.bugfix_sales_intro_text"/>
+            </div>
+        </xpath>
+
+        <!-- CONCLUSION: placed after the totals block so it sits below
+             the numbers, in the Terms/Availability position. -->
+        <xpath expr="//div[@name='total']" position="after">
+            <div t-if="doc.bugfix_sales_conclusion_text"
+                 class="mt-4"
+                 style="white-space: pre-wrap; font-size: 0.95em;">
+                <t t-out="doc.bugfix_sales_conclusion_text"/>
+            </div>
+        </xpath>
+
+    </template>
+
+</odoo>

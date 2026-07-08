@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_bugfix_sales" model="ir.ui.view">
+        <field name="name">sale.order.form.bugfix_sales</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add the two Many2one selectors next to validity_date in the
+                 quotation header (right column). -->
+            <xpath expr="//field[@name='validity_date']" position="after">
+                <field name="bugfix_sales_intro_id"
+                       options="{'no_create': True, 'no_create_edit': True}"/>
+                <field name="bugfix_sales_conclusion_id"
+                       options="{'no_create': True, 'no_create_edit': True}"/>
+            </xpath>
+
+            <!-- Add a new notebook page holding the editable text bodies.
+                 Placed inside the existing notebook after Order Lines. -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Document Text"
+                      name="bugfix_sales_document_text">
+                    <group string="Introduction (printed above order lines)">
+                        <field name="bugfix_sales_intro_text"
+                               nolabel="1"
+                               placeholder="Select a Document Introduction on the header — the description will appear here and can be edited per-quote."/>
+                    </group>
+                    <group string="Conclusion (printed after totals)">
+                        <field name="bugfix_sales_conclusion_text"
+                               nolabel="1"
+                               placeholder="Select a Document Conclusion on the header — the description will appear here and can be edited per-quote."/>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

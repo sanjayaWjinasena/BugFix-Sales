@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_doc_conclusion_tree" model="ir.ui.view">
+        <field name="name">bugfix_sales.doc_conclusion.tree</field>
+        <field name="model">bugfix_sales.doc_conclusion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="company_id" optional="hide" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_doc_conclusion_form" model="ir.ui.view">
+        <field name="name">bugfix_sales.doc_conclusion.form</field>
+        <field name="model">bugfix_sales.doc_conclusion</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Title"/>
+                        <h1><field name="name" placeholder="e.g. Standard Terms and Guarantee"/></h1>
+                    </div>
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="active" invisible="1"/>
+                    </group>
+                    <group string="Conclusion Text">
+                        <field name="description" nolabel="1"
+                               placeholder="Availability, Terms of Payment, Delivery, Guarantee, closing salutation…"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_doc_conclusion" model="ir.actions.act_window">
+        <field name="name">Document Conclusions</field>
+        <field name="res_model">bugfix_sales.doc_conclusion</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Document Conclusion
+            </p>
+            <p>
+                Conclusions are reusable blocks of text printed after the totals on a
+                quotation — typically Availability, Terms of Payment, Delivery,
+                Guarantee, and the closing salutation. Pick one on a Sales Order and
+                edit the copy per-quote if needed.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_doc_conclusion"
+              name="Document Conclusions"
+              parent="sale.menu_sale_config"
+              action="action_doc_conclusion"
+              sequence="91"/>
+
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bugfix_sales_doc_intro_user,bugfix_sales.doc_intro user,model_bugfix_sales_doc_intro,sales_team.group_sale_salesman,1,0,0,0
+access_bugfix_sales_doc_intro_manager,bugfix_sales.doc_intro manager,model_bugfix_sales_doc_intro,sales_team.group_sale_manager,1,1,1,1
+access_bugfix_sales_doc_conclusion_user,bugfix_sales.doc_conclusion user,model_bugfix_sales_doc_conclusion,sales_team.group_sale_salesman,1,0,0,0
+access_bugfix_sales_doc_conclusion_manager,bugfix_sales.doc_conclusion manager,model_bugfix_sales_doc_conclusion,sales_team.group_sale_manager,1,1,1,1
