@@ -3,18 +3,27 @@
 
     <!-- Extend the standard quotation/order QWeb template to inject the
          Document Introduction above the order lines and the Document
-         Conclusion after the totals. Both are rendered from the
-         editable per-SO text fields (not from the library records
-         directly) so any last-minute wording tweaks on the SO show up
-         in the print.
+         Conclusion above the payment-terms paragraph.
 
-         Anchor choice: this Odoo 17 install's sale.report_saleorder_document
-         does not carry `<table name="sales_order_table">` (unlike
-         vanilla Odoo 17). We use anchors that DO exist on the
-         staging arch — verified via ir.ui.view read:
-             div[@id='informations']  — customer address block
-             div[@name='total']       — totals block after lines
-             p[@name='order_note']    — fallback conclusion anchor -->
+         Anchor choice notes:
+           div[@id='informations']  — customer address block (top of
+                                      report body, no t-if wrapping)
+           p[@name='order_note']    — payment terms paragraph, always
+                                      present and outside any t-if/t-else
+                                      chain. Safest bottom-of-report anchor.
+
+         Why NOT div[@name='total']: on some Odoo 17 builds
+         (Studio-modified) the totals div itself carries a t-if with a
+         sibling <div t-else name="signature">. Inserting our conclusion
+         div with position="after" between them breaks the QWeb rule
+         that t-else must be the IMMEDIATE next sibling of its t-if,
+         and the report PDF fails to render with:
+             SyntaxError: t-elif directive must be preceded by
+             t-if or t-elif directive
+         Anchoring to order_note sidesteps the totals/signature pair
+         entirely — the conclusion still renders below the numbers
+         (totals → signature → conclusion → terms), which is close
+         enough to the requested "after totals" placement. -->
     <template id="bugfix_sales_document_intro_conclusion"
               inherit_id="sale.report_saleorder_document">
 
@@ -28,9 +37,10 @@
             </div>
         </xpath>
 
-        <!-- CONCLUSION: placed after the totals block so it sits below
-             the numbers, in the Terms/Availability position. -->
-        <xpath expr="//div[@name='total']" position="after">
+        <!-- CONCLUSION: placed immediately before the Payment Terms
+             paragraph so it sits after totals + signature, ahead of
+             the terms/notes block. -->
+        <xpath expr="//p[@name='order_note']" position="before">
             <div t-if="doc.bugfix_sales_conclusion_text"
                  class="mt-4"
                  style="white-space: pre-wrap; font-size: 0.95em;">
