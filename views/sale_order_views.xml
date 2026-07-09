@@ -28,16 +28,16 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Document Text"
                       name="bugfix_sales_document_text">
-                    <group string="Introduction (printed above order lines)">
-                        <field name="bugfix_sales_intro_text"
-                               nolabel="1"
-                               placeholder="Select a Document Introduction on the header — the description will appear here and can be edited per-quote."/>
-                    </group>
-                    <group string="Conclusion (printed after totals)">
-                        <field name="bugfix_sales_conclusion_text"
-                               nolabel="1"
-                               placeholder="Select a Document Conclusion on the header — the description will appear here and can be edited per-quote."/>
-                    </group>
+                    <separator string="Introduction (printed above order lines)"/>
+                    <field name="bugfix_sales_intro_text"
+                           nolabel="1"
+                           class="w-100"
+                           placeholder="Select a Document Introduction on the header — the description will appear here and can be edited per-quote."/>
+                    <separator string="Conclusion (printed after totals)"/>
+                    <field name="bugfix_sales_conclusion_text"
+                           nolabel="1"
+                           class="w-100"
+                           placeholder="Select a Document Conclusion on the header — the description will appear here and can be edited per-quote."/>
                 </page>
             </xpath>
 
