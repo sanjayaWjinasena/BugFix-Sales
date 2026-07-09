@@ -12,13 +12,17 @@
 
          Anchor choice notes for THIS template's arch:
 
-           //div[hasclass('row')]  — the customer info row (only one row
-                                     in this template's body, above the
-                                     items table). Stable, no t-if
-                                     wrapping. Placing intro after this
-                                     puts it between customer info and
-                                     the items table, matching the
-                                     reference PDF's "Notes:" position.
+           //table[hasclass('table-sm')][1]
+                                   — the items table (first `.table-sm`
+                                     in the arch; the totals table is
+                                     the second). Placing intro
+                                     position="before" puts it
+                                     immediately after the customer
+                                     info row (which is the only
+                                     element between the header and
+                                     the items table), matching the
+                                     reference PDF's "Notes:" position
+                                     below the "VAT Registered:" line.
 
            //span[contains(@style, 'white-space: pre-line')]
                                    — the hardcoded terms span
@@ -41,10 +45,11 @@
     <template id="bugfix_sales_c01_quotation_intro_conclusion"
               inherit_id="studio_customization.studio_customization_904d473c-5727-402b-8090-5615a762dc13">
 
-        <!-- INTRODUCTION: after the customer info row, before the
-             items table. Rendered as a "Notes:" block matching the
-             reference PDF layout. -->
-        <xpath expr="//div[hasclass('row')]" position="after">
+        <!-- INTRODUCTION: immediately before the items table, which
+             puts it right after the customer info row (below the
+             "VAT Registered:" line). Rendered as a "Notes:" block
+             matching the reference PDF layout. -->
+        <xpath expr="//table[hasclass('table-sm')][1]" position="before">
             <div t-if="doc.bugfix_sales_intro_text"
                  class="mt-3 mb-3"
                  style="white-space: pre-wrap; font-size: 10pt;">
@@ -54,12 +59,10 @@
             </div>
         </xpath>
 
-        <!-- CONCLUSION: immediately before the hardcoded terms
-             (Availability / Terms of Payment / Guarantee / Taxes)
-             span. Sits below the totals table and above the
-             hardcoded terms footer. -->
-        <xpath expr="//span[contains(@style, 'white-space: pre-line')]"
-               position="before">
+        <!-- CONCLUSION: immediately after the totals table (the
+             second `.table-sm` in the arch), before the hardcoded
+             terms span. -->
+        <xpath expr="//table[hasclass('table-sm')][2]" position="after">
             <div t-if="doc.bugfix_sales_conclusion_text"
                  class="mt-3 mb-3"
                  style="white-space: pre-wrap; font-size: 10pt;">
