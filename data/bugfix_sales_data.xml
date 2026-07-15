@@ -3,4 +3,16 @@
     <!-- Register <function model="..." name="..."/> calls here as new
          bug-fix seed/patch functions are added.  Each call runs on
          every install and upgrade of this module. -->
+
+    <!-- Ensure every active res.company carries a row on the Studio-
+         manual x_minimum_sales_margin catalogue. The three consumers
+         (compute on account.payment.x_studio_payment_validation, and
+         server actions RR - Validate Payment % / SLS - Create
+         Customer Payment) rely on a per-company config existing, but
+         Studio automation 146 blocks ORM create() when any active
+         row exists — so the seed uses raw SQL to bypass the guard
+         and only inserts rows for companies that don't already have
+         one. Idempotent. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_seed_minimum_sales_margin_per_company"/>
 </odoo>
