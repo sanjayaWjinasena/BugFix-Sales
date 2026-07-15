@@ -8,17 +8,21 @@
         <field name="arch" type="xml">
 
             <!-- Move the Reference (res.partner.ref) field out of the
-                 Sales & Purchase → Misc group and up to the header,
-                 right below the H1 name. Company Registry and
+                 Sales & Purchase → Misc group and hoist it to the
+                 very top of the header — ABOVE the Company/Contact
+                 name H1 — rendered in its own <h1> so the styling
+                 matches the name (big + bold). company_registry and
                  company_id stay where they were. -->
             <xpath expr="//group[@name='misc']/field[@name='ref']"
                    position="replace"/>
 
             <xpath expr="//div[hasclass('oe_title')]//h1"
-                   position="after">
-                <field name="ref"
-                       string="Reference"
-                       placeholder="e.g. CUST-00123"/>
+                   position="before">
+                <h1>
+                    <field name="ref"
+                           class="text-break"
+                           placeholder="Reference"/>
+                </h1>
             </xpath>
 
         </field>
