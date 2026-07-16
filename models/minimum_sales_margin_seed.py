@@ -113,3 +113,37 @@ class MinimumSalesMarginSeed(models.AbstractModel):
                     uid,
                 ),
             )
+
+    @api.model
+    def _hide_minimum_sales_margin_menus(self):
+        """Deactivate every menu that opens the Studio-generated
+        list/form view for x_minimum_sales_margin.
+
+        Since v17 the four config values are edited from
+        Settings → Sales via res.config.settings; the standalone
+        Sales Configurations list view is redundant and confusing
+        (users could accidentally create a second row and either
+        hit automation 146's guard or bypass per-company scoping).
+
+        Finds menus by walking `ir.actions.act_window` on
+        res_model='x_minimum_sales_margin' — so any menu Studio may
+        add in the future (e.g. from a duplicate app configuration)
+        also gets caught on the next upgrade. Model / actions / views
+        / rows are all preserved: only menu visibility changes, so
+        the migration is reversible (chatter shows the flip; a user
+        can set active=True from Developer Mode if ever needed).
+
+        Idempotent: reruns find no still-active menus and no-op.
+        """
+        ActWindow = self.env['ir.actions.act_window'].sudo()
+        actions = ActWindow.search(
+            [('res_model', '=', 'x_minimum_sales_margin')]
+        )
+        if not actions:
+            return
+        Menu = self.env['ir.ui.menu'].sudo().with_context(active_test=False)
+        refs = ['ir.actions.act_window,%s' % a.id for a in actions]
+        menus = Menu.search([('action', 'in', refs)])
+        active_menus = menus.filtered(lambda m: m.active)
+        if active_menus:
+            active_menus.write({'active': False})

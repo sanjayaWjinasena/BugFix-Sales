@@ -15,4 +15,16 @@
          one. Idempotent. -->
     <function model="bugfix_sales.minimum_sales_margin.seed"
               name="_seed_minimum_sales_margin_per_company"/>
+
+    <!-- Hide the Studio-generated 'Sales Configurations' list/form
+         menus since v17 (this module) moved the four config values
+         into Settings → Sales. Editing a database-record list is the
+         wrong UX for what is really a per-company configuration —
+         users could accidentally create duplicate rows (hitting
+         automation 146's cross-company guard) or edit rows for a
+         company they're not currently in. Menus are deactivated, not
+         deleted: model, actions, views, and rows all stay intact for
+         debugging. Idempotent. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_hide_minimum_sales_margin_menus"/>
 </odoo>
