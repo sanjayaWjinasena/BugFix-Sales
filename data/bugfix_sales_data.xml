@@ -27,4 +27,11 @@
          debugging. Idempotent. -->
     <function model="bugfix_sales.minimum_sales_margin.seed"
               name="_hide_minimum_sales_margin_menus"/>
+
+    <!-- Sweep orphan studio_customization pins on ir.ui.menu whose
+         target menu record no longer exists. Ran into two such
+         orphans after v18 (deactivation cascade missed the pin
+         cleanup). Narrow-scoped, idempotent. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_cleanup_orphan_studio_menu_pins"/>
 </odoo>

@@ -115,6 +115,45 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             )
 
     @api.model
+    def _cleanup_orphan_studio_menu_pins(self):
+        """Unlink ir.model.data rows owned by studio_customization
+        whose target ir.ui.menu no longer exists.
+
+        Context: when v18 flipped the two Studio-generated 'Sales
+        Configurations' menus to active=False, something outside
+        this module (most likely Studio's own on-upgrade housekeeping
+        pass on the studio_customization module) hard-deleted the
+        menu records shortly afterwards. Odoo normally cleans up an
+        ir.model.data pin in the same transaction as its target's
+        unlink, but that cascade missed here — leaving two dangling
+        pins pointing at res_ids 904 and 1867 which no longer resolve
+        to anything.
+
+        These pins are harmless (env.ref() returns empty, no code
+        reads them) but they clutter ir.model.data. Sweep them out.
+
+        Scope kept deliberately narrow: only pins on ir.ui.menu owned
+        by studio_customization. Doesn't touch pins on other models
+        or from other modules, so unrelated Studio-owned records stay
+        untouched.
+
+        Idempotent: reruns find no orphans and no-op.
+        """
+        Data = self.env['ir.model.data'].sudo()
+        Menu = self.env['ir.ui.menu'].sudo().with_context(active_test=False)
+        pins = Data.search([
+            ('module', '=', 'studio_customization'),
+            ('model', '=', 'ir.ui.menu'),
+        ])
+        if not pins:
+            return
+        orphans = pins.filtered(
+            lambda p: not Menu.browse(p.res_id).exists()
+        )
+        if orphans:
+            orphans.unlink()
+
+    @api.model
     def _hide_minimum_sales_margin_menus(self):
         """Deactivate every menu that opens the Studio-generated
         list/form view for x_minimum_sales_margin.
