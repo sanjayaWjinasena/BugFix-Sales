@@ -114,6 +114,128 @@ class MinimumSalesMarginSeed(models.AbstractModel):
                 ),
             )
 
+    _C01_REPORT_NAME = 'C01 Sales Quotation'
+    _C01_INHERIT_XMLID = 'bugfix_sales_c01_quotation_intro_conclusion'
+    _C01_INHERIT_ARCH = (
+        '<data>'
+        '<xpath expr="//table[hasclass(\'table-sm\')][1]" position="before">'
+        '<div t-if="doc.bugfix_sales_intro_text" class="mt-3 mb-3" '
+        'style="white-space: pre-wrap; font-size: 10pt;">'
+        '<strong>Notes:</strong><br/>'
+        '<t t-out="doc.bugfix_sales_intro_text"/>'
+        '</div>'
+        '</xpath>'
+        '<xpath expr="//table[hasclass(\'table-sm\')][2]" position="after">'
+        '<div t-if="doc.bugfix_sales_conclusion_text" class="mt-3 mb-3" '
+        'style="white-space: pre-wrap; font-size: 10pt;">'
+        '<t t-out="doc.bugfix_sales_conclusion_text"/>'
+        '</div>'
+        '</xpath>'
+        '</data>'
+    )
+
+    @api.model
+    def _attach_c01_intro_conclusion_view(self):
+        """Attach the Document Introduction / Conclusion QWeb overlay to
+        the Studio 'C01 Sales Quotation' report's _document sub-template.
+
+        Prior to v20 this was a static <template inherit_id="..."> in
+        report/c01_sales_quotation.xml. The inherit_id was Studio's
+        per-database UUID xml_id — which exists only on the database
+        where Studio generated it. Any other instance (v17-final,
+        production, a fresh dev DB) would fail module install with:
+
+          ValueError: External ID not found in the system:
+              studio_customization.studio_customization_<uuid>
+
+        Now the inheritance is resolved dynamically:
+
+          1. Find ir.actions.report where name = 'C01 Sales Quotation'
+             and model = 'sale.order'. If absent → skip silently.
+          2. Take the report's `report_name` field (module-scoped key
+             of the outer QWeb template) and derive the _document
+             sub-template's key by inserting '_document' at the
+             '_copy' boundary. Studio's naming convention:
+                report_name: studio_customization.studio_report_docume_
+                             <uuid>_copy_1_copy_4_...
+                doc key:     studio_customization.studio_report_docume_
+                             <uuid>_document_copy_1_copy_4_...
+             When no '_copy' segments exist, append '_document'.
+          3. Look up the ir.ui.view with that key. If not found →
+             skip silently.
+          4. Create or update our inherit view, keyed under
+             bugfix_sales.<self._C01_INHERIT_XMLID>. Reversal path:
+             if a prior run created the view but C01 has since been
+             removed from this database, unlink the stale view.
+
+        Idempotent — reruns with unchanged state no-op.
+        """
+        Report = self.env['ir.actions.report'].sudo()
+        View = self.env['ir.ui.view'].sudo()
+        Data = self.env['ir.model.data'].sudo()
+
+        existing = View.search([
+            ('key', '=', 'bugfix_sales.' + self._C01_INHERIT_XMLID),
+        ], limit=1)
+
+        report = Report.search([
+            ('name', '=', self._C01_REPORT_NAME),
+            ('model', '=', 'sale.order'),
+        ], limit=1)
+        if not report:
+            if existing:
+                existing.unlink()
+            return
+
+        rname = report.report_name or ''
+        if '.' not in rname:
+            if existing:
+                existing.unlink()
+            return
+
+        module_prefix, tail = rname.split('.', 1)
+        if '_copy' in tail:
+            idx = tail.index('_copy')
+            doc_tail = tail[:idx] + '_document' + tail[idx:]
+        else:
+            doc_tail = tail + '_document'
+        doc_key = '%s.%s' % (module_prefix, doc_tail)
+
+        target = View.search([
+            ('key', '=', doc_key),
+            ('type', '=', 'qweb'),
+        ], limit=1)
+        if not target:
+            if existing:
+                existing.unlink()
+            return
+
+        if existing:
+            updates = {}
+            if existing.inherit_id.id != target.id:
+                updates['inherit_id'] = target.id
+            if (existing.arch_db or '').strip() != self._C01_INHERIT_ARCH.strip():
+                updates['arch'] = self._C01_INHERIT_ARCH
+            if updates:
+                existing.write(updates)
+            return
+
+        new_view = View.create({
+            'name': 'BugFix-Sales: C01 Quotation Intro/Conclusion',
+            'type': 'qweb',
+            'inherit_id': target.id,
+            'mode': 'extension',
+            'arch': self._C01_INHERIT_ARCH,
+            'key': 'bugfix_sales.' + self._C01_INHERIT_XMLID,
+        })
+        Data.create({
+            'module': 'bugfix_sales',
+            'name': self._C01_INHERIT_XMLID,
+            'model': 'ir.ui.view',
+            'res_id': new_view.id,
+            'noupdate': True,
+        })
+
     @api.model
     def _cleanup_orphan_studio_menu_pins(self):
         """Unlink ir.model.data rows owned by studio_customization

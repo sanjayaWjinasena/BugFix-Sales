@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'BugFix - Sales',
-    'version': '17.0.1.0.19',
+    'version': '17.0.1.0.20',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
@@ -15,7 +15,6 @@
         'views/res_partner_views.xml',
         'views/res_config_settings_views.xml',
         'views/sale_order_views.xml',
-        'report/c01_sales_quotation.xml',
     ],
     'installable': True,
     'auto_install': False,

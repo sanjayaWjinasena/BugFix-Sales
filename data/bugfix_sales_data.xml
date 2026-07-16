@@ -34,4 +34,14 @@
          cleanup). Narrow-scoped, idempotent. -->
     <function model="bugfix_sales.minimum_sales_margin.seed"
               name="_cleanup_orphan_studio_menu_pins"/>
+
+    <!-- Attach the Document Introduction / Conclusion QWeb overlay to
+         the Studio 'C01 Sales Quotation' report. Uses the report's
+         human name as the stable lookup key (not the per-database
+         Studio UUID), so the module installs cleanly on any
+         instance regardless of Studio state. If the C01 report isn't
+         present on this database, the method skips silently and the
+         module still installs. Idempotent. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_attach_c01_intro_conclusion_view"/>
 </odoo>
