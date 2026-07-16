@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_bugfix_sales" model="ir.ui.view">
+        <field name="name">res.config.settings.form.bugfix_sales</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Land inside the existing Sales app in Settings — not
+                 as a separate app entry. -->
+            <xpath expr="//app[@name='sale_management']" position="inside">
+                <block title="Sales Configurations"
+                       name="bugfix_sales_configurations">
+                    <setting id="bugfix_sales_minimum_margin_setting"
+                             string="Minimum Sales Margin %"
+                             help="Minimum margin percentage enforced on Sales / Project quotations at the Confirm gate.">
+                        <field name="x_studio_minimum_sales_margin_"/>
+                    </setting>
+                    <setting id="bugfix_sales_advance_payment_setting"
+                             string="Advance Payment %"
+                             help="Minimum advance-payment percentage required before deliveries can be validated on non-RUG repair sale orders.">
+                        <field name="x_studio_advance_payment_"/>
+                    </setting>
+                    <setting id="bugfix_sales_so_validity_setting"
+                             string="Sales Order Validity (Days)"
+                             help="How many days a quotation remains valid before the Confirm gate marks it expired.">
+                        <field name="x_studio_sales_order_validity"/>
+                    </setting>
+                    <setting id="bugfix_sales_price_validity_setting"
+                             string="Last Purchase Price Validity (Days)"
+                             help="Age limit (days) before a product's last purchase price is considered stale.">
+                        <field name="x_studio_last_purchase_price_validity_days"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
