@@ -4,27 +4,38 @@
          bug-fix seed/patch functions are added.  Each call runs on
          every install and upgrade of this module. -->
 
-    <!-- Ensure every active res.company carries a row on the Studio-
-         manual x_minimum_sales_margin catalogue. The three consumers
-         (compute on account.payment.x_studio_payment_validation, and
-         server actions RR - Validate Payment % / SLS - Create
-         Customer Payment) rely on a per-company config existing, but
-         Studio automation 146 blocks ORM create() when any active
-         row exists — so the seed uses raw SQL to bypass the guard
-         and only inserts rows for companies that don't already have
-         one. Idempotent. -->
-    <function model="bugfix_sales.minimum_sales_margin.seed"
-              name="_seed_minimum_sales_margin_per_company"/>
-
-    <!-- v21 migration: copy the four config values from each
-         x_minimum_sales_margin row into ir.config_parameter under
-         per-company keys (see res.company._BUGFIX_SALES_CONFIG for
-         the key format). Runs AFTER the seed above so freshly-added
-         companies inherit default values before migration; idempotent
-         (only writes keys that don't already exist), so Settings
-         edits done between upgrades survive future runs. -->
+    <!-- v21 migration: copy every existing x_minimum_sales_margin row's
+         values into ir.config_parameter under per-company keys (see
+         res.company._BUGFIX_SALES_CONFIG for the key format). Runs
+         first so any old-model data — from the original manual
+         Studio setup or the v20-and-earlier seed function — is
+         preserved before v22 stops maintaining the old rows.
+         Idempotent (only writes keys that don't already exist), so
+         Settings edits done between upgrades survive future runs. -->
     <function model="bugfix_sales.minimum_sales_margin.seed"
               name="_migrate_to_config_parameter"/>
+
+    <!-- v22 defaults: seed sensible defaults into ir.config_parameter
+         for every company that ended up with no keys after the
+         migration above (fresh installs and newly-added companies).
+         Same values the old row-seed function used
+         (_seed_minimum_sales_margin_per_company). Idempotent — only
+         writes keys that are absent, so user Settings edits are
+         never overwritten. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_seed_ir_config_parameter_defaults"/>
+
+    <!-- v22 cutover: surgically rewrite every Studio Python reader of
+         env['x_minimum_sales_margin'].search(...) so it reads the
+         new res.company proxy fields (env.company.x_studio_* /
+         record.company_id.x_studio_*). Because the proxy fields
+         keep the same names as the old catalogue model's, every
+         downstream field access on the fetched variable keeps
+         working verbatim; only the fetch line changes. Idempotent
+         via a marker in the rewritten code — manual Studio edits
+         stay intact on re-upgrades. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_patch_studio_readers_to_use_company"/>
 
     <!-- Hide the Studio-generated 'Sales Configurations' list/form
          menus since v17 (this module) moved the four config values

@@ -114,6 +114,186 @@ class MinimumSalesMarginSeed(models.AbstractModel):
                 ),
             )
 
+    # ---------- v22: full cutover to ir.config_parameter -----------------
+    # Marker embedded in every Studio code reader we've patched. Presence
+    # of the marker means the code has already been swept once, so future
+    # upgrades skip that reader and any manual Studio edit stays intact.
+    _CUTOVER_MARKER = '# bugfix_sales:config-cutover-v22'
+
+    # Sensible defaults used when seeding ir.config_parameter for a
+    # freshly-added company. Mirror the same defaults the old row seed
+    # was using (see _seed_minimum_sales_margin_per_company).
+    _DEFAULT_IR_CONFIG_VALUES = {
+        'bugfix_sales.minimum_sales_margin': _DEFAULT_MARGIN_PCT,
+        'bugfix_sales.sales_order_validity': _DEFAULT_SO_VALIDITY_DAYS,
+        'bugfix_sales.advance_payment_pct': _DEFAULT_ADVANCE_PCT,
+        'bugfix_sales.last_purchase_price_validity_days': _DEFAULT_PURCHASE_VALIDITY_DAYS,
+    }
+
+    @api.model
+    def _seed_ir_config_parameter_defaults(self):
+        """Write default values for every Sales config key that is
+        missing on any active company.
+
+        v21 introduced ir.config_parameter as the source of truth but
+        relied on _seed_minimum_sales_margin_per_company running first
+        (to insert old-model rows) and _migrate_to_config_parameter
+        running second (to copy those into ir.config_parameter). v22
+        drops the old-model seed — new companies would end up with no
+        parameter row at all, which the res.company compute treats as
+        "0", i.e. margin gate disabled. Seed real defaults instead so
+        the enforcement stays live from day one on any new company.
+
+        Idempotent — only writes keys that are currently absent, so
+        Settings edits done between upgrades never get clobbered.
+        """
+        Icp = self.env['ir.config_parameter'].sudo()
+        companies = self.env['res.company'].sudo().search([])
+        for company in companies:
+            for base_key, default in self._DEFAULT_IR_CONFIG_VALUES.items():
+                param_key = '%s.%s' % (base_key, company.id)
+                existing = Icp.search(
+                    [('key', '=', param_key)], limit=1,
+                )
+                if existing:
+                    continue
+                Icp.set_param(param_key, str(default))
+
+    @api.model
+    def _patch_studio_readers_to_use_company(self):
+        """Surgically rewrite every Studio Python element that reads
+        env['x_minimum_sales_margin'].search(...) so it reads the new
+        proxy fields on res.company instead.
+
+        Substitution pattern
+        --------------------
+        Because res.company.x_studio_minimum_sales_margin_ (and the
+        three siblings) keep the same names as the fields on the old
+        Studio catalogue model, every downstream reference
+        `min_magin.x_studio_minimum_sales_margin_` continues to work
+        verbatim. Only the ONE fetch line needs replacing:
+
+            env['x_minimum_sales_margin'].search([], limit=1)
+                → record.company_id   (or env.company / rec.company_id)
+
+        Which right-hand side to pick depends on which local variable
+        the surrounding code already carries:
+
+          * If the enclosing scope has `record` (a per-record server
+            action or a compute loop iteration variable) — use
+            record.company_id.
+          * If the compute loop uses `rec` — use rec.company_id.
+          * If the enclosing scope has a `company` variable already
+            derived from allowed_company_ids — use that.
+          * Otherwise (crons where no record is in scope) — fall back
+            to env.company (single-company cron process; matches
+            pre-v22 behaviour where search([], limit=1) returned one
+            arbitrary row).
+
+        Idempotence
+        -----------
+        Each patch checks for the marker `# bugfix_sales:config-cutover-v22`
+        at the top of the target string; skipped if already present. A
+        second guard `if patch_from not in code` (verbatim match)
+        prevents overwriting Studio edits that removed the original
+        fetch line — safer than blind replace.
+        """
+        marker = self._CUTOVER_MARKER
+        Server = self.env['ir.actions.server'].sudo()
+        Field = self.env['ir.model.fields'].sudo()
+
+        # Server-action patches: (id, old_snippet, new_snippet, comment)
+        server_patches = [
+            # 1508 — SLS - Validate Margin in SO Line (sale.order.line)
+            (
+                1508,
+                "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
+                "min_magin = record.company_id",
+                'Read minimum margin from the current SO line company.',
+            ),
+            # 1517 — SLS - Item Over Margin Details (sale.order)
+            (
+                1517,
+                "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
+                "min_magin = record.company_id",
+                'Read minimum margin from the current SO company.',
+            ),
+            # 2340 — SLS - Cancel SOs more than 3 Months (cron; no record in scope)
+            (
+                2340,
+                "no_of_days = env['x_minimum_sales_margin'].search([])",
+                "no_of_days = env.company",
+                'Read SO validity days from the caller company '
+                '(cron traditionally used first row).',
+            ),
+            # 2341 — SLS - Create Customer Payment (sale.order); has TWO occurrences
+            (
+                2341,
+                "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
+                "min_magin = record.company_id",
+                'Read advance payment % from the current SO company.',
+            ),
+            # 2427 — RR - Validate Payment % (account.payment)
+            (
+                2427,
+                "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
+                "min_magin = record.company_id",
+                'Read advance payment % from the current payment company.',
+            ),
+            # 2897 — PROJ - Update Project Pricelist (product.pricelist);
+            # already had explicit company scoping via x_studio_company_id
+            (
+                2897,
+                ("sales_configuration = env['x_minimum_sales_margin'].search("
+                 "[('x_studio_company_id', '=', company.id)],limit=1)"),
+                'sales_configuration = company',
+                'Read last-purchase-price validity from the resolved company.',
+            ),
+        ]
+        for action_id, old, new, _why in server_patches:
+            action = Server.browse(action_id).exists()
+            if not action:
+                continue
+            code = action.code or ''
+            if marker in code:
+                continue
+            if old not in code:
+                continue
+            # replace(count=-1) covers the double-occurrence in action 2341
+            new_code = code.replace(old, new)
+            action.write({'code': marker + '\n' + new_code})
+
+        # Compute-field patches: same idea but on ir.model.fields.compute.
+        # Identify by model + field-name (safer than id — surviving Studio
+        # rebuilds that may renumber ids).
+        field_patches = [
+            (
+                'account.payment', 'x_studio_payment_validation',
+                "min_magin = self.env['x_minimum_sales_margin'].search([], limit=1)",
+                'min_magin = record.company_id',
+                'Read advance payment % from the current payment company.',
+            ),
+            (
+                'sale.order', 'x_studio_sales_order_validity',
+                "setup = self.env['x_minimum_sales_margin'].search([])",
+                'setup = rec.company_id',
+                'Read SO validity days from the current SO company.',
+            ),
+        ]
+        for model, name, old, new, _why in field_patches:
+            field = Field.search(
+                [('model', '=', model), ('name', '=', name)], limit=1,
+            )
+            if not field:
+                continue
+            code = field.compute or ''
+            if marker in code:
+                continue
+            if old not in code:
+                continue
+            new_code = code.replace(old, new)
+            field.write({'compute': marker + '\n' + new_code})
+
     @api.model
     def _migrate_to_config_parameter(self):
         """One-shot copy of each x_minimum_sales_margin row into
