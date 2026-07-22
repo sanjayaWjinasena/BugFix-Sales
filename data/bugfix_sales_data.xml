@@ -37,6 +37,16 @@
     <function model="bugfix_sales.minimum_sales_margin.seed"
               name="_patch_studio_readers_to_use_company"/>
 
+    <!-- v23: convert sale.order.line.x_studio_margin_exceed from a
+         stored boolean (set via base.automation 91's on_change) to a
+         non-stored computed field. Ensures the margin check is fresh
+         on every read — Settings threshold changes propagate
+         immediately without needing anyone to touch each line.
+         Also tightens the sale.order header rollup's depends and
+         deactivates automation 91. Idempotent via marker. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_convert_line_margin_flag_to_computed"/>
+
     <!-- Hide the Studio-generated 'Sales Configurations' list/form
          menus since v17 (this module) moved the four config values
          into Settings → Sales. Editing a database-record list is the

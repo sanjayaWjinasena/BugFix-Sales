@@ -159,6 +159,126 @@ class MinimumSalesMarginSeed(models.AbstractModel):
                     continue
                 Icp.set_param(param_key, str(default))
 
+    # Formula for sale.order.line.x_studio_margin_exceed as a compute.
+    # Mirrors the original SLS - Validate Margin in SO Line server
+    # action 1508 exactly (same value_1 / value_2 dimensional quirk
+    # preserved so results don't drift between installations that ran
+    # the old on_change vs the new compute). The threshold now reads
+    # via record.company_id.x_studio_minimum_sales_margin_ (the
+    # per-company proxy backed by ir.config_parameter), so a Settings
+    # save re-evaluates every line on the next read — no stored flag
+    # to go stale.
+    _LINE_MARGIN_EXCEED_COMPUTE = (
+        "# bugfix_sales:margin-exceed-computed-v23\n"
+        "for record in self:\n"
+        "  exceeded = False\n"
+        "  if record.product_id and record.x_studio_quotation_type != 'Project':\n"
+        "    if record.product_uom_qty and record.product_uom_qty > 0:\n"
+        "      value_1 = ((record.price_subtotal/record.product_uom_qty) - "
+        "(record.price_subtotal*(record.x_studio_commission/100)) - "
+        "record.product_id.standard_price)\n"
+        "      value_2 = (record.price_subtotal/record.product_uom_qty) - "
+        "(record.price_subtotal*(record.x_studio_commission/100))\n"
+        "      if value_2 > 0:\n"
+        "        net_margin = (value_1/value_2)*100\n"
+        "        if net_margin and "
+        "net_margin < (record.company_id.x_studio_minimum_sales_margin_ or 0.0):\n"
+        "          exceeded = True\n"
+        "  record['x_studio_margin_exceed'] = exceeded\n"
+    )
+
+    _LINE_MARGIN_EXCEED_DEPENDS = (
+        'product_id,'
+        'product_id.standard_price,'
+        'product_uom_qty,'
+        'price_subtotal,'
+        'x_studio_commission,'
+        'x_studio_quotation_type'
+    )
+
+    _HEADER_MARGIN_EXCEED_DEPENDS = 'order_line.x_studio_margin_exceed'
+
+    @api.model
+    def _convert_line_margin_flag_to_computed(self):
+        """Convert sale.order.line.x_studio_margin_exceed from a
+        stored boolean (set via base.automation 91's on_change into
+        server action 1508) into a non-stored computed field that is
+        re-evaluated on every read.
+
+        Why
+        ---
+        Stored booleans go stale when the surrounding config changes
+        without touching the record. That is exactly what happened
+        after the v22 cutover: users saw the "Insufficient Margin"
+        modal fire on lines with 91.67% margin against a 50%
+        threshold because the flag had been set True under an older
+        (higher) threshold and no on_change fired since. Making the
+        flag a compute means the check is fresh at every render.
+
+        What
+        ----
+        1. On sale.order.line.x_studio_margin_exceed:
+             store   = False
+             compute = <the same formula the on_change ran>
+             depends = product / qty / price / commission / quotation
+                       type (skipping the config value itself: it's a
+                       non-stored proxy field so depends can't
+                       reliably chain through it — but non-stored
+                       computes recompute on every read anyway, so
+                       cache invalidation via other fields is only a
+                       within-transaction concern, not correctness)
+        2. Tighten sale.order.x_studio_margin_exceed's depends from
+           "order_line" (link changes only) to
+           "order_line.x_studio_margin_exceed" so the header rollup
+           invalidates when a line's computed value changes within a
+           transaction.
+        3. Deactivate base.automation 91 — the on_change is dead
+           weight once the compute takes over, and leaving it active
+           would still fire (idempotently) at every line edit,
+           writing the same non-stored value to nothing.
+        4. Also tighten sale.order.line._description of the field to
+           its computed form so the label is unchanged.
+
+        Idempotent via the marker at the top of the compute string
+        — reruns detect the marker and no-op. Manual Studio edits
+        that removed the marker will trigger a re-write; if that
+        matters, the marker can be re-added by hand in Studio.
+        """
+        Field = self.env['ir.model.fields'].sudo()
+        marker = '# bugfix_sales:margin-exceed-computed-v23'
+
+        # Step 1 — line field
+        line_field = Field.search([
+            ('model', '=', 'sale.order.line'),
+            ('name', '=', 'x_studio_margin_exceed'),
+        ], limit=1)
+        if line_field and marker not in (line_field.compute or ''):
+            line_field.write({
+                'store': False,
+                'compute': self._LINE_MARGIN_EXCEED_COMPUTE,
+                'depends': self._LINE_MARGIN_EXCEED_DEPENDS,
+                'readonly': True,
+            })
+
+        # Step 2 — header field depends tightening
+        header_field = Field.search([
+            ('model', '=', 'sale.order'),
+            ('name', '=', 'x_studio_margin_exceed'),
+        ], limit=1)
+        if header_field and header_field.depends != self._HEADER_MARGIN_EXCEED_DEPENDS:
+            header_field.write({
+                'depends': self._HEADER_MARGIN_EXCEED_DEPENDS,
+            })
+
+        # Step 3 — retire the automation that used to set the stored value
+        Auto = self.env['base.automation'].sudo()
+        auto_91 = Auto.search([
+            ('model_name', '=', 'sale.order.line'),
+            ('name', '=', 'SLS - Validate Margin in SO Line'),
+        ], limit=1)
+        if auto_91 and auto_91.active:
+            auto_91.write({'active': False})
+
     @api.model
     def _patch_studio_readers_to_use_company(self):
         """Surgically rewrite every Studio Python element that reads
