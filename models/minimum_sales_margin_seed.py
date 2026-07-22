@@ -199,6 +199,48 @@ class MinimumSalesMarginSeed(models.AbstractModel):
     _HEADER_MARGIN_EXCEED_DEPENDS = 'order_line.x_studio_margin_exceed'
 
     @api.model
+    def _suppress_validate_sales_lines_button(self):
+        """Suppress the 'Validate Sales Lines' button on sale.order.
+
+        The button appears when x_studio_clear_free_items on the SO
+        header flips True. That flip is driven by base.automation 216
+        (SLS - Clear Free Items SO Lines): when a salesperson adds a
+        line to an SO that carries reward lines (is_reward_line=True),
+        the automation sets x_studio_clear_free_items=True on the
+        newly-added line. The header's computed field rolls that up
+        and the button becomes visible.
+
+        Users don't want that flow right now. Deactivating the
+        automation prevents the flag from being flipped in the first
+        place, so the button never shows on new line edits — while
+        every other line-change automation (margin, credit, discount,
+        commission) continues to fire normally.
+
+        Rationale for choosing this layer
+        ---------------------------------
+        The button target — server action 2337 — deletes all reward
+        lines and resets flags. That's the destructive path we're
+        turning off. But hiding just the button via view arch would
+        leave the flag flipping around silently and any future arch
+        change could re-expose it. Cutting the flag setter is the
+        one place where the whole feature branches from, and
+        activating the automation later re-enables everything with
+        zero code changes.
+
+        Idempotent — reruns find the automation already inactive
+        and no-op.
+
+        Reversibility — set base.automation 216 active=True from
+        Developer Mode to bring the feature back.
+        """
+        auto = self.env['base.automation'].sudo().search([
+            ('model_name', '=', 'sale.order.line'),
+            ('name', '=', 'SLS - Clear Free Items SO Lines'),
+        ], limit=1)
+        if auto and auto.active:
+            auto.write({'active': False})
+
+    @api.model
     def _convert_line_margin_flag_to_computed(self):
         """Convert sale.order.line.x_studio_margin_exceed from a
         stored boolean (set via base.automation 91's on_change into

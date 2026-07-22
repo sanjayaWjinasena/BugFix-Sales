@@ -47,6 +47,17 @@
     <function model="bugfix_sales.minimum_sales_margin.seed"
               name="_convert_line_margin_flag_to_computed"/>
 
+    <!-- v24: suppress the 'Validate Sales Lines' button on sale.order
+         by deactivating base.automation 216 (SLS - Clear Free Items
+         SO Lines). Without the automation, x_studio_clear_free_items
+         never flips True and the button stays hidden. Margin / credit
+         / discount checks are separate automations — untouched. The
+         button's target action (server action 2337) also stays intact
+         so re-enabling the feature later is just flipping the
+         automation active=True in Developer Mode. Idempotent. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_suppress_validate_sales_lines_button"/>
+
     <!-- Hide the Studio-generated 'Sales Configurations' list/form
          menus since v17 (this module) moved the four config values
          into Settings → Sales. Editing a database-record list is the
