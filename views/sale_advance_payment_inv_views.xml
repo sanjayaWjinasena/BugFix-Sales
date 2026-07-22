@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Restrict the Create Invoice wizard to Regular invoice only
+         when opened from a Sales-type sale.order. Load the marker
+         boolean (invisible) so the readonly expression can resolve,
+         then lock advance_payment_method as readonly whenever the
+         marker is True. Combined with default_get in the Python
+         override, Regular stays preselected and Down-payment
+         options are shown but not clickable. -->
+    <record id="view_sale_advance_payment_inv_bugfix_sales"
+            model="ir.ui.view">
+        <field name="name">sale.advance.payment.inv.form.bugfix_sales</field>
+        <field name="model">sale.advance.payment.inv</field>
+        <field name="inherit_id"
+               ref="sale.view_sale_advance_payment_inv"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='advance_payment_method']"
+                   position="before">
+                <field name="bugfix_sales_only_regular" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='advance_payment_method']"
+                   position="attributes">
+                <attribute name="readonly">bugfix_sales_only_regular</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
