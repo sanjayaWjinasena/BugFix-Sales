@@ -114,6 +114,65 @@ class MinimumSalesMarginSeed(models.AbstractModel):
                 ),
             )
 
+    @api.model
+    def _migrate_to_config_parameter(self):
+        """One-shot copy of each x_minimum_sales_margin row into
+        ir.config_parameter under company-scoped keys.
+
+        Purpose
+        -------
+        v21 moves the four Sales config values from the Studio
+        catalogue model x_minimum_sales_margin (one row per company)
+        to ir.config_parameter (per-company keys). res.company exposes
+        computed proxy fields backed by those keys; res.config.settings
+        binds them via `related`.
+
+        This function preserves the current per-company values across
+        the storage change:
+
+          - For each x_minimum_sales_margin row, derive the four keys
+            from res.company._BUGFIX_SALES_CONFIG.
+          - For each key that does NOT yet exist in ir.config_parameter,
+            copy the value across.
+          - Existing keys are left alone — subsequent upgrades never
+            overwrite a value the user has edited via Settings.
+
+        The old catalogue rows are NOT touched. Studio server actions
+        that still read env['x_minimum_sales_margin'].search(...) keep
+        seeing the values they saw before the upgrade; those readers
+        get migrated to env.company.x_studio_* in follow-up commits
+        (they'll go stale relative to ir.config_parameter after the
+        first Settings edit, per the accepted cutover plan).
+
+        Idempotent — reruns find every key already present and no-op.
+        """
+        Icp = self.env['ir.config_parameter'].sudo()
+        IcpModel = self.env['ir.config_parameter'].sudo()
+        rows = self.env['x_minimum_sales_margin'].sudo().search([])
+        if not rows:
+            return
+        # Import the mapping from res.company so field-name / key-base
+        # pairs stay in lockstep with the reader side. Model may not
+        # have been registered yet on the very first install pass; the
+        # data XML calls this AFTER models are loaded, so the lookup
+        # is safe here.
+        keymap = self.env['res.company']._BUGFIX_SALES_CONFIG
+        for row in rows:
+            company = row.x_studio_company_id
+            if not company:
+                continue
+            for fname, (key_base, _ttype, _default) in keymap.items():
+                param_key = '%s.%s' % (key_base, company.id)
+                # Use a direct search so we can distinguish "key
+                # exists with value 0" from "key missing". get_param
+                # returns False for both cases.
+                existing = IcpModel.search(
+                    [('key', '=', param_key)], limit=1,
+                )
+                if existing:
+                    continue
+                Icp.set_param(param_key, str(row[fname]))
+
     _C01_REPORT_NAME = 'C01 Sales Quotation'
     _C01_INHERIT_XMLID = 'bugfix_sales_c01_quotation_intro_conclusion'
     _C01_INHERIT_ARCH = (

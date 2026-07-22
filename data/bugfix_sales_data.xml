@@ -16,6 +16,16 @@
     <function model="bugfix_sales.minimum_sales_margin.seed"
               name="_seed_minimum_sales_margin_per_company"/>
 
+    <!-- v21 migration: copy the four config values from each
+         x_minimum_sales_margin row into ir.config_parameter under
+         per-company keys (see res.company._BUGFIX_SALES_CONFIG for
+         the key format). Runs AFTER the seed above so freshly-added
+         companies inherit default values before migration; idempotent
+         (only writes keys that don't already exist), so Settings
+         edits done between upgrades survive future runs. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_migrate_to_config_parameter"/>
+
     <!-- Hide the Studio-generated 'Sales Configurations' list/form
          menus since v17 (this module) moved the four config values
          into Settings → Sales. Editing a database-record list is the
