@@ -67,7 +67,14 @@ class SaleOrder(models.Model):
         """
         arch, view = super()._get_view(view_id, view_type, **options)
         if view_type == 'form':
-            sales_only = "x_studio_quotation_type == 'Sales'"
+            # `not x_studio_quotation_type` also covers a brand-new SO
+            # where the type hasn't been picked yet — we want the fields
+            # gone from form open, not to flash into view before the
+            # user selects a type.
+            sales_only = (
+                "not x_studio_quotation_type or "
+                "x_studio_quotation_type == 'Sales'"
+            )
             for fname in _HIDE_ON_SALES_TYPE_FIELDS:
                 for field_el in arch.xpath(f"//field[@name='{fname}']"):
                     existing = field_el.get('invisible', '')
