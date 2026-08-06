@@ -76,13 +76,22 @@ class SaleOrder(models.Model):
                 "x_studio_quotation_type == 'Sales'"
             )
             for fname in _HIDE_ON_SALES_TYPE_FIELDS:
-                for field_el in arch.xpath(f"//field[@name='{fname}']"):
-                    existing = field_el.get('invisible', '')
+                # The responsive SO header renders labels and fields as
+                # sibling elements — <label for="fname"/> sits in one
+                # cell, <field name="fname"/> in the next. Setting
+                # invisible on the field alone leaves the label
+                # dangling with no value beside it. Hide both.
+                elements = (
+                    arch.xpath(f"//field[@name='{fname}']")
+                    + arch.xpath(f"//label[@for='{fname}']")
+                )
+                for el in elements:
+                    existing = el.get('invisible', '')
                     if existing and existing not in ('0', 'False'):
-                        field_el.set(
+                        el.set(
                             'invisible',
                             f"({existing}) or ({sales_only})",
                         )
                     else:
-                        field_el.set('invisible', sales_only)
+                        el.set('invisible', sales_only)
         return arch, view
