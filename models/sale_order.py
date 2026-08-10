@@ -41,6 +41,128 @@ class SaleOrder(models.Model):
     bugfix_sales_intro_text = fields.Text(string='Introduction')
     bugfix_sales_conclusion_text = fields.Text(string='Conclusion')
 
+    # ------------------------------------------------------------------
+    # Studio → BugFix-Sales port of Sales-workflow credit / bank-guarantee
+    # / margin / overdue gate fields.
+    #
+    # These were created in Studio (state='manual', owned by
+    # studio_customization). The Jul 2026 migration flipped them to
+    # state='base' and repinned ir.model.data ownership to Fix-repair
+    # via raw SQL — but no Python declaration existed. Consumed by
+    # code in Fix-repair (Confirm gates) and BugFix-Sales (config
+    # setters, view arch inheriting these attrs).
+    #
+    # Declaring them here means:
+    #  - Current DB: ownership takes over cleanly on next upgrade
+    #  - Fresh DB install of BugFix-Sales: the fields are actually
+    #    created by the ORM instead of relying on Studio DB state
+    # ------------------------------------------------------------------
+
+    # --- Credit-limit gate --------------------------------------------------
+    x_studio_credit_limit_approved = fields.Boolean(
+        string='Credit Limit Approved',
+    )
+    # --- Bank guarantee -----------------------------------------------------
+    x_studio_bank_guarantee_approved = fields.Boolean(
+        string='Bank Guarantee Approved',
+    )
+    x_studio_over_bank_guarantee = fields.Boolean(
+        string='Over Bank Guarantee',
+    )
+    x_studio_over_bank_guarantee_amount = fields.Float(
+        string='Over Bank Guarantee Amount',
+    )
+    x_studio_valid_bank_guarantee = fields.Boolean(
+        string='Valid Bank Guarantee',
+        related='partner_id.x_studio_valid_bank_guarantee',
+        store=True,
+    )
+    # --- Over-credit --------------------------------------------------------
+    x_studio_over_credit = fields.Boolean(
+        string='Over Credit',
+    )
+    x_studio_over_credit_amount = fields.Float(
+        string='Over Credit Amount',
+    )
+    # --- Over-commission ----------------------------------------------------
+    x_studio_over_commission = fields.Boolean(
+        string='Over Commission',
+    )
+    x_studio_over_commission_approved = fields.Boolean(
+        string='Over Commission Approved',
+    )
+    # --- Overdue ------------------------------------------------------------
+    x_studio_overdue = fields.Boolean(
+        string='Overdue',
+    )
+    x_studio_overdue_approved = fields.Boolean(
+        string='Overdue Approved',
+    )
+    # --- Margin -------------------------------------------------------------
+    x_studio_margin_approved = fields.Boolean(
+        string='Margin Approved',
+    )
+    x_studio_margin_exceed = fields.Boolean(
+        string='Margin Exceed',
+    )
+    # --- Order-payment / lock / expiry --------------------------------------
+    x_studio_order_payment_method = fields.Selection(
+        [('Cash', 'Cash'), ('Credit', 'Credit')],
+        string='Order Payment Type',
+    )
+    x_studio_locked = fields.Boolean(string='Locked')
+    x_studio_unlocked = fields.Boolean(string='Unlocked')
+    x_studio_expired = fields.Boolean(string='Expired')
+    x_studio_expiry_date = fields.Date(
+        string='Bank Guarantee Expiration Date',
+        related='partner_id.x_studio_expiry_date',
+        store=True,
+    )
+    # --- Confirm-time gates -------------------------------------------------
+    x_studio_price_not_confirmed = fields.Boolean(
+        string='Price Not Confirmed',
+    )
+    x_studio_valid_order_lines = fields.Boolean(
+        string='Valid Order Lines',
+    )
+    x_studio_sales_order_validity = fields.Integer(
+        string='Sales Order Validity',
+    )
+    # --- Re-estimate request tracker ---------------------------------------
+    x_studio_re_estimate_request_count = fields.Boolean(
+        string='Re-estimate Request Count (bool)',
+    )
+    x_studio_re_estimate_request_count_1 = fields.Integer(
+        string='Re-estimate Request Count',
+    )
+    x_studio_re_estimate_request_sent = fields.Boolean(
+        string='Re-estimate Request Sent',
+    )
+    # --- Misc SO gates ------------------------------------------------------
+    x_studio_account_mandatory = fields.Boolean(
+        string='Account Mandatory',
+    )
+    x_studio_new_item_from_project = fields.Boolean(
+        string='New Item from Project',
+    )
+    x_studio_guarantee_status = fields.Char(
+        string='Guarantee Status',
+    )
+    x_studio_inventory_short = fields.Boolean(
+        string='Inventory Short',
+    )
+    # --- Project link -------------------------------------------------------
+    x_studio_project_no = fields.Many2one(
+        'project.project',
+        string='Project No',
+        related='task_id.project_id',
+        store=True,
+    )
+    x_studio_main_project_no = fields.Many2one(
+        'project.project',
+        string='Main Project No',
+    )
+
     @api.onchange('bugfix_sales_intro_id')
     def _onchange_bugfix_sales_intro_id(self):
         for order in self:
