@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'BugFix - Sales',
-    'version': '17.0.1.0.30',
+    'version': '17.0.1.0.31',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
-    'depends': ['base_setup', 'sale', 'sale_stock'],
+    'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale'],
     'data': [
         'security/ir.model.access.csv',
         'data/bugfix_sales_data.xml',
