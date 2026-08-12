@@ -487,7 +487,14 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         first Settings edit, per the accepted cutover plan).
 
         Idempotent — reruns find every key already present and no-op.
+
+        Safe on stand-alone DBs: if the Studio catalogue model
+        x_minimum_sales_margin was never provisioned (fresh Odoo
+        install with no Jinasena Studio state), there's nothing to
+        migrate and we early-return before the missing-model KeyError.
         """
+        if 'x_minimum_sales_margin' not in self.env:
+            return
         Icp = self.env['ir.config_parameter'].sudo()
         IcpModel = self.env['ir.config_parameter'].sudo()
         rows = self.env['x_minimum_sales_margin'].sudo().search([])
