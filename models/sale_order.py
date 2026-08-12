@@ -73,6 +73,29 @@ class SaleOrder(models.Model):
         ],
         string='Quotation Type',
     )
+    # --- Repair-flow gate flags read by Fix-repair ------------------------
+    # These three fields live on sale.order (Sales-owned by definition)
+    # but drive Fix-repair's Repair-Under-Guarantee (RUG) workflow. Since
+    # Fix-repair's @api.depends chains walk into them and rec['...'].write
+    # calls assign them, they must exist at Python setup time on any DB
+    # where Fix-repair is installed — hence Python declarations here
+    # rather than leaving them state=manual on sale.order.
+    x_studio_rug_approved = fields.Boolean(
+        string='RUG Approved',
+        help='Repair-Under-Guarantee approved on this SO — releases the '
+             'downstream repair pickings and closes the RUG cycle.',
+    )
+    x_studio_rug_rejected = fields.Boolean(
+        string='RUG Rejected',
+        help='Repair-Under-Guarantee rejected — the repair falls through '
+             'to customer-pays.',
+    )
+    x_studio_re_estimate_count = fields.Integer(
+        string='Re-estimate Count',
+        help='Counter incremented every time the repair is re-estimated '
+             '(driven by Fix-repair). Ticket-side re-estimate status '
+             'rolls up from this.',
+    )
     # --- Credit-limit gate --------------------------------------------------
     x_studio_credit_limit_approved = fields.Boolean(
         string='Credit Limit Approved',

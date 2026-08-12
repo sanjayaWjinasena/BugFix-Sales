@@ -55,6 +55,10 @@ _PORTED_SALE_FIELDS = (
     'x_studio_authorized_repair_user',
     # v37 — needed by Fix-repair's related= chain on project.task
     'x_studio_quotation_type',
+    # v38 — RUG-flow gates + re-estimate counter read by Fix-repair
+    'x_studio_rug_approved',
+    'x_studio_rug_rejected',
+    'x_studio_re_estimate_count',
 )
 # Kept in sync with models/res_partner.py (v30 port).
 _PORTED_PARTNER_FIELDS = (
