@@ -90,6 +90,18 @@ class SaleOrder(models.Model):
         help='Repair-Under-Guarantee rejected — the repair falls through '
              'to customer-pays.',
     )
+    # v40: RUG confirmed flag — read by Studio invisible expressions
+    # in the sale.order form arch (Confirm-button gate references
+    # x_studio_rug_confirmed together with x_studio_rug_rejected and
+    # ticket_repair_stage_state). Missed in v38's RUG batch; landing
+    # now so form-arch load stops raising Name 'x_studio_rug_confirmed'
+    # is not defined.
+    x_studio_rug_confirmed = fields.Boolean(
+        string='RUG Confirmed',
+        help='Repair-Under-Guarantee confirmed by the operator — one '
+             'step before rug_approved; used by button-gate expressions '
+             'to distinguish "in review" from final decision.',
+    )
     x_studio_re_estimate_count = fields.Integer(
         string='Re-estimate Count',
         help='Counter incremented every time the repair is re-estimated '
