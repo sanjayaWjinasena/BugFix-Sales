@@ -58,6 +58,21 @@ class SaleOrder(models.Model):
     #    created by the ORM instead of relying on Studio DB state
     # ------------------------------------------------------------------
 
+    # --- Quotation type selector ------------------------------------------
+    # Chooses which downstream workflow the SO drives: plain Sales,
+    # Project-linked, or Repair (helpdesk ticket driven). Fix-repair's
+    # project.task carries a stored related= that walks into this field,
+    # so it must be Python-declared on sale.order or fresh installs of
+    # Fix-repair blow up in setup_related. Kept as a Selection here to
+    # match the Studio-manual shape and preserve stored values.
+    x_studio_quotation_type = fields.Selection(
+        [
+            ('Sales', 'Sales'),
+            ('Project', 'Project'),
+            ('Repair', 'Repair'),
+        ],
+        string='Quotation Type',
+    )
     # --- Credit-limit gate --------------------------------------------------
     x_studio_credit_limit_approved = fields.Boolean(
         string='Credit Limit Approved',
