@@ -285,6 +285,13 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         — reruns detect the marker and no-op. Manual Studio edits
         that removed the marker will trigger a re-write; if that
         matters, the marker can be re-added by hand in Studio.
+
+        Once these fields are declared in Python (state='base'),
+        Odoo forbids ORM writes to their properties on
+        ir.model.fields (`Properties of base fields cannot be
+        altered in this manner`). At that point the Python
+        declaration itself owns the compute/depends/store, so
+        this method has nothing to do — skip.
         """
         Field = self.env['ir.model.fields'].sudo()
         marker = '# bugfix_sales:margin-exceed-computed-v23'
@@ -294,7 +301,8 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             ('model', '=', 'sale.order.line'),
             ('name', '=', 'x_studio_margin_exceed'),
         ], limit=1)
-        if line_field and marker not in (line_field.compute or ''):
+        if (line_field and line_field.state == 'manual'
+                and marker not in (line_field.compute or '')):
             line_field.write({
                 'store': False,
                 'compute': self._LINE_MARGIN_EXCEED_COMPUTE,
@@ -307,7 +315,8 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             ('model', '=', 'sale.order'),
             ('name', '=', 'x_studio_margin_exceed'),
         ], limit=1)
-        if header_field and header_field.depends != self._HEADER_MARGIN_EXCEED_DEPENDS:
+        if (header_field and header_field.state == 'manual'
+                and header_field.depends != self._HEADER_MARGIN_EXCEED_DEPENDS):
             header_field.write({
                 'depends': self._HEADER_MARGIN_EXCEED_DEPENDS,
             })
