@@ -215,6 +215,60 @@ class SaleOrder(models.Model):
         readonly=True,
     )
 
+    # --- v39 additions ------------------------------------------------------
+    # Chunk 1g-audit findings (2026-08-12): 5 sale.order Studio fields
+    # referenced by Studio view arch but never declared. On Clear-DB
+    # state='manual' owned by studio_customization. Ported to state=base
+    # here so standalone form-arch load doesn't error with
+    # `"sale.order"."x_studio_budget_created" field is undefined`.
+    # Types + selection values verified verbatim vs Clear-DB
+    # ir.model.fields (2026-08-12).
+    x_studio_budget_created = fields.Boolean(
+        string='Budget Created',
+    )
+    x_studio_current_tot_amount = fields.Float(
+        string='Current Total Amount',
+    )
+    x_studio_current_tot_amount_1 = fields.Float(
+        string='Current Total Amount (v2)',
+    )
+    x_studio_proj_budget_status = fields.Selection(
+        selection=[
+            ('draft', 'Draft'),
+            ('cancel', 'Cancelled'),
+            ('confirm', 'Confirmed'),
+            ('validate', 'Validated'),
+            ('done', 'Done'),
+        ],
+        string='Project Budget Status',
+    )
+    x_studio_service_item_available = fields.Boolean(
+        string='Service Item Available',
+        compute='_compute_x_studio_service_item_available',
+        store=False,
+    )
+
+    @api.depends('order_line.product_id.service_tracking',
+                 'order_line.product_type')
+    def _compute_x_studio_service_item_available(self):
+        """Port of Clear-DB Studio compute (v-earlier):
+            for rec in self:
+              val = False
+              for line in rec.order_line:
+                if line.product_type == 'service':
+                  if line.product_id.service_tracking == 'project_only':
+                    val = True
+              rec['x_studio_service_item_available'] = val
+        """
+        for rec in self:
+            val = False
+            for line in rec.order_line:
+                if line.product_type == 'service' and \
+                   line.product_id.service_tracking == 'project_only':
+                    val = True
+                    break
+            rec.x_studio_service_item_available = val
+
     @api.onchange('bugfix_sales_intro_id')
     def _onchange_bugfix_sales_intro_id(self):
         for order in self:
