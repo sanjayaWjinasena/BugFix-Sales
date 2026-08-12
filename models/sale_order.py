@@ -162,6 +162,20 @@ class SaleOrder(models.Model):
         'project.project',
         string='Main Project No',
     )
+    # --- v33 additions ------------------------------------------------------
+    # Junk-named Studio artefact — a boolean literally named "x_studio_"
+    # (with a trailing underscore). Kept verbatim to preserve any data
+    # on live records.
+    x_studio_ = fields.Boolean(
+        string='Test Field',
+    )
+    x_studio_approval_request_sent = fields.Boolean(
+        string='Approval Request Sent',
+    )
+    x_studio_authorized_repair_user = fields.Boolean(
+        string='Authorized Repair User',
+        readonly=True,
+    )
 
     @api.onchange('bugfix_sales_intro_id')
     def _onchange_bugfix_sales_intro_id(self):

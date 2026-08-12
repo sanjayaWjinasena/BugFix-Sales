@@ -6,3 +6,4 @@ from . import res_config_settings
 from . import res_partner            # must precede sale_order — related fields on SO resolve against res.partner Studio fields
 from . import sale_advance_payment_inv
 from . import sale_order
+from . import sale_order_line
