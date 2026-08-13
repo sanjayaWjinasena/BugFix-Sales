@@ -281,6 +281,114 @@ class SaleOrder(models.Model):
                     break
             rec.x_studio_service_item_available = val
 
+    # --- v41 bulk sale.order Studio field port ------------------------------
+    # Second full pass of Chunk 1g-audit backlog. Declares every safe
+    # state=manual sale.order Studio field on Clear-DB so standalone
+    # form-arch load stops raising "field is undefined" for each in turn.
+    #
+    # Types verified verbatim vs Clear-DB `ir.model.fields` (2026-08-12).
+    # Selection values likewise (see x_studio_customer_payment_method).
+    #
+    # Deliberately SKIPPED (relations to Studio models not yet ported —
+    # port them later once the target models land as Python declarations):
+    #   - x_studio_project_group (m2o x_project_groups)
+    #   - x_studio_project_budget (m2o crossovered.budget — deprecated)
+    #   - x_studio_many2one_field_KjdJ3 (m2o account.budget.post — deprecated)
+    #   - x_studio_one2many_field_ERCBB (o2m subclass sale.order.line)
+    #   - x_x_studio_created_from_sales_order_1_crossovered_budget_count (int, depends on above)
+    #   - x_x_studio_created_from_so_x_purchase_request_count (int, depends on Purchase Request Studio)
+    #   - x_x_studio_sales_order_account_payment_count (int, depends on above)
+    #   - x_x_studio_subcontracting_so_purchase_order_count (int, depends on above)
+    #
+    # Booleans (27) --------------------------------------------------------
+    x_studio_bank_guarantee_notification = fields.Boolean(string='BG Notification')
+    x_studio_bank_guarantee_request_sent = fields.Boolean(string='BG Request Sent')
+    x_studio_bank_guarantee_validation = fields.Boolean(string='BG Validation')
+    x_studio_bg_sent = fields.Boolean(string='BG Sent')
+    x_studio_cancelled = fields.Boolean(string='Cancelled')
+    x_studio_clear_free_items = fields.Boolean(string='Clear Free Items')
+    x_studio_credit_limit_validation = fields.Boolean(string='Credit Limit Validation')
+    x_studio_fsm_done = fields.Boolean(string='FSM Done')
+    x_studio_fully_paid = fields.Boolean(string='Fully Paid')
+    x_studio_grant_temporary_credit = fields.Boolean(string='Grant Temporary Credit')
+    x_studio_margin_approval_request_sent = fields.Boolean(string='Margin Approval Request Sent')
+    x_studio_over_comm_approval_request_sent = fields.Boolean(string='Over Commission Approval Request Sent')
+    x_studio_overdue_request_sent = fields.Boolean(string='Overdue Request Sent')
+    x_studio_petty_cash_reimbursement = fields.Boolean(string='Petty Cash Reimbursement')
+    x_studio_pr_cost_updated = fields.Boolean(string='PR Cost Updated')
+    x_studio_pr_created = fields.Boolean(string='PR Created')
+    x_studio_project_item_approved = fields.Boolean(string='Project Item Approved')
+    x_studio_project_item_request_sent = fields.Boolean(string='Project Item Request Sent')
+    x_studio_rug_request_sent = fields.Boolean(string='RUG Request Sent')
+    x_studio_sell_and_win = fields.Boolean(string='Sell and Win')
+    x_studio_sub_contract = fields.Boolean(string='Sub Contract')
+    x_studio_tem_credit_approval_request_sent = fields.Boolean(string='Temporary Credit Approval Request Sent')
+    x_studio_temporary_credit_approved = fields.Boolean(string='Temporary Credit Approved')
+    x_studio_transfer_inventory_ok = fields.Boolean(string='Transfer Inventory OK')
+    x_studio_valid_order_lines_for_projects = fields.Boolean(string='Valid Order Lines for Projects')
+    x_studio_valid_order_lines_for_update_rfq_cost = fields.Boolean(string='Valid Order Lines for Update RFQ Cost')
+    x_studio_valid_transfer = fields.Boolean(string='Valid Transfer')
+
+    # Texts / Chars (5) ----------------------------------------------------
+    x_studio_confirm_validation = fields.Text(string='Confirm Validation')
+    x_studio_confirm_validation_1 = fields.Text(string='Confirm Validation (v2)')
+    x_studio_reject_reason = fields.Text(string='Reject Reason')
+    x_studio_repair_validation = fields.Char(string='Repair Validation')
+    x_studio_total = fields.Char(string='Total')
+
+    # Dates (2) ------------------------------------------------------------
+    x_studio_project_end_date = fields.Date(string='Project End Date')
+    x_studio_project_start_date = fields.Date(string='Project Start Date')
+
+    # Floats (2) -----------------------------------------------------------
+    x_studio_customer_bank_guarantee = fields.Float(string='Customer BG Amount')
+    x_studio_customer_credit_limit = fields.Float(string='Customer Credit Limit')
+
+    # Monetary (3) — currency_field defaults to currency_id on sale.order --
+    x_studio_cust_total_receivable = fields.Monetary(
+        string='Customer Total Receivable',
+        currency_field='currency_id',
+    )
+    x_studio_cust_total_receivable_1 = fields.Monetary(
+        string='Customer Total Receivable (v2)',
+        currency_field='currency_id',
+    )
+    x_studio_total_overdue = fields.Monetary(
+        string='Total Overdue',
+        currency_field='currency_id',
+    )
+
+    # Binary (9) — documents + images + warranty + related info -----------
+    x_studio_document_1 = fields.Binary(string='Document 1')
+    x_studio_document_2 = fields.Binary(string='Document 2')
+    x_studio_document_3 = fields.Binary(string='Document 3')
+    x_studio_image_1 = fields.Binary(string='Image 1')
+    x_studio_image_2 = fields.Binary(string='Image 2')
+    x_studio_image_3 = fields.Binary(string='Image 3')
+    x_studio_related_information = fields.Binary(string='Related Information')
+    x_studio_repair_image_01 = fields.Binary(string='Repair Image 01')
+    x_studio_repair_image_02 = fields.Binary(string='Repair Image 02')
+    x_studio_warranty_card = fields.Binary(string='Warranty Card')
+
+    # Selection (1) — values verified vs Clear-DB ir.model.fields.selection
+    x_studio_customer_payment_method = fields.Selection(
+        selection=[('Cash', 'Cash'), ('Credit', 'Credit')],
+        string='Customer Payment Method',
+    )
+
+    # Many2one to safe (already-existing) target (1) ----------------------
+    x_studio_main_project_2 = fields.Many2one(
+        'project.project',
+        string='Main Project 2',
+        ondelete='set null',
+    )
+
+    # Many2many to Chunk-1a-ported catalogue (1) --------------------------
+    x_studio_repair_reason = fields.Many2many(
+        'x_repair_reason',
+        string='Repair Reason (m2m)',
+    )
+
     @api.onchange('bugfix_sales_intro_id')
     def _onchange_bugfix_sales_intro_id(self):
         for order in self:
