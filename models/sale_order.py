@@ -174,7 +174,29 @@ class SaleOrder(models.Model):
     )
     x_studio_valid_order_lines = fields.Boolean(
         string='Valid Order Lines',
+        compute='_compute_x_studio_valid_order_lines',
+        store=True,
     )
+
+    @api.depends('order_line', 'order_line.product_uom_qty', 'order_line.price_unit',
+                 'order_line.display_type')
+    def _compute_x_studio_valid_order_lines(self):
+        """True iff the SO has at least one non-note/section line with
+        qty > 0 AND price > 0. Ports Clear-DB's Studio automation that
+        set this boolean based on order_line contents — without the
+        port, dev env's valid_order_lines stayed False forever,
+        blocking the Confirm button via Fix-repair's Repair-flow
+        invisible expression.
+        """
+        for order in self:
+            valid = False
+            for line in order.order_line:
+                if line.display_type:  # skip section / note lines
+                    continue
+                if line.product_uom_qty > 0 and line.price_unit > 0:
+                    valid = True
+                    break
+            order.x_studio_valid_order_lines = valid
     x_studio_sales_order_validity = fields.Integer(
         string='Sales Order Validity',
     )
