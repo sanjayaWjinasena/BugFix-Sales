@@ -19,3 +19,19 @@ class SaleOrderLine(models.Model):
     x_studio_price_unit_original = fields.Float(
         string='Price Unit Original',
     )
+    # v44: per-line re-estimation marker + instance counter.
+    # Written by Fix-repair v283's port of Studio automation 204
+    # (RR - Track Lock Status - 3): when a Repair SO is currently
+    # unlocked (parent x_studio_unlocked=True) and the user edits a
+    # line in the form, x_studio_re_estimated flips to True and
+    # x_studio_count_1 is set to (parent.x_studio_re_estimate_count + 1).
+    # sale.order-side automations 202/203 read the max x_studio_count_1
+    # of re-estimated lines to know the target re-estimate count for
+    # the header. Declared here (BugFix-Sales owns line-level Studio
+    # schema) so Fix-repair only carries the automation logic.
+    x_studio_re_estimated = fields.Boolean(
+        string='Re-estimated',
+    )
+    x_studio_count_1 = fields.Integer(
+        string='Re-estimate Instance',
+    )
