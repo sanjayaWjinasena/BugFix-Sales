@@ -10,3 +10,12 @@ class SaleOrderLine(models.Model):
     x_studio_account_mandatory = fields.Boolean(
         string='Account Mandatory',
     )
+    # v43: original line price captured by Fix-repair's RUG-repricing
+    # logic (sale_order_line.py's create/write override on Fix-repair
+    # v279+). Studio also uses this field to restore the customer-facing
+    # price if RUG is later rejected. Declared here so BugFix-Sales
+    # owns the schema (single home for sale.order.line Studio fields);
+    # Fix-repair reads/writes via the same field name.
+    x_studio_price_unit_original = fields.Float(
+        string='Price Unit Original',
+    )
