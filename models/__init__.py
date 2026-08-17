@@ -7,3 +7,4 @@ from . import res_partner            # must precede sale_order — related field
 from . import sale_advance_payment_inv
 from . import sale_order
 from . import sale_order_line
+from . import account_payment
