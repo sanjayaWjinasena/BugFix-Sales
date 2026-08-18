@@ -11,3 +11,4 @@ from . import sale_order
 from . import sale_order_alert
 from . import sale_order_line
 from . import x_delivery_terms
+from . import x_sales_report_type
