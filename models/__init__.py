@@ -8,3 +8,4 @@ from . import sale_advance_payment_inv
 from . import sale_order
 from . import sale_order_line
 from . import account_payment
+from . import product_pricelist
