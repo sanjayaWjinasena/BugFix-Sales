@@ -11,7 +11,7 @@ class XDeliveryTerms(models.Model):
     x_name = fields.Char(string='Delivery Term')
     x_studio_company_id = fields.Many2one('res.company', string='Company')
     x_studio_copied = fields.Boolean(string='Copied')
-    x_studio_delivery_terms_id = fields.One2many('x_delivery_term_charge', 'TODO_inverse', string='Delivery Terms Id')
+    # TODO: x_studio_delivery_terms_id = fields.One2many(...) -- Studio inverse name unknown; port from Clear-DB manually.
     x_studio_description = fields.Char(string='Description')
     x_studio_sequence = fields.Integer(string='Sequence')
     x_studio_vendor_despatch = fields.Boolean(string='Vendor Dispatch Voucher')
