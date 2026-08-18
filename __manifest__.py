@@ -6,7 +6,7 @@
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
-    'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale'],
+    'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale', 'studio_usermodel_migration'],
     'post_init_hook': 'post_init_hook',
     # v47: bulk-port of remaining Studio artifacts via
     # scripts/scaffold_bugfix_module.py (adds 8 sale.order fields,
