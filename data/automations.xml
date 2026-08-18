@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- TODO: 25 automations records need hand-porting. -->
+  <!-- Clear-DB id=79: SLS - Pass Customer PM to SO -->
+  <!-- Clear-DB id=80: SLS - Validate Order Payment Type in SO -->
+  <!-- Clear-DB id=89: SLS - Validate Discount in SO Line -->
+  <!-- Clear-DB id=90: SLS - Validate Commission in SO Line -->
+  <!-- Clear-DB id=118: SRM - Auto Populate Report Type in SO Lines -->
+  <!-- Clear-DB id=176: RR - Auto Generate Quotation Type for Repair SOs -->
+  <!-- Clear-DB id=186: RR - Auto Generate Quotation Type for Project SOs -->
+  <!-- Clear-DB id=187: RR - Auto Generate Quotation Type for Project SOs - 2 -->
+  <!-- Clear-DB id=193: RR - Sales Price For RUG Items -->
+  <!-- Clear-DB id=196: PROJ-Item Related Details In Project SO -->
+  <!-- Clear-DB id=202: RR - Track Lock Status -->
+  <!-- Clear-DB id=203: RR - Track Lock Status - 2 -->
+  <!-- Clear-DB id=204: RR - Track Lock Status - 3 -->
+  <!-- Clear-DB id=212: SLS - Apply Pricelist in SO Lines -->
+  <!-- Clear-DB id=234: Update Analytic Tag Parameters - Sales Order - Customer -->
+  <!-- Clear-DB id=235: Update Analytic Tag Parameters - Sales Order - User -->
+  <!-- Clear-DB id=236: Update Analytic Tag Parameters - Sales Line - Product -->
+  <!-- Clear-DB id=257: JIN-Project Sales Order Seq.No -->
+  <!-- Clear-DB id=258: JIN-Project Sales Order Seq.No (Maintain Separate Nos for Project SOs On Create) -->
+  <!-- Clear-DB id=260: PROJ - Validate Start date and End date for Project SOs -->
+  <!-- Clear-DB id=286: JIN - Company Id in Vendor Group -->
+  <!-- Clear-DB id=312: JIN - Company Id in Customer Group -->
+  <!-- Clear-DB id=316: JIN - Company Id in Delivery Terms -->
+  <!-- Clear-DB id=341: PROJ - Apply Project Price List -->
+  <!-- Clear-DB id=342: PROJ - Update Price Confirmed Status -->
+</odoo>

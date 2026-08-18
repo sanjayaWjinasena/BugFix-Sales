@@ -20,6 +20,17 @@ _HIDE_ON_SALES_TYPE_FIELDS = (
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    # ---- Studio-ported x_studio_* fields ----
+    x_studio_many2one_field_KjdJ3 = fields.Many2one('account.budget.post', string='Budgetary Position')
+    x_studio_one2many_field_ERCBB = fields.One2many('sale.order.line', 'TODO_inverse', string='New One2many')
+    x_studio_project_budget = fields.Many2one('crossovered.budget', string='Project Budget')
+    x_studio_project_group = fields.Many2one('x_project_groups', string='Project Group')
+    x_x_studio_created_from_sales_order_1_crossovered_budget_count = fields.Integer(string='Project Budget', store=False)
+    x_x_studio_created_from_so_x_purchase_request_count = fields.Integer(string='Created From SO count', store=False)
+    x_x_studio_sales_order_account_payment_count = fields.Integer(string='Sales Order count', store=False)
+    x_x_studio_subcontracting_so_purchase_order_count = fields.Integer(string='Subcontracting SO count', store=False)
+    # ---- End Studio-ported ----
+
     # Selected template — for reference / re-loading. The salesperson
     # picks one from the header; the corresponding description is
     # copied into the *_text field below, which is the field actually

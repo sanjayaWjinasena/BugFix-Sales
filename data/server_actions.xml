@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- TODO: 28 server_actions records need hand-porting. -->
+  <!-- Clear-DB id=1208: IMP - Clear Charges from Delivery Terms -->
+  <!-- Clear-DB id=1207: IMP - Copy Charges to Delivery Terms -->
+  <!-- Clear-DB id=2676: JIN - Company Id in Customer Group -->
+  <!-- Clear-DB id=2682: JIN - Company Id in Delivery Terms -->
+  <!-- Clear-DB id=2614: JIN - Company Id in Vendor Group -->
+  <!-- Clear-DB id=2113: RR - Auto Generate Quotation Type for Projct SOs -->
+  <!-- Clear-DB id=2114: RR - Auto Generate Quotation Type for Project SOs -->
+  <!-- Clear-DB id=2117: RR - Auto Generate Quotation Type for Project SOs - 2 -->
+  <!-- Clear-DB id=1995: RR - Auto Generate Quotation Type for Repair SOs -->
+  <!-- Clear-DB id=2096: RR - Insufficient Transfer Inventory Details -->
+  <!-- Clear-DB id=1981: RR - RUG Approval -->
+  <!-- Clear-DB id=1983: RR - RUG Approval Request Sent -->
+  <!-- Clear-DB id=2004: RR - RUG Rejection -->
+  <!-- Clear-DB id=1985: RR - RUG Request Approval - Notify User -->
+  <!-- Clear-DB id=2244: RR - Re-estimate Request  Sent -->
+  <!-- Clear-DB id=2246: RR - Re-estimate Request  Sent - Validate -->
+  <!-- Clear-DB id=2243: RR - Re-estimate Request - Notify User -->
+  <!-- Clear-DB id=1980: RR - Request RUG Approval -->
+  <!-- Clear-DB id=2248: RR - Request Re-estimate Permission -->
+  <!-- Clear-DB id=2144: RR - Sales Price For RUG Items -->
+  <!-- Clear-DB id=2250: RR - Track Lock Status -->
+  <!-- Clear-DB id=2251: RR - Track Lock Status - 2 -->
+  <!-- Clear-DB id=2252: RR - Track Lock Status - 3 -->
+  <!-- Clear-DB id=2253: RR - Track Lock Status - 4 -->
+  <!-- Clear-DB id=2896: PROJ - Apply Project Price List -->
+  <!-- Clear-DB id=2898: PROJ - Update Price Confirmed Status -->
+  <!-- Clear-DB id=2576: PROJ - Validate Start date and End date for Project SOs -->
+  <!-- Clear-DB id=1783: SLS - Validate Bank Guarantee in SO Confirm -->
+</odoo>

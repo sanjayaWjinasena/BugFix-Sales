@@ -1,11 +1,15 @@
-from . import doc_intro
+from . import account_payment
 from . import doc_conclusion
+from . import doc_intro
 from . import minimum_sales_margin_seed
-from . import res_company            # must precede res_config_settings — settings' related fields resolve against it
+from . import product_pricelist
+from . import res_company
 from . import res_config_settings
-from . import res_partner            # must precede sale_order — related fields on SO resolve against res.partner Studio fields
+from . import res_partner
 from . import sale_advance_payment_inv
 from . import sale_order
+from . import sale_order_alert
 from . import sale_order_line
-from . import account_payment
-from . import product_pricelist
+from . import x_customer_group
+from . import x_delivery_terms
+from . import x_vendor_group
