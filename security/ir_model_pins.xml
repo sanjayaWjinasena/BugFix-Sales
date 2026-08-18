@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
-  <record id="model_x_customer_group" model="ir.model"><field name="name">x_customer_group</field><field name="model">x_customer_group</field></record>
+  <!-- x_customer_group + x_vendor_group are owned by
+       studio_usermodel_migration; do not re-pin here. -->
   <record id="model_x_delivery_terms" model="ir.model"><field name="name">x_delivery_terms</field><field name="model">x_delivery_terms</field></record>
-  <record id="model_x_vendor_group" model="ir.model"><field name="name">x_vendor_group</field><field name="model">x_vendor_group</field></record>
   <record id="model_x_sales_report_type" model="ir.model"><field name="name">X Sales Report Type</field><field name="model">x_sales_report_type</field></record>
 </odoo>
