@@ -10,15 +10,6 @@
     <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
       <data>
-      <field name="Cash" invisible="1"/>
-      <field name="Credit" invisible="1"/>
-      <field name="Project" invisible="1"/>
-      <field name="Repair" invisible="1"/>
-      <field name="cancel" invisible="1"/>
-      <field name="done" invisible="1"/>
-      <field name="draft" invisible="1"/>
-      <field name="sale" invisible="1"/>
-      <field name="state" invisible="1"/>
         <xpath expr="//form[1]" position="attributes">
           <attribute name="create">false</attribute>
         </xpath>
@@ -41,65 +32,6 @@
         
         
         
-        <xpath expr="//field[@name='sale_order_template_id']" position="after">
-          <field name="x_studio_confirm_validation" string="Confirm Validation" help="SO Confirm validation - Due to project budget pending confirmation." force_save="True" readonly="1" invisible="(x_studio_proj_budget_status != 'draft') or ((x_studio_project_budget == False) or (x_studio_quotation_type != 'Project'))"/>
-          <field name="x_studio_confirm_validation_1" string="Confirm Validation" help="Project SO Confirm validation - Due to Profit Margin %&quot; item is not added in sales lines." force_save="True" readonly="1" invisible="((x_studio_service_item_available == True) and (x_studio_quotation_type == 'Project')) or (((task_id != False) and (x_studio_quotation_type == 'Project')) or (x_studio_quotation_type != 'Project'))"/>
-          <field name="x_studio_repair_reason" widget="many2many_tags" string="Repair Reason" options="{&quot;color_field&quot;: &quot;x_color&quot;}" invisible="(task_id == False) or (x_studio_quotation_type != 'Repair')"/>
-        </xpath>
-        
-        <xpath expr="//field[@name='validity_date']" position="after">
-          <field name="is_expired" invisible="1"/>
-          <field name="x_studio_expired" string="Expired" force_save="True" readonly="1"/>
-          <field name="x_studio_order_payment_method" force_save="1" string="Order Payment Type" required="1" readonly="(x_studio_temporary_credit_approved == True) or ((x_studio_bank_guarantee_approved == True) or ((x_studio_margin_approved == True) or ((x_studio_over_commission_approved == True) or ((x_studio_credit_limit_approved == True) or ((x_studio_overdue_approved == True) or ((state == 'cancel') or ((state == 'done') or ((state == 'sale') or ((x_studio_approval_request_sent == True) or ((x_studio_customer_payment_method == 'Cash') or (x_studio_credit_limit_approved == True)))))))))))"/>
-          <field name="x_studio_quotation_type" string="Quotation Type" required="1" readonly="(task_id != False) or (state != 'draft')"/>
-          <field name="x_studio_sales_order_validity" string="Sales Order Validity" force_save="True" readonly="1"/>
-          <field name="x_studio_account_mandatory" string="Account Mandatory" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_clear_free_items" string="Clear Free Items" invisible="1"/>
-          <field name="x_studio_authorized_repair_user" string="Authorized Repair User" invisible="1"/>
-          <field name="x_studio_valid_transfer" string="Valid Transfer" invisible="1"/>
-          <field name="x_studio_project_group" string="Project Group" options="{&quot;no_open&quot;:true}" invisible="x_studio_quotation_type != 'Project'" readonly="(task_id != False) or (state != 'draft')" required="x_studio_quotation_type == 'Project'"/>
-          <field name="x_studio_project_start_date" string="Contract Start Date" invisible="x_studio_quotation_type != 'Project'" readonly="(x_studio_budget_created == True) or (state != 'draft')"/>
-          <field name="x_studio_project_end_date" string="Contract End Date" invisible="x_studio_quotation_type != 'Project'" readonly="(x_studio_budget_created == True) or (state != 'draft')"/>
-          <field name="x_studio_project_budget" string="Project Budget" force_save="True" readonly="1" invisible="x_studio_quotation_type != 'Project'"/>
-          <field name="x_studio_proj_budget_status" string="Proj. Budget Status" invisible="x_studio_quotation_type != 'Project'"/>
-          <field name="x_studio_service_item_available" string="Service Item Available" force_save="True" readonly="1"/>
-          <field name="x_studio_valid_order_lines_for_projects" string="Valid Order Lines for Projects" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_sub_contract" string="Sub Contract" invisible="1"/>
-          <field name="x_studio_inventory_short" string="Inventory Short" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_pr_created" string="PR Created" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_pr_cost_updated" string="PR Cost Updated" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_new_item_from_project" string="New Item From Project" invisible="1"/>
-          <field name="x_studio_project_item_request_sent" string="Project Item Request Sent" invisible="1"/>
-          <field name="x_studio_project_item_approved" string="Project Item Approved" invisible="1"/>
-          <field name="task_id" force_save="True" readonly="1" invisible="task_id == False"/>
-          <field name="x_studio_cancelled" string="Cancelled" invisible="1"/>
-          <field name="x_studio_rug_confirmed" string="RUG Confirmed" invisible="x_studio_rug_confirmed != True"/>
-          <field name="x_studio_rug_request_sent" string="RUG Request Sent" invisible="1"/>
-          <field name="x_studio_rug_approved" string="RUG Approved" force_save="True" readonly="1" invisible="x_studio_rug_approved != True"/>
-          <field name="x_studio_rug_rejected" string="RUG Rejected" force_save="True" readonly="1" invisible="x_studio_rug_rejected != True"/>
-          <field name="x_studio_project_no" string="Project No" invisible="(x_studio_quotation_type != 'Project') or (x_studio_project_no == False)"/>
-          <field name="x_studio_main_project_no" string="Main Project No" force_save="True" readonly="1"/>
-          <field name="x_studio_price_not_confirmed" string="Price Not Confirmed" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_valid_order_lines_for_update_rfq_cost" string="Valid Order Lines for Update RFQ Cost" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_main_project_2" string="Main Project 2" invisible="1"/>
-          <field name="x_studio_budget_created" string="Budget Created" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_credit_limit_validation" string="Credit Limit Validation" invisible="1"/>
-          <field name="x_studio_bank_guarantee_validation" string="Bank Guarantee Validation" invisible="1"/>
-          <field name="x_studio_bank_guarantee_notification" string="Bank Guarantee Notification" invisible="1"/>
-          <field name="x_studio_bg_sent" string="BG Sent" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_valid_order_lines" string="Valid Order Lines" invisible="1"/>
-          <field name="x_studio_transfer_inventory_ok" string="Transfer Inventory  Not OK" force_save="True" readonly="1" invisible="1"/>
-        </xpath>
-        
-        
-        
-        
-        <xpath expr="//field[@name='tax_country_id']" position="after">
-          <field name="x_studio_repair_validation" string="Repair Validation" invisible="x_studio_authorized_repair_user != True"/>
-        </xpath>
-        <xpath expr="//field[@name='order_line']" position="attributes">
-          <attribute name="readonly">(state == 'cancel' or locked) or ((x_studio_bank_guarantee_approved == True) or ((x_studio_temporary_credit_approved == True) or ((x_studio_overdue_approved == True) or ((x_studio_over_commission_approved == True) or ((x_studio_credit_limit_approved == True) or (state in ['done', 'cancel']))))))</attribute>
-        </xpath>
         
         
         
@@ -109,121 +41,21 @@
         
         
         
-        <xpath expr="//field[@name='user_id']" position="before">
-          <xpath expr="//field[@name='payment_term_id']" position="move"/>
-        </xpath>
-        <xpath expr="//field[@name='tag_ids']" position="after">
-          <field name="x_studio_petty_cash_reimbursement" string="Petty Cash Reimbursement"/>
-          <field name="x_studio_sell_and_win" string="Sell and Win"/>
-          <field name="x_studio_margin_exceed" string="Margin Exceed" force_save="True" readonly="1"/>
-          <field name="x_studio_margin_approval_request_sent" string="Margin Approval Request Sent" force_save="True" readonly="1"/>
-          <field name="x_studio_margin_approved" string="Margin Approved" force_save="True" readonly="1"/>
-          <field name="x_studio_over_commission" string="Over Commission" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_over_comm_approval_request_sent" string="Over Comm. Approval Request Sent" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_over_commission_approved" string="Over Commission Approved" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_grant_temporary_credit" string="Temporary Credit Sale" invisible="x_studio_customer_payment_method != 'Cash'" readonly="(x_studio_tem_credit_approval_request_sent == True) or ((state == 'cancel') or ((state == 'done') or (state == 'sale')))"/>
-          <field name="x_studio_temporary_credit_approved" string="Temporary Credit Approved" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_tem_credit_approval_request_sent" string="Tem. Credit Approval Request Sent" force_save="True" readonly="1" invisible="1"/>
-        </xpath>
         
-        <xpath expr="//field[@name='expected_date']" position="attributes">
-          <attribute name="invisible">True</attribute>
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
-          <page string="Vendor relation" name="studio_page_R6zD7">
-            <group name="studio_group_R6zD7">
-              <group name="studio_group_R6zD7_left">
-                <field name="create_uid" invisible="1"/>
-              </group>
-              <group name="studio_group_R6zD7_right"/>
-            </group>
-          </page>
-          <page string="Credit Limit Details" name="studio_page_Dy8L1" invisible="True">
-            <group name="studio_group_Dy8L1">
-              <group name="studio_group_Dy8L1_left" string="Credit Limit Details">
-                <field name="x_studio_over_credit"/>
-                <field name="x_studio_customer_credit_limit" string="Customer Credit Limit"/>
-                <field name="x_studio_cust_total_receivable"/>
-                <field name="x_studio_current_tot_amount" string="Current Tot. Amount"/>
-                <field name="x_studio_over_credit_amount" string="Over Credit Amount"/>
-                <field name="x_studio_credit_limit_approved" force_save="True" readonly="1"/>
-                <field name="x_studio_approval_request_sent" string="Approval Request Sent" force_save="True" readonly="1" invisible="1"/>
-              </group>
-              <group name="studio_group_Dy8L1_right" string="Payment Method Details">
-                <field name="x_studio_customer_payment_method" string="Customer Payment Type"/>
-                <field name="x_studio_many2one_field_KjdJ3"/>
-              </group>
-            </group>
-          </page>
-          <page string="Overdue Details" name="studio_page_M0qDc" invisible="(x_studio_overdue == False) or (x_studio_customer_payment_method != 'Credit')">
-            <group name="studio_group_M0qDc">
-              <group name="studio_group_M0qDc_left" string="Overdue Details">
-                <field name="x_studio_overdue" string="Overdue" force_save="True" readonly="1"/>
-                <field name="x_studio_total_overdue" string="Total Overdue"/>
-                <field name="x_studio_overdue_approved" string="Overdue Approved" force_save="True" readonly="1"/>
-                <field name="x_studio_overdue_request_sent" string="Overdue Request Sent" force_save="True" readonly="1" invisible="1"/>
-              </group>
-              <group name="studio_group_M0qDc_right"/>
-            </group>
-          </page>
-          <page string="Bank Guarantee Details" name="studio_page_0PVZ9" invisible="x_studio_valid_bank_guarantee != True">
-            <group name="studio_group_0PVZ9">
-              <group name="studio_group_0PVZ9_left" string="Bank Guarantee Details">
-                <field name="x_studio_over_bank_guarantee" string="Over Bank Guarantee" force_save="True" readonly="1"/>
-                <field name="x_studio_customer_bank_guarantee" string="Customer Bank Guarantee" force_save="True" readonly="1"/>
-                <field name="x_studio_expiry_date" string="Bank Guarantee Expiry Date"/>
-                <field name="x_studio_guarantee_status" string="Guarantee Status"/>
-                <field name="x_studio_cust_total_receivable_1" string="Cust. Total Receivable"/>
-                <field name="x_studio_current_tot_amount_1" string="Current Tot. Amount" force_save="True" readonly="1"/>
-                <field name="x_studio_over_bank_guarantee_amount" string="Over Bank Guarantee Amount" force_save="True" readonly="1"/>
-                <field name="x_studio_bank_guarantee_approved" string="Bank Guarantee Approved" force_save="True" readonly="1"/>
-                <field name="x_studio_valid_bank_guarantee" string="Valid Bank Guarantee" invisible="1"/>
-                <field name="x_studio_bank_guarantee_request_sent" string="Bank Guarantee Request Sent" force_save="True" readonly="1" invisible="1"/>
-              </group>
-              <group name="studio_group_0PVZ9_right"/>
-            </group>
-          </page>
-          <page string="Repair Image" name="studio_page_86PwT" invisible="(task_id == False) or (x_studio_quotation_type != 'Repair')">
-            <group name="studio_group_86PwT">
-              <group name="studio_group_86PwT_left">
-                <field name="x_studio_repair_image_01" string="Repair Image 01" options="{&quot;size&quot;:[0,270]}" widget="image"/>
-              </group>
-              <group name="studio_group_86PwT_right">
-                <field name="x_studio_repair_image_02" string="Repair Image 02" options="{&quot;size&quot;:[0,270]}" widget="image"/>
-              </group>
-            </group>
-          </page>
-          <page string="Project Related Item Statistics" name="studio_page_yS3hw" invisible="x_studio_quotation_type != 'Project'">
-            
-          </page>
-          <page string="Warranty Details" name="studio_page_J0MAg" invisible="(task_id == False) or (x_studio_quotation_type != 'Repair')">
-            <group name="studio_group_J0MAg">
-              <group name="studio_group_J0MAg_left">
-                <field name="x_studio_warranty_card" string="Warranty Card" options="{&quot;size&quot;:[0,270]}" widget="image"/>
-              </group>
-              <group name="studio_group_J0MAg_right">
-                <field name="x_studio_related_information" string="Related Information" widget="tablet_image"/>
-              </group>
-            </group>
-          </page>
-          <page string="Project Related Documents" name="studio_page_HdWNn" invisible="1">
-            <group name="studio_group_HdWNn">
-              <group name="studio_group_HdWNn_left" string="Documents">
-                <field widget="binary" name="x_studio_document_1" string="Document 1"/>
-                <field widget="binary" name="x_studio_document_2" string="Document 2"/>
-                <field widget="binary" name="x_studio_document_3" string="Document 3"/>
-              </group>
-              <group name="studio_group_HdWNn_right" string="Images">
-                <field widget="tablet_image" name="x_studio_image_1" string="Image 1"/>
-                <field widget="tablet_image" name="x_studio_image_2" string="Image 2"/>
-                <field widget="tablet_image" name="x_studio_image_3" string="Image 3"/>
-              </group>
-            </group>
-          </page>
-        </xpath>
-        <xpath expr="//field[@name='payment_term_id']" position="attributes">
-          <attribute name="options"/>
-        </xpath>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
       </data>
     </field>
   </record>
@@ -307,7 +139,8 @@
             <attribute name="attrs">{'invisible': ['|','|','|','|','|','|','|','|','|','|','|','|',('x_studio_credit_limit_validation', '=', True),('x_studio_bank_guarantee_validation', '=', True),('x_studio_valid_order_lines', '=', False),('state', 'not in', ['sent']),'&amp;',('x_studio_over_credit', '!=', False),('x_studio_credit_limit_approved', '!=', True),'&amp;',('x_studio_grant_temporary_credit', '!=', False),('x_studio_tem_credit_approval_request_sent', '!=', True),'&amp;',('x_studio_grant_temporary_credit', '!=', False),('x_studio_temporary_credit_approved', '!=', True),'&amp;',('x_studio_over_bank_guarantee', '!=', False),('x_studio_bank_guarantee_approved', '!=', True),'&amp;',('x_studio_overdue', '=', True),('x_studio_overdue_approved', '=', False),'&amp;',('x_studio_over_commission', '=', True),('x_studio_over_commission_approved', '=', False),'&amp;',('x_studio_margin_exceed', '=', True),('x_studio_margin_approved', '=', False),'&amp;',('x_studio_bank_guarantee_notification', '=', True),('x_studio_bg_sent', '=', False),'&amp;',('x_studio_rug_confirmed', '=', True),('x_studio_rug_approved', '=', False),('x_studio_rug_rejected', '=', False)]}</attribute> 
           </xpath-->
           
-          
+          <xpath expr="//header/button[@name='action_confirm' and @id='action_confirm']" position="attributes">
+            <attribute name="invisible">((x_studio_rug_rejected == False) and ((x_studio_rug_approved == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or (((x_studio_margin_approved == False) and (x_studio_margin_exceed == True)) or (((x_studio_over_commission_approved == False) and (x_studio_over_commission == True)) or (((x_studio_overdue_approved == False) and (x_studio_overdue == True)) or (((x_studio_bank_guarantee_approved != True) and (x_studio_over_bank_guarantee != False)) or (((x_studio_temporary_credit_approved != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_tem_credit_approval_request_sent != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_credit_limit_approved != True) and (x_studio_over_credit != False)) or ((x_studio_new_item_from_project != False) or ((state not in ['sent']) or ((x_studio_valid_order_lines == False) or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((x_studio_transfer_inventory_ok == True) or ((x_studio_expired == True) or ((x_studio_cancelled == True) or (x_studio_clear_free_items == True)))))))))))))))))</attribute></xpath>
           
           <!--xpath expr="//header/button[@name='action_confirm'][2]" position="attributes">
             <attribute name="attrs">{'invisible': ['|','|','|','|','|','|','|','|','|','|','|',('x_studio_credit_limit_validation', '=', True),('x_studio_bank_guarantee_validation', '=', True),('x_studio_valid_order_lines', '=', False),('state', 'not in', ['draft']),'&amp;',('x_studio_over_credit', '!=', False),('x_studio_credit_limit_approved', '!=', True),'&amp;',('x_studio_grant_temporary_credit', '!=', False),('x_studio_tem_credit_approval_request_sent', '!=', True),'&amp;',('x_studio_grant_temporary_credit', '!=', False),('x_studio_temporary_credit_approved', '!=', True),'&amp;',('x_studio_over_bank_guarantee', '!=', False),('x_studio_bank_guarantee_approved', '!=', True),'&amp;',('x_studio_overdue', '=', True),('x_studio_overdue_approved', '=', False),'&amp;',('x_studio_over_commission', '=', True),('x_studio_over_commission_approved', '=', False),'&amp;',('x_studio_margin_exceed', '=', True),('x_studio_margin_approved', '=', False),'&amp;',('x_studio_bank_guarantee_notification', '=', True),('x_studio_bg_sent', '=', False)]}</attribute> 

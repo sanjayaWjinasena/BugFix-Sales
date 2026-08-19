@@ -10,85 +10,23 @@
     <field name="inherit_id" ref="base.view_partner_form"/>
     <field name="arch" type="xml">
       <data>
-      <field name="Cash" invisible="1"/>
-      <field name="Credit" invisible="1"/>
-      <field name="Distributor" invisible="1"/>
-      <field name="Excempted" invisible="1"/>
-      <field name="Nor" invisible="1"/>
-      <field name="Registered" invisible="1"/>
-      <field name="SVAT" invisible="1"/>
-      <field name="VAT" invisible="1"/>
-      <field name="gt" invisible="1"/>
         
         
         
         
         
-        <xpath expr="//field[@name='vat']" position="attributes">
-          <attribute name="readonly">(parent_id) or (parent_id != False)</attribute>
-          <attribute name="required">((x_studio_payment_method == 'Credit') and (x_studio_group_type != 'Dealer')) or (x_studio_group_type == 'Dealer')</attribute>
-        </xpath>
-        <xpath expr="//field[@name='vat']" position="after">
-          <field name="x_studio_customer_group" string="Customer Group" force_save="True" options="{&quot;no_create&quot;:true}" invisible="customer_rank == 0" required="customer_rank &gt; 0"/>
-          <field name="x_studio_vendor_group" string="Vendor Group" invisible="supplier_rank == 0" required="supplier_rank &gt; 0"/>
-        </xpath>
-        
-        
-        <xpath expr="//field[@name='property_product_pricelist']" position="after">
-          <field name="x_studio_payment_method" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" string="Payment Type" force_save="True" help="Cash / Credit" invisible="False" required="customer_rank &gt; 0"/>
-          <field name="credit_limit" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" force_save="1" invisible="supplier_rank &gt; 0" readonly="x_studio_payment_method == 'Cash'" required="(x_studio_payment_method == 'Credit') and (customer_rank &gt; 0)"/>
-          <field name="credit" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" invisible="supplier_rank &gt; 0"/>
-          <field name="total_overdue" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" invisible="supplier_rank &gt; 0"/>
-          <field name="x_studio_group_type" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" string="Group Type" invisible="1"/>
-          <field name="x_studio_valid_bank_guarantee" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" string="Valid Bank Guarantee" force_save="True" readonly="1" invisible="1"/>
-          <field name="customer_rank" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" force_save="True" readonly="1" invisible="1"/>
-        </xpath>
-        <xpath expr="//field[@name='property_purchase_currency_id']" position="attributes">
-          <attribute name="required">supplier_rank &gt; 0</attribute>
-        </xpath>
-        <xpath expr="//field[@name='property_purchase_currency_id']" position="after">
-          <field name="supplier_rank" force_save="True" readonly="1" invisible="1"/>
-        </xpath>
         
         
         
         
-        <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
-          <page string="Tax Registration" name="studio_page_L0Ae5">
-            <group name="studio_group_L0Ae5">
-              <group name="studio_group_L0Ae5_left">
-                <field name="x_studio_vat_registration_status" string="VAT Registration Status" required="1"/>
-                <field name="x_studio_vat_registration_number" string="VAT Registration Number" placeholder="VAT Registration Number" invisible="x_studio_vat_registration_status != 'VAT Registered'" required="x_studio_vat_registration_status == 'VAT Registered'"/>
-                <field name="x_studio_vat_exempted_number" string="VAT Exempted Number" placeholder="VAT Exempted Number" invisible="x_studio_vat_registration_status != 'VAT Excempted'" required="x_studio_vat_registration_status == 'VAT Excempted'"/>
-              </group>
-              <group name="studio_group_L0Ae5_right">
-                <field name="x_studio_svat_registration_status" string="SVAT Registration Status" required="1" invisible="x_studio_vat_registration_status != 'VAT Registered'"/>
-                <field name="x_studio_svat_registration_number" string="SVAT Registration Number" placeholder="SVAT Registration Number" invisible="(x_studio_vat_registration_status != 'VAT Registered') or (x_studio_svat_registration_status == 'SVAT Nor Registered')" required="x_studio_svat_registration_status == 'SVAT Registered'"/>
-              </group>
-            </group>
-          </page>
-          <page string="Customer Vendor Relation" name="studio_page_SuozI">
-            <group name="studio_group_SuozI">
-              <group name="studio_group_SuozI_right" string="Vendor relation">
-                <field name="x_studio_vendor_account" string="Vendor Account" force_save="True" domain="[[&quot;id&quot;,&quot;=&quot;,2]]"/>
-                <field name="x_studio_address" string="Address"/>
-                <field name="contact_address_complete"/>
-              </group>
-            </group>
-          </page>
-          <page string="Bank Guarantee Details" name="studio_page_yhybZ" invisible="supplier_rank &gt; 0">
-            <group name="studio_group_yhybZ">
-              <group name="studio_group_yhybZ_left" string="Bank Guarantee Details">
-                <field name="x_studio_bank_guarantee_amount" required="x_studio_group_type == 'Distributor'"/>
-                <field name="x_studio_expiry_date" string="Expiry Date" required="x_studio_group_type == 'Distributor'"/>
-                <field name="x_studio_mandatory_bank_guarantee" string="Mandatory Bank Guarantee"/>
-                <field filename="x_studio_bank_guarantee_docs_filename" name="x_studio_bank_guarantee_docs" string="Bank Guarantee Docs." widget="pdf_viewer"/>
-                <field invisible="1" name="x_studio_bank_guarantee_docs_filename"/>
-              </group>
-              <group name="studio_group_yhybZ_right"/>
-            </group>
-          </page>
-        </xpath>
+        
+        
+        
+        
+        
+        
+        
+        
       </data>
     </field>
   </record>
