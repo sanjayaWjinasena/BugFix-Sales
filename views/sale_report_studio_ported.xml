@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_default_form_view_fo_e0d2cf85_360c_4576_b7f6_9020babe12f0" model="ir.ui.view">
+    <field name="name">Default form view for ir.model(600,)</field>
+    <field name="model">sale.report</field>
+    <field name="type">form</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <form><sheet string="Sales Analysis Report"><group><group><field name="name"/><field name="partner_id"/><field name="pricelist_id"/><field name="user_id"/><field name="analytic_account_id"/><field name="campaign_id"/><field name="source_id"/><field name="country_id"/><field name="partner_zip"/><field name="order_reference"/><field name="product_id"/><field name="product_uom"/><field name="qty_to_deliver"/><field name="qty_to_invoice"/><field name="price_subtotal"/><field name="untaxed_amount_to_invoice"/><field name="weight"/><field name="discount"/><field name="nbr"/><field name="warehouse_id"/><field name="is_abandoned_cart"/></group><group><field name="date"/><field name="company_id"/><field name="team_id"/><field name="state"/><field name="invoice_status"/><field name="medium_id"/><field name="commercial_partner_id"/><field name="industry_id"/><field name="state_id"/><field name="categ_id"/><field name="product_tmpl_id"/><field name="product_uom_qty"/><field name="qty_delivered"/><field name="qty_invoiced"/><field name="price_total"/><field name="untaxed_amount_invoiced"/><field name="volume"/><field name="discount_amount"/><field name="currency_id"/><field name="website_id"/></group></group><group><separator/></group></sheet></form>
+    </field>
+  </record>
+</odoo>
