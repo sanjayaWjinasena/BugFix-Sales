@@ -32,20 +32,4 @@
       </form>
     </field>
   </record>
-  <record id="ported_odoo_studio_default__2950672a_3dcb_4c5f_9e9b_bf4f4fd723c6" model="ir.ui.view">
-    <field name="name">Odoo Studio: Default form view for x_delivery_terms customization</field>
-    <field name="model">x_delivery_terms</field>
-    <field name="key">studio_customization.odoo_studio_default__2950672a-3dcb-4c5f-9e9b-bf4f4fd723c6</field>
-    <field name="type">form</field>
-    <field name="priority">99</field>
-    <field name="mode">extension</field>
-    <field name="inherit_id" ref="BugFix-Sales.ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885"/>
-    <field name="arch" type="xml">
-      <data>
-        
-        
-        
-      </data>
-    </field>
-  </record>
 </odoo>

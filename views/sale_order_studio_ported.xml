@@ -208,29 +208,4 @@
         </data>
     </field>
   </record>
-  <record id="ported_odoo_studio_sale_ord_f99c5f04_ecc1_498b_bbb3_6288ea62be6d" model="ir.ui.view">
-    <field name="name">Odoo Studio: sale.order.form customization_button_2</field>
-    <field name="model">sale.order</field>
-    <field name="key">studio_customization.odoo_studio_sale_ord_f99c5f04-ecc1-498b-bbb3-6288ea62be6d</field>
-    <field name="type">form</field>
-    <field name="priority">50002</field>
-    <field name="mode">extension</field>
-    <field name="active" eval="False"/>
-    <field name="inherit_id" ref="sale.view_order_form"/>
-    <field name="arch" type="xml">
-      <data>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-          
-      </data>
-    </field>
-  </record>
 </odoo>

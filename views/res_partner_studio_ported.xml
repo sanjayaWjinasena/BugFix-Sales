@@ -1,33 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="ported_odoo_studio_res_part_093971c5_37cb_45be_bc1f_7be63adccfcc" model="ir.ui.view">
-    <field name="name">Odoo Studio: res.partner.form customization</field>
-    <field name="model">res.partner</field>
-    <field name="key">studio_customization.odoo_studio_res_part_093971c5-37cb-45be-bc1f-7be63adccfcc</field>
-    <field name="type">form</field>
-    <field name="priority">99</field>
-    <field name="mode">extension</field>
-    <field name="inherit_id" ref="base.view_partner_form"/>
-    <field name="arch" type="xml">
-      <data>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-      </data>
-    </field>
-  </record>
 </odoo>
