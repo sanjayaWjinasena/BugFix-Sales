@@ -3,6 +3,7 @@
   <record id="ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885" model="ir.ui.view">
     <field name="name">Default form view for x_delivery_terms</field>
     <field name="model">x_delivery_terms</field>
+    <field name="key">studio_customization.default_form_view_fo_ccd4306a-1ac9-43c7-847f-965bdab82885</field>
     <field name="type">form</field>
     <field name="priority">16</field>
     <field name="mode">primary</field>
@@ -34,28 +35,16 @@
   <record id="ported_odoo_studio_default__2950672a_3dcb_4c5f_9e9b_bf4f4fd723c6" model="ir.ui.view">
     <field name="name">Odoo Studio: Default form view for x_delivery_terms customization</field>
     <field name="model">x_delivery_terms</field>
+    <field name="key">studio_customization.odoo_studio_default__2950672a-3dcb-4c5f-9e9b-bf4f4fd723c6</field>
     <field name="type">form</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>
     <field name="inherit_id" ref="BugFix-Sales.ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//form[1]/sheet[1]/div[1]/h1[1]/field[@name='x_name']" position="attributes">
-          <attribute name="string">Delivery Term</attribute>
-        </xpath>
-        <xpath expr="//group[@name='studio_group_4e0e58_left']" position="inside">
-          <field name="x_studio_description" string="Description" help="Description of the Delivery Term / Incoterm."/>
-          <field name="x_studio_vendor_despatch" string="Vendor Dispatch Voucher" widget="boolean_toggle" help="Determines whether to update ledger or not, when updating the &quot;Vendor Dispatch&quot;. If ticked, a voucher will be posted which will update the &quot;Goods in transit&quot; in ledger."/>
-          <field name="x_studio_company_id" string="Company"/>
-          <field name="x_studio_copied" string="Copied" invisible="1"/>
-        </xpath>
-        <xpath expr="//group[@name='studio_group_4e0e58']" position="after">
-          <notebook name="studio_notebook_SZ2rh">
-            <page string="Charges" name="studio_page_SZ2rh">
-              
-            </page>
-          </notebook>
-        </xpath>
+        
+        
+        
       </data>
     </field>
   </record>

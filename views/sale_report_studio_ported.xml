@@ -3,6 +3,7 @@
   <record id="ported_default_form_view_fo_e0d2cf85_360c_4576_b7f6_9020babe12f0" model="ir.ui.view">
     <field name="name">Default form view for ir.model(600,)</field>
     <field name="model">sale.report</field>
+    <field name="key">studio_customization.default_form_view_fo_e0d2cf85-360c-4576-b7f6-9020babe12f0</field>
     <field name="type">form</field>
     <field name="priority">16</field>
     <field name="mode">primary</field>

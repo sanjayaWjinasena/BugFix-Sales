@@ -3,91 +3,50 @@
   <record id="ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3" model="ir.ui.view">
     <field name="name">Odoo Studio: sale.order.form customization</field>
     <field name="model">sale.order</field>
+    <field name="key">studio_customization.odoo_studio_sale_ord_ec04cc0c-2274-4a3f-8a1d-c240a65d1ca3</field>
     <field name="type">form</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>
     <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
       <data>
+      <field name="Cash" invisible="1"/>
+      <field name="Credit" invisible="1"/>
+      <field name="Project" invisible="1"/>
+      <field name="Repair" invisible="1"/>
+      <field name="cancel" invisible="1"/>
+      <field name="done" invisible="1"/>
+      <field name="draft" invisible="1"/>
+      <field name="sale" invisible="1"/>
+      <field name="state" invisible="1"/>
         <xpath expr="//form[1]" position="attributes">
           <attribute name="create">false</attribute>
         </xpath>
-        <xpath expr="//button[@name='payment_action_void']" position="after">
-          
-        </xpath>
         
         
-        <xpath expr="//form[1]/header[1]/button[@name='action_quotation_send']" position="attributes">
-          <attribute name="invisible">((state != 'draft' or (is_abandoned_cart and not cart_recovery_email_sent)) or (((x_studio_rug_rejected == False) and ((x_studio_rug_approved == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or ((x_studio_new_item_from_project != False) or ((x_studio_valid_order_lines == False) or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((state == 'cancel') or ((x_studio_cancelled == True) or ((x_studio_locked == True) or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))))))))) or (state not in ['False'])</attribute>
-          <attribute name="studio_approval">False</attribute>
-        </xpath>
-        <xpath expr="//form[1]/header[1]/button[@name='action_quotation_send'][2]" position="attributes">
-          <attribute name="invisible">(state != 'draft' or invoice_count &gt;= 1) or (((x_studio_rug_rejected == False) and ((x_studio_rug_approved == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or ((x_studio_new_item_from_project != False) or ((x_studio_valid_order_lines == False) or ((invoice_count &gt;= 1) or ((state != 'draft') or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((state == 'cancel') or ((x_studio_cancelled == True) or ((x_studio_locked == True) or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))))))))))</attribute>
-          <attribute name="studio_approval">False</attribute>
-        </xpath>
-        <xpath expr="//form[1]/header[1]/button[@name='action_quotation_send'][2]" position="after">
-          
-          
-          
-          
-        </xpath>
-        <xpath expr="//form[1]/header[1]/button[@name='action_confirm']" position="attributes">
-          <attribute name="invisible">(state != 'sent') or (((task_id == True) and ((x_studio_service_item_available == False) and (x_studio_quotation_type == 'Project'))) or (((x_studio_proj_budget_status == 'draft') and (x_studio_quotation_type == 'Project')) or (((x_studio_rug_rejected == False) and ((x_studio_rug_approved == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or (((x_studio_margin_approved == False) and (x_studio_margin_exceed == True)) or (((x_studio_over_commission_approved == False) and (x_studio_over_commission == True)) or (((x_studio_overdue_approved == False) and (x_studio_overdue == True)) or (((x_studio_bank_guarantee_approved != True) and (x_studio_over_bank_guarantee != False)) or (((x_studio_temporary_credit_approved != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_tem_credit_approval_request_sent != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_credit_limit_approved != True) and (x_studio_over_credit != False)) or ((x_studio_new_item_from_project != False) or ((state not in ['sent']) or ((x_studio_valid_order_lines == False) or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((x_studio_transfer_inventory_ok == True) or ((x_studio_expired == True) or ((x_studio_cancelled == True) or ((x_studio_clear_free_items == True) or (x_studio_price_not_confirmed == True)))))))))))))))))))))</attribute>
-        </xpath>
-        <xpath expr="//form[1]/header[1]/button[@name='action_confirm'][2]" position="attributes">
-          <attribute name="invisible">(state != 'draft') or (((x_studio_proj_budget_status not in ['validate', 'done']) and ((x_studio_budget_created == True) and (x_studio_quotation_type == 'Project'))) or (((x_studio_budget_created == False) and (x_studio_quotation_type == 'Project')) or (((x_studio_pr_cost_updated == False) and ((x_studio_inventory_short == True) and (x_studio_quotation_type == 'Project'))) or (((x_studio_rug_rejected == False) and ((x_studio_rug_approved == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or (((x_studio_margin_approved == False) and (x_studio_margin_exceed == True)) or (((x_studio_over_commission_approved == False) and (x_studio_over_commission == True)) or (((x_studio_overdue_approved == False) and (x_studio_overdue == True)) or (((x_studio_bank_guarantee_approved != True) and (x_studio_over_bank_guarantee != False)) or (((x_studio_temporary_credit_approved != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_tem_credit_approval_request_sent != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_credit_limit_approved != True) and (x_studio_over_credit != False)) or ((x_studio_new_item_from_project != False) or ((state not in ['draft']) or ((x_studio_valid_order_lines == False) or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((x_studio_transfer_inventory_ok == True) or ((x_studio_expired == True) or ((x_studio_cancelled == True) or ((x_studio_clear_free_items == True) or (x_studio_price_not_confirmed == True))))))))))))))))))))))</attribute>
-        </xpath>
-        <xpath expr="//form[1]/header[1]/button[@name='action_quotation_send'][3]" position="attributes">
-          <attribute name="invisible">(state == 'draft' or invoice_count &gt;= 1) or ((invoice_count &gt;= 1) or ((state == 'cancel') or ((state == 'draft') or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))</attribute>
-          <attribute name="studio_approval">False</attribute>
-        </xpath>
-        <xpath expr="//form[1]/header[1]/button[@name='action_quotation_send'][4]" position="attributes">
-          <attribute name="invisible">((state not in ('sent', 'sale')) or ((x_studio_quotation_type in ['Sales', 'Project', 'Repair']) or (x_studio_expired == True))) or (state not in ['False'])</attribute>
-          <attribute name="studio_approval">False</attribute>
-        </xpath>
-        <xpath expr="//form[1]/header[1]/button[@name='action_quotation_send'][4]" position="after">
-          
-          
-        </xpath>
-        <xpath expr="//button[@name='action_unlock']" position="attributes">
-          <attribute name="groups"/>
-          <attribute name="studio_approval">True</attribute>
-        </xpath>
-        <xpath expr="//button[@name='action_cancel']" position="attributes">
-          <attribute name="invisible">(not id or state not in ['draft', 'sent', 'sale']) or (((x_studio_fsm_done == True) and (x_studio_quotation_type == 'Repair')) or (((state not in ['draft', 'sent']) and (x_studio_quotation_type == 'Repair')) or ((id == False) or ((state not in ['draft', 'sent', 'sale']) or (x_studio_cancelled == True)))))</attribute>
-          <attribute name="studio_approval">False</attribute>
-        </xpath>
-        <xpath expr="//button[@name='action_draft']" position="attributes">
-          <attribute name="studio_approval">True</attribute>
-        </xpath>
-        <xpath expr="//button[@name='action_lock']" position="attributes">
-          <attribute name="groups"/>
-        </xpath>
-        <xpath expr="//button[@name='action_view_delivery']" position="attributes">
-          <attribute name="groups"/>
-        </xpath>
-        <xpath expr="//button[@name='action_view_mrp_production']" position="after">
-          
-          
-          
-          
-        </xpath>
-        <xpath expr="//field[@name='partner_id']" position="attributes">
-          <attribute name="readonly">(state in ['cancel', 'sale']) or ((x_studio_bank_guarantee_approved == True) or ((x_studio_bank_guarantee_request_sent == True) or ((x_studio_temporary_credit_approved == True) or ((x_studio_tem_credit_approval_request_sent == True) or ((x_studio_overdue_approved == True) or ((x_studio_overdue_request_sent == True) or ((x_studio_over_commission_approved == True) or ((x_studio_over_comm_approval_request_sent == True) or ((x_studio_credit_limit_approved == True) or ((x_studio_approval_request_sent == True) or (state not in ['draft', 'sent'])))))))))))</attribute>
-          <attribute name="string">Customer</attribute>
-        </xpath>
-        <xpath expr="//field[@name='sale_order_template_id']" position="attributes">
-          <attribute name="readonly">(state in ['cancel', 'sale']) or ((x_studio_credit_limit_approved == True) or ((x_studio_approval_request_sent == True) or (state not in ['draft', 'sent'])))</attribute>
-        </xpath>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <xpath expr="//field[@name='sale_order_template_id']" position="after">
           <field name="x_studio_confirm_validation" string="Confirm Validation" help="SO Confirm validation - Due to project budget pending confirmation." force_save="True" readonly="1" invisible="(x_studio_proj_budget_status != 'draft') or ((x_studio_project_budget == False) or (x_studio_quotation_type != 'Project'))"/>
           <field name="x_studio_confirm_validation_1" string="Confirm Validation" help="Project SO Confirm validation - Due to Profit Margin %&quot; item is not added in sales lines." force_save="True" readonly="1" invisible="((x_studio_service_item_available == True) and (x_studio_quotation_type == 'Project')) or (((task_id != False) and (x_studio_quotation_type == 'Project')) or (x_studio_quotation_type != 'Project'))"/>
           <field name="x_studio_repair_reason" widget="many2many_tags" string="Repair Reason" options="{&quot;color_field&quot;: &quot;x_color&quot;}" invisible="(task_id == False) or (x_studio_quotation_type != 'Repair')"/>
         </xpath>
-        <xpath expr="//field[@name='validity_date']" position="attributes">
-          <attribute name="invisible">(state == 'sale') or (state in ['sale', 'done'])</attribute>
-          <attribute name="readonly">(state in ['cancel', 'sale']) or ((x_studio_credit_limit_approved == True) or ((x_studio_approval_request_sent == True) or (state not in ['draft', 'sent'])))</attribute>
-        </xpath>
+        
         <xpath expr="//field[@name='validity_date']" position="after">
           <field name="is_expired" invisible="1"/>
           <field name="x_studio_expired" string="Expired" force_save="True" readonly="1"/>
@@ -131,62 +90,25 @@
           <field name="x_studio_valid_order_lines" string="Valid Order Lines" invisible="1"/>
           <field name="x_studio_transfer_inventory_ok" string="Transfer Inventory  Not OK" force_save="True" readonly="1" invisible="1"/>
         </xpath>
-        <xpath expr="//form[1]/sheet[1]/group[@name='sale_header']/group[@name='order_details']/field[@name='date_order']" position="attributes">
-          <attribute name="invisible">(state in ['sale', 'cancel']) or (state in ['draft', 'sent'])</attribute>
-          <attribute name="readonly">(state in ['cancel', 'sale']) or ((x_studio_credit_limit_approved == True) or ((x_studio_approval_request_sent == True) or (state not in ['draft', 'sent'])))</attribute>
-          <attribute name="required">state in ['sale', 'done']</attribute>
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/group[@name='sale_header']/group[@name='order_details']/field[@name='date_order']" position="after">
-          <field name="x_studio_re_estimate_request_sent" string="Re-estimate Request Sent" force_save="True" readonly="1" invisible="1"/>
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/group[@name='sale_header']/group[@name='order_details']/field[@name='date_order'][2]" position="after">
-          <field name="x_studio_re_estimate_request_count_1" string="Re-estimate Request Count" force_save="True" readonly="1" invisible="x_studio_quotation_type != 'Repair'"/>
-          <field name="x_studio_re_estimate_count" string="Re-estimate Count" force_save="True" readonly="1" invisible="x_studio_quotation_type != 'Repair'"/>
-          <field name="x_studio_fully_paid" string="Fully Paid" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_fsm_done" string="FSM Done" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_locked" string="Locked" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_unlocked" string="Unlocked" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_reject_reason" string="Reject Reason" invisible="x_studio_rug_confirmed != True"/>
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/group[@name='sale_header']/group[@name='order_details']/div[not(@name)][3]/field[@name='pricelist_id']" position="attributes">
-          <attribute name="readonly">(state in ['cancel', 'sale']) or ((x_studio_credit_limit_approved == True) or ((x_studio_approval_request_sent == True) or (state not in ['draft', 'sent'])))</attribute>
-        </xpath>
+        
+        
+        
+        
         <xpath expr="//field[@name='tax_country_id']" position="after">
           <field name="x_studio_repair_validation" string="Repair Validation" invisible="x_studio_authorized_repair_user != True"/>
         </xpath>
         <xpath expr="//field[@name='order_line']" position="attributes">
           <attribute name="readonly">(state == 'cancel' or locked) or ((x_studio_bank_guarantee_approved == True) or ((x_studio_temporary_credit_approved == True) or ((x_studio_overdue_approved == True) or ((x_studio_over_commission_approved == True) or ((x_studio_credit_limit_approved == True) or (state in ['done', 'cancel']))))))</attribute>
         </xpath>
-        <xpath expr="//div[@name='lead']" position="after">
-          
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]" position="attributes">
-          <attribute name="delete">true</attribute>
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
-          
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='product_type']" position="after">
-          <!-- below fields are used in the widget qty_at_date_widget -->
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='name']" position="after">
-          
-          
-          <!--field optional="show" name="x_studio_category_name" string="Category Name" attrs="{'column_invisible':[('parent.x_studio_quotation_type', '!=', 'Project')], 'required': [('parent.x_studio_quotation_type', '=', 'Project')]}"/-->
-          
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='price_unit']" position="attributes">
-          <attribute name="force_save">True</attribute>
-          <attribute name="readonly">(qty_invoiced &gt; 0 or is_reward_line) or (x_studio_rug_confirmed == True)</attribute>
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='price_unit']" position="after">
-          
-          
-        </xpath>
         
-        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='company_id']" position="after">
-          
-        </xpath>
+        
+        
+        
+        
+        
+        
+        
+        
         <xpath expr="//field[@name='user_id']" position="before">
           <xpath expr="//field[@name='payment_term_id']" position="move"/>
         </xpath>
@@ -203,9 +125,7 @@
           <field name="x_studio_temporary_credit_approved" string="Temporary Credit Approved" force_save="True" readonly="1" invisible="1"/>
           <field name="x_studio_tem_credit_approval_request_sent" string="Tem. Credit Approval Request Sent" force_save="True" readonly="1" invisible="1"/>
         </xpath>
-        <xpath expr="//field[@name='picking_policy']" position="attributes">
-          <attribute name="readonly">(state not in ['draft', 'sent']) or ((x_studio_bank_guarantee_approved == True) and ((x_studio_bank_guarantee_request_sent == True) and ((x_studio_temporary_credit_approved == True) and ((x_studio_tem_credit_approval_request_sent == True) and ((x_studio_overdue_approved == True) and ((x_studio_overdue == True) and ((x_studio_over_commission_approved == True) and ((x_studio_over_comm_approval_request_sent == True) and ((x_studio_credit_limit_approved == True) and ((x_studio_approval_request_sent == True) and (state not in ['draft', 'sent'])))))))))))</attribute>
-        </xpath>
+        
         <xpath expr="//field[@name='expected_date']" position="attributes">
           <attribute name="invisible">True</attribute>
         </xpath>
@@ -310,6 +230,7 @@
   <record id="ported_odoo_studio_sale_ord_2b440c7b_edb5_4cd8_827e_19fbb95a85a9" model="ir.ui.view">
     <field name="name">Odoo Studio: sale.order.form customization_button</field>
     <field name="model">sale.order</field>
+    <field name="key">studio_customization.odoo_studio_sale_ord_2b440c7b-edb5-4cd8-827e-19fbb95a85a9</field>
     <field name="type">form</field>
     <field name="priority">50001</field>
     <field name="mode">extension</field>
@@ -319,9 +240,7 @@
       <data>
           
           <!--1.2.5	New Project Item Control in Project Sales Orders-->
-          <xpath expr="//header/button[@name='action_quotation_send']" position="before">
-            
-          </xpath>
+          
           
           <!--1.2.6	Create PRs for New Item/Sub-contracting Project Sales Orders-->
           
@@ -388,8 +307,7 @@
             <attribute name="attrs">{'invisible': ['|','|','|','|','|','|','|','|','|','|','|','|',('x_studio_credit_limit_validation', '=', True),('x_studio_bank_guarantee_validation', '=', True),('x_studio_valid_order_lines', '=', False),('state', 'not in', ['sent']),'&amp;',('x_studio_over_credit', '!=', False),('x_studio_credit_limit_approved', '!=', True),'&amp;',('x_studio_grant_temporary_credit', '!=', False),('x_studio_tem_credit_approval_request_sent', '!=', True),'&amp;',('x_studio_grant_temporary_credit', '!=', False),('x_studio_temporary_credit_approved', '!=', True),'&amp;',('x_studio_over_bank_guarantee', '!=', False),('x_studio_bank_guarantee_approved', '!=', True),'&amp;',('x_studio_overdue', '=', True),('x_studio_overdue_approved', '=', False),'&amp;',('x_studio_over_commission', '=', True),('x_studio_over_commission_approved', '=', False),'&amp;',('x_studio_margin_exceed', '=', True),('x_studio_margin_approved', '=', False),'&amp;',('x_studio_bank_guarantee_notification', '=', True),('x_studio_bg_sent', '=', False),'&amp;',('x_studio_rug_confirmed', '=', True),('x_studio_rug_approved', '=', False),('x_studio_rug_rejected', '=', False)]}</attribute> 
           </xpath-->
           
-          <xpath expr="//header/button[@name='action_confirm' and @id='action_confirm']" position="attributes">
-            <attribute name="invisible">((x_studio_rug_rejected == False) and ((x_studio_rug_approved == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or (((x_studio_margin_approved == False) and (x_studio_margin_exceed == True)) or (((x_studio_over_commission_approved == False) and (x_studio_over_commission == True)) or (((x_studio_overdue_approved == False) and (x_studio_overdue == True)) or (((x_studio_bank_guarantee_approved != True) and (x_studio_over_bank_guarantee != False)) or (((x_studio_temporary_credit_approved != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_tem_credit_approval_request_sent != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_credit_limit_approved != True) and (x_studio_over_credit != False)) or ((x_studio_new_item_from_project != False) or ((state not in ['sent']) or ((x_studio_valid_order_lines == False) or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((x_studio_transfer_inventory_ok == True) or ((x_studio_expired == True) or ((x_studio_cancelled == True) or (x_studio_clear_free_items == True)))))))))))))))))</attribute></xpath>
+          
           
           <!--xpath expr="//header/button[@name='action_confirm'][2]" position="attributes">
             <attribute name="attrs">{'invisible': ['|','|','|','|','|','|','|','|','|','|','|',('x_studio_credit_limit_validation', '=', True),('x_studio_bank_guarantee_validation', '=', True),('x_studio_valid_order_lines', '=', False),('state', 'not in', ['draft']),'&amp;',('x_studio_over_credit', '!=', False),('x_studio_credit_limit_approved', '!=', True),'&amp;',('x_studio_grant_temporary_credit', '!=', False),('x_studio_tem_credit_approval_request_sent', '!=', True),'&amp;',('x_studio_grant_temporary_credit', '!=', False),('x_studio_temporary_credit_approved', '!=', True),'&amp;',('x_studio_over_bank_guarantee', '!=', False),('x_studio_bank_guarantee_approved', '!=', True),'&amp;',('x_studio_overdue', '=', True),('x_studio_overdue_approved', '=', False),'&amp;',('x_studio_over_commission', '=', True),('x_studio_over_commission_approved', '=', False),'&amp;',('x_studio_margin_exceed', '=', True),('x_studio_margin_approved', '=', False),'&amp;',('x_studio_bank_guarantee_notification', '=', True),('x_studio_bg_sent', '=', False)]}</attribute> 
@@ -399,34 +317,27 @@
             <attribute name="attrs">{'invisible': ['|','|','|','|','|','|','|','|','|','|','|','|',('x_studio_credit_limit_validation', '=', True),('x_studio_bank_guarantee_validation', '=', True),('x_studio_valid_order_lines', '=', False),('state', 'not in', ['draft']),'&amp;',('x_studio_over_credit', '!=', False),('x_studio_credit_limit_approved', '!=', True),'&amp;',('x_studio_grant_temporary_credit', '!=', False),('x_studio_tem_credit_approval_request_sent', '!=', True),'&amp;',('x_studio_grant_temporary_credit', '!=', False),('x_studio_temporary_credit_approved', '!=', True),'&amp;',('x_studio_over_bank_guarantee', '!=', False),('x_studio_bank_guarantee_approved', '!=', True),'&amp;',('x_studio_overdue', '=', True),('x_studio_overdue_approved', '=', False),'&amp;',('x_studio_over_commission', '=', True),('x_studio_over_commission_approved', '=', False),'&amp;',('x_studio_margin_exceed', '=', True),('x_studio_margin_approved', '=', False),'&amp;',('x_studio_bank_guarantee_notification', '=', True),('x_studio_bg_sent', '=', False),'&amp;',('x_studio_rug_confirmed', '=', True),('x_studio_rug_approved', '=', False),('x_studio_rug_rejected', '=', False)]}</attribute> 
           </xpath-->
           
-          <xpath expr="//header/button[@name='action_confirm'][2]" position="attributes">
-            <attribute name="invisible">((x_studio_proj_budget_status not in ['validate', 'done']) and ((x_studio_budget_created == True) and (x_studio_quotation_type == 'Project'))) or (((x_studio_budget_created == False) and (x_studio_quotation_type == 'Project')) or (((x_studio_pr_cost_updated == False) and ((x_studio_inventory_short == True) and (x_studio_quotation_type == 'Project'))) or (((x_studio_rug_rejected == False) and ((x_studio_rug_approved == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or (((x_studio_margin_approved == False) and (x_studio_margin_exceed == True)) or (((x_studio_over_commission_approved == False) and (x_studio_over_commission == True)) or (((x_studio_overdue_approved == False) and (x_studio_overdue == True)) or (((x_studio_bank_guarantee_approved != True) and (x_studio_over_bank_guarantee != False)) or (((x_studio_temporary_credit_approved != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_tem_credit_approval_request_sent != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_credit_limit_approved != True) and (x_studio_over_credit != False)) or ((x_studio_new_item_from_project != False) or ((state not in ['draft']) or ((x_studio_valid_order_lines == False) or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((x_studio_transfer_inventory_ok == True) or ((x_studio_expired == True) or ((x_studio_cancelled == True) or (x_studio_clear_free_items == True))))))))))))))))))))</attribute></xpath>
+          
           
           <!--xpath expr="//header/button[@name='action_quotation_send']" position="attributes">
             <attribute name="attrs">{'invisible': ['|','|','|',('x_studio_credit_limit_validation', '=', True),('x_studio_bank_guarantee_validation', '=', True),('x_studio_valid_order_lines', '=', False),'&amp;',('x_studio_bank_guarantee_notification', '=', True),('x_studio_bg_sent', '=', False)]}</attribute> 
           </xpath-->
           
-          <xpath expr="//header/button[@name='action_quotation_send']" position="attributes">
-            <attribute name="invisible">((x_studio_rug_rejected == False) and ((x_studio_rug_approved == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or ((x_studio_new_item_from_project != False) or ((x_studio_valid_order_lines == False) or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((state == 'cancel') or ((x_studio_cancelled == True) or ((x_studio_locked == True) or ((x_studio_clear_free_items == True) or (x_studio_expired == True))))))))))</attribute></xpath>
           
-          <xpath expr="//header/button[@name='action_quotation_send']" position="attributes">
-            <attribute name="invisible">state not in ['False']</attribute></xpath>
+          
+          
           
           <!--xpath expr="//header/button[@name='action_quotation_send'][2]" position="attributes">
             <attribute name="attrs">{'invisible': ['|','|','|','|','|',('x_studio_credit_limit_validation', '=', True),('x_studio_bank_guarantee_validation', '=', True),('state', '!=', 'draft'),('invoice_count','&gt;=',1),('x_studio_valid_order_lines', '=', False),'&amp;',('x_studio_bank_guarantee_notification', '=', True),('x_studio_bg_sent', '=', False)]}</attribute> 
           </xpath-->
           
-          <xpath expr="//header/button[@name='action_quotation_send'][2]" position="attributes">
-            <attribute name="invisible">((x_studio_rug_rejected == False) and ((x_studio_rug_approved == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or ((x_studio_new_item_from_project != False) or ((x_studio_valid_order_lines == False) or ((invoice_count &gt;= 1) or ((state != 'draft') or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((state == 'cancel') or ((x_studio_cancelled == True) or ((x_studio_locked == True) or ((x_studio_clear_free_items == True) or (x_studio_expired == True))))))))))))</attribute></xpath>
           
-          <xpath expr="//header/button[@name='action_quotation_send'][3]" position="attributes">
-            <attribute name="invisible">(invoice_count &gt;= 1) or ((state == 'cancel') or ((state == 'draft') or ((x_studio_clear_free_items == True) or (x_studio_expired == True))))</attribute></xpath>
           
-          <xpath expr="//header/button[@name='action_quotation_send'][4]" position="attributes">
-            <attribute name="invisible">state not in ['False']</attribute></xpath>
           
-          <xpath expr="//header/button[@name='action_quotation_send'][4]" position="attributes">
-            <attribute name="invisible">(x_studio_quotation_type in ['Sales', 'Project', 'Repair']) or (x_studio_expired == True)</attribute></xpath>
+          
+          
+          
+          
           
           <!--1.2.11	Create Budget Option in Project Sales Orders-->
                
@@ -434,9 +345,7 @@
           
           
           <!--1.2.12	Insufficient Transfer Inventory Option in Sales Orders-->
-          <xpath expr="//header/button[@name='action_confirm']" position="before">
-            
-          </xpath>
+          
           
           <!--1.2.4	Bank Guarantee Control in Credit Sales Orders - Begin-->
           
@@ -455,17 +364,13 @@
             
           </xpath-->
           
-          <xpath expr="//header/button[@name='action_cancel']" position="before">
-            
-          </xpath>
           
           
           
-          <xpath expr="//header/button[@name='action_cancel']" position="attributes">
-            <attribute name="invisible">((x_studio_fsm_done == True) and (x_studio_quotation_type == 'Repair')) or (((state not in ['draft', 'sent']) and (x_studio_quotation_type == 'Repair')) or ((id == False) or ((state not in ['draft', 'sent', 'sale']) or (x_studio_cancelled == True))))</attribute></xpath>
           
-          <xpath expr="//sheet/notebook/page/field/tree/field[@name='analytic_tag_ids']" position="attributes">
-            <attribute name="readonly">(x_studio_account_mandatory == True) or (parent.x_studio_account_mandatory == True)</attribute></xpath>
+          
+          
+          
           
         </data>
     </field>
@@ -473,6 +378,7 @@
   <record id="ported_odoo_studio_sale_ord_f99c5f04_ecc1_498b_bbb3_6288ea62be6d" model="ir.ui.view">
     <field name="name">Odoo Studio: sale.order.form customization_button_2</field>
     <field name="model">sale.order</field>
+    <field name="key">studio_customization.odoo_studio_sale_ord_f99c5f04-ecc1-498b-bbb3-6288ea62be6d</field>
     <field name="type">form</field>
     <field name="priority">50002</field>
     <field name="mode">extension</field>
