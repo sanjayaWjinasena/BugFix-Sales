@@ -30,6 +30,8 @@
         'views/sale_order_studio_ported.xml',
         'views/product_pricelist_studio_ported.xml',
         'views/sale_report_studio_ported.xml',
+        'views/res_company_studio_ported.xml',
+        'views/sale_order_line_studio_ported.xml',
     ],
     'installable': True,
     'auto_install': False,

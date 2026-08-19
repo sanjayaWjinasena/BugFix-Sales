@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_default_pivot_view_f_b434dca2_4958_4f97_b58e_a253d775c63c" model="ir.ui.view">
+    <field name="name">Default pivot view for ir.model(599,)</field>
+    <field name="model">sale.order.line</field>
+    <field name="key">studio_customization.default_pivot_view_f_b434dca2-4958-4f97-b58e-a253d775c63c</field>
+    <field name="type">pivot</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <pivot string="Sales Order Line"/>
+    </field>
+  </record>
+</odoo>

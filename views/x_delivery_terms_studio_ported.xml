@@ -32,4 +32,34 @@
       </form>
     </field>
   </record>
+  <record id="ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e" model="ir.ui.view">
+    <field name="name">Default list view for x_delivery_terms</field>
+    <field name="model">x_delivery_terms</field>
+    <field name="key">studio_customization.default_list_view_fo_35abcb0b-2581-4156-9e23-d75bfb8d6b5e</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe" model="ir.ui.view">
+    <field name="name">Default search view for x_delivery_terms</field>
+    <field name="model">x_delivery_terms</field>
+    <field name="key">studio_customization.default_search_view__f98a2314-f551-4142-ba32-a74bde2e40fe</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_delivery_terms" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
 </odoo>

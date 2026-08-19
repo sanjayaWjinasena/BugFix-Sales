@@ -59,6 +59,78 @@
       </data>
     </field>
   </record>
+  <record id="ported_odoo_studio_sale_ord_71749d4c_8fb8_46b0_a187_bfa8977a25fd" model="ir.ui.view">
+    <field name="name">Odoo Studio: sale.order.pivot customization</field>
+    <field name="model">sale.order</field>
+    <field name="key">studio_customization.odoo_studio_sale_ord_71749d4c-8fb8-46b0-a187-bfa8977a25fd</field>
+    <field name="type">pivot</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="sale.view_sale_order_pivot"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//pivot[1]" position="attributes">
+          <attribute name="display_quantity">true</attribute>
+        </xpath>
+      </data>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5" model="ir.ui.view">
+    <field name="name">Odoo Studio: sale.order.tree customization</field>
+    <field name="model">sale.order</field>
+    <field name="key">studio_customization.odoo_studio_sale_ord_d30b53b2-bf08-42d7-a477-18497e66a5f5</field>
+    <field name="type">tree</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="sale.sale_order_tree"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]" position="attributes">
+          <attribute name="create">false</attribute>
+        </xpath>
+        
+        
+        
+        
+        
+      </data>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_sale_ord_b4d2d01a_3a8c_4827_885c_7390c53f2113" model="ir.ui.view">
+    <field name="name">Odoo Studio: sale.order.tree customization</field>
+    <field name="model">sale.order</field>
+    <field name="key">studio_customization.odoo_studio_sale_ord_b4d2d01a-3a8c-4827-885c-7390c53f2113</field>
+    <field name="type">tree</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]" position="attributes">
+          <attribute name="create">true</attribute>
+        </xpath>
+        
+        
+        
+      </data>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_sale_ord_42b65c93_ce32_435b_8978_554c017d8d4c" model="ir.ui.view">
+    <field name="name">Odoo Studio: sale.order.tree (orders) customization</field>
+    <field name="model">sale.order</field>
+    <field name="key">studio_customization.odoo_studio_sale_ord_42b65c93-ce32-435b-8978-554c017d8d4c</field>
+    <field name="type">tree</field>
+    <field name="priority">160</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="sale.view_order_tree"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]" position="attributes">
+          <attribute name="create">true</attribute>
+        </xpath>
+      </data>
+    </field>
+  </record>
   <record id="ported_odoo_studio_sale_ord_2b440c7b_edb5_4cd8_827e_19fbb95a85a9" model="ir.ui.view">
     <field name="name">Odoo Studio: sale.order.form customization_button</field>
     <field name="model">sale.order</field>
