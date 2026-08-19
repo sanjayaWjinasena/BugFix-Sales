@@ -18,7 +18,7 @@
           <attribute name="force_save">True</attribute>
           <attribute name="readonly">1</attribute></xpath>
         <xpath expr="//field[@name='date_end']" position="after">
-          <field optional="show" name="x_studio_price_confirmed" string="Price Confirmed"/>
+          
         </xpath>
       </data>
     </field>

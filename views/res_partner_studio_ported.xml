@@ -67,40 +67,40 @@
               <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
               <group name="studio_group_a2584a">
                 <group name="studio_group_60707f">
-                  <field name="sequence" invisible="1"/>
-                  <field name="acc_type" invisible="1"/>
-                  <field name="acc_number" readonly="lock_trust_fields" force_save="1"/>
-                  <field name="acc_holder_name"/>
-                  <field name="bank_id"/>
-                  <field name="x_studio_swift_code" string="SWIFT Code"/>
-                  <field name="x_studio_bank_code_1"/>
-                  <field name="x_studio_branch_code_1"/>
-                  <field name="partner_id" readonly="lock_trust_fields" force_save="1"/>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
                 </group>
                 <group name="studio_group_75baf5">
                   <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                   <field name="currency_id" groups="base.group_multi_currency" options="{'no_create': True}"/>
-                  <field name="user_has_group_validate_bank_account" invisible="1"/>
-                  <field name="lock_trust_fields" invisible="1"/>
+                  
+                  
                   <label for="allow_out_payment"/>
                   <div class="d-flex gap-2" name="studio_div_436d5b">
-                    <field name="allow_out_payment" widget="boolean_toggle" options="{'autosave': False}" readonly="not user_has_group_validate_bank_account"/>
+                    
                     <span class="d-flex gap-2 w-100">
                       <span invisible="allow_out_payment" class="text-muted">Untrusted</span>
                       <span invisible="not allow_out_payment" class="text-success">Trusted</span>
                     </span>
                   </div>
                   <div invisible="allow_out_payment" colspan="2" name="studio_div_c2e819">
-                    <field name="has_money_transfer_warning" invisible="1"/>
+                    
                     <div invisible="not has_money_transfer_warning" class="mb-1" name="studio_div_cde426">
-                      <span class="text-danger">High risk</span>: <field name="money_transfer_service" nolabel="1" class="oe_inline"/> is a money transfer service and not a bank.
+                      <span class="text-danger">High risk</span>:  is a money transfer service and not a bank.
                                   Double check if the account can be trusted by calling the vendor.<br/>
                       <a target="_blank" href="https://www.odoo.com/documentation/17.0/applications/finance/accounting/payables/pay/trusted_accounts.html">Check why.</a>
                     </div>
-                    <field name="has_iban_warning" invisible="1"/>
+                    
                     <div invisible="not has_iban_warning" name="studio_div_7beb61">
-                      <span class="text-warning">Medium risk</span>: Iban <field name="sanitized_acc_number" nolabel="1" class="oe_inline fw-bold"/>
-                                  is not from the same country as the partner (<field name="partner_country_name" nolabel="1" class="oe_inline"/>).<br/>
+                      <span class="text-warning">Medium risk</span>: Iban 
+                                  is not from the same country as the partner ().<br/>
                       <a target="_blank" href="https://www.odoo.com/documentation/17.0/applications/finance/accounting/payables/pay/trusted_accounts.html">Check why it's risky.</a>
                     </div>
                   </div>

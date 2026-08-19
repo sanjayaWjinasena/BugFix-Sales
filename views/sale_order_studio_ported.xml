@@ -15,30 +15,8 @@
         <xpath expr="//button[@name='payment_action_void']" position="after">
           
         </xpath>
-        <xpath expr="//form[1]/header[1]/button[@name='508']" position="attributes">
-          <attribute name="invisible">(is_subscription and state != 'sale' or invoice_status != 'to invoice') or (((task_id != False) and (x_studio_quotation_type == 'Project')) or ((x_studio_authorized_repair_user == True) or (invoice_status != 'to invoice')))</attribute>
-        </xpath>
-        <xpath expr="//form[1]/header[1]/button[@name='508'][2]" position="after">
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-        </xpath>
+        
+        
         <xpath expr="//form[1]/header[1]/button[@name='action_quotation_send']" position="attributes">
           <attribute name="invisible">((state != 'draft' or (is_abandoned_cart and not cart_recovery_email_sent)) or (((x_studio_rug_rejected == False) and ((x_studio_rug_approved == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or ((x_studio_new_item_from_project != False) or ((x_studio_valid_order_lines == False) or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((state == 'cancel') or ((x_studio_cancelled == True) or ((x_studio_locked == True) or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))))))))) or (state not in ['False'])</attribute>
           <attribute name="studio_approval">False</attribute>
@@ -180,61 +158,34 @@
           <attribute name="readonly">(state == 'cancel' or locked) or ((x_studio_bank_guarantee_approved == True) or ((x_studio_temporary_credit_approved == True) or ((x_studio_overdue_approved == True) or ((x_studio_over_commission_approved == True) or ((x_studio_credit_limit_approved == True) or (state in ['done', 'cancel']))))))</attribute>
         </xpath>
         <xpath expr="//div[@name='lead']" position="after">
-          <field name="x_studio_sales_report_type" string="Sales Report Type"/>
+          
         </xpath>
         <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]" position="attributes">
           <attribute name="delete">true</attribute>
         </xpath>
         <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
-          <field optional="hide" name="x_studio_product_status" string="Product Status" force_save="True" readonly="1" column_invisible="parent.x_studio_quotation_type != 'Project'"/>
+          
         </xpath>
         <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='product_type']" position="after">
           <!-- below fields are used in the widget qty_at_date_widget -->
         </xpath>
         <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='name']" position="after">
-          <field optional="show" name="x_studio_trans_type" string="Trans Type" column_invisible="parent.x_studio_quotation_type != 'Project'"/>
-          <field optional="show" name="x_studio_category" string="Category" options="{&quot;no_create&quot;:true}" required="(display_type != 'line_section') and (parent.x_studio_quotation_type == 'Project')" column_invisible="parent.x_studio_quotation_type != 'Project'"/>
+          
+          
           <!--field optional="show" name="x_studio_category_name" string="Category Name" attrs="{'column_invisible':[('parent.x_studio_quotation_type', '!=', 'Project')], 'required': [('parent.x_studio_quotation_type', '=', 'Project')]}"/-->
-          <field optional="show" name="x_studio_category_name" string="Category Name" column_invisible="parent.x_studio_quotation_type != 'Project'"/>
+          
         </xpath>
         <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='price_unit']" position="attributes">
           <attribute name="force_save">True</attribute>
           <attribute name="readonly">(qty_invoiced &gt; 0 or is_reward_line) or (x_studio_rug_confirmed == True)</attribute>
         </xpath>
         <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='price_unit']" position="after">
-          <field optional="show" name="x_studio_price_confirmed" string="Price Confirmed" column_invisible="parent.x_studio_quotation_type != 'Project'"/>
-          <field optional="hide" name="x_studio_cost_value" string="Cost Value" force_save="True" readonly="1"/>
+          
+          
         </xpath>
-        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='price_subtotal']" position="after">
-          <field name="x_studio_inventory_shortage" optional="hide" force_save="True" readonly="1" invisible="x_studio_quotation_type != 'Project'"/>
-          <field optional="show" name="x_studio_purch_type" string="Purch. Type" column_invisible="parent.x_studio_quotation_type != 'Project'"/>
-          <field optional="show" name="x_studio_quotation_type" string="Quotation Type" column_invisible="1"/>
-          <field name="x_studio_req_for_production" string="Req. for Production" optional="hide"/>
-          <field name="x_studio_req_qty" string="Req. Qty" optional="hide" invisible="x_studio_req_for_production == False"/>
-          <field name="x_studio_production_completed" string="Production Completed" optional="hide" invisible="x_studio_req_for_production == False"/>
-          <field name="x_studio_many2one_field_btM1W" optional="hide" invisible="x_studio_production_completed == False"/>
-          <field optional="show" name="x_studio_account_mandatory" string="Account Mandatory" force_save="True" readonly="1" column_invisible="1"/>
-          <field optional="show" name="x_studio_clear_free_items" string="Clear Free Items" column_invisible="1"/>
-          <field optional="show" name="x_studio_pricelist_id" string="Pricelist Id" column_invisible="1"/>
-          <field optional="hide" name="x_studio_count_1" string="Re-estimate Instance"/>
-          <field optional="show" name="x_studio_count_2" string="Count 2" column_invisible="1"/>
-          <field optional="hide" name="x_studio_re_estimated" string="Re-estimated" column_invisible="parent.x_studio_quotation_type != 'Repair'"/>
-          <field optional="show" name="x_studio_re_estimate_count" string="Re-estimate Count" column_invisible="1"/>
-          <field optional="show" name="x_studio_unlocked" string="Unlocked" column_invisible="1"/>
-          <field optional="show" name="x_studio_re_estimate_request_sent" string="Re-estimate Request Sent" column_invisible="1"/>
-          <field optional="show" name="x_studio_sub_contract" string="Sub-Contract" column_invisible="1"/>
-          <field optional="show" name="x_studio_main_project_no" string="Main Project No" column_invisible="1"/>
-          <field optional="show" name="x_studio_main_project_2" string="Main Project 2" column_invisible="1"/>
-          <field optional="show" name="x_studio_project_no_1" string="Project No" column_invisible="1"/>
-          <field optional="show" name="x_studio_pr_created" string="PR Created" force_save="True" readonly="1" column_invisible="1"/>
-          <field optional="show" name="x_studio_rug_confirmed" string="RUG Confirmed" column_invisible="1"/>
-          <field optional="show" name="x_studio_project_no" string="Project No" column_invisible="1"/>
-          <field name="x_studio_margin_exceed" string="Margin Exceed" force_save="True" readonly="1" column_invisible="1"/>
-          <field name="x_studio_over_commission" string="Over Commission" force_save="True" readonly="1" column_invisible="1"/>
-          <field name="x_studio_commission" string="Commission %" optional="hide"/>
-        </xpath>
+        
         <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='company_id']" position="after">
-          <field name="is_reward_line" optional="show" widget="boolean" column_invisible="1"/>
+          
         </xpath>
         <xpath expr="//field[@name='user_id']" position="before">
           <xpath expr="//field[@name='payment_term_id']" position="move"/>
@@ -323,37 +274,7 @@
             </group>
           </page>
           <page string="Project Related Item Statistics" name="studio_page_yS3hw" invisible="x_studio_quotation_type != 'Project'">
-            <field name="x_studio_one2many_field_ERCBB" force_save="True" readonly="1">
-              <tree string="Sales Order Lines" create="false" edit="false" delete="false">
-                <field name="order_id" string="Sales Order Ref" column_invisible="1"/>
-                <field name="invoice_status" column_invisible="1"/>
-                <field name="warehouse_id" column_invisible="1"/>
-                <field optional="show" name="x_studio_invt_status" string="Invt. Status" widget="toggle_button"/>
-                <field name="product_id" string="Product"/>
-                <field name="product_uom_qty" string="Req. Qty"/>
-                <field name="name" column_invisible="1"/>
-                <field name="x_studio_cost_value" optional="show"/>
-                <field optional="show" name="x_studio_warehouse_id"/>
-                <field optional="show" name="x_studio_current_onhand" string="Current Onhand"/>
-                <field optional="show" name="x_studio_inventory_shortage" string="Inventory Shortage"/>
-                <field optional="show" name="x_studio_cost_amount_req_qty" string="Cost Amount (Req. Qty)" sum="Sum of Cost Amount (Req. Qty)" widget="float"/>
-                <field optional="show" name="x_studio_cost_amount_inventory_shortage" string="Cost Amount (Inventory Shortage)" sum="Sum of Cost Amount (Inventory Shortage)"/>
-                <field name="qty_delivered" string="Delivered Qty" column_invisible="1"/>
-                <field name="qty_to_deliver" column_invisible="1"/>
-                <field name="qty_invoiced" string="Invoiced Qty" column_invisible="1"/>
-                <field name="qty_to_invoice" string="Qty To Invoice" column_invisible="1"/>
-                <field name="product_uom" string="UOM" groups="uom.group_uom" column_invisible="1"/>
-                <field name="route_id" groups="stock.group_adv_location" options="{'no_create': True}" column_invisible="1"/>
-                <field name="discount" column_invisible="1"/>
-                <field name="price_subtotal" sum="Total" widget="monetary" column_invisible="1"/>
-                <field name="salesman_id" column_invisible="1"/>
-                <field name="create_uid" column_invisible="1"/>
-                <field name="create_date" column_invisible="1"/>
-                <field name="x_studio_category" optional="hide"/>
-                <field name="x_studio_project_no" optional="hide"/>
-                <field name="currency_id" column_invisible="1"/>
-              </tree>
-            </field>
+            
           </page>
           <page string="Warranty Details" name="studio_page_J0MAg" invisible="(task_id == False) or (x_studio_quotation_type != 'Repair')">
             <group name="studio_group_J0MAg">
@@ -403,27 +324,17 @@
           </xpath>
           
           <!--1.2.6	Create PRs for New Item/Sub-contracting Project Sales Orders-->
-          <xpath expr="//header/button[@name='2138']" position="before">
-            
-          </xpath>
+          
           
           <!--1.2.7	Update RFQ Cost for New Item/ Sub-contracting Project Sales Orders-->
-          <xpath expr="//header/button[@name='2188']" position="before">
-            
-          </xpath>
+          
           
           <!--1.2.8	RUG Repair Type Control in Repair Sales Orders - Begin-->
-          <xpath expr="//header/button[@name='2192']" position="after">
-            
-          </xpath>
           
-          <xpath expr="//header/button[@name='1980']" position="after">
-            
-          </xpath>
           
-          <xpath expr="//header/button[@name='1981']" position="after">
-            
-          </xpath>
+          
+          
+          
           <!--1.2.8	RUG Repair Type Control in Repair Sales Orders - End-->
           
           <!--xpath expr="//header/button[@name='action_quotation_send']" position="after">
@@ -431,68 +342,42 @@
           </xpath-->
           
           <!--1.2.1	Profit Margin Control in Sales Orders-->
-          <xpath expr="//header/button[@name='2004']" position="after">
-            
-          </xpath>
+          
           
           <!--1.2.2	Overdue Control in Sales Orders - Begin-->
-          <xpath expr="//header/button[@name='1517']" position="after">
-            
-          </xpath>
           
-          <xpath expr="//header/button[@name='1476']" position="after">
-            
-          </xpath>
+          
+          
           <!--1.2.2	Overdue Control in Sales Orders - End-->
           
           <!--1.2.9	Commission Control in Sales Orders - Begin-->
-          <xpath expr="//header/button[@name='1478']" position="after">
-            
-          </xpath>
           
-          <xpath expr="//header/button[@name='1503']" position="after">
-            
-          </xpath>
+          
+          
           <!--1.2.9	Commission Control in Sales Orders - End-->
           
           <!--1.2.1	Profit Margin Control in Sales Orders - Begin-->
-          <xpath expr="//header/button[@name='1505']" position="after">
-            
-          </xpath>
           
-          <xpath expr="//header/button[@name='1513']" position="after">
-            
-          </xpath>
+          
+          
           <!--1.2.1	Profit Margin Control in Sales Orders - End-->
           
           <!--1.2.3	Credit Limit Control in Credit Sales Orders - Begin-->
-          <xpath expr="//header/button[@name='1515']" position="after">
-            
-          </xpath>
           
-          <xpath expr="//header/button[@name='1458']" position="after">
-            
-          </xpath>
+          
+          
           <!--1.2.3	Credit Limit Control in Credit Sales Orders - End-->
           
           <!--1.2.4	Bank Guarantee Control in Credit Sales Orders - Begin-->
-          <xpath expr="//header/button[@name='1435']" position="after">
-            
-          </xpath>
           
-          <xpath expr="//header/button[@name='1485']" position="after">
-            
-          </xpath>
+          
+          
           <!--1.2.4	Bank Guarantee Control in Credit Sales Orders - End-->
           
           <!--1.2.10 Temporary Credit in Sales Orders - Begin-->
-          <xpath expr="//header/button[@name='1487']" position="after">
-            
-          </xpath>
           
-          <xpath expr="//header/button[@name='1468']" position="after">
-            
-          </xpath>
+          
+          
           <!--1.2.10 Temporary Credit in Sales Orders - End-->
           
           <!--xpath expr="//header/button[@name='action_confirm' and @id='action_confirm']" position="attributes">
@@ -544,12 +429,9 @@
             <attribute name="invisible">(x_studio_quotation_type in ['Sales', 'Project', 'Repair']) or (x_studio_expired == True)</attribute></xpath>
           
           <!--1.2.11	Create Budget Option in Project Sales Orders-->
-          <xpath expr="//header/button[@name='508']" position="before">
-            
-          </xpath>     
+               
           
-          <xpath expr="//header/button[@name='508']" position="attributes">
-            <attribute name="invisible">((x_studio_fsm_done == False) and (x_studio_quotation_type == 'Repair')) or ((x_studio_authorized_repair_user == True) or (invoice_status != 'to invoice'))</attribute></xpath>
+          
           
           <!--1.2.12	Insufficient Transfer Inventory Option in Sales Orders-->
           <xpath expr="//header/button[@name='action_confirm']" position="before">
@@ -557,19 +439,13 @@
           </xpath>
           
           <!--1.2.4	Bank Guarantee Control in Credit Sales Orders - Begin-->
-          <xpath expr="//header/button[@name='2096']" position="before">
-            
-          </xpath>
           
-          <xpath expr="//header/button[@name='1849']" position="before">
-            
-          </xpath> 
+          
+           
           <!--1.2.4	Bank Guarantee Control in Credit Sales Orders - End-->
           
           <!--1.2.3	Credit Limit Control in Credit Sales Orders-->
-          <xpath expr="//header/button[@name='1850']" position="before">
-            
-          </xpath>
+          
           
           <!--xpath expr="//header/button[@name='action_unlock']" position="before">
             
@@ -583,9 +459,7 @@
             
           </xpath>
           
-          <xpath expr="//header/button[@name='2337']" position="before">
-            
-          </xpath>
+          
           
           <xpath expr="//header/button[@name='action_cancel']" position="attributes">
             <attribute name="invisible">((x_studio_fsm_done == True) and (x_studio_quotation_type == 'Repair')) or (((state not in ['draft', 'sent']) and (x_studio_quotation_type == 'Repair')) or ((id == False) or ((state not in ['draft', 'sent', 'sale']) or (x_studio_cancelled == True))))</attribute></xpath>
@@ -606,29 +480,17 @@
     <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//header/button[@name='1478']" position="attributes">
-          <attribute name="studio_approval">True</attribute>
-        </xpath>
         
-        <xpath expr="//button[@name='1505']" position="attributes">
-          <attribute name="studio_approval">True</attribute>
-        </xpath>
         
-        <xpath expr="//button[@name='1515']" position="attributes">
-          <attribute name="studio_approval">True</attribute>
-        </xpath>
         
-        <xpath expr="//button[@name='1435']" position="attributes">
-          <attribute name="studio_approval">True</attribute>
-        </xpath>
         
-        <xpath expr="//button[@name='1487']" position="attributes">
-          <attribute name="studio_approval">True</attribute>
-        </xpath>
         
-        <xpath expr="//button[@name='1470']" position="attributes">
-          <attribute name="studio_approval">True</attribute>
-        </xpath>  
+        
+        
+        
+        
+        
+          
       </data>
     </field>
   </record>
