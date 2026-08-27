@@ -6,7 +6,7 @@
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
-    'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale', 'studio_usermodel_migration'],
+    'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale'],
     'post_init_hook': 'post_init_hook',
     # v47: bulk-port of remaining Studio artifacts via
     # scripts/scaffold_bugfix_module.py (adds 8 sale.order fields,
@@ -15,6 +15,15 @@
     # ir_model_pins.xml MUST load before ir.model.access.csv so the
     # ACL rows can resolve the model_x_* xmlids for the custom
     # models.
+    # v52: removed studio_usermodel_migration from depends. This module
+    # uses no models or fields from studio_usermodel_migration at
+    # schema/model-load time (confirmed: no code or view references).
+    # The dep was added in v0.47 to anchor load order when fixing the
+    # previous cycle, but it created a new 3-way cycle:
+    #   BugFix-Sales -> studio_usermodel_migration
+    #     -> studio_migrations -> BugFix-Sales
+    # Removed alongside dropping studio_migrations from
+    # studio_usermodel_migration's depends (v0.0.9 of that module).
     'data': [
         'security/ir_model_pins.xml',
         'security/ir.model.access.csv',
