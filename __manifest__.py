@@ -1,12 +1,24 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.53',
+    'version': '17.0.1.0.54',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
-    'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale'],
+    # v54: added Jinasena_Masterdata_Reporting to depends.
+    # BugFix-Sales/models/x_sales_report_type.py was _name='x_sales_report_type'
+    # (a competing "owner" declaration without dep on the real owner). With two
+    # _name= declarations and no dep chain, Odoo's topological sort could pick
+    # BugFix-Sales's class as the live model, leaving x_studio_journal_items_id
+    # absent from x_sales_report_type._fields at setup_models() time. That
+    # caused KeyError on x_sales_report_model.x_studio_journal_item_ids
+    # (related='x_studio_report_type.x_studio_journal_items_id') and broke the
+    # registry on every startup. Fix: x_sales_report_type.py converted to
+    # _inherit; Jinasena_Masterdata_Reporting (the canonical owner) added here.
+    # studio_usermodel_migration removed in v52 (no load-time dep, cycle risk).
+    'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale',
+                'Jinasena_Masterdata_Reporting'],
     'post_init_hook': 'post_init_hook',
     # v47: bulk-port of remaining Studio artifacts via
     # scripts/scaffold_bugfix_module.py (adds 8 sale.order fields,

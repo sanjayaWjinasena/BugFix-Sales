@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
-"""Sentinel declaration for x_sales_report_type so cross-references resolve."""
-from odoo import fields, models
+"""x_sales_report_type is owned by Jinasena_Masterdata_Reporting.
+
+All fields (x_active, x_name, x_studio_report_code, x_studio_sequence,
+and all One2many navigations) are declared there. BugFix-Sales has no
+additional fields to contribute.
+
+v53: converted from _name (sentinel) to _inherit so that
+Jinasena_Masterdata_Reporting's canonical declaration — which includes
+x_studio_journal_items_id and the other O2M fields — is always resolved
+first. Having two _name = 'x_sales_report_type' declarations without an
+explicit dep chain caused Odoo to pick whichever class was registered last
+during topological load, leaving x_studio_journal_items_id absent from the
+model's _fields at setup_models() time. That caused a KeyError on every
+related-field setup in x_sales_report_model and brought down the registry.
+"""
+from odoo import models
 
 
 class XSalesReportType(models.Model):
-    _name = 'x_sales_report_type'
-    _description = 'X Sales Report Type'
-
-    x_active = fields.Boolean(string='Active')
-    x_name = fields.Char(string='Report Name')
-    # TODO: x_studio_journal_entry_id = fields.One2many('account.move', <inverse>, string='Journal Entry Id')
-    # TODO: x_studio_journal_items_id = fields.One2many('account.move.line', <inverse>, string='Journal Items Id')
-    # TODO: x_studio_prod_summary_split_id = fields.One2many('stock.move.line', <inverse>, string='Prod. Summary Split Id')
-    # TODO: x_studio_production_order_id = fields.One2many('mrp.production', <inverse>, string='Production Order Id')
-    # TODO: x_studio_production_variance_id = fields.One2many('stock.move', <inverse>, string='Production Variance Id')
-    x_studio_report_code = fields.Selection([], string='Report Code')
-    # TODO: x_studio_sales_lines_id = fields.One2many('sale.order.line', <inverse>, string='Sales Lines Id')
-    # TODO: x_studio_sales_prod_purch_id = fields.One2many('stock.move.line', <inverse>, string='Sales Prod. Purch. Id')
-    x_studio_sequence = fields.Integer(string='Sequence')
-    # TODO: x_studio_slow_moving_item_id = fields.One2many('stock.move.line', <inverse>, string='Slow Moving Item Id')
-    # TODO: x_studio_test = fields.One2many('account.move.line', <inverse>, string='test')
+    _inherit = 'x_sales_report_type'
