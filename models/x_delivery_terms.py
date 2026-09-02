@@ -1,17 +1,25 @@
 # -*- coding: utf-8 -*-
+"""x_delivery_terms - also declared in BugFix-Purchase. Both modules use
+_name (not _inherit); Odoo merges the two declarations. Field lists MUST
+match to avoid runtime shadowing (Purchase v0.1.0.33 shipped an O2M here
+that got shadowed by Sales' earlier declaration lacking the O2M --
+smoke test failed with "Invalid field x_studio_delivery_terms_id on
+model x_delivery_terms"). Sales v0.1.0.54 mirrors Purchase's declaration
+including the O2M + default=True on x_active."""
 from odoo import fields, models
 
 
 class XDeliveryTerms(models.Model):
-    """Studio-ported custom model x_delivery_terms."""
     _name = 'x_delivery_terms'
     _description = 'Delivery Terms'
 
-    x_active = fields.Boolean(string='Active')
+    x_active = fields.Boolean(string='Active', default=True)
     x_name = fields.Char(string='Delivery Term')
     x_studio_company_id = fields.Many2one('res.company', string='Company')
     x_studio_copied = fields.Boolean(string='Copied')
-    # TODO: x_studio_delivery_terms_id = fields.One2many(...) -- Studio inverse name unknown; port from Clear-DB manually.
+    x_studio_delivery_terms_id = fields.One2many(
+        'x_delivery_term_charge', 'x_studio_delivery_terms_id',
+        string='Charges')
     x_studio_description = fields.Char(string='Description')
     x_studio_sequence = fields.Integer(string='Sequence')
     x_studio_vendor_despatch = fields.Boolean(string='Vendor Dispatch Voucher')
