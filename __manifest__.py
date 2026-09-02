@@ -1,11 +1,22 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.54',
+    'version': '17.0.1.0.55',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.55: cross-repo companion fix for BugFix-Purchase v0.1.0.33.
+    # Both this module and BugFix-Purchase declare x_delivery_terms via
+    # _name (not _inherit). Odoo merges the declarations, but the
+    # LATER-loaded module's field list REPLACES the earlier one's --
+    # so Purchase's x_studio_delivery_terms_id O2M (shipped v0.1.0.33)
+    # got shadowed at runtime ("Invalid field ... on model
+    # x_delivery_terms" error at read time).
+    # Fix: mirror Purchase's declaration in Sales - add the O2M
+    # declaration + default=True on x_active. Now field sets match
+    # regardless of merge order. NEW DEP BugFix-Purchase (needed for
+    # x_delivery_term_charge comodel to resolve).
     # v54: added Jinasena_Masterdata_Reporting to depends.
     # BugFix-Sales/models/x_sales_report_type.py was _name='x_sales_report_type'
     # (a competing "owner" declaration without dep on the real owner). With two
@@ -18,7 +29,7 @@
     # _inherit; Jinasena_Masterdata_Reporting (the canonical owner) added here.
     # studio_usermodel_migration removed in v52 (no load-time dep, cycle risk).
     'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale',
-                'Jinasena_Masterdata_Reporting'],
+                'Jinasena_Masterdata_Reporting', 'BugFix-Purchase'],
     'post_init_hook': 'post_init_hook',
     # v47: bulk-port of remaining Studio artifacts via
     # scripts/scaffold_bugfix_module.py (adds 8 sale.order fields,
