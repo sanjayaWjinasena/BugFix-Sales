@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.55',
+    'version': '17.0.1.0.56',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.56: cross-repo companion fix for BugFix-Purchase v0.1.0.71.
+    # Purchase added _inherit = ['mail.thread', 'mail.activity.mixin']
+    # to its x_delivery_terms declaration. Both modules declare that
+    # model via _name; without matching the inherit here, chatter/
+    # activity fields would get shadowed and view ports referencing
+    # them would fail. Mirroring the inherit.
     # v0.1.0.55: cross-repo companion fix for BugFix-Purchase v0.1.0.33.
     # Both this module and BugFix-Purchase declare x_delivery_terms via
     # _name (not _inherit). Odoo merges the declarations, but the

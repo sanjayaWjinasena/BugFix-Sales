@@ -10,6 +10,7 @@ from odoo import fields, models
 
 class XDeliveryTerms(models.Model):
     _name = 'x_delivery_terms'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Delivery Terms'
 
     x_active = fields.Boolean(string='Active', default=True)
