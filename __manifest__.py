@@ -1,11 +1,25 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.70',
+    'version': '17.0.1.0.71',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.71: salvage the 9th view (5445) skipped in v0.1.0.67.
+    # Original CDB arch xpath //tree[1]/field[@name='id'] doesn't
+    # resolve on target's composed website_sale product tree (no id
+    # column present after Odoo's addon stack applies its inherits).
+    # Rewrote xpath to //tree/field[@name='public_categ_ids']
+    # position="after". Dropped 3 fields from the CDB arch:
+    #   * x_studio_charge_type + x_studio_non_billable (pinned to
+    #     BugFix-Accounting - loads after Sales, not load-safe)
+    #   * re-added <field name="id"/> (target has no id column)
+    # Kept 4 std fields: weight, volume, landed_cost_ok,
+    # split_method_landed_cost. All pinned to standard modules
+    # (product, stock_landed_costs) - load-safe.
+    # Xpath verified against target composed view (matches 1 node).
+    # Views: 18/19 -> 19/19 = 100% shipped, 100% effective.
     # v0.1.0.70: hotfix v0.1.0.69 - modifier sentinel extractor missed
     # the ELEMENT form of modifier expressions:
     #   <xpath position="attributes">

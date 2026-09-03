@@ -454,4 +454,28 @@
     </field>
   </record>
 
+
+  <!-- View 5445 salvaged (v0.1.0.71): original xpath //tree[1]/field[@name='id']
+       doesn't resolve on target (no id column in composed website_sale tree).
+       Rewritten to append columns after public_categ_ids. Dropped 3 fields:
+       - x_studio_charge_type, x_studio_non_billable (pinned to BugFix-Accounting,
+         reverse-dep of Sales - not load-safe)
+       - re-added id field (target has no id column) -->
+  <record id="ported_view_5445_odoo_studio_product_template_view_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: product.template.view.tree.website_sale customization</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="website_sale.product_template_view_tree_website_sale"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree/field[@name='public_categ_ids']" position="after">
+          <field name="weight" optional="show"/>
+          <field name="volume" optional="show"/>
+          <field name="landed_cost_ok" optional="show"/>
+          <field name="split_method_landed_cost" optional="show"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
 </odoo>
