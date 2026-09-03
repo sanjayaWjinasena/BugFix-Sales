@@ -1,11 +1,25 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.58',
+    'version': '17.0.1.0.59',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.59: 57 base_automation server actions - foundation for
+    # the 57 base.automation trigger records to ship in v0.1.0.60.
+    # All state=code, usage=base_automation. Grouped by model:
+    #   * res.partner: 29 (SLS-Track * customer fields, credit limit
+    #     validation, customer group validation, payment term updates)
+    #   * sale.order: 12 (payment method pass, order validation,
+    #     quotation type auto-gen for Repair/Project SOs, seq.no,
+    #     analytic tag params, project pricelist, JIN Company Id)
+    #   * sale.order.line: 7 (discount/commission validation, RUG
+    #     sales price, project details, lock status, apply pricelist)
+    #   * product.template: 3 (item master validation)
+    #   * x_delivery_terms + product.pricelist + res.partner + res.company:
+    #     JIN Company Id records
+    # New file: data/server_actions.xml.
     # v0.1.0.58: close the 60 field gap identified by the migration audit.
     # New model files:
     #   * models/product_template.py: 15 fields (item approval flags,
@@ -82,6 +96,7 @@
         'security/ir_model_pins.xml',
         'security/ir.model.access.csv',
         'data/bugfix_sales_data.xml',
+        'data/server_actions.xml',
         'views/doc_intro_views.xml',
         'views/doc_conclusion_views.xml',
         'views/res_partner_views.xml',
