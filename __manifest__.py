@@ -1,11 +1,21 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.60',
+    'version': '17.0.1.0.61',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.61: 101 additional server actions (state-diverse).
+    # Deep dedup check on 136 remaining candidates:
+    #   * 31 verified true duplicates (same name+model+state+code as
+    #     standard Odoo) - correctly skipped
+    #   * 4 ir_cron actions - skipped per pattern
+    #   * 101 truly new - shipped here (44 state=code + 22 next_activity
+    #     + 20 multi + 15 object_write)
+    # State ordering: next_activity + object_write first, then multi +
+    # code (Odoo XML load-order requirement for child_ids refs).
+    # Server actions: 57/193 -> 158/193 = 82%.
     # v0.1.0.60: 57 base.automation trigger records - coverage 0/57 -> 57/57.
     # Wires all v0.1.0.59-shipped server actions to their triggers.
     # Trigger types: mostly on_create_or_write (Track * fields) and
@@ -102,6 +112,7 @@
         'security/ir.model.access.csv',
         'data/bugfix_sales_data.xml',
         'data/server_actions.xml',
+        'data/server_actions_v2.xml',
         'data/automations.xml',
         'views/doc_intro_views.xml',
         'views/doc_conclusion_views.xml',

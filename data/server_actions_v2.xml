@@ -1,0 +1,1819 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales v0.1.0.61: 105 truly-new server actions.
+     31 verified duplicates + 4 ir_cron records skipped.
+     State ordering: next_activity + object_write first, then
+     multi + code (Odoo XML load-order for child_ids refs). -->
+<odoo>
+
+  <record id="server_action_2136_proj_project_item_request_approval_notify_user" model="ir.actions.server">
+    <field name="name">PROJ - Project Item Request Approval - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Customer Overdue</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_1985_rr_rug_request_approval_notify_user" model="ir.actions.server">
+    <field name="name">RR - RUG Request Approval - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve RUG Repair</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2243_rr_re_estimate_request_notify_user" model="ir.actions.server">
+    <field name="name">RR - Re-estimate Request - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve RUG Repair</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_1769_sls_bank_guarantee_notify_user" model="ir.actions.server">
+    <field name="name">SLS - Bank Guarantee - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Bank Guarantee</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2260_sls_bank_guarantee_notify_user" model="ir.actions.server">
+    <field name="name">SLS - Bank Guarantee - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Bank Guarantee</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2509_sls_bank_guarantee_approval_confirm" model="ir.actions.server">
+    <field name="name">SLS - Bank Guarantee Approval - Confirm</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">generic</field>
+    <field name="activity_summary">Bank Guarantee Approval - Confirm</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2505_sls_credit_limit_approval_confirm" model="ir.actions.server">
+    <field name="name">SLS - Credit Limit Approval - Confirm</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">generic</field>
+    <field name="activity_summary">Credit Limit Approval - Confirm</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2497_sls_margin_approval_confirm" model="ir.actions.server">
+    <field name="name">SLS - Margin Approval - Confirm</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">generic</field>
+    <field name="activity_summary">Margin Approval - Confirm</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_1511_sls_margin_request_approval_notify_user" model="ir.actions.server">
+    <field name="name">SLS - Margin Request Approval - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Item Over Margin</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2501_sls_over_commission_approval_confirm" model="ir.actions.server">
+    <field name="name">SLS - Over Commission Approval - Confirm</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">generic</field>
+    <field name="activity_summary">Over Commission Approval - Confirm</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_1501_sls_over_commission_request_approval_notify_user" model="ir.actions.server">
+    <field name="name">SLS - Over Commission Request Approval - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Over Commission</field>
+    <field name="activity_note">&lt;p&gt;Please approve the Over-Commission for this sales order.&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_1474_sls_overdue_request_approval_notify_user" model="ir.actions.server">
+    <field name="name">SLS - Overdue Request Approval - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Customer Overdue</field>
+    <field name="activity_note">&lt;p&gt;Please approve this sales order of the overdue customer.&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2460_sls_overdue_request_approval_notify_user_01" model="ir.actions.server">
+    <field name="name">SLS - Overdue Request Approval - Notify User - 01</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">generic</field>
+    <field name="activity_summary">Approve Customer Overdue</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_1462_sls_request_approval_notify_user" model="ir.actions.server">
+    <field name="name">SLS - Request Approval - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Credit Limit</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_1483_sls_request_bank_guarantee_approval_notify_user" model="ir.actions.server">
+    <field name="name">SLS - Request Bank Guarantee Approval - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Bank Guarantee</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_1466_sls_request_temporary_credit_approval_notify_user" model="ir.actions.server">
+    <field name="name">SLS - Request Temporary Credit Approval - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Temporary Credit Limit</field>
+    <field name="activity_note">&lt;p&gt;Please approve the sales order with the cash customer, to proceed as Temporary-Credit.&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2516_sls_send_bank_guarantee_notification_confirm" model="ir.actions.server">
+    <field name="name">SLS - Send Bank Guarantee Notification - Confirm</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Send Bank Guarantee Notification</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2513_sls_temporary_credit_approval_confirm" model="ir.actions.server">
+    <field name="name">SLS - Temporary Credit Approval - Confirm</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">generic</field>
+    <field name="activity_summary">Temporary Credit Approval - Confirm</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2297_plm_item_approval_notify_project_user" model="ir.actions.server">
+    <field name="name">PLM - Item Approval - Notify  Project User</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Customer Overdue</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2291_plm_item_approval_request_notify_user" model="ir.actions.server">
+    <field name="name">PLM - Item Approval Request - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Customer Overdue</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2196_proj_item_approval_notify_project_user" model="ir.actions.server">
+    <field name="name">PROJ - Item Approval - Notify  Project User</field>
+    <field name="model_id" search="[('model', '=', 'product.product')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Customer Overdue</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2165_proj_item_approval_request_notify_user" model="ir.actions.server">
+    <field name="name">PROJ - Item Approval Request - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'product.product')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Customer Overdue</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_2142_proj_project_item_approval" model="ir.actions.server">
+    <field name="name">PROJ - Project Item Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_project_item_approved"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_2134_proj_project_item_request_sent" model="ir.actions.server">
+    <field name="name">PROJ - Project Item Request  Sent</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_project_item_request_sent"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_1981_rr_rug_approval" model="ir.actions.server">
+    <field name="name">RR - RUG Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_rug_approved"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_1983_rr_rug_approval_request_sent" model="ir.actions.server">
+    <field name="name">RR - RUG Approval Request Sent</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_rug_request_sent"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_2244_rr_re_estimate_request_sent" model="ir.actions.server">
+    <field name="name">RR - Re-estimate Request  Sent</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_re_estimate_request_sent"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_2507_sls_bank_guarantee_approval" model="ir.actions.server">
+    <field name="name">SLS - Bank Guarantee Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_bank_guarantee_approved"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_2503_sls_credit_limit_approval" model="ir.actions.server">
+    <field name="name">SLS - Credit Limit Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_credit_limit_approved"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_2495_sls_margin_approval" model="ir.actions.server">
+    <field name="name">SLS - Margin Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_margin_approved"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_1509_sls_margin_approval_request_sent" model="ir.actions.server">
+    <field name="name">SLS - Margin Approval Request  Sent</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_margin_approval_request_sent"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_2499_sls_over_commission_approval" model="ir.actions.server">
+    <field name="name">SLS - Over Commission Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_over_commission_approved"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_1499_sls_over_commission_approval_request_sent" model="ir.actions.server">
+    <field name="name">SLS - Over Commission Approval Request  Sent</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_over_comm_approval_request_sent"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_1472_sls_overdue_approval_request_sent" model="ir.actions.server">
+    <field name="name">SLS - Overdue Approval Request  Sent</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_overdue_request_sent"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_1460_sls_request_approval_sent" model="ir.actions.server">
+    <field name="name">SLS - Request Approval Sent</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_approval_request_sent"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_1481_sls_request_bank_guarantee_approval_sent" model="ir.actions.server">
+    <field name="name">SLS - Request Bank Guarantee Approval Sent</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_bank_guarantee_request_sent"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_2458_sls_request_overdue_approval_final01" model="ir.actions.server">
+    <field name="name">SLS - Request Overdue Approval - Final01</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_overdue_approved"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_2511_sls_temporary_credit_approval" model="ir.actions.server">
+    <field name="name">SLS - Temporary Credit Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_temporary_credit_approved"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_1464_sls_temporary_credit_approval_sent" model="ir.actions.server">
+    <field name="name">SLS - Temporary Credit Approval Sent</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_tem_credit_approval_request_sent"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_2169_proj_item_approval" model="ir.actions.server">
+    <field name="name">PROJ - Item Approval</field>
+    <field name="model_id" search="[('model', '=', 'product.product')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_product_product__x_studio_item_approved"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_2163_proj_item_approval_request_sent" model="ir.actions.server">
+    <field name="name">PROJ - Item Approval Request  Sent</field>
+    <field name="model_id" search="[('model', '=', 'product.product')]"/>
+    <field name="state">object_write</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="update_field_id" ref="BugFix-Sales.field_product_product__x_studio_item_approval_request_sent"/>
+    <field name="value">Yes</field>
+  </record>
+
+  <record id="server_action_2140_proj_request_project_item_approval" model="ir.actions.server">
+    <field name="name">PROJ - Request Project Item Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2138_proj_project_item_approval_request_sent_validate'), ref('BugFix-Sales.server_action_2134_proj_project_item_request_sent'), ref('BugFix-Sales.server_action_2136_proj_project_item_request_approval_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_1980_rr_request_rug_approval" model="ir.actions.server">
+    <field name="name">RR - Request RUG Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1983_rr_rug_approval_request_sent'), ref('BugFix-Sales.server_action_1985_rr_rug_request_approval_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_2248_rr_request_re_estimate_permission" model="ir.actions.server">
+    <field name="name">RR - Request Re-estimate Permission</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2244_rr_re_estimate_request_sent'), ref('BugFix-Sales.server_action_2246_rr_re_estimate_request_sent_validate'), ref('BugFix-Sales.server_action_2243_rr_re_estimate_request_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_1487_sls_bank_guarantee_approval_main" model="ir.actions.server">
+    <field name="name">SLS - Bank Guarantee Approval - Main</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2507_sls_bank_guarantee_approval'), ref('BugFix-Sales.server_action_2509_sls_bank_guarantee_approval_confirm')])]"/>
+  </record>
+
+  <record id="server_action_1435_sls_credit_limit_approval_main" model="ir.actions.server">
+    <field name="name">SLS - Credit Limit Approval - Main</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2503_sls_credit_limit_approval'), ref('BugFix-Sales.server_action_2505_sls_credit_limit_approval_confirm')])]"/>
+  </record>
+
+  <record id="server_action_1515_sls_margin_approval_main" model="ir.actions.server">
+    <field name="name">SLS - Margin Approval - Main</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2495_sls_margin_approval'), ref('BugFix-Sales.server_action_2497_sls_margin_approval_confirm')])]"/>
+  </record>
+
+  <record id="server_action_1505_sls_over_commission_approval_main" model="ir.actions.server">
+    <field name="name">SLS - Over Commission Approval - Main</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2499_sls_over_commission_approval'), ref('BugFix-Sales.server_action_2501_sls_over_commission_approval_confirm')])]"/>
+  </record>
+
+  <record id="server_action_1478_sls_overdue_approval" model="ir.actions.server">
+    <field name="name">SLS - Overdue Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2460_sls_overdue_request_approval_notify_user_01'), ref('BugFix-Sales.server_action_2458_sls_request_overdue_approval_final01')])]"/>
+  </record>
+
+  <record id="server_action_1485_sls_request_bank_guarantee_approval" model="ir.actions.server">
+    <field name="name">SLS - Request Bank Guarantee Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1483_sls_request_bank_guarantee_approval_notify_user'), ref('BugFix-Sales.server_action_1481_sls_request_bank_guarantee_approval_sent'), ref('BugFix-Sales.server_action_1845_sls_request_bank_guarantee_approval_sent_validate')])]"/>
+  </record>
+
+  <record id="server_action_1458_sls_request_credit_limit_approval" model="ir.actions.server">
+    <field name="name">SLS - Request Credit Limit Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1462_sls_request_approval_notify_user'), ref('BugFix-Sales.server_action_1460_sls_request_approval_sent'), ref('BugFix-Sales.server_action_1843_sls_request_approval_sent_validate')])]"/>
+  </record>
+
+  <record id="server_action_1513_sls_request_margin_approval" model="ir.actions.server">
+    <field name="name">SLS - Request Margin Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1509_sls_margin_approval_request_sent'), ref('BugFix-Sales.server_action_1511_sls_margin_request_approval_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_1503_sls_request_over_commission_approval" model="ir.actions.server">
+    <field name="name">SLS - Request Over Commission Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1499_sls_over_commission_approval_request_sent'), ref('BugFix-Sales.server_action_1501_sls_over_commission_request_approval_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_1476_sls_request_overdue_approval" model="ir.actions.server">
+    <field name="name">SLS - Request Overdue Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1472_sls_overdue_approval_request_sent'), ref('BugFix-Sales.server_action_1841_sls_overdue_approval_request_sent_validate'), ref('BugFix-Sales.server_action_1474_sls_overdue_request_approval_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_1468_sls_request_temporary_credit_approval" model="ir.actions.server">
+    <field name="name">SLS - Request Temporary Credit Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1466_sls_request_temporary_credit_approval_notify_user'), ref('BugFix-Sales.server_action_1464_sls_temporary_credit_approval_sent')])]"/>
+  </record>
+
+  <record id="server_action_1850_sls_send_bank_guarantee_notification_main" model="ir.actions.server">
+    <field name="name">SLS - Send Bank Guarantee Notification - Main</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2515_sls_send_bank_guarantee_notification'), ref('BugFix-Sales.server_action_2516_sls_send_bank_guarantee_notification_confirm')])]"/>
+  </record>
+
+  <record id="server_action_1470_sls_temporary_credit_approval_main" model="ir.actions.server">
+    <field name="name">SLS - Temporary Credit Approval - Main</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2511_sls_temporary_credit_approval'), ref('BugFix-Sales.server_action_2513_sls_temporary_credit_approval_confirm')])]"/>
+  </record>
+
+  <record id="server_action_2301_plm_item_approval_final" model="ir.actions.server">
+    <field name="name">PLM - Item Approval - Final</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2295_plm_item_approval'), ref('BugFix-Sales.server_action_2297_plm_item_approval_notify_project_user'), ref('BugFix-Sales.server_action_2299_plm_item_approval_validate')])]"/>
+  </record>
+
+  <record id="server_action_2293_plm_request_item_approval" model="ir.actions.server">
+    <field name="name">PLM - Request Item Approval</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2289_plm_item_approval_request_sent'), ref('BugFix-Sales.server_action_2291_plm_item_approval_request_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_2173_proj_item_approval_final" model="ir.actions.server">
+    <field name="name">PROJ - Item Approval - Final</field>
+    <field name="model_id" search="[('model', '=', 'product.product')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2169_proj_item_approval'), ref('BugFix-Sales.server_action_2196_proj_item_approval_notify_project_user'), ref('BugFix-Sales.server_action_2171_proj_item_approval_validate')])]"/>
+  </record>
+
+  <record id="server_action_2167_proj_request_item_approval" model="ir.actions.server">
+    <field name="name">PROJ - Request Item Approval</field>
+    <field name="model_id" search="[('model', '=', 'product.product')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2163_proj_item_approval_request_sent'), ref('BugFix-Sales.server_action_2165_proj_item_approval_request_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_2178_proj_create_budget_entries" model="ir.actions.server">
+    <field name="name">PROJ - Create Budget Entries</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.id:
+  seq = ''
+  
+  # --- FIX: Get required Analytic Plan ---
+  plan = env['account.analytic.plan'].search([('name', '=', 'Projects')], limit=1)
+  if not plan:
+    raise UserError('Required Analytic Plan "Projects" not found!')
+  # --- END FIX ---
+  
+  # --- FIX: Also check for main project plan ---
+  analytic_acc_main_project = None
+  if record.x_studio_main_project_no:
+    analytic_acc_main_project = env['account.analytic.account'].search([
+        ('name', '=', record.x_studio_main_project_no.name)
+    ], limit=1)
+  # --- END FIX ---
+  
+  if record.x_studio_project_start_date == False and record.x_studio_project_end_date == False:
+    raise UserError(' Project Start date and End date must be defined.')
+  elif record.x_studio_project_start_date == False:
+    raise UserError('Project Start date must be defined.')
+  elif record.x_studio_project_end_date == False:
+    raise UserError('Project End date must be defined.')
+  
+  # --- FIX: Add plan_id to create call ---
+  analytic_acc = env['account.analytic.account'].create({
+      'name': record.name,
+      'partner_id': record.partner_id.id,
+      'plan_id': plan.id  # THIS IS REQUIRED
+  })
+  # --- END FIX ---
+    
+  if record.x_studio_project_no.id == False:
+    seq = record.name
+    if analytic_acc_main_project:
+      budget = env['crossovered.budget'].create({
+          'x_studio_created_from_sales_order_1': record.id,
+          'name': seq,
+          'x_studio_analytic_account': analytic_acc_main_project.id,
+          'date_from': record.x_studio_project_start_date,
+          'date_to': record.x_studio_project_end_date
+      })  
+    else:
+      budget = env['crossovered.budget'].create({
+          'x_studio_created_from_sales_order_1': record.id,
+          'name': seq,
+          'x_studio_analytic_account': analytic_acc.id,
+          'date_from': record.x_studio_project_start_date,
+          'date_to': record.x_studio_project_end_date
+      })  
+  else:
+    seq = (str(record.x_studio_project_no.name) + "/" + str(record.task_id.name) + "/" + str(record.name))
+    if analytic_acc_main_project:
+      budget = env['crossovered.budget'].create({
+          'x_studio_created_from_sales_order_1': record.id,
+          'name': seq,
+          'x_studio_project_no': record.x_studio_project_no.id,
+          'x_studio_analytic_account': analytic_acc_main_project.id,
+          'date_from': record.x_studio_project_start_date,
+          'date_to': record.x_studio_project_end_date
+      })   
+    else:
+      budget = env['crossovered.budget'].create({
+          'x_studio_created_from_sales_order_1': record.id,
+          'name': seq,
+          'x_studio_project_no': record.x_studio_project_no.id,
+          'x_studio_analytic_account': analytic_acc.id,
+          'date_from': record.x_studio_project_start_date,
+          'date_to': record.x_studio_project_end_date
+      })  
+  
+  action = {
+          'name': 'Budgets',
+          'domain': [('id', '=', budget.id)],
+          'type': 'ir.actions.act_window',
+          'res_model': 'crossovered.budget',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          } 
+
+  record.write({'x_studio_budget_created': True, 'x_studio_project_budget': budget.id, 'analytic_account_id': analytic_acc.id})]]></field>
+  </record>
+
+  <record id="server_action_2188_proj_create_pr_from_sales_quotation" model="ir.actions.server">
+    <field name="name">PROJ - Create PR from Sales Quotation</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[pr_lines=[]
+pr_lines2=[]
+pr_lines3=[]
+pr_lines4=[]
+local_count = 0
+import_count = 0
+sub_local_count = 0
+sub_import_count = 0
+
+onhand_qty = 0
+qty_short = 0
+re_wh = False
+status = True 
+
+#######
+for update_line in record.order_line:
+  if update_line.x_studio_product_status != 'Blank':
+    so_loc = env['stock.warehouse'].search([('id', '=', update_line.warehouse_id.id)],limit=1)
+    if so_loc:
+      for sup_lines in so_loc.resupply_wh_ids:
+        for routes in update_line.product_template_id.route_ids:
+          if routes.supplier_wh_id:
+            if routes.supplier_wh_id.id == sup_lines.id:
+              if routes.supplied_wh_id.id == update_line.warehouse_id.id:
+                onhand = env['stock.quant'].search([('product_tmpl_id', '=', update_line.product_template_id.id),('location_id', '=', routes.supplier_wh_id.lot_stock_id.id)], limit=1)
+                if onhand:
+                  onhand_qty = onhand.available_quantity
+              re_wh = routes.supplier_wh_id.id
+   
+    if update_line.product_template_id.detailed_type == 'service':
+      qty_short = 0
+    else:
+      if update_line.product_uom_qty > onhand_qty:
+        qty_short = (update_line.product_uom_qty - onhand_qty)
+        status = False
+    update_line.write({'x_studio_cost_value': update_line.product_template_id.standard_price, 'x_studio_warehouse_id': re_wh, 'x_studio_current_onhand': onhand_qty, 'x_studio_inventory_shortage': qty_short, 'x_studio_cost_amount_req_qty': (update_line.product_uom_qty * update_line.product_template_id.standard_price), 'x_studio_cost_amount_inventory_shortage': (qty_short * update_line.product_template_id.standard_price), 'x_studio_invt_status': status})
+#######
+
+for line in record.order_line:
+  if line.x_studio_sub_contract == True:
+    if (line.x_studio_purch_type == False):
+      raise UserError("The 'Purchase Type' should be filled in for all the Sales lines with subcontracting service items to proceed.")  
+      
+    if (line.x_studio_purch_type == 'Local'):
+      sub_local_count += 1
+      pr_lines3.append([0,0,{
+          'x_studio_many2one_field_WAqP4':line.product_id.id,
+          'x_studio_quantity':line.product_uom_qty,
+          'x_studio_requested_by':uid,
+          'x_studio_sales_line_id':line.id}])
+      
+      line.write({'x_studio_pr_created':True}) 
+          
+    if (line.x_studio_purch_type == 'Import'):
+      sub_import_count += 1
+      pr_lines4.append([0,0,{
+          'x_studio_many2one_field_WAqP4':line.product_id.id,
+          'x_studio_quantity':line.product_uom_qty,
+          'x_studio_requested_by':uid,
+          'x_studio_sales_line_id':line.id}])
+          
+      line.write({'x_studio_pr_created':True})
+  else:
+    if (line.x_studio_purch_type == False) and (line.x_studio_inventory_shortage > 0):
+      raise UserError("The Purchase Type should be filled in for all the SO lines with inventory items.")
+      
+    if (line.x_studio_purch_type == 'Local') and (line.x_studio_inventory_shortage > 0):
+      local_count += 1
+      pr_lines.append([0,0,{
+          'x_studio_many2one_field_WAqP4':line.product_id.id,
+          'x_studio_quantity':line.x_studio_inventory_shortage,
+          'x_studio_requested_by':uid,
+          'x_studio_sales_line_id':line.id}])
+      
+      line.write({'x_studio_pr_created':True}) 
+          
+    if (line.x_studio_purch_type == 'Import') and (line.x_studio_inventory_shortage > 0):
+      import_count += 1
+      pr_lines2.append([0,0,{
+          'x_studio_many2one_field_WAqP4':line.product_id.id,
+          'x_studio_quantity':line.x_studio_inventory_shortage,
+          'x_studio_requested_by':uid,
+          'x_studio_sales_line_id':line.id}])
+          
+      line.write({'x_studio_pr_created':True}) 
+        
+wh = env['stock.picking.type'].search([('warehouse_id', '=', record.warehouse_id.id)],limit=1)
+
+if local_count > 0:
+  pr1 = env['x_purchase_request'].create({'x_studio_type': 'Local','x_studio_created_from_so':record.id,'x_studio_so_pr':True,'x_studio_warehouse':wh.id,'x_studio_requested_delivery_date':datetime.datetime.today(),'x_studio_requested_by':uid,'x_studio_order_lines_1':pr_lines})
+
+if import_count > 0:
+  pr2 = env['x_purchase_request'].create({'x_studio_type': 'Import','x_studio_created_from_so':record.id,'x_studio_so_pr':True,'x_studio_warehouse':wh.id,'x_studio_requested_delivery_date':datetime.datetime.today(),'x_studio_requested_by':uid,'x_studio_order_lines_1':pr_lines2})
+
+if sub_local_count > 0:
+  pr3 = env['x_purchase_request'].create({'x_studio_type': 'Local','x_studio_created_from_so':record.id,'x_studio_subcontracting_pr':True,'x_studio_warehouse':wh.id,'x_studio_requested_delivery_date':datetime.datetime.today(),'x_studio_requested_by':uid,'x_studio_order_lines_1':pr_lines3})
+
+if sub_import_count > 0:
+  pr4 = env['x_purchase_request'].create({'x_studio_type': 'Import','x_studio_created_from_so':record.id,'x_studio_subcontracting_pr':True,'x_studio_warehouse':wh.id,'x_studio_requested_delivery_date':datetime.datetime.today(),'x_studio_requested_by':uid,'x_studio_order_lines_1':pr_lines4})
+
+record.write({'x_studio_pr_created':True})  
+
+
+if (local_count > 0) and (import_count > 0) and (sub_local_count > 0) and (sub_import_count > 0):
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr1.id,pr2.id,pr3.id,pr4.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif (local_count > 0) and (import_count > 0) and (sub_local_count > 0):
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr1.id,pr2.id,pr3.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif (local_count > 0) and (import_count > 0) and (sub_import_count > 0):
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr1.id,pr2.id,pr4.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          } 
+elif (import_count > 0) and (sub_local_count > 0) and (sub_import_count > 0):
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr2.id,pr3.id,pr4.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif (local_count > 0) and (sub_local_count > 0) and (sub_import_count > 0):
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr1.id,pr3.id,pr4.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif (local_count > 0) and (sub_local_count > 0):
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr1.id,pr3.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif (local_count > 0) and (sub_import_count > 0):
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr1.id,pr4.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif (import_count > 0) and (sub_local_count > 0):
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr2.id,pr3.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif (import_count > 0) and (sub_import_count > 0):
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr2.id,pr4.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif (sub_local_count > 0) and (sub_import_count > 0):
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr3.id,pr4.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif (local_count > 0) and (import_count > 0):
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr1.id,pr2.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif sub_local_count > 0:
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr3.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif sub_import_count > 0:
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', [pr4.id])],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif local_count > 0:
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', pr1.id)],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          }
+elif import_count > 0:
+  action = {
+          'name': 'Purchase Requisition',
+          'domain': [('id', '=', pr2.id)],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_purchase_request',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          } 
+  
+  
+
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_2138_proj_project_item_approval_request_sent_validate" model="ir.actions.server">
+    <field name="name">PROJ - Project Item Approval Request  Sent - Validate</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[desc = ''
+for items in record.order_line:
+  if items.x_studio_product_status == 'New Item':
+    if items.product_id.x_studio_item_approved == False:
+      desc +=  str(items.product_id.name) + "\n"
+
+raise UserError("Pending Approval for Bellow Item/s." + "\n" + "\n" + desc)]]></field>
+  </record>
+
+  <record id="server_action_2192_proj_update_rfq_cost_to_sales_quotation" model="ir.actions.server">
+    <field name="name">PROJ - Update RFQ Cost to Sales Quotation</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.id:
+  for line in record.order_line:
+    if line.x_studio_pr_created == True:
+      pr = env['x_purchase_request_lin'].search([('x_studio_sales_line_id', '=', line.id), ('x_studio_rfq_cost_updated', '=', True)],limit=1)
+      if pr:
+        line.write({'x_studio_cost_value': pr.x_studio_rfq_cost})
+      else:
+        raise UserError('RFQs are not finalized to update the cost.')
+
+
+record.write({'x_studio_pr_cost_updated':True})  
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_2572_proj_update_with_main_so" model="ir.actions.server">
+    <field name="name">PROJ - Update with Main SO</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[project_task = env['project.task'].search([('id', '=', record.task_id.id)],limit=1)  
+if project:
+  record['x_studio_project_start_date'] = project_task.sale_order_id.x_studio_project_start_date
+  record['x_studio_project_end_date'] = project_task.sale_order_id.x_studio_project_end_date
+  record['warehouse_id'] = project_task.sale_order_id.warehouse_id.id
+  record['x_studio_update_with_main_so'] = True
+
+  
+
+]]></field>
+  </record>
+
+  <record id="server_action_2575_project_sales_order_seq_no_3" model="ir.actions.server">
+    <field name="name">Project Sales Order Seq.No - 3</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[# fix_repair:idempotent-v1
+if record.id:
+  original_name = (record.name or '').replace('_PRJ', '')
+  new_name = (original_name + '_PRJ'
+              if record.x_studio_quotation_type == 'Project'
+              else original_name)
+  if record.name != new_name:
+    record.write({'name': new_name})
+]]></field>
+  </record>
+
+  <record id="server_action_2113_rr_auto_generate_quotation_type_for_projct_sos" model="ir.actions.server">
+    <field name="name">RR - Auto Generate Quotation Type for Projct SOs</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[#if record.task_id == True:
+record['x_studio_quotation_type'] = 'Project'
+
+    
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_2096_rr_insufficient_transfer_inventory_details" model="ir.actions.server">
+    <field name="name">RR - Insufficient Transfer Inventory Details</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[desc = ''
+onhand_qty = 0
+onhand_qty2 = 0
+resupply_count = 0
+
+so_loc = env['stock.warehouse'].search([('id', '=', record.warehouse_id.id)],limit=1)
+if so_loc:
+  for sup_lines in so_loc.resupply_wh_ids:
+    resupply_count += 1
+    for line in record.order_line:
+      same_item = env['sale.order.line'].search([('order_id', '=', record.id),('product_template_id', '=', line.product_template_id.id)])
+      if same_item:
+        onhand_qty = 0
+        for sameitems in same_item:
+          onhand_qty += sameitems.product_uom_qty
+      else:
+       onhand_qty = line.product_uom_qty 
+      for routes in line.product_template_id.route_ids:
+        if routes.supplier_wh_id:
+          if routes.supplier_wh_id.id == sup_lines.id:
+            if routes.supplied_wh_id.id == record.warehouse_id.id:
+              onhand = env['stock.quant'].search([('product_tmpl_id', '=', line.product_template_id.id),('location_id', '=', routes.supplier_wh_id.lot_stock_id.id),('quantity', '>=', onhand_qty)], limit=1)
+              if not onhand:
+                onhand2 = env['stock.quant'].search([('product_tmpl_id', '=', line.product_template_id.id),('location_id', '=', routes.supplier_wh_id.lot_stock_id.id)], limit=1)
+                if onhand2:
+                  onhand_qty2 = onhand2.quantity
+                else: 
+                  onhand_qty2 = 0
+                desc +=  "Item No: " + str(line.product_template_id.default_code) + "     " + "Location: " + str(routes.supplier_wh_id.lot_stock_id.display_name) + "     " + "Order Qty (Line): " + str(line.product_uom_qty) + "     "  + "     " + "Order Qty (Total): " + str(onhand_qty) + "     "  + "Onhand Qty: " + str(onhand_qty2) + "     " + "Inventory Shortage: " + str(onhand_qty - onhand_qty2) + "\n"
+
+if resupply_count == 0:
+  for line in record.order_line:
+    same_item = env['sale.order.line'].search([('order_id', '=', record.id),('product_template_id', '=', line.product_template_id.id)])
+    if same_item:
+      onhand_qty = 0
+      for sameitems in same_item:
+        onhand_qty += sameitems.product_uom_qty
+    else:
+     onhand_qty = line.product_uom_qty 
+    
+    onhand = env['stock.quant'].search([('product_tmpl_id', '=', line.product_template_id.id),('location_id', '=', record.warehouse_id.lot_stock_id.id),('quantity', '>=', onhand_qty)], limit=1)
+    if not onhand:
+      onhand2 = env['stock.quant'].search([('product_tmpl_id', '=', line.product_template_id.id),('location_id', '=', record.warehouse_id.lot_stock_id.id)], limit=1)
+      if onhand2:
+        onhand_qty2 = onhand2.quantity
+      else: 
+        onhand_qty2 = 0
+      desc +=  "Item No: " + str(line.product_template_id.default_code) + "     " + "Location: " + str(record.warehouse_id.lot_stock_id.display_name) + "     " + "Order Qty (Line): " + str(line.product_uom_qty) + "     "  + "     " + "Order Qty (Total): " + str(onhand_qty) + "     "  + "Onhand Qty: " + str(onhand_qty2) + "     " + "Inventory Shortage: " + str(onhand_qty - onhand_qty2) + "\n"
+    
+raise UserError(desc)  
+
+
+ 
+
+]]></field>
+  </record>
+
+  <record id="server_action_2004_rr_rug_rejection" model="ir.actions.server">
+    <field name="name">RR - RUG Rejection</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.id:
+  record.write({'x_studio_rug_rejected': True})
+  
+  for lines in record.order_line:
+    original_price = lines.x_studio_price_unit_original
+    lines.write({'price_unit':original_price})
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_2246_rr_re_estimate_request_sent_validate" model="ir.actions.server">
+    <field name="name">RR - Re-estimate Request  Sent - Validate</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.id:
+  record['x_studio_re_estimate_request_count_1'] += 1]]></field>
+  </record>
+
+  <record id="server_action_2253_rr_track_lock_status_4" model="ir.actions.server">
+    <field name="name">RR - Track Lock Status - 4</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[# fix_repair:idempotent-v1
+if record.x_studio_quotation_type == 'Repair' and record.state == 'done':
+  re_line = env['sale.order.line'].sudo().search(
+    [('order_id', '=', record.id), ('x_studio_re_estimated', '=', True)],
+    limit=1, order='id desc')
+  target_count = re_line.x_studio_count_1 if re_line else 0
+  if (not record.x_studio_locked
+      or record.x_studio_unlocked
+      or record.x_studio_re_estimate_count != target_count):
+    record.write({
+      'x_studio_locked': True,
+      'x_studio_unlocked': False,
+      'x_studio_re_estimate_count': target_count,
+    })
+]]></field>
+  </record>
+
+  <record id="server_action_2341_sls_create_customer_payment" model="ir.actions.server">
+    <field name="name">SLS - Create Customer Payment</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[# bugfix_sales:config-cutover-v22
+if record.id:
+  sum_total = 0
+  so_value = 0
+  journal = 0
+  
+  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+  company = env['res.company'].browse(company_id)
+  
+  if record.x_studio_quotation_type == 'Repair':
+    journal = env['account.journal'].search([('name', '=', 'Advance Payment - Repairs'),('company_id', '=', company.id)], limit=1) 
+    if not journal:
+       raise UserError('The required journal has not been setup. Process terminated.')
+    
+    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.id),('state', '!=', 'cancel')])
+    if payment:
+      for total in payment:
+        sum_total += total.amount
+        
+      so_value = (record.amount_total - sum_total)
+    else:
+      min_magin = record.company_id
+      if min_magin:
+        so_value = round(record.amount_total * (min_magin.x_studio_advance_payment_/100),2)
+      
+  else:
+    journal = env['account.journal'].search([('name', '=', 'Advance Payment'),('company_id', '=', company.id)], limit=1) 
+    if not journal:
+       raise UserError('The required journal has not been setup. Process terminated.')
+    
+    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.id),('state', '!=', 'cancel')])
+    if payment:
+      for total in payment:
+        sum_total += total.amount
+        
+      so_value = (record.amount_total - sum_total)
+    else:
+      min_magin = record.company_id
+      if min_magin:
+        so_value = record.amount_total
+  
+  
+  customer_payment = env['account.payment'].create({'x_studio_sales_order':record.id,'x_studio_project_no_1': record.x_studio_project_no.id if record.x_studio_project_no else False,'partner_id':record.partner_id.id,'amount':so_value,'date':datetime.date.today(),'x_studio_order_payment_method':record.x_studio_customer_payment_method,'journal_id':journal.id,'payment_method_line_id':journal.inbound_payment_method_line_ids[:1].id if journal.inbound_payment_method_line_ids else False})
+  
+  action = {
+           'name': 'Draft Payment',
+           'domain': [('id', '=', customer_payment.id)],
+           'type': 'ir.actions.act_window',
+           'res_model': 'account.payment',
+           'view_mode': 'tree,form',
+           'view_type': 'form',
+           'view_id': False,
+           'context': False,
+           }
+       
+]]></field>
+  </record>
+
+  <record id="server_action_1517_sls_item_over_margin_details" model="ir.actions.server">
+    <field name="name">SLS - Item Over Margin Details</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[# bugfix_sales:config-cutover-v22
+if record.x_studio_margin_exceed == True:
+  base_price = 0  
+  discounts = 0
+  commission = 0
+  cost = 0
+  value_1 = 0
+  value_2 = 0
+  item_code = ""
+  message = ""
+  title = "Insufficient margin. You need approval to proceed."
+  
+  message += title + '\n' + '\n' + '\n'
+  
+  min_magin = record.company_id
+  
+  for margin_lines in record.order_line:
+    if margin_lines.x_studio_margin_exceed == True:
+      item_code = margin_lines.product_id.name
+      base_price = margin_lines.price_unit
+      discounts = (margin_lines.price_unit * margin_lines.product_uom_qty) - margin_lines.price_subtotal
+      commission = margin_lines.price_subtotal * (margin_lines.x_studio_commission/100)
+      cost = margin_lines.product_id.standard_price
+      
+      if margin_lines.product_uom_qty != 0.00:
+        value_1 = ((margin_lines.price_subtotal/margin_lines.product_uom_qty)-(margin_lines.price_subtotal*(margin_lines.x_studio_commission/100))-margin_lines.product_id.standard_price)
+        value_2 = (margin_lines.price_subtotal/margin_lines.product_uom_qty)-(margin_lines.price_subtotal*(margin_lines.x_studio_commission/100))
+        
+      if value_2 > 0.00:
+        net_margin = (value_1/value_2)*100
+      else:
+        net_margin = 0
+        
+        
+      message +=  ( 'Item Code: ' + str(item_code) + '\n' +
+                    'Base Price: ' + str(base_price) + '\n' +
+                    'Discounts: ' + str(discounts) + '\n' +
+                    'Other Charges (Commission): ' + str(commission) + '\n' +
+                    'Cost: ' + str(cost) + '\n' +
+                    'Net Margin: ' + str(net_margin) + '\n' + 
+                    'Min. Sales Margin %: ' + str(min_magin.x_studio_minimum_sales_margin_) + '\n' + '\n')
+                    
+  raise UserError(message)
+  
+  
+"""        
+  action = {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {'title': title,'message': message,'sticky': True,}
+            } 
+"""      
+  ]]></field>
+  </record>
+
+  <record id="server_action_1841_sls_overdue_approval_request_sent_validate" model="ir.actions.server">
+    <field name="name">SLS - Overdue Approval Request  Sent - Validate</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_overdue_request_sent == True:
+  null_so_lines = env['sale.order.line'].search([('order_id', '=', record.id)])
+  if not null_so_lines:
+   raise UserError("Valid SO lines should be existed to proceed!")]]></field>
+  </record>
+
+  <record id="server_action_1843_sls_request_approval_sent_validate" model="ir.actions.server">
+    <field name="name">SLS - Request Approval Sent - Validate</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_approval_request_sent == True:
+  null_so_lines = env['sale.order.line'].search([('order_id', '=', record.id)])
+  if not null_so_lines:
+   raise UserError("Valid SO lines should be existed to proceed!")]]></field>
+  </record>
+
+  <record id="server_action_1845_sls_request_bank_guarantee_approval_sent_validate" model="ir.actions.server">
+    <field name="name">SLS - Request Bank Guarantee Approval Sent - Validate</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_bank_guarantee_request_sent == True:
+  null_so_lines = env['sale.order.line'].search([('order_id', '=', record.id)])
+  if not null_so_lines:
+   raise UserError("Valid SO lines should be existed to proceed!")]]></field>
+  </record>
+
+  <record id="server_action_2515_sls_send_bank_guarantee_notification" model="ir.actions.server">
+    <field name="name">SLS - Send Bank Guarantee Notification</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
+  if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+    if record.partner_id.x_studio_mandatory_bank_guarantee == False:
+      if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+        records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+        record['x_studio_bg_sent'] = True
+      else:
+        if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
+          records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
+          record['x_studio_bg_sent'] = True
+  
+  
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_1507_sls_test" model="ir.actions.server">
+    <field name="name">SLS - TEST</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[title = "Calculate Assessable Value"
+message = "Assessable Value: "
+      
+action = {
+          'type': 'ir.actions.client',
+          'tag': 'display_notification',
+          'params': {'title': title,'message': message,'sticky': True,}
+          } 
+
+]]></field>
+  </record>
+
+  <record id="server_action_1783_sls_validate_bank_guarantee_in_so_confirm" model="ir.actions.server">
+    <field name="name">SLS - Validate Bank Guarantee in SO Confirm</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
+  if record.state == 'done':
+    if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+      if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+          #raise UserError("Customer's bank guarantee is expired.")
+          raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+          
+        else:
+          #if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
+          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
+            #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+            raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
+      else:
+        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+          records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+        else:
+          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
+            #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+            records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
+
+  
+  
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_1773_sls_validate_bank_guarantee_in_so_confirm" model="ir.actions.server">
+    <field name="name">SLS - Validate Bank Guarantee in SO Confirm</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.state == 'done':
+  if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+    if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+      if record.partner_id.x_studio_expiry_date < datetime.date.today():
+        raise UserError("Customer's bank guarantee is expired.")
+      else:
+        if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
+          raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+    else:
+      if record.partner_id.x_studio_expiry_date < datetime.date.today():
+        records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+      else:
+        if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
+          records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+      
+  
+  
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_1840_sls_validate_sos_without_lines" model="ir.actions.server">
+    <field name="name">SLS - Validate SOs without Lines</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.state != 'draft':
+  null_so_lines = env['sale.order.line'].search([('order_id', '=', record.id)])
+  if not null_so_lines:
+   raise UserError("Valid SO lines should be existed to proceed!")
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_2337_sls_validate_sales" model="ir.actions.server">
+    <field name="name">SLS - Validate Sales</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.id:
+  if record.x_studio_clear_free_items == True:
+    free_items_delete = env['sale.order.line'].search([('order_id', '=', record.id),('is_reward_line', '=', True)]).unlink()
+    free_items_update = env['sale.order.line'].search([('order_id', '=', record.id),('x_studio_clear_free_items', '=', True)])
+    if free_items_update:
+      for update in free_items_update:
+        update.write({'x_studio_clear_free_items':False})
+      
+]]></field>
+  </record>
+
+  <record id="server_action_1849_sls_view_bank_guarantee_validation" model="ir.actions.server">
+    <field name="name">SLS - View Bank Guarantee Validation</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
+  if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+    if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+      if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+        raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+          
+      else:
+        if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
+          raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
+    
+
+]]></field>
+  </record>
+
+  <record id="server_action_1853_sls_view_credit_limit_validation" model="ir.actions.server">
+    <field name="name">SLS - View Credit Limit Validation</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
+  if record.partner_id.id:
+    if record.x_studio_order_payment_method == 'Credit':
+      if (record.partner_invoice_id.credit + record.amount_total) > record.partner_invoice_id.credit_limit:
+        #raise UserError("Customer's credit limit is exceeded." + "\n" + "Customer credit limit: " + str(record.partner_invoice_id.credit_limit) + "\n" + "Cust. Total Receivable: " + str(record.partner_invoice_id.credit) + "\n" + "Current Tot. Amount: " + str(record.amount_total) + "\n" + "Over Credit Amount: " + str((record.partner_invoice_id.credit + record.amount_total) - record.partner_invoice_id.credit_limit))
+        #raise UserError("Customer's credit limit is exceeded." + "\n" + "Customer credit limit: " + str(record.partner_invoice_id.credit_limit) + "\n" + "Cust. Total Receivable: " + str(record.partner_invoice_id.credit) + "\n" + "This Sale: " + str(record.amount_total) + "\n" + "Total receivable + This sale : " + str((record.partner_invoice_id.credit + record.amount_total)) + "\n" + "Over Credit Amount: " + str((record.partner_invoice_id.credit + record.amount_total) - record.partner_invoice_id.credit_limit))
+        raise UserError(
+            "Customer's credit limit is exceeded.\n\n"
+            + "Customer credit limit: {:,.2f}\n".format(record.partner_invoice_id.credit_limit)
+            + "Cust. Total Receivable: {:,.2f}\n".format(record.partner_invoice_id.credit)
+            + "This Sale: {:,.2f}\n".format(record.amount_total)
+            + "Total receivable + This sale: {:,.2f}\n".format(record.partner_invoice_id.credit + record.amount_total)
+            + "Over Credit Amount: {:,.2f}".format((record.partner_invoice_id.credit + record.amount_total) - record.partner_invoice_id.credit_limit)
+)
+]]></field>
+  </record>
+
+  <record id="server_action_2314_sls_apply_pricelist_in_so_lines" model="ir.actions.server">
+    <field name="name">SLS - Apply Pricelist in SO Lines</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.product_id.id  != False:
+  pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id),('min_quantity', '<=', record.product_uom_qty)], limit=1)
+  if pricelist:
+    record['discount'] = pricelist.price_discount
+]]></field>
+  </record>
+
+  <record id="server_action_2332_sls_clear_free_items_so_lines" model="ir.actions.server">
+    <field name="name">SLS - Clear Free Items SO Lines</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.product_id.id  != False: 
+  #free_items = env['sale.order.line'].search([('order_id', '=', record.order_id._origin.id),('is_reward_line', '=', True)]).unlink()
+  free_items = env['sale.order.line'].search([('order_id', '=', record.order_id._origin.id),('is_reward_line', '=', True)])
+  if free_items:
+    record['x_studio_clear_free_items'] = True
+    
+]]></field>
+  </record>
+
+  <record id="server_action_1508_sls_validate_margin_in_so_line" model="ir.actions.server">
+    <field name="name">SLS - Validate Margin in SO Line</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[# bugfix_sales:config-cutover-v22
+if record.product_id.id:
+  if record.x_studio_quotation_type != 'Project':
+    value_1 = 0
+    value_2 = 0
+    
+    min_magin = record.company_id
+    
+    
+    if record.product_uom_qty > 0.00:
+      value_1 = ((record.price_subtotal/record.product_uom_qty)-(record.price_subtotal*(record.x_studio_commission/100))-record.product_id.standard_price)
+      value_2 = (record.price_subtotal/record.product_uom_qty)-(record.price_subtotal*(record.x_studio_commission/100))
+    
+    if value_2 > 0.00:
+      net_margin = (value_1/value_2)*100
+    else:
+      net_margin = 0
+      
+    #if net_margin < 20:
+    if net_margin != 0:
+      if net_margin < min_magin.x_studio_minimum_sales_margin_:  
+        record['x_studio_margin_exceed'] = True
+      else:
+        record['x_studio_margin_exceed'] = False
+    else:
+      record['x_studio_margin_exceed'] = False
+  else:
+    record['x_studio_margin_exceed'] = False
+
+]]></field>
+  </record>
+
+  <record id="server_action_1772_sls_111111111" model="ir.actions.server">
+    <field name="name">SLS - 111111111</field>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.credit_limit < record.x_studio_bank_guarantee_amount:
+  records.message_post(body="The bank guarantee amount is less than the credit limit." + "\n" + "Credit Limit--> " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount--> " + str(record.x_studio_bank_guarantee_amount))
+  
+  
+ 
+  
+
+]]></field>
+  </record>
+
+  <record id="server_action_1827_sls_track_phone_in_customer" model="ir.actions.server">
+    <field name="name">SLS - Track  Phone in Customer</field>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.phone:
+  records.message_post(body="Customer Phone No Modified. --> " + record.phone)
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_1771_sls_validate_credit_limit_bank_guarantee_amount_1" model="ir.actions.server">
+    <field name="name">SLS - Validate Credit Limit &amp; Bank Guarantee Amount - 1</field>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.credit_limit > record.x_studio_bank_guarantee_amount:
+  records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Credit Limit: " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount: " + str(record.x_studio_bank_guarantee_amount))
+  
+  
+ 
+  
+
+]]></field>
+  </record>
+
+  <record id="server_action_1480_sls_validate_customer_group" model="ir.actions.server">
+    <field name="name">SLS - Validate Customer Group</field>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[record['x_studio_bank_guarantee_amount'] = 0
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_2335_sls_validate_phone" model="ir.actions.server">
+    <field name="name">SLS - Validate Phone</field>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.phone and len(record.phone) != 10:
+    raise UserError('Invalid phone number. - ' + str(len(record.phone)) + " - " + str(record.phone))
+      
+    
+
+
+    
+]]></field>
+  </record>
+
+  <record id="server_action_808_avoid_product_duplicate" model="ir.actions.server">
+    <field name="name">Avoid Product Duplicate</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.default_code:
+  
+  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+  company = env['res.company'].browse(company_id)
+  
+  product = env['product.template'].search([('default_code', '=ilike', record.default_code),('company_id', '=', company.id)], limit=1)
+  
+  if product:
+    for p in product:
+      if p.id != record.id:
+        raise UserError("Duplicate Found Try Another Code!")
+
+
+
+
+
+
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_2295_plm_item_approval" model="ir.actions.server">
+    <field name="name">PLM - Item Approval</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[record['x_studio_item_approved'] = True
+
+product_product = env['product.product'].search([('id', '=', record.product_variant_id.id)],limit=1)
+if product_product:
+  product_product.write({'x_studio_item_approved':True,'x_studio_item_approved_temp':True})
+]]></field>
+  </record>
+
+  <record id="server_action_2299_plm_item_approval_validate" model="ir.actions.server">
+    <field name="name">PLM - Item Approval - Validate</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.default_code == False:
+  raise UserError("Internal Reference should be filled in to proceed!")]]></field>
+  </record>
+
+  <record id="server_action_2289_plm_item_approval_request_sent" model="ir.actions.server">
+    <field name="name">PLM - Item Approval Request  Sent</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[record['x_studio_item_approval_request_sent'] = True
+
+product_product = env['product.product'].search([('id', '=', record.product_variant_id.id)],limit=1)
+if product_product:
+  product_product.write({'x_studio_item_approval_request_sent':True,'x_studio_item_approval_request_sent_temp':True})
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_1142_update_product_cost_work_center_cost_2" model="ir.actions.server">
+    <field name="name">Update Product Cost - Work Center Cost - 2</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[]]></field>
+  </record>
+
+  <record id="server_action_2171_proj_item_approval_validate" model="ir.actions.server">
+    <field name="name">PROJ - Item Approval - Validate</field>
+    <field name="model_id" search="[('model', '=', 'product.product')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.default_code == False:
+  raise UserError("Internal Reference should be filled in to proceed!")]]></field>
+  </record>
+
+  <record id="server_action_1208_imp_clear_charges_from_delivery_terms" model="ir.actions.server">
+    <field name="name">IMP - Clear Charges from Delivery Terms</field>
+    <field name="model_id" search="[('model', '=', 'x_delivery_terms')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.id:
+  temp_rec = env['x_delivery_term_charge'].search([('x_studio_delivery_terms_id', '=', record.id)])
+  if temp_rec:
+    for del_temp_rec in temp_rec:
+      del_temp_rec.unlink()   
+
+  record['x_studio_copied'] = False
+  ]]></field>
+  </record>
+
+  <record id="server_action_1207_imp_copy_charges_to_delivery_terms" model="ir.actions.server">
+    <field name="name">IMP - Copy Charges to Delivery Terms</field>
+    <field name="model_id" search="[('model', '=', 'x_delivery_terms')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[loop_misc_charge_codes_c = env['x_misc_charge_codes'].search([('x_studio_charge_group', '=', 'Charges')])
+if loop_misc_charge_codes_c:
+  for find_charges in loop_misc_charge_codes_c:
+    create_delivery_charges = env['x_delivery_term_charge'].create({'x_studio_delivery_terms_id':record.id,'x_name':find_charges.x_name,'x_studio_description':find_charges.x_studio_description})
+  
+  record['x_studio_copied'] = True
+]]></field>
+  </record>
+
+</odoo>
