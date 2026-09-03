@@ -1,11 +1,18 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.63',
+    'version': '17.0.1.0.64',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.64: hotfix v0.1.0.63 - relax-ng install crash
+    # ("Element odoo has extra content: record, line 7"). Root cause:
+    # <field name="help" type="html">&lt;p&gt;...&lt;/p&gt;</field>
+    # decodes to a STRING at parse time, but Odoo 17's relax-ng
+    # schema requires type="html" fields to hold either literal
+    # XML-parseable HTML elements OR CDATA raw text. Fix: switch
+    # help fields to CDATA. Only ]]> sequences need guarding.
     # v0.1.0.63: 29 window actions.
     # Deep dedup on 123 remaining candidates:
     #   * 94 verified TRUE duplicates (name+model+domain+context+view_mode
