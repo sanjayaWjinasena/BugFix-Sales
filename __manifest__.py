@@ -1,11 +1,27 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.57',
+    'version': '17.0.1.0.58',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.58: close the 60 field gap identified by the migration audit.
+    # New model files:
+    #   * models/product_template.py: 15 fields (item approval flags,
+    #     max discount, product_type selection with 4 options, tariff
+    #     code M2O to x_tariffmaster owned by BugFix-Stock, etc.)
+    #   * models/product_product.py: 43 fields (superset of template
+    #     fields + product.product-specific: many redundant checkboxes,
+    #     related fields, extra selection with empty options preserved
+    #     verbatim per Clear-DB fidelity).
+    #   * res_partner.py: un-TODO'd x_vendor_id__purchase_requisition_count
+    #     compute (store=False, counts PRs where vendor_id equals partner).
+    #   * sale_order.py: un-TODO'd x_studio_one2many_field_ERCBB O2M
+    #     to sale.order.line via order_id.
+    # NEW DEPS: purchase_requisition (for vendor count compute),
+    # BugFix-Stock (for x_tariffmaster comodel resolution).
+    # Field coverage: 202/262 -> 262/262 (100%).
     # v0.1.0.57: break the 3-way cycle Sales -> Purchase -> Accounting
     # -> Sales that was silently blocking module upgrades and causing
     # Python classes not to load. Removed BugFix-Purchase from depends.
@@ -43,7 +59,8 @@
     # _inherit; Jinasena_Masterdata_Reporting (the canonical owner) added here.
     # studio_usermodel_migration removed in v52 (no load-time dep, cycle risk).
     'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale',
-                'Jinasena_Masterdata_Reporting'],
+                'purchase_requisition',
+                'Jinasena_Masterdata_Reporting', 'BugFix-Stock'],
     'post_init_hook': 'post_init_hook',
     # v47: bulk-port of remaining Studio artifacts via
     # scripts/scaffold_bugfix_module.py (adds 8 sale.order fields,

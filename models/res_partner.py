@@ -20,11 +20,33 @@ These are all consumed by sale.order via `related=partner_id.x_...`
 declarations in sale_order.py; declaring them here first guarantees
 the related fields resolve.
 """
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+
+    # v0.1.0.58: computed count for purchase.requisition records where
+    # vendor_id equals this partner. Studio declared this store=False.
+    # Purchase.requisition is in standard purchase_requisition module -
+    # env.get() would be safer but env['purchase.requisition'] works
+    # because purchase_requisition is guaranteed by Purchase deps.
+    # Kept in BugFix-Sales because Studio pinned it here.
+    x_vendor_id__purchase_requisition_count = fields.Integer(
+        string='Vendor count', store=False,
+        compute='_compute_x_vendor_id_pr_count')
+
+    @api.depends()
+    def _compute_x_vendor_id_pr_count(self):
+        PR = self.env.get('purchase.requisition')
+        if PR is None:
+            for r in self:
+                r.x_vendor_id__purchase_requisition_count = 0
+            return
+        results = PR.read_group([('vendor_id', 'in', self.ids)], ['vendor_id'], ['vendor_id'])
+        dic = {x['vendor_id'][0]: x['vendor_id_count'] for x in results if x.get('vendor_id')}
+        for r in self:
+            r.x_vendor_id__purchase_requisition_count = dic.get(r.id, 0)
 
     x_studio_bank_guarantee_amount = fields.Float(
         string='Bank Guarantee Amount',

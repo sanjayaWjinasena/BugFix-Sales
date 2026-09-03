@@ -22,7 +22,9 @@ class SaleOrder(models.Model):
 
     # ---- Studio-ported x_studio_* fields ----
     x_studio_many2one_field_KjdJ3 = fields.Many2one('account.budget.post', string='Budgetary Position')
-    # TODO: x_studio_one2many_field_ERCBB = fields.One2many(...) -- Studio inverse name unknown; port from Clear-DB manually.
+    # Un-TODO'd in v0.1.0.58: inverse=order_id (standard sale.order.line M2O).
+    x_studio_one2many_field_ERCBB = fields.One2many(
+        'sale.order.line', 'order_id', string='New One2many')
     x_studio_project_budget = fields.Many2one('crossovered.budget', string='Project Budget')
     x_studio_project_group = fields.Many2one('x_project_groups', string='Project Group')
     x_x_studio_created_from_sales_order_1_crossovered_budget_count = fields.Integer(string='Project Budget', store=False)

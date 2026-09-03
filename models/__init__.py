@@ -3,6 +3,8 @@ from . import doc_conclusion
 from . import doc_intro
 from . import minimum_sales_margin_seed
 from . import product_pricelist
+from . import product_product
+from . import product_template
 from . import res_company
 from . import res_config_settings
 from . import res_partner
