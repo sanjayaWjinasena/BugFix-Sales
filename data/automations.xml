@@ -1,29 +1,521 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales v0.1.0.60: 57 base.automation trigger records. -->
 <odoo>
-  <!-- TODO: 25 automations records need hand-porting. -->
-  <!-- Clear-DB id=79: SLS - Pass Customer PM to SO -->
-  <!-- Clear-DB id=80: SLS - Validate Order Payment Type in SO -->
-  <!-- Clear-DB id=89: SLS - Validate Discount in SO Line -->
-  <!-- Clear-DB id=90: SLS - Validate Commission in SO Line -->
-  <!-- Clear-DB id=118: SRM - Auto Populate Report Type in SO Lines -->
-  <!-- Clear-DB id=176: RR - Auto Generate Quotation Type for Repair SOs -->
-  <!-- Clear-DB id=186: RR - Auto Generate Quotation Type for Project SOs -->
-  <!-- Clear-DB id=187: RR - Auto Generate Quotation Type for Project SOs - 2 -->
-  <!-- Clear-DB id=193: RR - Sales Price For RUG Items -->
-  <!-- Clear-DB id=196: PROJ-Item Related Details In Project SO -->
-  <!-- Clear-DB id=202: RR - Track Lock Status -->
-  <!-- Clear-DB id=203: RR - Track Lock Status - 2 -->
-  <!-- Clear-DB id=204: RR - Track Lock Status - 3 -->
-  <!-- Clear-DB id=212: SLS - Apply Pricelist in SO Lines -->
-  <!-- Clear-DB id=234: Update Analytic Tag Parameters - Sales Order - Customer -->
-  <!-- Clear-DB id=235: Update Analytic Tag Parameters - Sales Order - User -->
-  <!-- Clear-DB id=236: Update Analytic Tag Parameters - Sales Line - Product -->
-  <!-- Clear-DB id=257: JIN-Project Sales Order Seq.No -->
-  <!-- Clear-DB id=258: JIN-Project Sales Order Seq.No (Maintain Separate Nos for Project SOs On Create) -->
-  <!-- Clear-DB id=260: PROJ - Validate Start date and End date for Project SOs -->
-  <!-- Clear-DB id=286: JIN - Company Id in Vendor Group -->
-  <!-- Clear-DB id=312: JIN - Company Id in Customer Group -->
-  <!-- Clear-DB id=316: JIN - Company Id in Delivery Terms -->
-  <!-- Clear-DB id=341: PROJ - Apply Project Price List -->
-  <!-- Clear-DB id=342: PROJ - Update Price Confirmed Status -->
+
+  <record id="base_automation_79_sls_pass_customer_pm_to_so" model="base.automation">
+    <field name="name">SLS - Pass Customer PM to SO</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order__partner_id')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1430_sls_pass_customer_pm_to_so')])]"/>
+  </record>
+
+  <record id="base_automation_80_sls_validate_order_payment_type_in_so" model="base.automation">
+    <field name="name">SLS - Validate Order Payment Type in SO</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__x_studio_order_payment_method')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1434_sls_validate_order_payment_type_in_so')])]"/>
+  </record>
+
+  <record id="base_automation_176_rr_auto_generate_quotation_type_for_repair_sos" model="base.automation">
+    <field name="name">RR - Auto Generate Quotation Type for Repair SOs</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1995_rr_auto_generate_quotation_type_for_repair_sos')])]"/>
+  </record>
+
+  <record id="base_automation_186_rr_auto_generate_quotation_type_for_project_sos" model="base.automation">
+    <field name="name">RR - Auto Generate Quotation Type for Project SOs</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="filter_pre_domain">[["task_id","!=",False]]</field>
+    <field name="filter_domain">[["task_id","!=",False]]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2114_rr_auto_generate_quotation_type_for_project_sos')])]"/>
+  </record>
+
+  <record id="base_automation_187_rr_auto_generate_quotation_type_for_project_sos_2" model="base.automation">
+    <field name="name">RR - Auto Generate Quotation Type for Project SOs - 2</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('industry_fsm_sale.field_sale_order__task_id')])]"/>
+    <field name="filter_domain">[["task_id","!=",False]]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2117_rr_auto_generate_quotation_type_for_project_sos_2')])]"/>
+  </record>
+
+  <record id="base_automation_202_rr_track_lock_status" model="base.automation">
+    <field name="name">RR - Track Lock Status</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2250_rr_track_lock_status')])]"/>
+  </record>
+
+  <record id="base_automation_203_rr_track_lock_status_2" model="base.automation">
+    <field name="name">RR - Track Lock Status - 2</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2251_rr_track_lock_status_2')])]"/>
+  </record>
+
+  <record id="base_automation_234_update_analytic_tag_parameters_sales_order_customer" model="base.automation">
+    <field name="name">Update Analytic Tag Parameters - Sales Order - Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order__partner_id')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2414_update_analytic_tag_parameters_sales_order_customer')])]"/>
+  </record>
+
+  <record id="base_automation_235_update_analytic_tag_parameters_sales_order_user" model="base.automation">
+    <field name="name">Update Analytic Tag Parameters - Sales Order - User</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2415_update_analytic_tag_parameters_sales_order_user')])]"/>
+  </record>
+
+  <record id="base_automation_257_jin_project_sales_order_seq_no" model="base.automation">
+    <field name="name">JIN-Project Sales Order Seq.No</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2573_project_sales_order_seq_no')])]"/>
+  </record>
+
+  <record id="base_automation_258_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro" model="base.automation">
+    <field name="name">JIN-Project Sales Order Seq.No (Maintain Separate Nos for Project SOs On Create)</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__x_studio_quotation_type')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2574_project_sales_order_seq_no_2')])]"/>
+  </record>
+
+  <record id="base_automation_260_proj_validate_start_date_and_end_date_for_project_sos" model="base.automation">
+    <field name="name">PROJ - Validate Start date and End date for Project SOs</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__x_studio_project_end_date'), ref('BugFix-Sales.field_sale_order__x_studio_project_start_date')])]"/>
+    <field name="filter_domain">[["task_id","!=",False]]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2576_proj_validate_start_date_and_end_date_for_project_sos')])]"/>
+  </record>
+
+  <record id="base_automation_341_proj_apply_project_price_list" model="base.automation">
+    <field name="name">PROJ - Apply Project Price List</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__x_studio_quotation_type')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2896_proj_apply_project_price_list')])]"/>
+  </record>
+
+  <record id="base_automation_89_sls_validate_discount_in_so_line" model="base.automation">
+    <field name="name">SLS - Validate Discount in SO Line</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__discount')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1497_sls_validate_discount_in_so_line')])]"/>
+  </record>
+
+  <record id="base_automation_90_sls_validate_commission_in_so_line" model="base.automation">
+    <field name="name">SLS - Validate Commission in SO Line</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__discount'), ref('BugFix-Sales.field_sale_order_line__x_studio_commission')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1498_sls_validate_commission_in_so_line')])]"/>
+  </record>
+
+  <record id="base_automation_118_srm_auto_populate_report_type_in_so_lines" model="base.automation">
+    <field name="name">SRM - Auto Populate Report Type in SO Lines</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1729_srm_auto_populate_report_type_in_so_lines')])]"/>
+  </record>
+
+  <record id="base_automation_193_rr_sales_price_for_rug_items" model="base.automation">
+    <field name="name">RR - Sales Price For RUG Items</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2144_rr_sales_price_for_rug_items')])]"/>
+  </record>
+
+  <record id="base_automation_196_proj_item_related_details_in_project_so" model="base.automation">
+    <field name="name">PROJ-Item Related Details In Project SO</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2162_proj_item_related_details_in_project_so')])]"/>
+  </record>
+
+  <record id="base_automation_204_rr_track_lock_status_3" model="base.automation">
+    <field name="name">RR - Track Lock Status - 3</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__product_id')])]"/>
+    <field name="filter_pre_domain">[]</field>
+    <field name="filter_domain">[["x_studio_quotation_type","=","Repair"]]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2252_rr_track_lock_status_3')])]"/>
+  </record>
+
+  <record id="base_automation_212_sls_apply_pricelist_in_so_lines" model="base.automation">
+    <field name="name">SLS - Apply Pricelist in SO Lines</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__product_id'), ref('sale.field_sale_order_line__product_uom_qty')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2315_sls_apply_pricelist_in_so_lines')])]"/>
+  </record>
+
+  <record id="base_automation_236_update_analytic_tag_parameters_sales_line_product" model="base.automation">
+    <field name="name">Update Analytic Tag Parameters - Sales Line - Product</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__product_id')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2416_update_analytic_tag_parameters_sales_line_product')])]"/>
+  </record>
+
+  <record id="base_automation_342_proj_update_price_confirmed_status" model="base.automation">
+    <field name="name">PROJ - Update Price Confirmed Status</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__product_id')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2898_proj_update_price_confirmed_status')])]"/>
+  </record>
+
+  <record id="base_automation_2_sls_update_payment_term_customer" model="base.automation">
+    <field name="name">SLS - Update Payment Term - Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__x_studio_customer_group')])]"/>
+    <field name="filter_domain">[["x_studio_customer_group","!=",False]]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_810_sls_update_payment_term_customer')])]"/>
+  </record>
+
+  <record id="base_automation_77_sls_validate_credit_limit" model="base.automation">
+    <field name="name">SLS - Validate Credit Limit</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1427_sls_validate_credit_limit')])]"/>
+  </record>
+
+  <record id="base_automation_78_sls_validate_payment_method" model="base.automation">
+    <field name="name">SLS - Validate Payment Method</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_res_partner__x_studio_payment_method')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1428_sls_validate_payment_method')])]"/>
+  </record>
+
+  <record id="base_automation_82_sls_update_payment_term_vendor" model="base.automation">
+    <field name="name">SLS - Update Payment Term - Vendor</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__x_studio_vendor_group')])]"/>
+    <field name="filter_domain">[["x_studio_customer_group","!=",False]]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1445_sls_update_payment_term_vendor')])]"/>
+  </record>
+
+  <record id="base_automation_92_sls_track_credit_limit_in_customer" model="base.automation">
+    <field name="name">SLS - Track Credit Limit in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_res_partner__credit_limit')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1518_sls_track_credit_limit_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_139_sls_customer_group_distributor_mandatory_bank_guarantee" model="base.automation">
+    <field name="name">SLS - Customer Group - Distributor - Mandatory Bank Guarantee</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__x_studio_customer_group')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1767_sls_customer_group_distributor_mandatory_bank_guarantee')])]"/>
+  </record>
+
+  <record id="base_automation_140_sls_customer_group_not_in_general_validation" model="base.automation">
+    <field name="name">SLS - Customer Group - not in General - Validation</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__x_studio_customer_group')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1768_sls_customer_group_not_in_general_validation')])]"/>
+  </record>
+
+  <record id="base_automation_150_sls_track_name_in_customer" model="base.automation">
+    <field name="name">SLS - Track Name in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_res_partner__name')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1821_sls_track_name_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_151_sls_track_address1_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Address1 in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__street')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1822_sls_track_address1_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_152_sls_track_address2_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Address2 in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__city')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1823_sls_track_address2_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_153_sls_track_address3_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Address3 in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__zip')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1824_sls_track_address3_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_154_sls_track_tax_id_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Tax ID in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__vat')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1825_sls_track_tax_id_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_155_sls_track_customer_group_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Customer Group in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__x_studio_customer_group')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1826_sls_track_customer_group_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_157_sls_track_payment_term_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Payment Term in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_res_partner__property_payment_term_id')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1828_sls_track_payment_term_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_158_sls_track_payment_type_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Payment Type in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_res_partner__x_studio_payment_method')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1829_sls_track_payment_type_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_159_sls_track_address4_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Address4 in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__street2')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1830_sls_track_address4_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_160_sls_track_address5_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Address5 in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__country_id')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1831_sls_track_address5_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_161_sls_track_mobile_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Mobile in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__mobile')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1832_sls_track_mobile_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_162_sls_track_price_list_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Price List in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('product.field_res_partner__property_product_pricelist')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1833_sls_track_price_list_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_163_sls_track_vat_registration_status_in_customer" model="base.automation">
+    <field name="name">SLS - Track  VAT Registration Status in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('Fix-repair.field_res_partner__x_studio_vat_registration_status')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1834_sls_track_vat_registration_status_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_164_sls_track_vat_registration_no_in_customer" model="base.automation">
+    <field name="name">SLS - Track  VAT Registration No in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('Fix-repair.field_res_partner__x_studio_vat_registration_number')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1835_sls_track_vat_registration_no_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_165_sls_track_svat_registration_status_in_customer" model="base.automation">
+    <field name="name">SLS - Track  SVAT Registration Status in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('Fix-repair.field_res_partner__x_studio_svat_registration_status')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1836_sls_track_svat_registration_status_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_166_sls_track_svat_registration_no_in_customer" model="base.automation">
+    <field name="name">SLS - Track  SVAT Registration No in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('Fix-repair.field_res_partner__x_studio_svat_registration_number')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1837_sls_track_svat_registration_no_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_167_sls_track_bank_guarantee_expiration_date_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Bank Guarantee Expiration Date in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_res_partner__x_studio_expiry_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1838_sls_track_bank_guarantee_expiration_date_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_168_sls_track_mandatory_bank_guarantee_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Mandatory Bank Guarantee in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('Fix-repair.field_res_partner__x_studio_mandatory_bank_guarantee')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1839_sls_track_mandatory_bank_guarantee_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_180_sls_track_vat_exempted_number_in_customer" model="base.automation">
+    <field name="name">SLS - Track  VAT Exempted Number in Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('Fix-repair.field_res_partner__x_studio_vat_exempted_number')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2037_sls_track_vat_exempted_number_in_customer')])]"/>
+  </record>
+
+  <record id="base_automation_218_sls_validate_mobile" model="base.automation">
+    <field name="name">SLS - Validate Mobile</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('base.field_res_partner__mobile')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2336_sls_validate_mobile')])]"/>
+  </record>
+
+  <record id="base_automation_336_jin_company_id_in_respartner_inherit_model" model="base.automation">
+    <field name="name">JIN - Company Id in ResPartner Inherit Model</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2828_jin_company_id_in_respartner_inherit_model')])]"/>
+  </record>
+
+  <record id="base_automation_340_jin_pricelist_in_respartner_inherit_model" model="base.automation">
+    <field name="name">JIN - Pricelist in ResPartner Inherit Model</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'res.partner')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__x_studio_customer_group')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2891_jin_pricelist_in_respartner_inherit_model')])]"/>
+  </record>
+
+  <record id="base_automation_334_jin_company_id_in_pricelist" model="base.automation">
+    <field name="name">JIN - Company Id in Pricelist</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'product.pricelist')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('product.field_product_pricelist__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2826_jin_company_id_in_pricelist')])]"/>
+  </record>
+
+  <record id="base_automation_66_imp_service_item_charge_duty_tax" model="base.automation">
+    <field name="name">IMP - Service Item - Charge-Duty-Tax</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1387_imp_service_item_charge_duty_tax')])]"/>
+  </record>
+
+  <record id="base_automation_83_imp_validate_default_split_method_in_item_master" model="base.automation">
+    <field name="name">IMP - Validate Default Split Method in Item Master</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('stock_landed_costs.field_product_template__split_method_landed_cost')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1451_imp_validate_default_split_method_in_item_master')])]"/>
+  </record>
+
+  <record id="base_automation_84_imp_pass_split_method_in_item_master" model="base.automation">
+    <field name="name">IMP - Pass Split Method in Item Master</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('stock_landed_costs.field_product_template__landed_cost_ok')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1452_imp_pass_split_method_in_item_master')])]"/>
+  </record>
+
+  <record id="base_automation_268_jin_company_id_in_product" model="base.automation">
+    <field name="name">JIN - Company Id in Product</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('product.field_product_template__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2587_jin_company_id_in_product')])]"/>
+  </record>
+
+  <record id="base_automation_316_jin_company_id_in_delivery_terms" model="base.automation">
+    <field name="name">JIN - Company Id in Delivery Terms</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_delivery_terms')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Purchase.field_x_delivery_terms__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2682_jin_company_id_in_delivery_terms')])]"/>
+  </record>
+
 </odoo>

@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.59',
+    'version': '17.0.1.0.60',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.60: 57 base.automation trigger records - coverage 0/57 -> 57/57.
+    # Wires all v0.1.0.59-shipped server actions to their triggers.
+    # Trigger types: mostly on_create_or_write (Track * fields) and
+    # on_change (Update Payment Term, Validate Payment Method, etc.).
+    # New file: data/automations.xml.
     # v0.1.0.59: 57 base_automation server actions - foundation for
     # the 57 base.automation trigger records to ship in v0.1.0.60.
     # All state=code, usage=base_automation. Grouped by model:
@@ -97,6 +102,7 @@
         'security/ir.model.access.csv',
         'data/bugfix_sales_data.xml',
         'data/server_actions.xml',
+        'data/automations.xml',
         'views/doc_intro_views.xml',
         'views/doc_conclusion_views.xml',
         'views/res_partner_views.xml',
