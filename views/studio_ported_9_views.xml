@@ -73,10 +73,7 @@
             <field widget="statinfo" name="x_vendor_id__purchase_requisition_count" string="Purchase Agreements" studio-view-group-names="User" studio-view-group-ids="87"/>
           </button>
         </xpath>
-        <xpath expr="//form[1]/sheet[1]/div[not(@name)][1]/h1[1]/field[@name='name']" position="attributes">
-          <attribute name="string">Customer Name</attribute>
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[1]/field[@name='street']" position="attributes">
+        <!-- DROPPED (xpath resolves to !=1 on target): //form[1]/sheet[1]/div[not(@name)][1]/h1[1]/field[@name='name'] --><xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[1]/field[@name='street']" position="attributes">
           <attribute name="readonly">(type == 'contact' and parent_id) or ((parent_id != False) and (type == 'contact'))</attribute>
           <attribute name="required">((x_studio_payment_method == 'Credit') and (x_studio_group_type != 'Dealer')) or (x_studio_group_type == 'Dealer')</attribute>
         </xpath>
@@ -96,11 +93,7 @@
           <field name="x_studio_customer_group" string="Customer Group" force_save="True" options="{&quot;no_create&quot;:true}" invisible="customer_rank == 0" required="customer_rank &gt; 0"/>
           <field name="x_studio_vendor_group" string="Vendor Group" invisible="supplier_rank == 0" required="supplier_rank &gt; 0"/>
         </xpath>
-        <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/div[1]/field[@name='phone']" position="attributes">
-          <attribute name="options">{"enable_sms":true}</attribute>
-          <attribute name="required">False</attribute>
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/div[2]/field[@name='mobile']" position="attributes">
+        <!-- DROPPED (xpath resolves to !=1 on target): //form[1]/sheet[1]/group[1]/group[2]/div[1]/field[@name='phone'] --><xpath expr="//form[1]/sheet[1]/group[1]/group[2]/div[2]/field[@name='mobile']" position="attributes">
           <attribute name="required">False</attribute>
         </xpath>
         <xpath expr="//field[@name='property_product_pricelist']" position="after">
@@ -344,11 +337,7 @@
             <field name="type" invisible="1"/>
           </xpath>
 
-        <xpath expr="//button[@name='198']" position="after">
-          <button type="action" name="2301" string="Approve Item" invisible="(x_studio_item_approved_prod == True) or ((x_studio_item_approval_request_sent == False) or (x_studio_item_approved == True))"/>
-          <button type="action" name="2293" string="Request Item Approval" invisible="(x_studio_item_approval_request_sent_prod == True) or ((x_studio_item_approved == True) or (x_studio_item_approval_request_sent == True))"/>
-        </xpath>
-        <xpath expr="//button[@name='open_pricelist_rules']" position="attributes">
+        <!-- DROPPED (xpath resolves to !=1 on target): //button[@name='198'] --><xpath expr="//button[@name='open_pricelist_rules']" position="attributes">
           <attribute name="groups">product.group_product_pricelist,__export__.res_groups_271_7319010a</attribute>
         </xpath>
         <xpath expr="//field[@name='is_published']" position="attributes">
@@ -380,17 +369,7 @@
         <xpath expr="//field[@name='default_code']" position="attributes">
           <attribute name="required">1</attribute>
         </xpath>
-        <xpath expr="//field[@name='barcode']" position="attributes">
-          <attribute name="invisible">(product_variant_count &gt; 1 or (product_variant_count == 0 and valid_product_template_attribute_line_ids)) or (product_variant_count &gt; 1)</attribute>
-          <attribute name="required">True</attribute>
-        </xpath>
-        <xpath expr="//field[@name='barcode']" position="after">
-          <field name="x_studio_item_approval_request_sent" string="Item Approval Request Sent" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_item_approved" string="Item Approved" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_item_approval_request_sent_prod" string="Item Approval Request Sent Prod" invisible="1"/>
-          <field name="x_studio_item_approved_prod" string="Item Approved Prod" invisible="1"/>
-        </xpath>
-        <xpath expr="//field[@name='seller_ids']" position="inside">
+        <!-- DROPPED (xpath resolves to !=1 on target): //field[@name='barcode'] --><!-- DROPPED (xpath resolves to !=1 on target): //field[@name='barcode'] --><xpath expr="//field[@name='seller_ids']" position="inside">
           <tree string="Vendor Information" multi_edit="1" editable="bottom">
             <field name="sequence" widget="handle"/>
             <field name="partner_id" readonly="0"/>
@@ -467,26 +446,6 @@
         </xpath>
         <xpath expr="//field[@name='categ_id']" position="attributes">
           <attribute name="optional">show</attribute>
-        </xpath>
-      </data>
-    </field>
-  </record>
-
-  <record id="ported_view_5445_odoo_studio_product_template_view_tree_w" model="ir.ui.view">
-    <field name="name">Odoo Studio: product.template.view.tree.website_sale customization</field>
-    <field name="model">product.template</field>
-    <field name="inherit_id" ref="website_sale.product_template_view_tree_website_sale"/>
-    <field name="priority">99</field>
-    <field name="arch" type="xml">
-      <data>
-        <xpath expr="//tree[1]/field[@name='id']" position="after">
-          <field name="weight" optional="show"/>
-          <field name="volume" optional="show"/>
-          <field name="x_studio_charge_type" optional="show"/>
-          <field name="x_studio_non_billable" optional="show"/>
-          <field name="landed_cost_ok" optional="show"/>
-          <field name="split_method_landed_cost" optional="show"/>
-          <field name="id"/>
         </xpath>
       </data>
     </field>

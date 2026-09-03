@@ -1,11 +1,28 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.66',
+    'version': '17.0.1.0.67',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.67: hotfix v0.1.0.66 - Studio positional xpaths broke
+    # against target's composed parent view arch.
+    # Crashed on view 2299 (res.partner form) with xpath
+    #   //form[1]/sheet[1]/div[not(@name)][1]/h1[1]/field[@name='name']
+    # target has 2 h1 elements inside oe_title (some prior inherit
+    # added an h1 for 'ref' before the one for 'name'), so Studio's
+    # positional selector resolves to 0 nodes on target.
+    # Fix: generator now pre-flight-validates each <xpath expr="">
+    # against target's COMPOSED parent view (via get_view). Xpaths
+    # that don't match exactly one node get replaced with an
+    # explanatory <!-- DROPPED --> comment. Views where ALL xpaths
+    # fail are skipped entirely.
+    # This batch dropped 6 xpaths total (2 in view 2299, 3 in view
+    # 2551, 1 in view 5445). View 5445 (website_sale product tree)
+    # skipped as its only xpath //tree[1]/field[@name='id'] doesn't
+    # resolve. Ships 8/9. Downgraded fidelity noted in file comments.
+    # Views: 10/19 -> 18/19 = 95%.
     # v0.1.0.66: close the 9 remaining Studio priority=99 view gaps.
     # Extension inherits on:
     #   * sale.order.line.tree (add invoice_status, price fields, qty ordering)
