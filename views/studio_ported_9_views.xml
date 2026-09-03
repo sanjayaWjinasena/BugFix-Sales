@@ -68,6 +68,12 @@
     <field name="priority">99</field>
     <field name="arch" type="xml">
       <data>
+          <xpath expr="//sheet" position="inside">
+            <field name="is_coa_installed" invisible="1"/>
+            <field name="parent_id" invisible="1"/>
+            <field name="type" invisible="1"/>
+          </xpath>
+
         <xpath expr="//button[@name='action_see_documents']" position="after">
           <button class="oe_stat_button" icon="fa-briefcase" type="action" name="1696" studio-view-group-names="User" studio-view-group-ids="87">
             <field widget="statinfo" name="x_vendor_id__purchase_requisition_count" string="Purchase Agreements" studio-view-group-names="User" studio-view-group-ids="87"/>
@@ -317,6 +323,10 @@
     <field name="priority">99</field>
     <field name="arch" type="xml">
       <data>
+          <xpath expr="//sheet" position="inside">
+            <field name="type" invisible="1"/>
+          </xpath>
+
         <!-- DROPPED (xpath resolves to !=1 on target): //button[@name='198'] --><xpath expr="//button[@name='open_pricelist_rules']" position="attributes">
           <attribute name="groups">product.group_product_pricelist,__export__.res_groups_271_7319010a</attribute>
         </xpath>

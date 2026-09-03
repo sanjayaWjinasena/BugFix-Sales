@@ -1,11 +1,28 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.69',
+    'version': '17.0.1.0.70',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.70: hotfix v0.1.0.69 - modifier sentinel extractor missed
+    # the ELEMENT form of modifier expressions:
+    #   <xpath position="attributes">
+    #     <attribute name="invisible">is_coa_installed == True</attribute>
+    #   </xpath>
+    # My regex only caught the ATTRIBUTE form (invisible="expr"), so
+    # is_coa_installed wasn't recognized as needing a sentinel and
+    # Odoo 17 rejected the view with "Field is_coa_installed used in
+    # modifier must be present in view but is missing".
+    # Fix: added MOD_ELEM_RE regex for <attribute name="X">expr</attribute>.
+    # Also strip HTML entities (&gt; -> ' ') and .attribute access
+    # (active_id.get -> active_id) to prevent false-positive
+    # identifier matches - both were reported by earlier scans.
+    # Sentinel injected: <field name="is_coa_installed" invisible="1"/>
+    # in view 2299's arch. Verified via full arch scan: no missing
+    # modifier field refs remain (except benign 'gt'/'get' false
+    # positives that Odoo's parser handles correctly).
     # v0.1.0.69: hotfix v0.1.0.68 - refine orphan-strip rule.
     # v0.1.0.68 over-stripped (removed x_studio_customer_group and
     # similar Sales-owned/studio_usermodel_migration fields), also
