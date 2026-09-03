@@ -1,11 +1,19 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.56',
+    'version': '17.0.1.0.57',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.57: break the 3-way cycle Sales -> Purchase -> Accounting
+    # -> Sales that was silently blocking module upgrades and causing
+    # Python classes not to load. Removed BugFix-Purchase from depends.
+    # The dep was added in v0.1.0.55/56 to prevent field shadowing on
+    # x_delivery_terms (both modules declare via _name). Fix: drop the
+    # mirrored x_studio_delivery_terms_id O2M from Sales's declaration.
+    # Purchase's declaration keeps the O2M and loads AFTER Sales, so
+    # Purchase's class definition wins on merge (O2M present at runtime).
     # v0.1.0.56: cross-repo companion fix for BugFix-Purchase v0.1.0.71.
     # Purchase added _inherit = ['mail.thread', 'mail.activity.mixin']
     # to its x_delivery_terms declaration. Both modules declare that
@@ -35,7 +43,7 @@
     # _inherit; Jinasena_Masterdata_Reporting (the canonical owner) added here.
     # studio_usermodel_migration removed in v52 (no load-time dep, cycle risk).
     'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale',
-                'Jinasena_Masterdata_Reporting', 'BugFix-Purchase'],
+                'Jinasena_Masterdata_Reporting'],
     'post_init_hook': 'post_init_hook',
     # v47: bulk-port of remaining Studio artifacts via
     # scripts/scaffold_bugfix_module.py (adds 8 sale.order fields,
