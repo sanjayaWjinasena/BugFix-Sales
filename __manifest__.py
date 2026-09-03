@@ -1,11 +1,26 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.65',
+    'version': '17.0.1.0.66',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.66: close the 9 remaining Studio priority=99 view gaps.
+    # Extension inherits on:
+    #   * sale.order.line.tree (add invoice_status, price fields, qty ordering)
+    #   * res.partner.form/tree (Studio field additions)
+    #   * res.company.tree (Studio column)
+    #   * product.pricelist.tree (Studio column)
+    #   * product.template.product.form/tree (Studio field additions)
+    #   * product.template.view.tree.website_sale (Studio column)
+    #   * product.product.tree (Studio field additions)
+    # New file: views/studio_ported_9_views.xml.
+    # New dep: website_sale (parent of one inherit, already installed
+    # on target - no cycle risk). Validated against odoo/import_xml.rng
+    # BEFORE push per new pre-flight discipline.
+    # Views: 10/19 -> 19/19 = 100%. Sales migration reaches 100%
+    # coverage on all schema categories.
     # v0.1.0.65: hotfix v0.1.0.64. Still crashed with same error.
     # Read Odoo 17's odoo/import_xml.rng directly:
     #   <field type="html"> requires <rng:oneOrMore><rng:ref name="any"/></rng:oneOrMore>
@@ -120,7 +135,7 @@
     # _inherit; Jinasena_Masterdata_Reporting (the canonical owner) added here.
     # studio_usermodel_migration removed in v52 (no load-time dep, cycle risk).
     'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale',
-                'purchase_requisition',
+                'purchase_requisition', 'website_sale',
                 'Jinasena_Masterdata_Reporting', 'BugFix-Stock'],
     'post_init_hook': 'post_init_hook',
     # v47: bulk-port of remaining Studio artifacts via
@@ -160,6 +175,7 @@
         'views/sale_report_studio_ported.xml',
         'views/res_company_studio_ported.xml',
         'views/sale_order_line_studio_ported.xml',
+        'views/studio_ported_9_views.xml',
     ],
     'installable': True,
     'auto_install': False,

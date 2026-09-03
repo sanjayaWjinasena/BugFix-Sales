@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales: 9 remaining Studio priority=99 customization
+     view inherits, byte-verbatim from Clear-DB. Sentinels injected
+     for undeclared modifier field refs. -->
+<odoo>
+
+  <record id="ported_view_3259_odoo_studio_sale_order_line_tree_customi" model="ir.ui.view">
+    <field name="name">Odoo Studio: sale.order.line.tree customization</field>
+    <field name="model">sale.order.line</field>
+    <field name="inherit_id" ref="sale.view_order_line_tree"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='order_id']" position="attributes">
+          <attribute name="string">Sales Order Ref</attribute>
+        </xpath>
+        <xpath expr="//field[@name='order_partner_id']" position="after">
+          <field name="invoice_status"/>
+          <field name="warehouse_id" column_invisible="1"/>
+        </xpath>
+        <xpath expr="//tree[1]/field[@name='name']" position="after">
+          <field optional="show" name="x_studio_price_unit_original" string="Price Unit Original" column_invisible="1"/>
+        </xpath>
+        <xpath expr="//field[@name='product_uom_qty']" position="attributes">
+          <attribute name="string">Order Qty</attribute>
+        </xpath>
+        <xpath expr="//field[@name='product_uom_qty']" position="after">
+          <field name="price_unit" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='qty_delivered']" position="attributes">
+          <attribute name="string">Delivered Qty</attribute>
+        </xpath>
+        <xpath expr="//field[@name='qty_delivered']" position="after">
+          <field name="qty_to_deliver"/>
+        </xpath>
+        <xpath expr="//field[@name='qty_invoiced']" position="attributes">
+          <attribute name="string">Invoiced Qty</attribute>
+        </xpath>
+        <xpath expr="//field[@name='qty_to_invoice']" position="attributes">
+          <attribute name="string">Qty To Invoice</attribute>
+        </xpath>
+        <xpath expr="//field[@name='qty_to_invoice']" position="after">
+          <field name="x_studio_req_qty" optional="show" widget="many2one_reference"/>
+          <field name="x_studio_production_completed" optional="show"/>
+          <field name="x_studio_many2one_field_btM1W" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='product_uom']" position="attributes">
+          <attribute name="string">UOM</attribute>
+        </xpath>
+        <xpath expr="//field[@name='route_id']" position="after">
+          <field name="discount"/>
+        </xpath>
+        <xpath expr="//field[@name='price_subtotal']" position="after">
+          <xpath expr="//field[@name='salesman_id']" position="move"/>
+          <field name="create_uid"/>
+          <field name="create_date"/>
+          <field name="x_studio_category" optional="hide"/>
+          <field name="x_studio_project_no" optional="hide"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <record id="ported_view_2299_odoo_studio_res_partner_form_customizati" model="ir.ui.view">
+    <field name="name">Odoo Studio: res.partner.form customization</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//button[@name='action_see_documents']" position="after">
+          <button class="oe_stat_button" icon="fa-briefcase" type="action" name="1696" studio-view-group-names="User" studio-view-group-ids="87">
+            <field widget="statinfo" name="x_vendor_id__purchase_requisition_count" string="Purchase Agreements" studio-view-group-names="User" studio-view-group-ids="87"/>
+          </button>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/div[not(@name)][1]/h1[1]/field[@name='name']" position="attributes">
+          <attribute name="string">Customer Name</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[1]/field[@name='street']" position="attributes">
+          <attribute name="readonly">(type == 'contact' and parent_id) or ((parent_id != False) and (type == 'contact'))</attribute>
+          <attribute name="required">((x_studio_payment_method == 'Credit') and (x_studio_group_type != 'Dealer')) or (x_studio_group_type == 'Dealer')</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[1]/field[@name='street2']" position="attributes">
+          <attribute name="invisible">True</attribute>
+          <attribute name="readonly">(type == 'contact' and parent_id) or ((parent_id != False) and (type == 'contact'))</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[1]/field[@name='city']" position="attributes">
+          <attribute name="invisible">True</attribute>
+          <attribute name="readonly">(type == 'contact' and parent_id) or ((parent_id != False) and (type == 'contact'))</attribute>
+        </xpath>
+        <xpath expr="//field[@name='vat']" position="attributes">
+          <attribute name="readonly">(parent_id) or (parent_id != False)</attribute>
+          <attribute name="required">((x_studio_payment_method == 'Credit') and (x_studio_group_type != 'Dealer')) or (x_studio_group_type == 'Dealer')</attribute>
+        </xpath>
+        <xpath expr="//field[@name='vat']" position="after">
+          <field name="x_studio_customer_group" string="Customer Group" force_save="True" options="{&quot;no_create&quot;:true}" invisible="customer_rank == 0" required="customer_rank &gt; 0"/>
+          <field name="x_studio_vendor_group" string="Vendor Group" invisible="supplier_rank == 0" required="supplier_rank &gt; 0"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/div[1]/field[@name='phone']" position="attributes">
+          <attribute name="options">{"enable_sms":true}</attribute>
+          <attribute name="required">False</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/div[2]/field[@name='mobile']" position="attributes">
+          <attribute name="required">False</attribute>
+        </xpath>
+        <xpath expr="//field[@name='property_product_pricelist']" position="after">
+          <field name="x_studio_payment_method" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" string="Payment Type" force_save="True" help="Cash / Credit" invisible="False" required="customer_rank &gt; 0"/>
+          <field name="credit_limit" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" force_save="1" invisible="supplier_rank &gt; 0" readonly="x_studio_payment_method == 'Cash'" required="(x_studio_payment_method == 'Credit') and (customer_rank &gt; 0)"/>
+          <field name="credit" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" invisible="supplier_rank &gt; 0"/>
+          <field name="total_overdue" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" invisible="supplier_rank &gt; 0"/>
+          <field name="x_studio_group_type" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" string="Group Type" invisible="1"/>
+          <field name="x_studio_valid_bank_guarantee" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" string="Valid Bank Guarantee" force_save="True" readonly="1" invisible="1"/>
+          <field name="customer_rank" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" force_save="True" readonly="1" invisible="1"/>
+        </xpath>
+        <xpath expr="//field[@name='property_purchase_currency_id']" position="attributes">
+          <attribute name="required">supplier_rank &gt; 0</attribute>
+        </xpath>
+        <xpath expr="//field[@name='property_purchase_currency_id']" position="after">
+          <field name="supplier_rank" force_save="True" readonly="1" invisible="1"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='sales_purchases']/group[@name='container_row_2']/group[@name='misc']/field[@name='company_id']" position="attributes">
+          <attribute name="force_save">True</attribute>
+          <attribute name="readonly">1</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='accounting']/group[1]/group[@name='banks']/field[@name='bank_ids']/tree[1]" position="after">
+          <form string="Bank account" name="bank_account_form">
+            <sheet name="studio_sheet_2fb0f3">
+              <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+              <group name="studio_group_a2584a">
+                <group name="studio_group_60707f">
+                  <field name="sequence" invisible="1"/>
+                  <field name="acc_type" invisible="1"/>
+                  <field name="acc_number" readonly="lock_trust_fields" force_save="1"/>
+                  <field name="acc_holder_name"/>
+                  <field name="bank_id"/>
+                  <field name="x_studio_swift_code" string="SWIFT Code"/>
+                  <field name="x_studio_bank_code_1"/>
+                  <field name="x_studio_branch_code_1"/>
+                  <field name="partner_id" readonly="lock_trust_fields" force_save="1"/>
+                </group>
+                <group name="studio_group_75baf5">
+                  <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                  <field name="currency_id" groups="base.group_multi_currency" options="{'no_create': True}"/>
+                  <field name="user_has_group_validate_bank_account" invisible="1"/>
+                  <field name="lock_trust_fields" invisible="1"/>
+                  <label for="allow_out_payment"/>
+                  <div class="d-flex gap-2" name="studio_div_436d5b">
+                    <field name="allow_out_payment" widget="boolean_toggle" options="{'autosave': False}" readonly="not user_has_group_validate_bank_account"/>
+                    <span class="d-flex gap-2 w-100">
+                      <span invisible="allow_out_payment" class="text-muted">Untrusted</span>
+                      <span invisible="not allow_out_payment" class="text-success">Trusted</span>
+                    </span>
+                  </div>
+                  <div invisible="allow_out_payment" colspan="2" name="studio_div_c2e819">
+                    <field name="has_money_transfer_warning" invisible="1"/>
+                    <div invisible="not has_money_transfer_warning" class="mb-1" name="studio_div_cde426">
+                      <span class="text-danger">High risk</span>: <field name="money_transfer_service" nolabel="1" class="oe_inline"/> is a money transfer service and not a bank.
+                                  Double check if the account can be trusted by calling the vendor.<br/>
+                      <a target="_blank" href="https://www.odoo.com/documentation/17.0/applications/finance/accounting/payables/pay/trusted_accounts.html">Check why.</a>
+                    </div>
+                    <field name="has_iban_warning" invisible="1"/>
+                    <div invisible="not has_iban_warning" name="studio_div_7beb61">
+                      <span class="text-warning">Medium risk</span>: Iban <field name="sanitized_acc_number" nolabel="1" class="oe_inline fw-bold"/>
+                                  is not from the same country as the partner (<field name="partner_country_name" nolabel="1" class="oe_inline"/>).<br/>
+                      <a target="_blank" href="https://www.odoo.com/documentation/17.0/applications/finance/accounting/payables/pay/trusted_accounts.html">Check why it's risky.</a>
+                    </div>
+                  </div>
+                  <field name="active" invisible="1"/>
+                </group>
+              </group>
+            </sheet>
+          </form>
+        </xpath>
+        <xpath expr="//group[@name='accounting_entries']" position="attributes">
+          <attribute name="invisible">is_coa_installed == True</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='accounting']/group[1]/group[@name='accounting_entries']/field[@name='currency_id']" position="attributes">
+          <attribute name="invisible">False</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+          <page string="Tax Registration" name="studio_page_L0Ae5">
+            <group name="studio_group_L0Ae5">
+              <group name="studio_group_L0Ae5_left">
+                <field name="x_studio_vat_registration_status" string="VAT Registration Status" required="1"/>
+                <field name="x_studio_vat_registration_number" string="VAT Registration Number" placeholder="VAT Registration Number" invisible="x_studio_vat_registration_status != 'VAT Registered'" required="x_studio_vat_registration_status == 'VAT Registered'"/>
+                <field name="x_studio_vat_exempted_number" string="VAT Exempted Number" placeholder="VAT Exempted Number" invisible="x_studio_vat_registration_status != 'VAT Excempted'" required="x_studio_vat_registration_status == 'VAT Excempted'"/>
+              </group>
+              <group name="studio_group_L0Ae5_right">
+                <field name="x_studio_svat_registration_status" string="SVAT Registration Status" required="1" invisible="x_studio_vat_registration_status != 'VAT Registered'"/>
+                <field name="x_studio_svat_registration_number" string="SVAT Registration Number" placeholder="SVAT Registration Number" invisible="(x_studio_vat_registration_status != 'VAT Registered') or (x_studio_svat_registration_status == 'SVAT Nor Registered')" required="x_studio_svat_registration_status == 'SVAT Registered'"/>
+              </group>
+            </group>
+          </page>
+          <page string="Customer Vendor Relation" name="studio_page_SuozI">
+            <group name="studio_group_SuozI">
+              <group name="studio_group_SuozI_right" string="Vendor relation">
+                <field name="x_studio_vendor_account" string="Vendor Account" force_save="True" domain="[[&quot;id&quot;,&quot;=&quot;,2]]"/>
+                <field name="x_studio_address" string="Address"/>
+                <field name="contact_address_complete"/>
+              </group>
+            </group>
+          </page>
+          <page string="Bank Guarantee Details" name="studio_page_yhybZ" invisible="supplier_rank &gt; 0">
+            <group name="studio_group_yhybZ">
+              <group name="studio_group_yhybZ_left" string="Bank Guarantee Details">
+                <field name="x_studio_bank_guarantee_amount" required="x_studio_group_type == 'Distributor'"/>
+                <field name="x_studio_expiry_date" string="Expiry Date" required="x_studio_group_type == 'Distributor'"/>
+                <field name="x_studio_mandatory_bank_guarantee" string="Mandatory Bank Guarantee"/>
+                <field filename="x_studio_bank_guarantee_docs_filename" name="x_studio_bank_guarantee_docs" string="Bank Guarantee Docs." widget="pdf_viewer"/>
+                <field invisible="1" name="x_studio_bank_guarantee_docs_filename"/>
+              </group>
+              <group name="studio_group_yhybZ_right"/>
+            </group>
+          </page>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <record id="ported_view_2300_odoo_studio_res_partner_tree_customizati" model="ir.ui.view">
+    <field name="name">Odoo Studio: res.partner.tree customization</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_tree"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='user_id']" position="replace"/>
+        <xpath expr="//field[@name='email']" position="replace"/>
+        <xpath expr="//field[@name='phone']" position="replace"/>
+        <xpath expr="//field[@name='display_name']" position="before">
+          <field name="self"/>
+          <field name="x_studio_customer_group" optional="show"/>
+          <field name="x_studio_vendor_group" optional="show"/>
+          <field name="company_registry" optional="show"/>
+          <field name="title"/>
+          <field name="total_overdue"/>
+          <field name="total_due"/>
+          <field name="credit"/>
+          <field name="user_ids"/>
+          <field name="commercial_company_name" optional="show"/>
+          <field name="create_uid" optional="show"/>
+          <field name="create_date" optional="show"/>
+          <field name="total_invoiced"/>
+          <field name="account_represented_company_ids" optional="show"/>
+          <field name="task_ids"/>
+          <field name="property_supplier_payment_term_id"/>
+          <field name="supplier_rank" optional="show"/>
+          <field name="customer_rank"/>
+          <field name="date"/>
+          <field name="property_stock_customer"/>
+          <field name="property_payment_term_id"/>
+          <field name="currency_id"/>
+          <xpath expr="//field[@name='country_id']" position="move"/>
+          <field name="credit_limit"/>
+          <field name="payment_token_count"/>
+          <field name="contact_address_complete"/>
+          <field name="company_type"/>
+          <field name="child_ids"/>
+          <field name="contact_address"/>
+        </xpath>
+        <xpath expr="//field[@name='display_name']" position="after">
+          <field name="company_name"/>
+          <field name="partner_gid"/>
+          <field name="ref_company_ids"/>
+          <field name="commercial_partner_id"/>
+          <field name="color"/>
+          <field name="channel_ids"/>
+          <field name="message_bounce"/>
+          <field name="phone_blacklisted"/>
+          <field name="mobile_blacklisted"/>
+          <field name="is_blacklisted"/>
+          <field name="barcode"/>
+          <field name="bank_ids"/>
+          <field name="bank_account_count"/>
+          <field name="message_attachment_count"/>
+          <field name="type"/>
+          <field name="x_studio_address"/>
+          <field name="additional_info"/>
+          <field name="message_needaction"/>
+          <field name="active_lang_count"/>
+          <field name="property_account_receivable_id"/>
+          <field name="property_account_payable_id"/>
+          <field name="supplier_invoice_count"/>
+          <field name="task_count"/>
+          <field name="meeting_count"/>
+          <field name="signature_count"/>
+          <field name="ref"/>
+        </xpath>
+        <xpath expr="//field[@name='state_id']" position="after">
+          <field name="x_studio_vat_registration_number"/>
+          <field name="x_studio_svat_registration_number"/>
+          <xpath expr="//field[@name='company_id']" position="move"/>
+          <field name="id"/>
+        </xpath>
+        <xpath expr="//field[@name='country_id']" position="attributes">
+          <attribute name="optional"/>
+          <attribute name="readonly"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <record id="ported_view_5547_odoo_studio_res_company_tree_customizati" model="ir.ui.view">
+    <field name="name">Odoo Studio: res.company.tree customization</field>
+    <field name="model">res.company</field>
+    <field name="inherit_id" ref="base.view_company_tree"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='partner_id']" position="after">
+          <field name="id" optional="show" column_invisible="1"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <record id="ported_view_5065_odoo_studio_product_pricelist_tree_custo" model="ir.ui.view">
+    <field name="name">Odoo Studio: product.pricelist.tree customization</field>
+    <field name="model">product.pricelist</field>
+    <field name="inherit_id" ref="product.product_pricelist_view_tree"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='currency_id']" position="after">
+          <field name="x_studio_group_type" optional="show"/>
+          <field name="x_studio_order_payment_method" optional="show"/>
+          <field name="id" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='company_id']" position="after">
+          <field name="create_uid" optional="hide"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <record id="ported_view_2551_odoo_studio_product_template_product_for" model="ir.ui.view">
+    <field name="name">Odoo Studio: product.template.product.form customization</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_only_form_view"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+          <xpath expr="//sheet" position="inside">
+            <field name="type" invisible="1"/>
+          </xpath>
+
+        <xpath expr="//button[@name='198']" position="after">
+          <button type="action" name="2301" string="Approve Item" invisible="(x_studio_item_approved_prod == True) or ((x_studio_item_approval_request_sent == False) or (x_studio_item_approved == True))"/>
+          <button type="action" name="2293" string="Request Item Approval" invisible="(x_studio_item_approval_request_sent_prod == True) or ((x_studio_item_approved == True) or (x_studio_item_approval_request_sent == True))"/>
+        </xpath>
+        <xpath expr="//button[@name='open_pricelist_rules']" position="attributes">
+          <attribute name="groups">product.group_product_pricelist,__export__.res_groups_271_7319010a</attribute>
+        </xpath>
+        <xpath expr="//field[@name='is_published']" position="attributes">
+          <attribute name="groups">__export__.res_groups_271_7319010a</attribute>
+        </xpath>
+        <xpath expr="//button[@name='action_view_stock_move_lines']" position="attributes">
+          <attribute name="groups"/>
+        </xpath>
+        <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
+          <attribute name="groups"/>
+        </xpath>
+        <xpath expr="//field[@name='invoice_policy']" position="attributes">
+          <attribute name="invisible">type == 'service'</attribute>
+          <attribute name="required">type == 'service'</attribute>
+        </xpath>
+        <xpath expr="//field[@name='product_tooltip']" position="after">
+          <field name="x_studio_sub_contract" string="Sub-Contract"/>
+        </xpath>
+        <xpath expr="//field[@name='uom_po_id']" position="after">
+          <field name="x_studio_maximum_discount" string="Maximum  Discount %"/>
+        </xpath>
+        <xpath expr="//field[@name='standard_price']" position="attributes">
+          <attribute name="groups">account.group_warning_account</attribute>
+        </xpath>
+        <xpath expr="//field[@name='categ_id']" position="after">
+          <field name="x_studio_product_type" string="Internal Product Type"/>
+          <field name="x_studio_melt_item" string="Melt Item"/>
+        </xpath>
+        <xpath expr="//field[@name='default_code']" position="attributes">
+          <attribute name="required">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='barcode']" position="attributes">
+          <attribute name="invisible">(product_variant_count &gt; 1 or (product_variant_count == 0 and valid_product_template_attribute_line_ids)) or (product_variant_count &gt; 1)</attribute>
+          <attribute name="required">True</attribute>
+        </xpath>
+        <xpath expr="//field[@name='barcode']" position="after">
+          <field name="x_studio_item_approval_request_sent" string="Item Approval Request Sent" force_save="True" readonly="1" invisible="1"/>
+          <field name="x_studio_item_approved" string="Item Approved" force_save="True" readonly="1" invisible="1"/>
+          <field name="x_studio_item_approval_request_sent_prod" string="Item Approval Request Sent Prod" invisible="1"/>
+          <field name="x_studio_item_approved_prod" string="Item Approved Prod" invisible="1"/>
+        </xpath>
+        <xpath expr="//field[@name='seller_ids']" position="inside">
+          <tree string="Vendor Information" multi_edit="1" editable="bottom">
+            <field name="sequence" widget="handle"/>
+            <field name="partner_id" readonly="0"/>
+            <field name="product_id" readonly="0" optional="hide" invisible="context.get('product_template_invisible_variant', False)" groups="product.group_product_variant"/>
+            <field name="purchase_requisition_id" readonly="1" optional="hide"/>
+            <field name="product_tmpl_id" string="Product" readonly="1" invisible="context.get('visible_product_tmpl_id', True)"/>
+            <field name="product_name" optional="hide"/>
+            <field name="product_code" optional="hide"/>
+            <field name="currency_id" groups="base.group_multi_currency"/>
+            <field name="date_start" optional="hide"/>
+            <field name="date_end" optional="hide"/>
+            <field name="company_id" readonly="0" groups="base.group_multi_company" optional="hide"/>
+            <field name="min_qty" optional="hide"/>
+            <field name="product_uom" groups="uom.group_uom"/>
+            <field name="price" string="Price"/>
+            <field name="delay" optional="show"/>
+            <field name="company_id" column_invisible="1"/>
+          </tree>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='inventory']" position="attributes">
+          <attribute name="groups"/>
+        </xpath>
+        <xpath expr="//page[@name='invoicing']" position="attributes">
+          <attribute name="groups">__export__.res_groups_271_7319010a</attribute>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]" position="inside">
+          <page string="Sri Lanka Localization" name="studio_page_zujMt" groups="__export__.res_groups_271_7319010a">
+            <group name="studio_group_zujMt">
+              <group name="studio_group_zujMt_left">
+                <field name="x_studio_tariff_code" string="Tariff Code" options="{&quot;no_create&quot;:true}"/>
+              </group>
+              <group name="studio_group_zujMt_right">
+                <field name="x_studio_charge_type" string="Charge Type" widget="radio" readonly="type != 'service'"/>
+                <field name="x_studio_non_billable" string="Non Billable" readonly="type != 'service'"/>
+              </group>
+            </group>
+          </page>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <record id="ported_view_3029_odoo_studio_product_template_product_tre" model="ir.ui.view">
+    <field name="name">Odoo Studio: product.template.product.tree customization</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_tree_view"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='priority']" position="after">
+          <xpath expr="//field[@name='default_code']" position="move"/>
+          <field name="bom_ids" optional="show"/>
+        </xpath>
+        <xpath expr="//tree[1]/field[@name='name']" position="after">
+          <xpath expr="//field[@name='categ_id']" position="move"/>
+          <field name="x_studio_product_type" optional="show"/>
+          <xpath expr="//field[@name='product_tag_ids']" position="move"/>
+        </xpath>
+        <xpath expr="//field[@name='responsible_id']" position="attributes">
+          <attribute name="column_invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='responsible_id']" position="after">
+          <field name="invoice_policy" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='uom_id']" position="after">
+          <field name="weight" optional="show"/>
+          <field name="volume" optional="show"/>
+          <field optional="show" name="x_studio_category_id" string="Category ID"/>
+          <field name="x_studio_charge_type" optional="show"/>
+          <field name="x_studio_non_billable" optional="show"/>
+          <field name="landed_cost_ok" optional="show"/>
+          <field name="split_method_landed_cost" optional="show"/>
+          <field name="id"/>
+        </xpath>
+        <xpath expr="//field[@name='categ_id']" position="attributes">
+          <attribute name="optional">show</attribute>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <record id="ported_view_5445_odoo_studio_product_template_view_tree_w" model="ir.ui.view">
+    <field name="name">Odoo Studio: product.template.view.tree.website_sale customization</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="website_sale.product_template_view_tree_website_sale"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]/field[@name='id']" position="after">
+          <field name="weight" optional="show"/>
+          <field name="volume" optional="show"/>
+          <field name="x_studio_charge_type" optional="show"/>
+          <field name="x_studio_non_billable" optional="show"/>
+          <field name="landed_cost_ok" optional="show"/>
+          <field name="split_method_landed_cost" optional="show"/>
+          <field name="id"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <record id="ported_view_3030_odoo_studio_product_product_tree_customi" model="ir.ui.view">
+    <field name="name">Odoo Studio: product.product.tree customization</field>
+    <field name="model">product.product</field>
+    <field name="inherit_id" ref="product.product_product_tree_view"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='virtual_available']" position="after">
+          <field name="property_account_expense_id" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='uom_id']" position="after">
+          <field name="id"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+</odoo>
