@@ -459,186 +459,6 @@
     <field name="value">Yes</field>
   </record>
 
-  <record id="server_action_2140_proj_request_project_item_approval" model="ir.actions.server">
-    <field name="name">PROJ - Request Project Item Approval</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2138_proj_project_item_approval_request_sent_validate'), ref('BugFix-Sales.server_action_2134_proj_project_item_request_sent'), ref('BugFix-Sales.server_action_2136_proj_project_item_request_approval_notify_user')])]"/>
-  </record>
-
-  <record id="server_action_1980_rr_request_rug_approval" model="ir.actions.server">
-    <field name="name">RR - Request RUG Approval</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1983_rr_rug_approval_request_sent'), ref('BugFix-Sales.server_action_1985_rr_rug_request_approval_notify_user')])]"/>
-  </record>
-
-  <record id="server_action_2248_rr_request_re_estimate_permission" model="ir.actions.server">
-    <field name="name">RR - Request Re-estimate Permission</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2244_rr_re_estimate_request_sent'), ref('BugFix-Sales.server_action_2246_rr_re_estimate_request_sent_validate'), ref('BugFix-Sales.server_action_2243_rr_re_estimate_request_notify_user')])]"/>
-  </record>
-
-  <record id="server_action_1487_sls_bank_guarantee_approval_main" model="ir.actions.server">
-    <field name="name">SLS - Bank Guarantee Approval - Main</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2507_sls_bank_guarantee_approval'), ref('BugFix-Sales.server_action_2509_sls_bank_guarantee_approval_confirm')])]"/>
-  </record>
-
-  <record id="server_action_1435_sls_credit_limit_approval_main" model="ir.actions.server">
-    <field name="name">SLS - Credit Limit Approval - Main</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2503_sls_credit_limit_approval'), ref('BugFix-Sales.server_action_2505_sls_credit_limit_approval_confirm')])]"/>
-  </record>
-
-  <record id="server_action_1515_sls_margin_approval_main" model="ir.actions.server">
-    <field name="name">SLS - Margin Approval - Main</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2495_sls_margin_approval'), ref('BugFix-Sales.server_action_2497_sls_margin_approval_confirm')])]"/>
-  </record>
-
-  <record id="server_action_1505_sls_over_commission_approval_main" model="ir.actions.server">
-    <field name="name">SLS - Over Commission Approval - Main</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2499_sls_over_commission_approval'), ref('BugFix-Sales.server_action_2501_sls_over_commission_approval_confirm')])]"/>
-  </record>
-
-  <record id="server_action_1478_sls_overdue_approval" model="ir.actions.server">
-    <field name="name">SLS - Overdue Approval</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2460_sls_overdue_request_approval_notify_user_01'), ref('BugFix-Sales.server_action_2458_sls_request_overdue_approval_final01')])]"/>
-  </record>
-
-  <record id="server_action_1485_sls_request_bank_guarantee_approval" model="ir.actions.server">
-    <field name="name">SLS - Request Bank Guarantee Approval</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1483_sls_request_bank_guarantee_approval_notify_user'), ref('BugFix-Sales.server_action_1481_sls_request_bank_guarantee_approval_sent'), ref('BugFix-Sales.server_action_1845_sls_request_bank_guarantee_approval_sent_validate')])]"/>
-  </record>
-
-  <record id="server_action_1458_sls_request_credit_limit_approval" model="ir.actions.server">
-    <field name="name">SLS - Request Credit Limit Approval</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1462_sls_request_approval_notify_user'), ref('BugFix-Sales.server_action_1460_sls_request_approval_sent'), ref('BugFix-Sales.server_action_1843_sls_request_approval_sent_validate')])]"/>
-  </record>
-
-  <record id="server_action_1513_sls_request_margin_approval" model="ir.actions.server">
-    <field name="name">SLS - Request Margin Approval</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1509_sls_margin_approval_request_sent'), ref('BugFix-Sales.server_action_1511_sls_margin_request_approval_notify_user')])]"/>
-  </record>
-
-  <record id="server_action_1503_sls_request_over_commission_approval" model="ir.actions.server">
-    <field name="name">SLS - Request Over Commission Approval</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1499_sls_over_commission_approval_request_sent'), ref('BugFix-Sales.server_action_1501_sls_over_commission_request_approval_notify_user')])]"/>
-  </record>
-
-  <record id="server_action_1476_sls_request_overdue_approval" model="ir.actions.server">
-    <field name="name">SLS - Request Overdue Approval</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1472_sls_overdue_approval_request_sent'), ref('BugFix-Sales.server_action_1841_sls_overdue_approval_request_sent_validate'), ref('BugFix-Sales.server_action_1474_sls_overdue_request_approval_notify_user')])]"/>
-  </record>
-
-  <record id="server_action_1468_sls_request_temporary_credit_approval" model="ir.actions.server">
-    <field name="name">SLS - Request Temporary Credit Approval</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1466_sls_request_temporary_credit_approval_notify_user'), ref('BugFix-Sales.server_action_1464_sls_temporary_credit_approval_sent')])]"/>
-  </record>
-
-  <record id="server_action_1850_sls_send_bank_guarantee_notification_main" model="ir.actions.server">
-    <field name="name">SLS - Send Bank Guarantee Notification - Main</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2515_sls_send_bank_guarantee_notification'), ref('BugFix-Sales.server_action_2516_sls_send_bank_guarantee_notification_confirm')])]"/>
-  </record>
-
-  <record id="server_action_1470_sls_temporary_credit_approval_main" model="ir.actions.server">
-    <field name="name">SLS - Temporary Credit Approval - Main</field>
-    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2511_sls_temporary_credit_approval'), ref('BugFix-Sales.server_action_2513_sls_temporary_credit_approval_confirm')])]"/>
-  </record>
-
-  <record id="server_action_2301_plm_item_approval_final" model="ir.actions.server">
-    <field name="name">PLM - Item Approval - Final</field>
-    <field name="model_id" search="[('model', '=', 'product.template')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2295_plm_item_approval'), ref('BugFix-Sales.server_action_2297_plm_item_approval_notify_project_user'), ref('BugFix-Sales.server_action_2299_plm_item_approval_validate')])]"/>
-  </record>
-
-  <record id="server_action_2293_plm_request_item_approval" model="ir.actions.server">
-    <field name="name">PLM - Request Item Approval</field>
-    <field name="model_id" search="[('model', '=', 'product.template')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2289_plm_item_approval_request_sent'), ref('BugFix-Sales.server_action_2291_plm_item_approval_request_notify_user')])]"/>
-  </record>
-
-  <record id="server_action_2173_proj_item_approval_final" model="ir.actions.server">
-    <field name="name">PROJ - Item Approval - Final</field>
-    <field name="model_id" search="[('model', '=', 'product.product')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2169_proj_item_approval'), ref('BugFix-Sales.server_action_2196_proj_item_approval_notify_project_user'), ref('BugFix-Sales.server_action_2171_proj_item_approval_validate')])]"/>
-  </record>
-
-  <record id="server_action_2167_proj_request_item_approval" model="ir.actions.server">
-    <field name="name">PROJ - Request Item Approval</field>
-    <field name="model_id" search="[('model', '=', 'product.product')]"/>
-    <field name="state">multi</field>
-    <field name="usage">ir_actions_server</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2163_proj_item_approval_request_sent'), ref('BugFix-Sales.server_action_2165_proj_item_approval_request_notify_user')])]"/>
-  </record>
-
   <record id="server_action_2178_proj_create_budget_entries" model="ir.actions.server">
     <field name="name">PROJ - Create Budget Entries</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
@@ -1814,6 +1634,186 @@ if loop_misc_charge_codes_c:
   
   record['x_studio_copied'] = True
 ]]></field>
+  </record>
+
+  <record id="server_action_2140_proj_request_project_item_approval" model="ir.actions.server">
+    <field name="name">PROJ - Request Project Item Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2138_proj_project_item_approval_request_sent_validate'), ref('BugFix-Sales.server_action_2134_proj_project_item_request_sent'), ref('BugFix-Sales.server_action_2136_proj_project_item_request_approval_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_1980_rr_request_rug_approval" model="ir.actions.server">
+    <field name="name">RR - Request RUG Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1983_rr_rug_approval_request_sent'), ref('BugFix-Sales.server_action_1985_rr_rug_request_approval_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_2248_rr_request_re_estimate_permission" model="ir.actions.server">
+    <field name="name">RR - Request Re-estimate Permission</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2244_rr_re_estimate_request_sent'), ref('BugFix-Sales.server_action_2246_rr_re_estimate_request_sent_validate'), ref('BugFix-Sales.server_action_2243_rr_re_estimate_request_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_1487_sls_bank_guarantee_approval_main" model="ir.actions.server">
+    <field name="name">SLS - Bank Guarantee Approval - Main</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2507_sls_bank_guarantee_approval'), ref('BugFix-Sales.server_action_2509_sls_bank_guarantee_approval_confirm')])]"/>
+  </record>
+
+  <record id="server_action_1435_sls_credit_limit_approval_main" model="ir.actions.server">
+    <field name="name">SLS - Credit Limit Approval - Main</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2503_sls_credit_limit_approval'), ref('BugFix-Sales.server_action_2505_sls_credit_limit_approval_confirm')])]"/>
+  </record>
+
+  <record id="server_action_1515_sls_margin_approval_main" model="ir.actions.server">
+    <field name="name">SLS - Margin Approval - Main</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2495_sls_margin_approval'), ref('BugFix-Sales.server_action_2497_sls_margin_approval_confirm')])]"/>
+  </record>
+
+  <record id="server_action_1505_sls_over_commission_approval_main" model="ir.actions.server">
+    <field name="name">SLS - Over Commission Approval - Main</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2499_sls_over_commission_approval'), ref('BugFix-Sales.server_action_2501_sls_over_commission_approval_confirm')])]"/>
+  </record>
+
+  <record id="server_action_1478_sls_overdue_approval" model="ir.actions.server">
+    <field name="name">SLS - Overdue Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2460_sls_overdue_request_approval_notify_user_01'), ref('BugFix-Sales.server_action_2458_sls_request_overdue_approval_final01')])]"/>
+  </record>
+
+  <record id="server_action_1485_sls_request_bank_guarantee_approval" model="ir.actions.server">
+    <field name="name">SLS - Request Bank Guarantee Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1483_sls_request_bank_guarantee_approval_notify_user'), ref('BugFix-Sales.server_action_1481_sls_request_bank_guarantee_approval_sent'), ref('BugFix-Sales.server_action_1845_sls_request_bank_guarantee_approval_sent_validate')])]"/>
+  </record>
+
+  <record id="server_action_1458_sls_request_credit_limit_approval" model="ir.actions.server">
+    <field name="name">SLS - Request Credit Limit Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1462_sls_request_approval_notify_user'), ref('BugFix-Sales.server_action_1460_sls_request_approval_sent'), ref('BugFix-Sales.server_action_1843_sls_request_approval_sent_validate')])]"/>
+  </record>
+
+  <record id="server_action_1513_sls_request_margin_approval" model="ir.actions.server">
+    <field name="name">SLS - Request Margin Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1509_sls_margin_approval_request_sent'), ref('BugFix-Sales.server_action_1511_sls_margin_request_approval_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_1503_sls_request_over_commission_approval" model="ir.actions.server">
+    <field name="name">SLS - Request Over Commission Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1499_sls_over_commission_approval_request_sent'), ref('BugFix-Sales.server_action_1501_sls_over_commission_request_approval_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_1476_sls_request_overdue_approval" model="ir.actions.server">
+    <field name="name">SLS - Request Overdue Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1472_sls_overdue_approval_request_sent'), ref('BugFix-Sales.server_action_1841_sls_overdue_approval_request_sent_validate'), ref('BugFix-Sales.server_action_1474_sls_overdue_request_approval_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_1468_sls_request_temporary_credit_approval" model="ir.actions.server">
+    <field name="name">SLS - Request Temporary Credit Approval</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1466_sls_request_temporary_credit_approval_notify_user'), ref('BugFix-Sales.server_action_1464_sls_temporary_credit_approval_sent')])]"/>
+  </record>
+
+  <record id="server_action_1850_sls_send_bank_guarantee_notification_main" model="ir.actions.server">
+    <field name="name">SLS - Send Bank Guarantee Notification - Main</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2515_sls_send_bank_guarantee_notification'), ref('BugFix-Sales.server_action_2516_sls_send_bank_guarantee_notification_confirm')])]"/>
+  </record>
+
+  <record id="server_action_1470_sls_temporary_credit_approval_main" model="ir.actions.server">
+    <field name="name">SLS - Temporary Credit Approval - Main</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2511_sls_temporary_credit_approval'), ref('BugFix-Sales.server_action_2513_sls_temporary_credit_approval_confirm')])]"/>
+  </record>
+
+  <record id="server_action_2301_plm_item_approval_final" model="ir.actions.server">
+    <field name="name">PLM - Item Approval - Final</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2295_plm_item_approval'), ref('BugFix-Sales.server_action_2297_plm_item_approval_notify_project_user'), ref('BugFix-Sales.server_action_2299_plm_item_approval_validate')])]"/>
+  </record>
+
+  <record id="server_action_2293_plm_request_item_approval" model="ir.actions.server">
+    <field name="name">PLM - Request Item Approval</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2289_plm_item_approval_request_sent'), ref('BugFix-Sales.server_action_2291_plm_item_approval_request_notify_user')])]"/>
+  </record>
+
+  <record id="server_action_2173_proj_item_approval_final" model="ir.actions.server">
+    <field name="name">PROJ - Item Approval - Final</field>
+    <field name="model_id" search="[('model', '=', 'product.product')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2169_proj_item_approval'), ref('BugFix-Sales.server_action_2196_proj_item_approval_notify_project_user'), ref('BugFix-Sales.server_action_2171_proj_item_approval_validate')])]"/>
+  </record>
+
+  <record id="server_action_2167_proj_request_item_approval" model="ir.actions.server">
+    <field name="name">PROJ - Request Item Approval</field>
+    <field name="model_id" search="[('model', '=', 'product.product')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2163_proj_item_approval_request_sent'), ref('BugFix-Sales.server_action_2165_proj_item_approval_request_notify_user')])]"/>
   </record>
 
 </odoo>

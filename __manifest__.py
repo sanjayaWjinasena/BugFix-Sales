@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.61',
+    'version': '17.0.1.0.62',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.62: hotfix v0.1.0.61 - fix state-order in generator so
+    # multi records come AFTER code records (multi's child_ids can
+    # reference code records, so all children must load first).
+    # Old order: next_activity, object_write, multi, code
+    # New order: next_activity, object_write, code, multi
     # v0.1.0.61: 101 additional server actions (state-diverse).
     # Deep dedup check on 136 remaining candidates:
     #   * 31 verified true duplicates (same name+model+state+code as
