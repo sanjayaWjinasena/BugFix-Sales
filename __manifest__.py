@@ -1,11 +1,26 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.68',
+    'version': '17.0.1.0.69',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.69: hotfix v0.1.0.68 - refine orphan-strip rule.
+    # v0.1.0.68 over-stripped (removed x_studio_customer_group and
+    # similar Sales-owned/studio_usermodel_migration fields), also
+    # missed x_studio_vat_registration_status (pinned to Fix-repair
+    # which depends on Sales - loads AFTER us).
+    # Correct load-time visibility rule:
+    #   A field is safe to reference from Sales' views IFF at least
+    #   one of its pin modules is NOT in the "depends-on-Sales" set.
+    # Compute DEPENDS_ON_SALES = transitive reverse-deps of Sales
+    # (BugFix-Accounting, BugFix-Purchase, Fix-repair,
+    # Fix-Repair-Wizard-Nav, seeding_Test_data, studio_migrations).
+    # Strip a field ref iff ALL its pins are in DEPENDS_ON_SALES.
+    # This batch: 20 field refs stripped across 4 views (13 in 2299,
+    # 3 in 2300, 2+2 in 2551/3029). Most are Fix-repair-owned VAT/
+    # bank-guarantee fields.
     # v0.1.0.68: hotfix v0.1.0.67 - Studio-created orphan field refs
     # in view arch (fields that exist on CDB but were never ported to
     # any module). View 2299 embedded a Studio-custom <form> for

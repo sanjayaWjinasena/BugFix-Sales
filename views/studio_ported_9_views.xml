@@ -171,22 +171,15 @@
           <page string="Tax Registration" name="studio_page_L0Ae5">
             <group name="studio_group_L0Ae5">
               <group name="studio_group_L0Ae5_left">
-                <field name="x_studio_vat_registration_status" string="VAT Registration Status" required="1"/>
-                <field name="x_studio_vat_registration_number" string="VAT Registration Number" placeholder="VAT Registration Number" invisible="x_studio_vat_registration_status != 'VAT Registered'" required="x_studio_vat_registration_status == 'VAT Registered'"/>
-                <field name="x_studio_vat_exempted_number" string="VAT Exempted Number" placeholder="VAT Exempted Number" invisible="x_studio_vat_registration_status != 'VAT Excempted'" required="x_studio_vat_registration_status == 'VAT Excempted'"/>
-              </group>
+                <!-- DROPPED (orphan: x_studio_vat_registration_status not on res.partner) --><!-- DROPPED (orphan: x_studio_vat_registration_number not on res.partner) --><!-- DROPPED (orphan: x_studio_vat_exempted_number not on res.partner) --></group>
               <group name="studio_group_L0Ae5_right">
-                <field name="x_studio_svat_registration_status" string="SVAT Registration Status" required="1" invisible="x_studio_vat_registration_status != 'VAT Registered'"/>
-                <field name="x_studio_svat_registration_number" string="SVAT Registration Number" placeholder="SVAT Registration Number" invisible="(x_studio_vat_registration_status != 'VAT Registered') or (x_studio_svat_registration_status == 'SVAT Nor Registered')" required="x_studio_svat_registration_status == 'SVAT Registered'"/>
-              </group>
+                <!-- DROPPED (orphan: x_studio_svat_registration_status not on res.partner) --><!-- DROPPED (orphan: x_studio_svat_registration_number not on res.partner) --></group>
             </group>
           </page>
           <page string="Customer Vendor Relation" name="studio_page_SuozI">
             <group name="studio_group_SuozI">
               <group name="studio_group_SuozI_right" string="Vendor relation">
-                <field name="x_studio_vendor_account" string="Vendor Account" force_save="True" domain="[[&quot;id&quot;,&quot;=&quot;,2]]"/>
-                <field name="x_studio_address" string="Address"/>
-                <field name="contact_address_complete"/>
+                <!-- DROPPED (orphan: x_studio_vendor_account not on res.partner) --><!-- DROPPED (orphan: x_studio_address not on res.partner) --><field name="contact_address_complete"/>
               </group>
             </group>
           </page>
@@ -195,10 +188,7 @@
               <group name="studio_group_yhybZ_left" string="Bank Guarantee Details">
                 <field name="x_studio_bank_guarantee_amount" required="x_studio_group_type == 'Distributor'"/>
                 <field name="x_studio_expiry_date" string="Expiry Date" required="x_studio_group_type == 'Distributor'"/>
-                <field name="x_studio_mandatory_bank_guarantee" string="Mandatory Bank Guarantee"/>
-                <field filename="x_studio_bank_guarantee_docs_filename" name="x_studio_bank_guarantee_docs" string="Bank Guarantee Docs." widget="pdf_viewer"/>
-                <field invisible="1" name="x_studio_bank_guarantee_docs_filename"/>
-              </group>
+                <!-- DROPPED (orphan: x_studio_mandatory_bank_guarantee not on res.partner) --><!-- DROPPED (orphan: x_studio_bank_guarantee_docs not on res.partner) --><!-- DROPPED (orphan: x_studio_bank_guarantee_docs_filename not on res.partner) --></group>
               <group name="studio_group_yhybZ_right"/>
             </group>
           </page>
@@ -264,8 +254,7 @@
           <field name="bank_account_count"/>
           <field name="message_attachment_count"/>
           <field name="type"/>
-          <field name="x_studio_address"/>
-          <field name="additional_info"/>
+          <!-- DROPPED (orphan: x_studio_address not on res.partner) --><field name="additional_info"/>
           <field name="message_needaction"/>
           <field name="active_lang_count"/>
           <field name="property_account_receivable_id"/>
@@ -277,9 +266,7 @@
           <field name="ref"/>
         </xpath>
         <xpath expr="//field[@name='state_id']" position="after">
-          <field name="x_studio_vat_registration_number"/>
-          <field name="x_studio_svat_registration_number"/>
-          <xpath expr="//field[@name='company_id']" position="move"/>
+          <!-- DROPPED (orphan: x_studio_vat_registration_number not on res.partner) --><!-- DROPPED (orphan: x_studio_svat_registration_number not on res.partner) --><xpath expr="//field[@name='company_id']" position="move"/>
           <field name="id"/>
         </xpath>
         <xpath expr="//field[@name='country_id']" position="attributes">
@@ -330,10 +317,6 @@
     <field name="priority">99</field>
     <field name="arch" type="xml">
       <data>
-          <xpath expr="//sheet" position="inside">
-            <field name="type" invisible="1"/>
-          </xpath>
-
         <!-- DROPPED (xpath resolves to !=1 on target): //button[@name='198'] --><xpath expr="//button[@name='open_pricelist_rules']" position="attributes">
           <attribute name="groups">product.group_product_pricelist,__export__.res_groups_271_7319010a</attribute>
         </xpath>
@@ -399,9 +382,7 @@
                 <field name="x_studio_tariff_code" string="Tariff Code" options="{&quot;no_create&quot;:true}"/>
               </group>
               <group name="studio_group_zujMt_right">
-                <field name="x_studio_charge_type" string="Charge Type" widget="radio" readonly="type != 'service'"/>
-                <field name="x_studio_non_billable" string="Non Billable" readonly="type != 'service'"/>
-              </group>
+                <!-- DROPPED (orphan: x_studio_charge_type not on product.template) --><!-- DROPPED (orphan: x_studio_non_billable not on product.template) --></group>
             </group>
           </page>
         </xpath>
@@ -435,9 +416,7 @@
           <field name="weight" optional="show"/>
           <field name="volume" optional="show"/>
           <field optional="show" name="x_studio_category_id" string="Category ID"/>
-          <field name="x_studio_charge_type" optional="show"/>
-          <field name="x_studio_non_billable" optional="show"/>
-          <field name="landed_cost_ok" optional="show"/>
+          <!-- DROPPED (orphan: x_studio_charge_type not on product.template) --><!-- DROPPED (orphan: x_studio_non_billable not on product.template) --><field name="landed_cost_ok" optional="show"/>
           <field name="split_method_landed_cost" optional="show"/>
           <field name="id"/>
         </xpath>
