@@ -1,11 +1,22 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.62',
+    'version': '17.0.1.0.63',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.63: 29 window actions.
+    # Deep dedup on 123 remaining candidates:
+    #   * 94 verified TRUE duplicates (name+model+domain+context+view_mode
+    #     all match a standard-owned Odoo action) - safely skipped
+    #   * 5 look-alikes with distinct domains/contexts - SHIPPED
+    #     (e.g. "Sales Orders" on [task_id=active_id],
+    #     "Customers"/"Vendors" on x_studio_group filters)
+    #   * 24 truly-new (no name-match on target) - SHIPPED
+    # New file: data/window_actions.xml.
+    # Window actions: 2/133 -> 31/133 = 23% shipped (100% effective
+    # after 94 verified skips + our 2 pre-existing).
     # v0.1.0.62: hotfix v0.1.0.61 - fix state-order in generator so
     # multi records come AFTER code records (multi's child_ids can
     # reference code records, so all children must load first).
@@ -119,6 +130,7 @@
         'data/server_actions.xml',
         'data/server_actions_v2.xml',
         'data/automations.xml',
+        'data/window_actions.xml',
         'views/doc_intro_views.xml',
         'views/doc_conclusion_views.xml',
         'views/res_partner_views.xml',

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales v0.1.0.63: 29 window actions (24 truly-new +
+     5 look-alikes with distinct domains/contexts). 94 verified
+     true duplicates auto-skipped. -->
+<odoo>
+
+  <record id="act_window_204_products" model="ir.actions.act_window">
+    <field name="name">Products</field>
+    <field name="res_model">product.template</field>
+    <field name="view_mode">tree,kanban,form</field>
+    <field name="context">{"search_default_consumable": 1, 'default_type': 'product'}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                No product found. Let's create one!
+            &lt;/p&gt;&lt;p&gt;
+                Track your stock quantities by creating storable products.
+            &lt;/p&gt;
+        </field>
+  </record>
+
+  <record id="act_window_781_new_button" model="ir.actions.act_window">
+    <field name="name">New Button</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+
+  <record id="act_window_782_customers_of_this_group" model="ir.actions.act_window">
+    <field name="name">Customers of this group</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+
+  <record id="act_window_783_customers_of_this_group" model="ir.actions.act_window">
+    <field name="name">Customers of this group:</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+
+  <record id="act_window_785_sales_orders" model="ir.actions.act_window">
+    <field name="name">Sales orders</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_related_field_f6P0a', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_related_field_f6P0a': active_id,'default_x_studio_related_field_f6P0a': active_id}</field>
+  </record>
+
+  <record id="act_window_1205_delivery_terms" model="ir.actions.act_window">
+    <field name="name">Delivery Terms</field>
+    <field name="res_model">x_delivery_terms</field>
+    <field name="view_mode">tree,form</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_1273_expense_products" model="ir.actions.act_window">
+    <field name="name">Expense Products</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">tree,kanban,form</field>
+    <field name="domain">[('can_be_expensed', '=', True)]</field>
+    <field name="context">{"default_can_be_expensed": 1, 'default_detailed_type': 'service',
+            'default_invoice_policy':'delivery', 'default_expense_policy' : 'cost'}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                No expense products found. Let's create one!
+              &lt;/p&gt;&lt;p&gt;
+                Expense products can be reinvoiced to your customers.
+              &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_1373_product_product" model="ir.actions.act_window">
+    <field name="name">Product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_1425_res_partner" model="ir.actions.act_window">
+    <field name="name">res.partner</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">kanban,tree,form,map,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_1447_customers" model="ir.actions.act_window">
+    <field name="name">Customers</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_customer_group', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_customer_group': active_id,'default_x_studio_customer_group': active_id}</field>
+  </record>
+
+  <record id="act_window_1448_vendors" model="ir.actions.act_window">
+    <field name="name">Vendors</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_vendor_group', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_vendor_group': active_id,'default_x_studio_vendor_group': active_id}</field>
+  </record>
+
+  <record id="act_window_1568_sales_order_lines" model="ir.actions.act_window">
+    <field name="name">Sales Order Lines</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form,pivot</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_1668_sales_report_type" model="ir.actions.act_window">
+    <field name="name">Sales Report Type</field>
+    <field name="res_model">x_sales_report_type</field>
+    <field name="view_mode">tree,form</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_2060_delivery_terms" model="ir.actions.act_window">
+    <field name="name">Delivery Terms</field>
+    <field name="res_model">x_delivery_terms</field>
+    <field name="view_mode">tree,form</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_2193_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('project_id', '=', active_id)]</field>
+    <field name="context">{'search_default_project_id': active_id,'default_project_id': active_id}</field>
+  </record>
+
+  <record id="act_window_2194_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+  </record>
+
+  <record id="act_window_2195_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_main_project_2', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_main_project_2': active_id,'default_x_studio_main_project_2': active_id}</field>
+  </record>
+
+  <record id="act_window_2200_sales_production_request_status" model="ir.actions.act_window">
+    <field name="name">Sales - Production Request Status</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,kanban,form,pivot</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_2283_sale_order" model="ir.actions.act_window">
+    <field name="name">sale.order</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_2288_product_template" model="ir.actions.act_window">
+    <field name="name">Product.Template</field>
+    <field name="res_model">product.template</field>
+    <field name="view_mode">kanban,tree,form,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_2330_repair_sales_order_list" model="ir.actions.act_window">
+    <field name="name">Repair Sales Order List</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
+    <field name="domain">[('x_studio_quotation_type', '=', 'Repair')]</field>
+    <field name="context">{'search_default_my_quotation': 1}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_2338_project_sales_orders" model="ir.actions.act_window">
+    <field name="name">Project Sales Orders</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
+    <field name="domain">[('x_studio_quotation_type', '=', 'Project')]</field>
+    <field name="context">{'search_default_my_quotation': 1}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_2439_ss" model="ir.actions.act_window">
+    <field name="name">SS</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_2571_sales_orders" model="ir.actions.act_window">
+    <field name="name">Sales Orders</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('task_id', '=', active_id)]</field>
+    <field name="context">{'search_default_task_id': active_id,'default_task_id': active_id}</field>
+  </record>
+
+  <record id="act_window_2588_product_product" model="ir.actions.act_window">
+    <field name="name">product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_2622_product_template" model="ir.actions.act_window">
+    <field name="name">product.template</field>
+    <field name="res_model">product.template</field>
+    <field name="view_mode">kanban,tree,form,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_2840_companies_res_company" model="ir.actions.act_window">
+    <field name="name">Companies (res.company)</field>
+    <field name="res_model">res.company</field>
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_2881_product_product" model="ir.actions.act_window">
+    <field name="name">product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html">&lt;p class="o_view_nocontent_smiling_face"&gt;
+                    This is your new action.
+                &lt;/p&gt;
+                &lt;p&gt;By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                &lt;/p&gt;
+            </field>
+  </record>
+
+  <record id="act_window_3170_sales_analysis_by_salespersons" model="ir.actions.act_window">
+    <field name="name">Sales Analysis By Salespersons</field>
+    <field name="res_model">sale.report</field>
+    <field name="view_mode">graph,pivot,form</field>
+    <field name="context">{'search_default_User': 1, 'group_by': 'user_id', 'search_default_filter_order_date': 1}</field>
+    <field name="help" type="html">&lt;p&gt;This report performs analysis on your quotations and sales orders. Analysis check your sales revenues and sort it by different group criteria (salesman, partner, product, etc.) Use this report to perform analysis on sales not having invoiced yet. If you want to analyse your turnover, you should use the Invoice Analysis report in the Accounting application.&lt;/p&gt;</field>
+  </record>
+
+</odoo>
