@@ -1,11 +1,20 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.64',
+    'version': '17.0.1.0.65',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.65: hotfix v0.1.0.64. Still crashed with same error.
+    # Read Odoo 17's odoo/import_xml.rng directly:
+    #   <field type="html"> requires <rng:oneOrMore><rng:ref name="any"/></rng:oneOrMore>
+    #   where "any" is <rng:element>...</rng:element> - CHILD XML ELEMENTS.
+    # CDATA text was rejected because it's <rng:text/>, not an element.
+    # Entity-escaped text also rejected (decodes to text).
+    # Fix: parse help HTML into an XML fragment via lxml.html and emit
+    # child elements as literal serialized XML in the <field> body.
+    # Validated locally against import_xml.rng - PASSES.
     # v0.1.0.64: hotfix v0.1.0.63 - relax-ng install crash
     # ("Element odoo has extra content: record, line 7"). Root cause:
     # <field name="help" type="html">&lt;p&gt;...&lt;/p&gt;</field>
