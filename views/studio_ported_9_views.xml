@@ -126,10 +126,7 @@
                   <field name="acc_number" readonly="lock_trust_fields" force_save="1"/>
                   <field name="acc_holder_name"/>
                   <field name="bank_id"/>
-                  <field name="x_studio_swift_code" string="SWIFT Code"/>
-                  <field name="x_studio_bank_code_1"/>
-                  <field name="x_studio_branch_code_1"/>
-                  <field name="partner_id" readonly="lock_trust_fields" force_save="1"/>
+                  <!-- DROPPED (orphan: x_studio_swift_code not on res.partner) --><!-- DROPPED (orphan: x_studio_bank_code_1 not on res.partner) --><!-- DROPPED (orphan: x_studio_branch_code_1 not on res.partner) --><field name="partner_id" readonly="lock_trust_fields" force_save="1"/>
                 </group>
                 <group name="studio_group_75baf5">
                   <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>

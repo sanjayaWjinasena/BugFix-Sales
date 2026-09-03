@@ -1,11 +1,28 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.67',
+    'version': '17.0.1.0.68',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
     'license': 'LGPL-3',
+    # v0.1.0.68: hotfix v0.1.0.67 - Studio-created orphan field refs
+    # in view arch (fields that exist on CDB but were never ported to
+    # any module). View 2299 embedded a Studio-custom <form> for
+    # editing res.partner.bank records that referenced x_studio_swift_code,
+    # x_studio_bank_code_1, x_studio_branch_code_1 - all Studio DB
+    # records that never got a Python home. On target these names
+    # exist on OTHER models (account.move.line, account.setup.bank.
+    # manual.config) but NOT on res.partner.bank, so view load
+    # rejected them.
+    # Fix: generator's pre-flight now builds a per-MODEL index of
+    # x_* fields on target and validates every <field name="x_..."> in
+    # the arch against its contextual model (root model when walker
+    # can't traverse xpath boundaries; strictly-owned model when it
+    # can). Missing refs get stripped with <!-- DROPPED --> comments.
+    # Net degradation: 3 field columns removed from Sales's inherit
+    # of res.partner.form's bank subview. Standard bank fields
+    # remain.
     # v0.1.0.67: hotfix v0.1.0.66 - Studio positional xpaths broke
     # against target's composed parent view arch.
     # Crashed on view 2299 (res.partner form) with xpath
