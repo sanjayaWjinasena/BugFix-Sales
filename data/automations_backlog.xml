@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- BugFix-Sales backlog: 2 base.automations -->
-<odoo>
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- BugFix-Sales backlog: 2 base.automations --><odoo>
 
   <record id="base_automation_291_jin_company_id_in_product_category" model="base.automation">
     <field name="name">JIN - Company Id in Product Category</field>
@@ -11,12 +10,4 @@
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2623_jin_company_id_in_product_category')])]"/>
   </record>
 
-  <record id="base_automation_146_sls_minimum_sales_margin_in_setup_page" model="base.automation">
-    <field name="name">SLS - Minimum Sales Margin % - in Setup Page</field>
-    <field name="active" eval="True"/>
-    <field name="model_id" search="[('model', '=', 'x_minimum_sales_margin')]"/>
-    <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1776_sls_minimum_sales_margin_in_setup_page')])]"/>
-  </record>
-
-</odoo>
+  <!-- STRIPPED base_automation_146_sls_minimum_sales_margin_in_setup_page: model x_minimum_sales_margin not on target --></odoo>

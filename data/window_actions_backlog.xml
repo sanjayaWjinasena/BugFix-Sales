@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- BugFix-Sales backlog: 4 window actions -->
-<odoo>
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- BugFix-Sales backlog: 4 window actions --><odoo>
 
   <record id="act_window_3636_document_conclusions" model="ir.actions.act_window">
     <field name="name">Document Conclusions</field>
@@ -35,40 +34,4 @@
         </field>
   </record>
 
-  <record id="act_window_1750_sales_configurations" model="ir.actions.act_window">
-    <field name="name">Sales Configurations</field>
-    <field name="res_model">x_minimum_sales_margin</field>
-    <field name="view_mode">tree,form</field>
-    <field name="context">{}</field>
-    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
-                    This is your new action.
-                </p>
-                <p>By default, it contains a list and a form view and possibly
-                    other view types depending on the options you chose for your model.
-                </p>
-                <p>
-                    You can start customizing these screens by clicking on the Studio icon on the
-                    top right corner (you can also customize this help message there).
-                </p>
-            </field>
-  </record>
-
-  <record id="act_window_1749_config_settings" model="ir.actions.act_window">
-    <field name="name">config.settings</field>
-    <field name="res_model">x_res_config_settings</field>
-    <field name="view_mode">tree,form</field>
-    <field name="context">{}</field>
-    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
-                    This is your new action.
-                </p>
-                <p>By default, it contains a list and a form view and possibly
-                    other view types depending on the options you chose for your model.
-                </p>
-                <p>
-                    You can start customizing these screens by clicking on the Studio icon on the
-                    top right corner (you can also customize this help message there).
-                </p>
-            </field>
-  </record>
-
-</odoo>
+  <!-- STRIPPED act_window_1750_sales_configurations: model x_minimum_sales_margin not on target --><!-- STRIPPED act_window_1749_config_settings: model x_res_config_settings not on target --></odoo>
