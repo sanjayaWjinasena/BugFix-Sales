@@ -1,3 +1,64 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_x_delivery_terms_user,x_delivery_terms user access,model_x_delivery_terms,base.group_user,1,1,1,1
 access_x_sales_report_type_user,x_sales_report_type user access,model_x_sales_report_type,base.group_user,1,1,1,1
+access_8713_bugfix_sales_doc_conclusion_manager,bugfix_sales.doc_conclusion manager,BugFix-Sales.model_bugfix_sales_doc_conclusion,sales_team.group_sale_manager,1,1,1,1
+access_8712_bugfix_sales_doc_conclusion_user,bugfix_sales.doc_conclusion user,BugFix-Sales.model_bugfix_sales_doc_conclusion,sales_team.group_sale_salesman,1,0,0,0
+access_8711_bugfix_sales_doc_intro_manager,bugfix_sales.doc_intro manager,BugFix-Sales.model_bugfix_sales_doc_intro,sales_team.group_sale_manager,1,1,1,1
+access_8710_bugfix_sales_doc_intro_user,bugfix_sales.doc_intro user,BugFix-Sales.model_bugfix_sales_doc_intro,sales_team.group_sale_salesman,1,0,0,0
+access_8655_access_product_attribute_rohana_read,access_product_attribute_rohana_read,product.model_product_attribute,,1,0,0,0
+access_8657_access_product_attribute_value_rohana_read,access_product_attribute_value_rohana_read,product.model_product_attribute_value,,1,0,0,0
+access_8658_access_product_category_rohana_read,access_product_category_rohana_read,account.model_product_category,,1,0,0,0
+access_6813_product_packaging_user,product.packaging.user,product.model_product_packaging,,1,0,0,0
+access_8659_access_product_packaging_rohana_read,access_product_packaging_rohana_read,product.model_product_packaging,,1,0,0,0
+access_6811_product_pricelist_sale_user,product.pricelist.sale.user,BugFix-Sales.model_product_pricelist,,1,0,0,0
+access_8660_access_product_pricelist_rohana_read,access_product_pricelist_rohana_read,BugFix-Sales.model_product_pricelist,,1,0,0,0
+access_6893_product_product_purchase_user,product.product.purchase.user,BugFix-Sales.model_product_product,,1,0,0,0
+access_6516_product_product_stock_user,product_product_stock_user,BugFix-Sales.model_product_product,,0,0,0,0
+access_6402_product_product_stock_user,product_product_stock_user,BugFix-Sales.model_product_product,,0,0,0,0
+access_5667_product_product_stock_user,product_product_stock_user,BugFix-Sales.model_product_product,,0,0,0,0
+access_6678_procuct,Procuct,BugFix-Sales.model_product_product,,1,1,0,0
+access_6681_procuct,Procuct,BugFix-Sales.model_product_product,,1,0,0,0
+access_6774_product_product_sale_use,product.product sale use,BugFix-Sales.model_product_product,,1,0,0,0
+access_8661_access_product_product_rohana_read,access_product_product_rohana_read,BugFix-Sales.model_product_product,,1,0,0,0
+access_7277_jin___administrator,Jin - Administrator,mrp.model_product_replenish,stock.group_stock_manager,1,1,1,1
+access_6540_access_product_replenish,access.product.replenish,mrp.model_product_replenish,,1,0,0,0
+access_6426_access_product_replenish,access.product.replenish,mrp.model_product_replenish,,1,0,0,0
+access_5691_access_product_replenish,access.product.replenish,mrp.model_product_replenish,,1,0,0,0
+access_8664_access_product_template_attribute_line_rohana_read,access_product_template_attribute_line_rohana_read,product.model_product_template_attribute_line,,1,0,0,0
+access_8665_access_product_template_attribute_value_rohana_read,access_product_template_attribute_value_rohana_read,product.model_product_template_attribute_value,,1,0,0,0
+access_6997_res_config_settings,res.config.settings,BugFix-Sales.model_res_config_settings,,1,0,0,0
+access_6672_res_config_settings,res.config.settings,BugFix-Sales.model_res_config_settings,,1,0,0,0
+access_6888_res_partner_purchase,res.partner purchase,BugFix-Sales.model_res_partner,,1,0,0,0
+access_6685_customers,Customers,BugFix-Sales.model_res_partner,,1,1,1,1
+access_6769_res_partner_crm_user,res.partner.crm.user,BugFix-Sales.model_res_partner,,1,0,0,0
+access_6770_res_partner_sale_user,res.partner.sale.user,BugFix-Sales.model_res_partner,,1,0,0,0
+access_8666_access_res_partner_rohana_read,access_res_partner_rohana_read,BugFix-Sales.model_res_partner,,1,0,0,0
+access_6809_res_partner_category_crm_user,res.partner.category.crm.user,base.model_res_partner_category,,1,0,0,0
+access_8667_access_res_partner_category_rohana_read,access_res_partner_category_rohana_read,base.model_res_partner_category,,1,0,0,0
+access_6864_sale_advance_payment_inv,sale.advance.payment.inv,BugFix-Sales.model_sale_advance_payment_inv,BugFix-Approvals.group_132_jin_sales_pos_users,1,1,1,0
+access_6819_access_sale_advance_payment_inv,access.sale.advance.payment.inv,BugFix-Sales.model_sale_advance_payment_inv,,1,0,0,0
+access_8668_access_sale_advance_payment_inv_rohana_read,access_sale_advance_payment_inv_rohana_read,BugFix-Sales.model_sale_advance_payment_inv,,1,0,0,0
+access_8669_access_sale_mass_cancel_orders_rohana_read,access_sale_mass_cancel_orders_rohana_read,sale.model_sale_mass_cancel_orders,,1,0,0,0
+access_6246_inv___administrator,Inv - Administrator,BugFix-Sales.model_sale_order,stock.group_stock_manager,1,1,1,1
+access_6956_sale_order,sale.order,BugFix-Sales.model_sale_order,,1,1,1,1
+access_7051_sale_order,sale.order,BugFix-Sales.model_sale_order,,1,1,1,1
+access_6549_sale_order_stock_worker,sale.order stock worker,BugFix-Sales.model_sale_order,,1,0,0,0
+access_6435_sale_order_stock_worker,sale.order stock worker,BugFix-Sales.model_sale_order,,1,0,0,0
+access_5700_sale_order_stock_worker,sale.order stock worker,BugFix-Sales.model_sale_order,,1,0,0,0
+access_6151_user,User,BugFix-Sales.model_sale_order,,1,1,1,0
+access_6849_sales_order,Sales Order,BugFix-Sales.model_sale_order,BugFix-Approvals.group_132_jin_sales_pos_users,1,1,1,0
+access_6777_sale_order,sale.order,BugFix-Sales.model_sale_order,,1,1,0,0
+access_8670_access_sale_order_rohana,access_sale_order_rohana,BugFix-Sales.model_sale_order,,1,0,0,0
+access_6086_user,User,BugFix-Sales.model_sale_order,helpdesk.group_helpdesk_user,1,1,1,0
+access_6822_access_sale_order_cancel,access.sale.order.cancel,sale.model_sale_order_cancel,,1,0,0,0
+access_8671_access_sale_order_cancel_rohana_read,access_sale_order_cancel_rohana_read,sale.model_sale_order_cancel,,1,0,0,0
+access_8672_access_sale_order_discount_rohana_read,access_sale_order_discount_rohana_read,sale.model_sale_order_discount,,1,0,0,0
+access_6818_sale_order_option,sale.order.option,sale_management.model_sale_order_option,,1,0,0,0
+access_8679_access_sale_order_option_rohana_read,access_sale_order_option_rohana_read,sale_management.model_sale_order_option,,1,0,0,0
+access_6855_sale_order_template,sale.order.template,sale_management.model_sale_order_template,BugFix-Approvals.group_132_jin_sales_pos_users,1,0,0,0
+access_6815_sale_order_template,sale.order.template,sale_management.model_sale_order_template,,1,0,0,0
+access_8680_access_sale_order_template_rohana_read,access_sale_order_template_rohana_read,sale_management.model_sale_order_template,,1,0,0,0
+access_6816_sale_order_template_line,sale.order.template.line,sale_management.model_sale_order_template_line,,1,0,0,0
+access_8681_access_sale_order_template_line_rohana_read,access_sale_order_template_line_rohana_read,sale_management.model_sale_order_template_line,,1,0,0,0
+access_6817_sale_order_template_option,sale.order.template.option,sale_management.model_sale_order_template_option,,1,0,0,0
+access_8682_access_sale_order_template_option_rohana_read,access_sale_order_template_option_rohana_read,sale_management.model_sale_order_template_option,,1,0,0,0
