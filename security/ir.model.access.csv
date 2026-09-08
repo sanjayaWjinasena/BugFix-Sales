@@ -63,3 +63,9 @@ access_8681_access_sale_order_template_line_rohana_read,access_sale_order_templa
 access_6817_sale_order_template_option,sale.order.template.option,sale_management.model_sale_order_template_option,,1,0,0,0
 access_8682_access_sale_order_template_option_rohana_read,access_sale_order_template_option_rohana_read,sale_management.model_sale_order_template_option,,1,0,0,0
 access_x_minimum_sales_margin_admin,x_minimum_sales_margin admin,BugFix-Sales.model_x_minimum_sales_margin,base.group_system,1,1,1,1
+access_1534_minimum_sales_margin_group_user,Minimum Sales Margin % group_user,BugFix-Sales.model_x_minimum_sales_margin,base.group_user,1,0,0,0
+access_1533_minimum_sales_margin_group_system,Minimum Sales Margin % group_system,BugFix-Sales.model_x_minimum_sales_margin,base.group_system,1,1,1,1
+access_1219_product_product_group_user,product.product group_user,product.model_product_product,base.group_user,1,0,0,0
+access_1218_product_product_group_system,product.product group_system,product.model_product_product,base.group_system,1,1,1,1
+access_1532_res_config_settings_group_user,res.config.settings group_user,hr.model_res_config_settings,base.group_user,1,1,1,0
+access_1531_res_config_settings_group_system,res.config.settings group_system,hr.model_res_config_settings,base.group_system,1,1,1,1
