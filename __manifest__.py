@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.76',
+    'version': '17.0.1.0.77',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
@@ -216,9 +216,8 @@
     # studio_usermodel_migration removed in v52 (no load-time dep, cycle risk).
     'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale',
                 'purchase_requisition', 'website_sale',
-                'Jinasena_Masterdata_Reporting', 'BugFix-Stock'
-        'base_automation',
-    ],
+                'Jinasena_Masterdata_Reporting', 'BugFix-Stock',
+                'base_automation'],
     'post_init_hook': 'post_init_hook',
     # v47: bulk-port of remaining Studio artifacts via
     # scripts/scaffold_bugfix_module.py (adds 8 sale.order fields,
