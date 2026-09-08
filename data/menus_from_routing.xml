@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- BugFix-Sales: menu sweep from routing audit (4 candidates) --><!-- Uses <menuitem> shortcut with dev-verified parent + action refs --><odoo>
+
+  <menuitem id="menu_1089_project_sales_orders" name="Project Sales Orders" parent="project.menu_main_pm" action="BugFix-Sales.act_window_2338_project_sales_orders" sequence="1"/>
+  <menuitem id="menu_1060_sales_production_request_status" name="Sales - Production Request Status" parent="sale.sale_menu_root" action="BugFix-Sales.act_window_2200_sales_production_request_status" sequence="13"/>
+  <menuitem id="menu_832_sales_order_lines" name="Sales Order Lines" parent="sale.sale_order_menu" action="BugFix-Sales.act_window_1568_sales_order_lines" sequence="2"/>
+  <menuitem id="menu_1088_repair_sales_order_list" name="Repair Sales Order List" parent="helpdesk.helpdesk_ticket_report_menu_main" action="BugFix-Sales.act_window_2330_repair_sales_order_list" sequence="4"/>
+
+</odoo>

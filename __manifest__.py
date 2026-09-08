@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.74',
+    'version': '17.0.1.0.75',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
@@ -261,6 +261,7 @@
         'data/automations_backlog.xml',
         'data/window_actions_backlog.xml',
         'data/record_rules_from_analytics.xml',
+        'data/menus_from_routing.xml',
     ],
     'installable': True,
     'auto_install': False,
