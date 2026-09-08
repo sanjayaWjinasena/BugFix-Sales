@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- BugFix-Sales: 16 ir.default records routed from Phase D2 sweep --><odoo>
+  <data noupdate="1">
+
+    <record id="default_212_sale_order_x_studio_over_credit" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_over_credit"/>
+      <field name="json_value">"0"</field>
+    </record>
+
+    <record id="default_244_sale_order_line_x_studio_req_qty" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order_line__x_studio_req_qty"/>
+      <field name="json_value">"0"</field>
+    </record>
+
+    <record id="default_285_x_minimum_sales_margin_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_x_minimum_sales_margin__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_286_x_minimum_sales_margin_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_x_minimum_sales_margin__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <!-- DROPPED default_325_sale_order_line_x_studio_product_status: selection value 'Blank' not in field allowed set --><record id="default_363_sale_order_x_studio_re_estimate_count" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_re_estimate_count"/>
+      <field name="json_value">"0"</field>
+    </record>
+
+    <record id="default_364_sale_order_x_studio_re_estimate_request_count_1" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_re_estimate_request_count_1"/>
+      <field name="json_value">"0"</field>
+    </record>
+
+    <record id="default_366_sale_order_line_x_studio_count_1" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order_line__x_studio_count_1"/>
+      <field name="json_value">"0"</field>
+    </record>
+
+    <record id="default_367_sale_order_line_x_studio_count_2" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order_line__x_studio_count_2"/>
+      <field name="json_value">"0"</field>
+    </record>
+
+    <record id="default_373_x_minimum_sales_margin_x_studio_sales_order_vali" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_x_minimum_sales_margin__x_studio_sales_order_validity"/>
+      <field name="json_value">"0"</field>
+    </record>
+
+    <record id="default_374_sale_order_x_studio_repair_validation" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_repair_validation"/>
+      <field name="json_value">"The current user doesn't have permission to create the invoice."</field>
+    </record>
+
+    <record id="default_384_sale_order_x_studio_sales_order_validity" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_sales_order_validity"/>
+      <field name="json_value">"0"</field>
+    </record>
+
+    <record id="default_415_sale_order_x_studio_confirm_validation" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_confirm_validation"/>
+      <field name="json_value">"The related project budget must be confirmed to proceed with SO confirmation."</field>
+    </record>
+
+    <record id="default_417_sale_order_x_studio_confirm_validation_1" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_confirm_validation_1"/>
+      <field name="json_value">"Profit Margin %\" item is not added in sales lines. Add the margin % line."</field>
+    </record>
+
+    <record id="default_581_x_minimum_sales_margin_x_studio_last_purchase_pr" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_x_minimum_sales_margin__x_studio_last_purchase_price_validity_days"/>
+      <field name="json_value">"0"</field>
+      <field name="company_id" ref="seed_master_data_and_settings.company_jinasena_pvt_ltd"/>
+    </record>
+
+    <!-- DROPPED default_586_product_template_x_studio_product_type: selection value 'None' not in field allowed set --></data>
+</odoo>
