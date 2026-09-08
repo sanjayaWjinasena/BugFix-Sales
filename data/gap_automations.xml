@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales: 5 gap automations + their SAs on newly-shipped x_ models -->
+<odoo>
+  <data noupdate="0">
+
+    <record id="server_action_1776_sls_minimum_sales_margin_in_setup_page" model="ir.actions.server">
+      <field name="name">SLS - Minimum Sales Margin % - in Setup Page</field>
+      <field name="model_id" search="[('model', '=', 'x_minimum_sales_margin')]"/>
+      <field name="state">code</field>
+      <field name="usage">base_automation</field>
+      <field name="code"><![CDATA[
+if record.id:
+  update = env['x_minimum_sales_margin'].search([('x_studio_active', '=', True)], limit=1)
+  if update:
+    raise UserError("Only one Minimum Sales Margin % can exist.") 
+  else:
+    record['x_studio_active'] = True
+    
+  
+
+
+      ]]></field>
+    </record>
+
+    <record id="base_automation_146_sls_minimum_sales_margin_in_setup_page" model="base.automation">
+      <field name="name">SLS - Minimum Sales Margin % - in Setup Page</field>
+      <field name="active" eval="True"/>
+      <field name="model_id" search="[('model', '=', 'x_minimum_sales_margin')]"/>
+      <field name="trigger">on_create_or_write</field>
+      <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1776_sls_minimum_sales_margin_in_setup_page')])]"/>
+    </record>
+
+  </data>
+</odoo>
