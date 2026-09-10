@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales: Phase F2 - 1 defaults -->
+<odoo noupdate="1">
+  <record id="default_BugFix_Sales_field_sale_order_line__x_studio_produ_blank" model="ir.default">
+    <field name="field_id" ref="BugFix-Sales.field_sale_order_line__x_studio_product_status"/>
+    <field name="json_value">"Blank"</field>
+  </record>
+</odoo>
