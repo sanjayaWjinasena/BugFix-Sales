@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.80',
+    'version': '17.0.1.0.81',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
@@ -269,6 +269,11 @@
         'data/automations_gap.xml',
         'data/window_actions_gap.xml',
         'data/ir_defaults_gap.xml',
+        'views/product_pricelist_e_views.xml',
+        'views/product_product_e_views.xml',
+        'views/sale_order_e_views.xml',
+        'views/sale_order_line_e_views.xml',
+        'views/x_minimum_sales_margin_e_views.xml',
     ],
     'installable': True,
     'auto_install': False,

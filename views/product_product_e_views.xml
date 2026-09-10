@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales: Phase E - 3 views for product.product -->
+<odoo>
+  <data>
+    <record id="view_4936_odoo_studio_product_product_form_customization_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: product.product.form customization</field>
+      <field name="model">product.product</field>
+      <field name="type">form</field>
+      <field name="priority">99</field>
+      <field name="active" eval="False"/>
+      <field name="inherit_id" ref="product.product_normal_form_view"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//field[@name='allow_negative_stock']" position="after">
+    <field name="x_studio_item_approval_request_sent" string="Item Approval Request Sent" force_save="True" readonly="1" invisible="1"/>
+    <field name="x_studio_item_approved" string="Item Approved" force_save="True" readonly="1" invisible="1"/>
+    <field name="x_studio_item_approval_request_sent_temp" string="Item Approval Request Sent Temp" invisible="1"/>
+    <field name="x_studio_item_approved_temp" string="Item Approved Temp" invisible="1"/>
+    <field name="x_studio_item_approval_request_sent_prod" invisible="1"/>
+    <field name="x_studio_item_approved_prod" invisible="1"/>
+  </xpath>
+</data>
+      </field>
+    </record>
+
+    <record id="view_4935_odoo_studio_product_product_product_form_button_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: product.product.product.form_button</field>
+      <field name="model">product.product</field>
+      <field name="type">form</field>
+      <field name="priority">99</field>
+      <field name="active" eval="False"/>
+      <field name="inherit_id" ref="product.product_normal_form_view"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+    <xpath expr="//button[@name='action_open_label_layout']" position="before">
+      <button type="action" name="2167" string="Request Item Approval" invisible="(x_studio_item_approval_request_sent_temp == True) or ((x_studio_item_approved == True) or (x_studio_item_approval_request_sent == True))"/>
+    </xpath>
+    
+    <xpath expr="//button[@name='2167']" position="before">
+      <button type="action" name="2173" string="Approve Item" invisible="(x_studio_item_approved_temp == True) or ((x_studio_item_approval_request_sent == False) or (x_studio_item_approved == True))"/>
+    </xpath>
+  </data>
+      </field>
+    </record>
+
+    <record id="view_8329_odoo_studio_product_product_stock_tree_customization_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: product.product.stock.tree customization</field>
+      <field name="model">product.product</field>
+      <field name="type">tree</field>
+      <field name="priority">160</field>
+      <field name="inherit_id" ref="stock.product_product_stock_tree"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//field[@name='id']" position="after">
+    <field name="default_code" optional="show"/>
+  </xpath>
+  <xpath expr="//field[@name='avg_cost']" position="after">
+    <field name="lot_properties_definition" optional="show"/>
+  </xpath>
+  <xpath expr="//field[@name='incoming_qty']" position="after">
+    <field optional="show" name="x_studio_available_qty"/>
+  </xpath>
+</data>
+      </field>
+    </record>
+
+  </data>
+</odoo>

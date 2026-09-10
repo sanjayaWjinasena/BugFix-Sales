@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales: Phase E - 1 views for sale.order -->
+<odoo>
+  <data>
+    <record id="view_3922_odoo_studio_sale_order_form_customization_button_2_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: sale.order.form customization_button_2</field>
+      <field name="model">sale.order</field>
+      <field name="type">form</field>
+      <field name="priority">50002</field>
+      <field name="active" eval="False"/>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//header/button[@name='1478']" position="attributes">
+    <attribute name="studio_approval">True</attribute>
+  </xpath>
+  
+  <xpath expr="//button[@name='1505']" position="attributes">
+    <attribute name="studio_approval">True</attribute>
+  </xpath>
+  
+  <xpath expr="//button[@name='1515']" position="attributes">
+    <attribute name="studio_approval">True</attribute>
+  </xpath>
+  
+  <xpath expr="//button[@name='1435']" position="attributes">
+    <attribute name="studio_approval">True</attribute>
+  </xpath>
+  
+  <xpath expr="//button[@name='1487']" position="attributes">
+    <attribute name="studio_approval">True</attribute>
+  </xpath>
+  
+  <xpath expr="//button[@name='1470']" position="attributes">
+    <attribute name="studio_approval">True</attribute>
+  </xpath>  
+</data>
+      </field>
+    </record>
+
+  </data>
+</odoo>
