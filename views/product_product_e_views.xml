@@ -44,7 +44,7 @@
       <field name="mode">extension</field>
       <field name="arch" type="xml">
         <data>
-  <xpath expr="//tree" position="inside"><field name="x_studio_available_qty" column_invisible="1"/></xpath><xpath expr="//field[@name='id']" position="after">
+  <!-- STRIPPED sentinel x_studio_available_qty: field pinned only to studio_migrations, not loaded in runtime class --><xpath expr="//field[@name='id']" position="after">
     <field name="default_code" optional="show"/>
   </xpath>
   <!-- STRIPPED xpath avg_cost: not on ported parent view -->
