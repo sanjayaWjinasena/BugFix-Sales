@@ -12,27 +12,27 @@
       <field name="mode">extension</field>
       <field name="arch" type="xml">
         <data>
-  <xpath expr="//header/button[@name='1478']" position="attributes">
+  <xpath expr="//header/button[@name='1478']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
     <attribute name="studio_approval">True</attribute>
   </xpath>
   
-  <xpath expr="//button[@name='1505']" position="attributes">
+  <xpath expr="//button[@name='1505']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
     <attribute name="studio_approval">True</attribute>
   </xpath>
   
-  <xpath expr="//button[@name='1515']" position="attributes">
+  <xpath expr="//button[@name='1515']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
     <attribute name="studio_approval">True</attribute>
   </xpath>
   
-  <xpath expr="//button[@name='1435']" position="attributes">
+  <xpath expr="//button[@name='1435']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
     <attribute name="studio_approval">True</attribute>
   </xpath>
   
-  <xpath expr="//button[@name='1487']" position="attributes">
+  <xpath expr="//button[@name='1487']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
     <attribute name="studio_approval">True</attribute>
   </xpath>
   
-  <xpath expr="//button[@name='1470']" position="attributes">
+  <xpath expr="//button[@name='1470']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
     <attribute name="studio_approval">True</attribute>
   </xpath>  
 </data>
