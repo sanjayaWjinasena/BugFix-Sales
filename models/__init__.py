@@ -14,3 +14,6 @@ from . import sale_order_line
 from . import x_delivery_terms
 from . import x_sales_report_type
 from . import x_minimum_sales_margin
+
+from . import res_partner_gap
+from . import x_minimum_sales_margin_gap
