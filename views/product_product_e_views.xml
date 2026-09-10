@@ -59,8 +59,8 @@
     <field name="lot_properties_definition" optional="show"/>
   </xpath>
   <xpath expr="//field[@name='incoming_qty']" position="after">
-    <field optional="show" name="x_studio_available_qty"/>
-  </xpath>
+    <!-- STRIPPED x_studio_available_qty: ghost field pinned only to studio_migrations -->
+</xpath>
 </data>
       </field>
     </record>
