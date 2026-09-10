@@ -12,29 +12,17 @@
       <field name="mode">extension</field>
       <field name="arch" type="xml">
         <data>
-  <xpath expr="//header/button[@name='1478']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
-    <attribute name="studio_approval">True</attribute>
-  </xpath>
+  <!-- STRIPPED xpath: numeric button ref unresolvable -->
   
-  <xpath expr="//button[@name='1505']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
-    <attribute name="studio_approval">True</attribute>
-  </xpath>
+  <!-- STRIPPED xpath: numeric button ref unresolvable -->
   
-  <xpath expr="//button[@name='1515']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
-    <attribute name="studio_approval">True</attribute>
-  </xpath>
+  <!-- STRIPPED xpath: numeric button ref unresolvable -->
   
-  <xpath expr="//button[@name='1435']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
-    <attribute name="studio_approval">True</attribute>
-  </xpath>
+  <!-- STRIPPED xpath: numeric button ref unresolvable -->
   
-  <xpath expr="//button[@name='1487']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
-    <attribute name="studio_approval">True</attribute>
-  </xpath>
+  <!-- STRIPPED xpath: numeric button ref unresolvable -->
   
-  <xpath expr="//button[@name='1470']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
-    <attribute name="studio_approval">True</attribute>
-  </xpath>  
+  <!-- STRIPPED xpath: numeric button ref unresolvable -->  
 </data>
       </field>
     </record>

@@ -38,9 +38,7 @@
       <!-- STRIPPED action button aid=2167 unresolvable -->
     </xpath>
     
-    <xpath expr="//button[@name='2167']<!-- WARNING: xpath refs unresolvable action -->" position="before">
-      <!-- STRIPPED action button aid=2173 unresolvable -->
-    </xpath>
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->
   </data>
       </field>
     </record>
