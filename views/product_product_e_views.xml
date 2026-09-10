@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- BugFix-Sales: Phase E - 3 views for product.product -->
-<odoo>
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- BugFix-Sales: Phase E - 3 views for product.product --><odoo>
   <data>
     <record id="view_4936_odoo_studio_product_product_form_customization_e" model="ir.ui.view">
       <field name="name">Odoo Studio: product.product.form customization</field>
@@ -45,7 +44,7 @@
       <field name="mode">extension</field>
       <field name="arch" type="xml">
         <data>
-  <xpath expr="//field[@name='id']" position="after">
+  <xpath expr="//tree" position="inside"><field name="x_studio_available_qty" column_invisible="1"/></xpath><xpath expr="//field[@name='id']" position="after">
     <field name="default_code" optional="show"/>
   </xpath>
   <!-- STRIPPED xpath avg_cost: not on ported parent view -->
