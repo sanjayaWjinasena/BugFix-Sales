@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales: Phase F6 - 7 menus -->
+<odoo>
+  <menuitem id="menu_f6_project_sales_orders" name="Project Sales Orders" parent="project.menu_main_pm" action="BugFix-Sales.aw_f4_sale_order_project_sales_orders" sequence="1"/>
+  <menuitem id="menu_f6_sales_order_lines" name="Sales Order Lines" parent="sale.sale_order_menu" action="BugFix-Sales.act_window_1568_sales_order_lines" sequence="2"/>
+  <menuitem id="menu_f6_repair_sales_order_list" name="Repair Sales Order List" parent="helpdesk.helpdesk_ticket_report_menu_main" action="BugFix-Sales.aw_f4_sale_order_repair_sales_order_list" sequence="4"/>
+  <menuitem id="menu_f6_sales_production_request_status" name="Sales - Production Request Status" parent="sale.sale_menu_root" action="BugFix-Sales.aw_f4_sale_order_line_sales_production_request_status" sequence="13"/>
+  <menuitem id="menu_f6_document_introductions" name="Document Introductions" parent="sale.menu_sale_config" action="BugFix-Sales.act_window_3635_document_introductions" sequence="90"/>
+  <menuitem id="menu_f6_document_conclusions" name="Document Conclusions" parent="sale.menu_sale_config" action="BugFix-Sales.action_doc_conclusion" sequence="91"/>
+  <menuitem id="menu_f6_sales_configurations" name="Sales Configurations" parent="sale.menu_sale_config" action="BugFix-Sales.act_window_1750_sales_configurations" sequence="5"/>
+</odoo>
