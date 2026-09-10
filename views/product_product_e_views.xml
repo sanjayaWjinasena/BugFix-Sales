@@ -12,14 +12,7 @@
       <field name="mode">extension</field>
       <field name="arch" type="xml">
         <data>
-  <xpath expr="//field[@name='allow_negative_stock']" position="after">
-    <field name="x_studio_item_approval_request_sent" string="Item Approval Request Sent" force_save="True" readonly="1" invisible="1"/>
-    <field name="x_studio_item_approved" string="Item Approved" force_save="True" readonly="1" invisible="1"/>
-    <field name="x_studio_item_approval_request_sent_temp" string="Item Approval Request Sent Temp" invisible="1"/>
-    <field name="x_studio_item_approved_temp" string="Item Approved Temp" invisible="1"/>
-    <field name="x_studio_item_approval_request_sent_prod" invisible="1"/>
-    <field name="x_studio_item_approved_prod" invisible="1"/>
-  </xpath>
+  <!-- STRIPPED xpath allow_negative_stock: not on ported parent view -->
 </data>
       </field>
     </record>
@@ -55,9 +48,7 @@
   <xpath expr="//field[@name='id']" position="after">
     <field name="default_code" optional="show"/>
   </xpath>
-  <xpath expr="//field[@name='avg_cost']" position="after">
-    <field name="lot_properties_definition" optional="show"/>
-  </xpath>
+  <!-- STRIPPED xpath avg_cost: not on ported parent view -->
   <xpath expr="//field[@name='incoming_qty']" position="after">
     <!-- STRIPPED x_studio_available_qty: ghost field pinned only to studio_migrations -->
 </xpath>
