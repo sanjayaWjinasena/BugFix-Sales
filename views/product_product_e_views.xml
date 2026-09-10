@@ -35,11 +35,11 @@
       <field name="arch" type="xml">
         <data>
     <xpath expr="//button[@name='action_open_label_layout']" position="before">
-      <button type="action" name="2167" string="Request Item Approval" invisible="(x_studio_item_approval_request_sent_temp == True) or ((x_studio_item_approved == True) or (x_studio_item_approval_request_sent == True))"/>
+      <!-- STRIPPED action button aid=2167 unresolvable -->
     </xpath>
     
     <xpath expr="//button[@name='2167']" position="before">
-      <button type="action" name="2173" string="Approve Item" invisible="(x_studio_item_approved_temp == True) or ((x_studio_item_approval_request_sent == False) or (x_studio_item_approved == True))"/>
+      <!-- STRIPPED action button aid=2173 unresolvable -->
     </xpath>
   </data>
       </field>
