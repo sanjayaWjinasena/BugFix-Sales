@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales: Views final - 2 remaining views -->
+<odoo>
+  <data>
+    <record id="view_final_x_minimum_sales_margin_odoo_studio_default_form_view_for_x_minimum_sales_margin" model="ir.ui.view">
+      <field name="name">Odoo Studio: Default form view for x_minimum_sales_margin customization</field>
+      <field name="model">x_minimum_sales_margin</field>
+      <field name="type">form</field>
+      <field name="priority">99</field>
+      <field name="inherit_id" ref="BugFix-Sales.view_3928_default_form_view_for_x_minimum_sales_margin_e"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//group[@name='studio_group_457e75_left']" position="inside">
+    <field name="x_studio_minimum_sales_margin_"/>
+    <field name="x_studio_advance_payment_" string="Advance Payment %"/>
+  </xpath>
+  <xpath expr="//group[@name='studio_group_457e75_right']" position="inside">
+    <field name="x_studio_sales_order_validity" string="Sales Order Validity (Days)"/>
+    <field name="x_studio_last_purchase_price_validity_days" string="Last Purchase Price Validity (Days)"/>
+    <field name="x_studio_company_id" string="Company"/>
+  </xpath>
+</data>
+      </field>
+    </record>
+
+    <record id="view_final_x_minimum_sales_margin_odoo_studio_default_list_view_for_x_minimum_sales_margin" model="ir.ui.view">
+      <field name="name">Odoo Studio: Default list view for x_minimum_sales_margin customization</field>
+      <field name="model">x_minimum_sales_margin</field>
+      <field name="type">tree</field>
+      <field name="priority">99</field>
+      <field name="inherit_id" ref="BugFix-Sales.view_3927_default_list_view_for_x_minimum_sales_margin_e"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//tree[1]" position="attributes">
+    <attribute name="create">false</attribute>
+    <attribute name="delete">false</attribute>
+  </xpath>
+  <xpath expr="//field[@name='x_studio_sequence']" position="attributes">
+    <attribute name="column_invisible">1</attribute></xpath>
+  <xpath expr="//field[@name='x_name']" position="after">
+    <field name="x_studio_company_id" optional="show"/>
+    <field name="id" optional="show"/>
+    <field name="x_studio_minimum_sales_margin_" string="Minimum Sales Margin %" column_invisible="1"/>
+    <field name="x_studio_active" string="Active" column_invisible="1"/>
+  </xpath>
+</data>
+      </field>
+    </record>
+
+  </data>
+</odoo>

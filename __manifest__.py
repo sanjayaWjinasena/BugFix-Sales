@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.98',
+    'version': '17.0.1.0.99',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
@@ -236,6 +236,7 @@
     # Removed alongside dropping studio_migrations from
     # studio_usermodel_migration's depends (v0.0.9 of that module).
     'data': [
+        'views/views_final.xml',
         'data/menus_f6.xml',
         'data/server_actions_f5.xml',
         'data/window_actions_f4.xml',
