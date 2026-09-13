@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- BugFix-Sales: Defaults final - 1 defaults -->
+<!-- BugFix-Sales: Defaults final - 0 non-Selection -->
 <odoo noupdate="1">
-  <record id="default_final_sale_stock_field_sale_order_picking_policy_direct" model="ir.default">
-    <field name="field_id" ref="sale_stock.field_sale_order__picking_policy"/>
-    <field name="json_value">"direct"</field>
-  </record>
 </odoo>
