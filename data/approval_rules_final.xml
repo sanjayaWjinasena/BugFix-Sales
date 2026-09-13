@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales: Approval Rules - 7 -->
+<odoo noupdate="1">
+  <record id="ar_final_sales_order_sls_credit_limit_approval_sales_credit_limit_app" model="studio.approval.rule">
+    <field name="name">Sales Order/SLS - Credit Limit Approval (Sales / Credit Limit Approver) (18)</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="action_id" ref="BugFix-Sales.server_action_1435_sls_credit_limit_approval_main"/>
+    <field name="group_id" ref="BugFix-Approvals.group_125_jin_sales_credit_limit_approvers"/>
+  </record>
+  <record id="ar_final_sales_order_sls_temporary_credit_approval_sales_temporary_cr" model="studio.approval.rule">
+    <field name="name">Sales Order/SLS - Temporary Credit Approval (Sales / Temporary Credit Approver) (19)</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="action_id" ref="BugFix-Sales.server_action_1470_sls_temporary_credit_approval_main"/>
+    <field name="group_id" ref="BugFix-Approvals.group_126_jin_sales_temporary_credit_approvers"/>
+  </record>
+  <record id="ar_final_sales_order_sls_overdue_approval_sales_overdue_approver_22" model="studio.approval.rule">
+    <field name="name">Sales Order/SLS - Overdue Approval (Sales / Overdue Approver) (22)</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="action_id" ref="BugFix-Sales.server_action_1478_sls_overdue_approval"/>
+    <field name="group_id" ref="BugFix-Approvals.group_127_jin_sales_overdue_approvers"/>
+  </record>
+  <record id="ar_final_sales_order_sls_bank_guarantee_approval_sales_bank_guarantee" model="studio.approval.rule">
+    <field name="name">Sales Order/SLS - Bank Guarantee Approval (Sales / Bank Guarantee Approver) (23)</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="action_id" ref="BugFix-Sales.server_action_1487_sls_bank_guarantee_approval_main"/>
+    <field name="group_id" ref="BugFix-Approvals.group_128_jin_sales_bank_guarantee_approvers"/>
+  </record>
+  <record id="ar_final_sales_order_sls_over_commission_approval_sales_over_commissi" model="studio.approval.rule">
+    <field name="name">Sales Order/SLS - Over Commission Approval (Sales / Over Commission Approver) (26)</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="action_id" ref="BugFix-Sales.server_action_1505_sls_over_commission_approval_main"/>
+    <field name="group_id" ref="BugFix-Approvals.group_130_jin_sales_over_commission_approvers"/>
+  </record>
+  <record id="ar_final_sales_order_sls_margin_approval_sales_margin_approver_27" model="studio.approval.rule">
+    <field name="name">Sales Order/SLS - Margin Approval (Sales / Margin Approver) (27)</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="action_id" ref="BugFix-Sales.server_action_1515_sls_margin_approval_main"/>
+    <field name="group_id" ref="BugFix-Approvals.group_131_jin_sales_sales_margin_approvers"/>
+    <field name="exclusive_user" eval="True"/>
+  </record>
+  <record id="ar_final_sales_order_sls_create_customer_payment_user_types_internal_" model="studio.approval.rule">
+    <field name="name">Sales Order/SLS - Create Customer Payment (User types / Internal User) (99)</field>
+    <field name="model_id" search="[('model', '=', 'sale.order')]"/>
+    <field name="action_id" ref="BugFix-Sales.server_action_2341_sls_create_customer_payment"/>
+    <field name="group_id" ref="base.group_user"/>
+  </record>
+</odoo>
