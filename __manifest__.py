@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.105',
+    'version': '17.0.1.0.106',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
@@ -217,7 +217,13 @@
     'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale',
                 'purchase_requisition', 'website_sale',
                 'Jinasena_Masterdata_Reporting', 'BugFix-Stock',
-                'base_automation'],
+                'base_automation',
+                'BugFix-Approvals',              # group refs in CSV / automations
+                'BugFix-Purchase',               # field_x_delivery_terms__create_date etc.
+                'Fix-repair',                    # res.partner.x_studio_(s)vat_registration_* fields
+                'studio_usermodel_migration',    # res.partner.x_studio_customer_group / _vendor_group
+                'seed_master_data_and_settings', # company_jinasena_pvt_ltd ref
+    ],
     'post_init_hook': 'post_init_hook',
     # v47: bulk-port of remaining Studio artifacts via
     # scripts/scaffold_bugfix_module.py (adds 8 sale.order fields,
