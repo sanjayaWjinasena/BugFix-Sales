@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Visual-Migration_fixes: Sales app menu alignment with CDB. -->
+<odoo>
+  <data>
+    <!-- Studio on CDB renamed "Orders" to "Sales Orders". Mirror that here. -->
+    <record id="sale.menu_sale_order" model="ir.ui.menu">
+      <field name="name">Sales Orders</field>
+    </record>
+
+    <!-- CDB nests Units of Measure under Sales/Configuration/Products, not
+         directly under Sales/Configuration. Re-nest to match. -->
+    <record id="sale.menu_product_uom_form_action" model="ir.ui.menu">
+      <field name="parent_id" ref="sale.prod_config_main"/>
+    </record>
+    <record id="sale.menu_product_uom_categ_form_action" model="ir.ui.menu">
+      <field name="parent_id" ref="sale.prod_config_main"/>
+    </record>
+
+    <!-- Our extra "Sales Configurations" folder — not on CDB. Deactivate. -->
+    <record id="menu_f6_sales_configurations" model="ir.ui.menu">
+      <field name="active" eval="False"/>
+    </record>
+  </data>
+</odoo>
