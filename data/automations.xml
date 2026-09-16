@@ -380,7 +380,7 @@
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="trigger_field_ids" eval="[(6, 0, [ref('Fix-repair.field_res_partner__x_studio_vat_registration_status')])]"/>
+    <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1834_sls_track_vat_registration_status_in_customer')])]"/>
   </record>
 
@@ -389,7 +389,7 @@
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="trigger_field_ids" eval="[(6, 0, [ref('Fix-repair.field_res_partner__x_studio_vat_registration_number')])]"/>
+    <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1835_sls_track_vat_registration_no_in_customer')])]"/>
   </record>
 
@@ -398,7 +398,7 @@
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="trigger_field_ids" eval="[(6, 0, [ref('Fix-repair.field_res_partner__x_studio_svat_registration_status')])]"/>
+    <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1836_sls_track_svat_registration_status_in_customer')])]"/>
   </record>
 
@@ -407,7 +407,7 @@
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="trigger_field_ids" eval="[(6, 0, [ref('Fix-repair.field_res_partner__x_studio_svat_registration_number')])]"/>
+    <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1837_sls_track_svat_registration_no_in_customer')])]"/>
   </record>
 
@@ -425,7 +425,7 @@
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="trigger_field_ids" eval="[(6, 0, [ref('Fix-repair.field_res_partner__x_studio_mandatory_bank_guarantee')])]"/>
+    <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1839_sls_track_mandatory_bank_guarantee_in_customer')])]"/>
   </record>
 
@@ -434,7 +434,7 @@
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="trigger_field_ids" eval="[(6, 0, [ref('Fix-repair.field_res_partner__x_studio_vat_exempted_number')])]"/>
+    <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2037_sls_track_vat_exempted_number_in_customer')])]"/>
   </record>
 
@@ -514,7 +514,7 @@
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'x_delivery_terms')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Purchase.field_x_delivery_terms__create_date')])]"/>
+    <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2682_jin_company_id_in_delivery_terms')])]"/>
   </record>
 
