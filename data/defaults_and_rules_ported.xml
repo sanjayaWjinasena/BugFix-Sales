@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<odoo>
-  <data>
-    <record id="default_product_template_x_studio_product_type_586" model="ir.default">
-      <field name="field_id" search="[('model','=','product.template'),('name','=','x_studio_product_type')]"/>
-      <field name="json_value">"None"</field>
-    </record>
-  </data>
-</odoo>
