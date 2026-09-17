@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <data noupdate="1">
+    <record id="sel_sale_order_x_studio_customer_payment_method_Cash" model="ir.model.fields.selection">
+      <field name="field_id" search="[('model','=','sale.order'),('name','=','x_studio_customer_payment_method')]"/>
+      <field name="value">Cash</field>
+      <field name="name">Cash</field>
+      <field name="sequence" eval="10"/>
+    </record>
+    <record id="sel_sale_order_x_studio_proj_budget_status_draft" model="ir.model.fields.selection">
+      <field name="field_id" search="[('model','=','sale.order'),('name','=','x_studio_proj_budget_status')]"/>
+      <field name="value">draft</field>
+      <field name="name">Draft</field>
+      <field name="sequence" eval="10"/>
+    </record>
+    <record id="sel_sale_order_x_studio_customer_payment_method_Credit" model="ir.model.fields.selection">
+      <field name="field_id" search="[('model','=','sale.order'),('name','=','x_studio_customer_payment_method')]"/>
+      <field name="value">Credit</field>
+      <field name="name">Credit</field>
+      <field name="sequence" eval="1"/>
+    </record>
+    <record id="sel_sale_order_x_studio_proj_budget_status_cancel" model="ir.model.fields.selection">
+      <field name="field_id" search="[('model','=','sale.order'),('name','=','x_studio_proj_budget_status')]"/>
+      <field name="value">cancel</field>
+      <field name="name">Cancelled</field>
+      <field name="sequence" eval="1"/>
+    </record>
+    <record id="sel_sale_order_x_studio_proj_budget_status_confirm" model="ir.model.fields.selection">
+      <field name="field_id" search="[('model','=','sale.order'),('name','=','x_studio_proj_budget_status')]"/>
+      <field name="value">confirm</field>
+      <field name="name">Confirmed</field>
+      <field name="sequence" eval="2"/>
+    </record>
+    <record id="sel_sale_order_x_studio_proj_budget_status_validate" model="ir.model.fields.selection">
+      <field name="field_id" search="[('model','=','sale.order'),('name','=','x_studio_proj_budget_status')]"/>
+      <field name="value">validate</field>
+      <field name="name">Validated</field>
+      <field name="sequence" eval="3"/>
+    </record>
+    <record id="sel_sale_order_x_studio_proj_budget_status_done" model="ir.model.fields.selection">
+      <field name="field_id" search="[('model','=','sale.order'),('name','=','x_studio_proj_budget_status')]"/>
+      <field name="value">done</field>
+      <field name="name">Done</field>
+      <field name="sequence" eval="4"/>
+    </record>
+  </data>
+</odoo>
