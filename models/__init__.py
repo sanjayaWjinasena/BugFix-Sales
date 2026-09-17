@@ -17,6 +17,3 @@ from . import x_minimum_sales_margin
 
 from . import res_partner_gap
 from . import x_minimum_sales_margin_gap
-from . import sale_order_alert_ext
-from . import product_category_ext
-from . import product_pricelist_item_ext
