@@ -13,10 +13,30 @@
         <xpath expr="//form[1]" position="attributes">
           <attribute name="create">false</attribute>
         </xpath>
-        
-        
-        
-        
+
+        <!--1.2.2 Overdue Control in Sales Orders (Slice C, v0.1.0.121)
+             Ported from CDB view 2304. RUG buttons (1980/1981/2004) stay
+             with Fix-repair; positional xpath target //button[@name='508']
+             from CDB replaced with semantic //header position=inside
+             (name=508 doesn't exist on Dev's composed arch).  -->
+        <xpath expr="//sheet" position="inside">
+          <field name="x_studio_overdue_request_sent" invisible="1"/>
+          <field name="x_studio_clear_free_items" invisible="1"/>
+        </xpath>
+        <xpath expr="//header" position="inside">
+          <button type="action"
+                  name="%(BugFix-Sales.server_action_1476_sls_request_overdue_approval)d"
+                  string="Request Overdue Approval"
+                  class="btn-primary"
+                  invisible="(state == 'cancel') or ((x_studio_overdue_request_sent == True) or ((x_studio_overdue_approved == True) or ((x_studio_overdue != True) or ((x_studio_valid_order_lines == False) or ((state == 'done') or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))))"/>
+          <button type="action"
+                  name="%(BugFix-Sales.server_action_1478_sls_overdue_approval)d"
+                  string="Approve Overdue"
+                  class="btn-primary"
+                  studio_approval="True"
+                  invisible="(state == 'cancel') or ((x_studio_overdue_request_sent == False) or ((x_studio_overdue_approved == True) or ((x_studio_overdue != True) or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))"/>
+        </xpath>
+
         
         
         
