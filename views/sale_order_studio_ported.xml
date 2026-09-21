@@ -88,11 +88,34 @@
         <xpath expr="//tree[1]" position="attributes">
           <attribute name="create">false</attribute>
         </xpath>
-        
-        
-        
-        
-        
+        <xpath expr="//tree[1]/field[@name='name']" position="after">
+          <field name="x_studio_quotation_type" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='date_order']" position="after">
+          <field name="create_date" optional="show" widget="date"/>
+        </xpath>
+        <xpath expr="//field[@name='amount_total']" position="attributes">
+          <attribute name="sum">Sum of Total</attribute>
+        </xpath>
+        <xpath expr="//field[@name='invoice_status']" position="after">
+          <field name="id" optional="show" column_invisible="1"/>
+          <xpath expr="//field[@name='currency_id']" position="move"/>
+          <field name="x_studio_credit_limit_approved" optional="hide"/>
+          <field name="x_studio_overdue_approved" optional="hide"/>
+          <field name="x_studio_bank_guarantee_approved" optional="hide"/>
+          <field name="x_studio_temporary_credit_approved" optional="hide"/>
+          <field name="x_studio_over_commission_approved" optional="hide"/>
+          <field name="x_studio_margin_approved" optional="hide"/>
+          <field name="x_studio_overdue" optional="hide"/>
+          <field name="x_studio_over_credit" optional="hide"/>
+          <field name="x_studio_over_bank_guarantee" optional="hide"/>
+          <field name="x_studio_margin_exceed" optional="hide"/>
+          <field name="x_studio_over_commission" optional="hide"/>
+        </xpath>
+        <xpath expr="//field[@name='state']" position="attributes">
+          <attribute name="optional">hide</attribute>
+          <attribute name="invisible"/>
+        </xpath>
       </data>
     </field>
   </record>
