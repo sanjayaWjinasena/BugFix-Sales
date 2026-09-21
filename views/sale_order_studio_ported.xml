@@ -226,6 +226,17 @@
                   invisible="(state == 'cancel') or ((x_studio_project_item_request_sent == False) or ((x_studio_project_item_approved == True) or (x_studio_expired == True)))"/>
         </xpath>
 
+        <!-- Sentinel required by Slice A9 pages Repair Image + Warranty
+             Details, whose invisible= modifiers reference task_id. Standard
+             industry_fsm_sale declares task_id as optional="hidden", which
+             does NOT satisfy Odoo 17's install-time modifier validator (only
+             a plain <field> declaration counts). Fix-repair v341's runtime
+             optional-strip in _get_view is too late — it runs at view-fetch,
+             not at data-file load. -->
+        <xpath expr="//sheet" position="inside">
+          <field name="task_id" invisible="1"/>
+        </xpath>
+
         <!--1.2.15 Notebook pages (Slice A9, v0.1.0.129). Verbatim port of
              CDB view 2304's single //notebook position=inside xpath adding
              8 new tabs to the sale.order form notebook:
