@@ -578,6 +578,62 @@
             <field name="x_studio_tem_credit_approval_request_sent" string="Tem. Credit Approval Request Sent" force_save="True" readonly="1" invisible="1" />
           </xpath>
 
+        <!--1.2.18 The 41-field validity_date drop (Slice A2, v0.1.0.138).
+             Verbatim port of CDB view 2304's massive after-validity_date
+             xpath. Places all Studio-created state fields at their proper
+             position (right after standard validity_date on the sheet).
+
+             41 fields, 15 modifier refs (8 external - all already sentinelled
+             in prior slices C/F/G/D/E/H/A1). Some field names overlap with
+             existing invisible=1 sentinels; Odoo tolerates duplicate <field>
+             declarations - our sentinels stay invisible=1 while these
+             CDB-verbatim declarations carry the actual visibility gates.  -->
+
+        <xpath expr="//field[@name='validity_date']" position="after">
+            <field name="is_expired" invisible="1" />
+            <field name="x_studio_expired" string="Expired" force_save="True" readonly="1" />
+            <field name="x_studio_order_payment_method" force_save="1" string="Order Payment Type" required="1" readonly="(x_studio_temporary_credit_approved == True) or ((x_studio_bank_guarantee_approved == True) or ((x_studio_margin_approved == True) or ((x_studio_over_commission_approved == True) or ((x_studio_credit_limit_approved == True) or ((x_studio_overdue_approved == True) or ((state == 'cancel') or ((state == 'done') or ((state == 'sale') or ((x_studio_approval_request_sent == True) or ((x_studio_customer_payment_method == 'Cash') or (x_studio_credit_limit_approved == True)))))))))))" />
+            <field name="x_studio_quotation_type" string="Quotation Type" required="1" readonly="(task_id != False) or (state != 'draft')" />
+            <field name="x_studio_sales_order_validity" string="Sales Order Validity" force_save="True" readonly="1" />
+            <field name="x_studio_account_mandatory" string="Account Mandatory" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_clear_free_items" string="Clear Free Items" invisible="1" />
+            <field name="x_studio_authorized_repair_user" string="Authorized Repair User" invisible="1" />
+            <field name="x_studio_valid_transfer" string="Valid Transfer" invisible="1" />
+            <field name="x_studio_project_group" string="Project Group" options="{&quot;no_open&quot;:true}" invisible="x_studio_quotation_type != 'Project'" readonly="(task_id != False) or (state != 'draft')" required="x_studio_quotation_type == 'Project'" />
+            <field name="x_studio_project_start_date" string="Contract Start Date" invisible="x_studio_quotation_type != 'Project'" readonly="(x_studio_budget_created == True) or (state != 'draft')" />
+            <field name="x_studio_project_end_date" string="Contract End Date" invisible="x_studio_quotation_type != 'Project'" readonly="(x_studio_budget_created == True) or (state != 'draft')" />
+            <field name="x_studio_project_budget" string="Project Budget" force_save="True" readonly="1" invisible="x_studio_quotation_type != 'Project'" />
+            <field name="x_studio_proj_budget_status" string="Proj. Budget Status" invisible="x_studio_quotation_type != 'Project'" />
+            <field name="x_studio_service_item_available" string="Service Item Available" force_save="True" readonly="1" />
+            <field name="x_studio_valid_order_lines_for_projects" string="Valid Order Lines for Projects" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_sub_contract" string="Sub Contract" invisible="1" />
+            <field name="x_studio_inventory_short" string="Inventory Short" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_pr_created" string="PR Created" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_pr_cost_updated" string="PR Cost Updated" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_new_item_from_project" string="New Item From Project" invisible="1" />
+            <field name="x_studio_project_item_request_sent" string="Project Item Request Sent" invisible="1" />
+            <field name="x_studio_project_item_approved" string="Project Item Approved" invisible="1" />
+            <field name="task_id" force_save="True" readonly="1" invisible="task_id == False" />
+            <field name="x_studio_cancelled" string="Cancelled" invisible="1" />
+            <field name="x_studio_rug_confirmed" string="RUG Confirmed" invisible="x_studio_rug_confirmed != True" />
+            <field name="x_studio_rug_request_sent" string="RUG Request Sent" invisible="1" />
+            <field name="x_studio_rug_approved" string="RUG Approved" force_save="True" readonly="1" invisible="x_studio_rug_approved != True" />
+            <field name="x_studio_rug_rejected" string="RUG Rejected" force_save="True" readonly="1" invisible="x_studio_rug_rejected != True" />
+            <field name="x_studio_project_no" string="Project No" invisible="(x_studio_quotation_type != 'Project') or (x_studio_project_no == False)" />
+            <field name="x_studio_main_project_no" string="Main Project No" force_save="True" readonly="1" />
+            <field name="x_studio_price_not_confirmed" string="Price Not Confirmed" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_valid_order_lines_for_update_rfq_cost" string="Valid Order Lines for Update RFQ Cost" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_main_project_2" string="Main Project 2" invisible="1" />
+            <field name="x_studio_budget_created" string="Budget Created" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_credit_limit_validation" string="Credit Limit Validation" invisible="1" />
+            <field name="x_studio_bank_guarantee_validation" string="Bank Guarantee Validation" invisible="1" />
+            <field name="x_studio_bank_guarantee_notification" string="Bank Guarantee Notification" invisible="1" />
+            <field name="x_studio_bg_sent" string="BG Sent" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_valid_order_lines" string="Valid Order Lines" invisible="1" />
+            <field name="x_studio_transfer_inventory_ok" string="Transfer Inventory  Not OK" force_save="True" readonly="1" invisible="1" />
+          </xpath>
+
+
 
 
         
