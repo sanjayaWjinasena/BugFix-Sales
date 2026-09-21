@@ -411,9 +411,10 @@
           <field name="x_studio_transfer_inventory_ok" invisible="1"/>
         </xpath>
 
-        <xpath expr="//form[1]/header[1]/button[@name='508']" position="attributes">
-            <attribute name="invisible">(is_subscription and state != 'sale' or invoice_status != 'to invoice') or (((task_id != False) and (x_studio_quotation_type == 'Project')) or ((x_studio_authorized_repair_user == True) or (invoice_status != 'to invoice')))</attribute>
-          </xpath>
+        <!-- DROPPED: xpath on //button[@name='508'] - hardcoded numeric
+             action-id reference from Studio. Button 508 exists on CDB but
+             not on fresh Odoo installs (action IDs differ per env). Per
+             feedback-hardcoded-action-ids convention. -->
 
         <xpath expr="//form[1]/header[1]/button[@name='action_quotation_send']" position="attributes">
             <attribute name="invisible">((state != 'draft' or (is_abandoned_cart and not cart_recovery_email_sent)) or (((x_studio_rug_rejected == False) and ((x_studio_rug_approved == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or ((x_studio_new_item_from_project != False) or ((x_studio_valid_order_lines == False) or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((state == 'cancel') or ((x_studio_cancelled == True) or ((x_studio_locked == True) or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))))))))) or (state not in ['False'])</attribute>
