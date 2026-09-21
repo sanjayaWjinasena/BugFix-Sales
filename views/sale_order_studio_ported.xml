@@ -729,6 +729,19 @@
         
         
         
+      
+        <!--1.2.20 Misc xpaths (Slice A10, v0.1.0.140). Ports the
+             user_id-before-anchor xpath that repositions payment_term_id
+             to sit before user_id in the sale_header group. Skipped:
+             the duplicate standalone <xpath expr=payment_term_id
+             position=move/> that Studio's inherit emitter produced
+             outside its parent (no legal target parent). Also skipped
+             the empty <xpath expr=order_line/tree/product_type
+             position=after/> which has no content.  -->
+        <xpath expr="//field[@name='user_id']" position="before">
+          <xpath expr="//field[@name='payment_term_id']" position="move"/>
+        </xpath>
+
       </data>
     </field>
   </record>
