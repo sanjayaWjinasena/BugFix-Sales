@@ -20,8 +20,12 @@
              from CDB replaced with semantic //header position=inside
              (name=508 doesn't exist on Dev's composed arch).  -->
         <xpath expr="//sheet" position="inside">
+          <field name="x_studio_overdue" invisible="1"/>
+          <field name="x_studio_overdue_approved" invisible="1"/>
           <field name="x_studio_overdue_request_sent" invisible="1"/>
+          <field name="x_studio_valid_order_lines" invisible="1"/>
           <field name="x_studio_clear_free_items" invisible="1"/>
+          <field name="x_studio_expired" invisible="1"/>
         </xpath>
         <xpath expr="//header" position="inside">
           <button type="action"
