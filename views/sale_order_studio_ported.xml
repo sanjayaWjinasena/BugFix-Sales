@@ -62,8 +62,38 @@
                   invisible="(state == 'cancel') or ((x_studio_over_comm_approval_request_sent == False) or ((x_studio_over_commission_approved == True) or ((x_studio_over_commission != True) or (x_studio_expired == True))))"/>
         </xpath>
 
+        <!--1.2.10 Margin Control in Sales Orders (Slice G, v0.1.0.124).
+             Ported from CDB view 2304. Fields on Dev are x_studio_margin_exceed /
+             _approved / _approval_request_sent (NOT x_studio_over_margin_* — that
+             prefix guess was wrong; verified via fields_get on Dev before shipping).
+             Details button (1517) uses btn-secondary and opens Item Over Margin
+             list modal. Reuses valid_order_lines / clear_free_items / expired /
+             overdue sentinels declared in Slice C.  -->
+        <xpath expr="//sheet" position="inside">
+          <field name="x_studio_margin_exceed" invisible="1"/>
+          <field name="x_studio_margin_approved" invisible="1"/>
+          <field name="x_studio_margin_approval_request_sent" invisible="1"/>
+        </xpath>
+        <xpath expr="//header" position="inside">
+          <button type="action"
+                  name="%(BugFix-Sales.server_action_1513_sls_request_margin_approval)d"
+                  string="Request Margin Approval"
+                  class="btn-primary"
+                  invisible="(state == 'cancel') or ((x_studio_margin_approval_request_sent == True) or ((x_studio_margin_approved == True) or ((x_studio_margin_exceed != True) or ((x_studio_valid_order_lines == False) or ((state == 'done') or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))))"/>
+          <button type="action"
+                  name="%(BugFix-Sales.server_action_1515_sls_margin_approval_main)d"
+                  string="Approve Margin"
+                  class="btn-primary"
+                  studio_approval="True"
+                  invisible="(state == 'cancel') or ((x_studio_margin_approval_request_sent == False) or ((x_studio_margin_approved == True) or ((x_studio_margin_exceed != True) or (x_studio_expired == True))))"/>
+          <button type="action"
+                  name="%(BugFix-Sales.server_action_1517_sls_item_over_margin_details)d"
+                  string="Margin Details"
+                  class="btn-secondary"
+                  invisible="(state == 'cancel') or ((x_studio_margin_exceed != True) or (x_studio_expired == True))"/>
+        </xpath>
 
-        
+
         
         
         
