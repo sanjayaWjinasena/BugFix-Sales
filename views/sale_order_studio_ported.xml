@@ -235,6 +235,7 @@
              not at data-file load. -->
         <xpath expr="//sheet" position="inside">
           <field name="task_id" invisible="1"/>
+          <field name="x_studio_quotation_type" invisible="1"/>
         </xpath>
 
         <!--1.2.15 Notebook pages (Slice A9, v0.1.0.129). Verbatim port of
