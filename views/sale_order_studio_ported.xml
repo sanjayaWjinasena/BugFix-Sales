@@ -633,6 +633,62 @@
             <field name="x_studio_transfer_inventory_ok" string="Transfer Inventory  Not OK" force_save="True" readonly="1" invisible="1" />
           </xpath>
 
+        <!--1.2.19 Order line tree column additions (Slice A7, v0.1.0.139).
+             Verbatim port of CDB view 2304's 5 xpaths inside
+             //notebook/page[order_lines]/field[order_line]/tree. Adds up
+             to 33 field-column entries on the order-line inline tree.
+             Fields evaluate in sale.order.line context, not sale.order.  -->
+
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
+            <field optional="hide" name="x_studio_product_status" string="Product Status" force_save="True" readonly="1" column_invisible="parent.x_studio_quotation_type != 'Project'" />
+          </xpath>
+
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='name']" position="after">
+            <field optional="show" name="x_studio_trans_type" string="Trans Type" column_invisible="parent.x_studio_quotation_type != 'Project'" />
+            <field optional="show" name="x_studio_category" string="Category" options="{&quot;no_create&quot;:true}" required="(display_type != 'line_section') and (parent.x_studio_quotation_type == 'Project')" column_invisible="parent.x_studio_quotation_type != 'Project'" />
+            
+            <field optional="show" name="x_studio_category_name" string="Category Name" column_invisible="parent.x_studio_quotation_type != 'Project'" />
+          </xpath>
+
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='price_unit']" position="after">
+            <field optional="show" name="x_studio_price_confirmed" string="Price Confirmed" column_invisible="parent.x_studio_quotation_type != 'Project'" />
+            <field optional="hide" name="x_studio_cost_value" string="Cost Value" force_save="True" readonly="1" />
+          </xpath>
+
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='price_subtotal']" position="after">
+            <field name="x_studio_inventory_shortage" optional="hide" force_save="True" readonly="1" invisible="x_studio_quotation_type != 'Project'" />
+            <field optional="show" name="x_studio_purch_type" string="Purch. Type" column_invisible="parent.x_studio_quotation_type != 'Project'" />
+            <field optional="show" name="x_studio_quotation_type" string="Quotation Type" column_invisible="1" />
+            <field name="x_studio_req_for_production" string="Req. for Production" optional="hide" />
+            <field name="x_studio_req_qty" string="Req. Qty" optional="hide" invisible="x_studio_req_for_production == False" />
+            <field name="x_studio_production_completed" string="Production Completed" optional="hide" invisible="x_studio_req_for_production == False" />
+            <field name="x_studio_many2one_field_btM1W" optional="hide" invisible="x_studio_production_completed == False" />
+            <field optional="show" name="x_studio_account_mandatory" string="Account Mandatory" force_save="True" readonly="1" column_invisible="1" />
+            <field optional="show" name="x_studio_clear_free_items" string="Clear Free Items" column_invisible="1" />
+            <field optional="show" name="x_studio_pricelist_id" string="Pricelist Id" column_invisible="1" />
+            <field optional="hide" name="x_studio_count_1" string="Re-estimate Instance" />
+            <field optional="show" name="x_studio_count_2" string="Count 2" column_invisible="1" />
+            <field optional="hide" name="x_studio_re_estimated" string="Re-estimated" column_invisible="parent.x_studio_quotation_type != 'Repair'" />
+            <field optional="show" name="x_studio_re_estimate_count" string="Re-estimate Count" column_invisible="1" />
+            <field optional="show" name="x_studio_unlocked" string="Unlocked" column_invisible="1" />
+            <field optional="show" name="x_studio_re_estimate_request_sent" string="Re-estimate Request Sent" column_invisible="1" />
+            <field optional="show" name="x_studio_sub_contract" string="Sub-Contract" column_invisible="1" />
+            <field optional="show" name="x_studio_main_project_no" string="Main Project No" column_invisible="1" />
+            <field optional="show" name="x_studio_main_project_2" string="Main Project 2" column_invisible="1" />
+            <field optional="show" name="x_studio_project_no_1" string="Project No" column_invisible="1" />
+            <field optional="show" name="x_studio_pr_created" string="PR Created" force_save="True" readonly="1" column_invisible="1" />
+            <field optional="show" name="x_studio_rug_confirmed" string="RUG Confirmed" column_invisible="1" />
+            <field optional="show" name="x_studio_project_no" string="Project No" column_invisible="1" />
+            <field name="x_studio_margin_exceed" string="Margin Exceed" force_save="True" readonly="1" column_invisible="1" />
+            <field name="x_studio_over_commission" string="Over Commission" force_save="True" readonly="1" column_invisible="1" />
+            <field name="x_studio_commission" string="Commission %" optional="hide" />
+          </xpath>
+
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='company_id']" position="after">
+            <field name="is_reward_line" optional="show" widget="boolean" column_invisible="1" />
+          </xpath>
+
+
 
 
 
