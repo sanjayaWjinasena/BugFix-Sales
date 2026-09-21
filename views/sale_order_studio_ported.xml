@@ -498,6 +498,15 @@
             <attribute name="delete">true</attribute>
           </xpath>
 
+        <!-- Sentinel for the price_unit readonly modifier below.
+             x_studio_rug_confirmed is referenced in tree-context, so must be
+             declared as a <field> INSIDE the order_line tree, not just on
+             the outer sheet. column_invisible=1 keeps it out of the visible
+             columns. -->
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]" position="inside">
+          <field name="x_studio_rug_confirmed" column_invisible="1"/>
+        </xpath>
+
         <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='price_unit']" position="attributes">
             <attribute name="force_save">True</attribute>
             <attribute name="readonly">(qty_invoiced &gt; 0 or is_reward_line) or (x_studio_rug_confirmed == True)</attribute>
