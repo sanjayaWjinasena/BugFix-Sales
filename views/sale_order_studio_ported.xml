@@ -207,6 +207,25 @@
                   invisible="(state == 'cancel') or (state == 'draft') or (state == 'sent')"/>
         </xpath>
 
+        <!--1.2.14 Project Item Approval (Slice B-Proj, v0.1.0.128).
+             Ported from CDB view 2304. Sibling to the 5 sub-slices of
+             Slice B (B-Acc lives in BugFix-Accounting, B-Pur lives in
+             BugFix-Purchase). Only this piece stays in BugFix-Sales
+             because its xmlid (server_action_2138) is Sales-pinned and
+             uses no cross-repo refs.  -->
+        <xpath expr="//sheet" position="inside">
+          <field name="x_studio_project_item_request_sent" invisible="1"/>
+          <field name="x_studio_project_item_approved" invisible="1"/>
+        </xpath>
+        <xpath expr="//header" position="inside">
+          <button type="action"
+                  name="%(BugFix-Sales.server_action_2138_proj_project_item_approval_request_sent_validate)d"
+                  string="Approve Project Item"
+                  class="btn-primary"
+                  studio_approval="True"
+                  invisible="(state == 'cancel') or ((x_studio_project_item_request_sent == False) or ((x_studio_project_item_approved == True) or (x_studio_expired == True)))"/>
+        </xpath>
+
 
         
         
