@@ -525,6 +525,58 @@
             <attribute name="options" />
           </xpath>
 
+        <!--1.2.17 Small field-after-anchor bundle (Slice A3-8, v0.1.0.136).
+             Verbatim port of 5 CDB view 2304 xpaths adding fields to
+             standard groups:
+               * 3 fields after sale_order_template_id
+               * 8 fields into order_details group (after date_order x2)
+               * 1 field after tax_country_id
+               * 11 fields after tag_ids
+
+             SKIPPED: //div[@name='lead'] adds x_studio_sales_report_type
+             which doesn't exist on Dev's sale.order (per fields_get probe).
+
+             Some fields overlap with prior slice sentinels; Odoo inheritance
+             tolerates duplicate <field> declarations by merging.  -->
+
+        <xpath expr="//field[@name='sale_order_template_id']" position="after">
+            <field name="x_studio_confirm_validation" string="Confirm Validation" help="SO Confirm validation - Due to project budget pending confirmation." force_save="True" readonly="1" invisible="(x_studio_proj_budget_status != 'draft') or ((x_studio_project_budget == False) or (x_studio_quotation_type != 'Project'))" />
+            <field name="x_studio_confirm_validation_1" string="Confirm Validation" help="Project SO Confirm validation - Due to Profit Margin %&quot; item is not added in sales lines." force_save="True" readonly="1" invisible="((x_studio_service_item_available == True) and (x_studio_quotation_type == 'Project')) or (((task_id != False) and (x_studio_quotation_type == 'Project')) or (x_studio_quotation_type != 'Project'))" />
+            <field name="x_studio_repair_reason" widget="many2many_tags" string="Repair Reason" options="{&quot;color_field&quot;: &quot;x_color&quot;}" invisible="(task_id == False) or (x_studio_quotation_type != 'Repair')" />
+          </xpath>
+
+        <xpath expr="//form[1]/sheet[1]/group[@name='sale_header']/group[@name='order_details']/field[@name='date_order']" position="after">
+            <field name="x_studio_re_estimate_request_sent" string="Re-estimate Request Sent" force_save="True" readonly="1" invisible="1" />
+          </xpath>
+
+        <xpath expr="//form[1]/sheet[1]/group[@name='sale_header']/group[@name='order_details']/field[@name='date_order'][2]" position="after">
+            <field name="x_studio_re_estimate_request_count_1" string="Re-estimate Request Count" force_save="True" readonly="1" invisible="x_studio_quotation_type != 'Repair'" />
+            <field name="x_studio_re_estimate_count" string="Re-estimate Count" force_save="True" readonly="1" invisible="x_studio_quotation_type != 'Repair'" />
+            <field name="x_studio_fully_paid" string="Fully Paid" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_fsm_done" string="FSM Done" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_locked" string="Locked" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_unlocked" string="Unlocked" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_reject_reason" string="Reject Reason" invisible="x_studio_rug_confirmed != True" />
+          </xpath>
+
+        <xpath expr="//field[@name='tax_country_id']" position="after">
+            <field name="x_studio_repair_validation" string="Repair Validation" invisible="x_studio_authorized_repair_user != True" />
+          </xpath>
+
+        <xpath expr="//field[@name='tag_ids']" position="after">
+            <field name="x_studio_petty_cash_reimbursement" string="Petty Cash Reimbursement" />
+            <field name="x_studio_sell_and_win" string="Sell and Win" />
+            <field name="x_studio_margin_exceed" string="Margin Exceed" force_save="True" readonly="1" />
+            <field name="x_studio_margin_approval_request_sent" string="Margin Approval Request Sent" force_save="True" readonly="1" />
+            <field name="x_studio_margin_approved" string="Margin Approved" force_save="True" readonly="1" />
+            <field name="x_studio_over_commission" string="Over Commission" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_over_comm_approval_request_sent" string="Over Comm. Approval Request Sent" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_over_commission_approved" string="Over Commission Approved" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_grant_temporary_credit" string="Temporary Credit Sale" invisible="x_studio_customer_payment_method != 'Cash'" readonly="(x_studio_tem_credit_approval_request_sent == True) or ((state == 'cancel') or ((state == 'done') or (state == 'sale')))" />
+            <field name="x_studio_temporary_credit_approved" string="Temporary Credit Approved" force_save="True" readonly="1" invisible="1" />
+            <field name="x_studio_tem_credit_approval_request_sent" string="Tem. Credit Approval Request Sent" force_save="True" readonly="1" invisible="1" />
+          </xpath>
+
 
 
         
