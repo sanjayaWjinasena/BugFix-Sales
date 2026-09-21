@@ -226,6 +226,147 @@
                   invisible="(state == 'cancel') or ((x_studio_project_item_request_sent == False) or ((x_studio_project_item_approved == True) or (x_studio_expired == True)))"/>
         </xpath>
 
+        <!--1.2.15 Notebook pages (Slice A9, v0.1.0.129). Verbatim port of
+             CDB view 2304's single //notebook position=inside xpath adding
+             8 new tabs to the sale.order form notebook:
+               - Vendor relation
+               - Credit Limit Details          (invisible=True hardcoded on CDB)
+               - Overdue Details               (visible when overdue+credit)
+               - Bank Guarantee Details        (visible when valid_bank_guarantee)
+               - Repair Image                  (visible when task_id and Repair)
+               - Project Related Item Statistics (visible on Project quotations)
+               - Warranty Details              (visible when task_id and Repair)
+               - Project Related Documents     (invisible=1 hardcoded on CDB)
+
+             All 33 sale.order + 9 sale.order.line field refs RPC-verified on
+             Dev before shipping. task_id is optional=hidden in the standard
+             industry_fsm_sale arch; Fix-repair v341 strips that optional=
+             at runtime so modifiers can evaluate. All modifier fields already
+             exist in the composed arch (from Fix-repair sentinels + our
+             prior slices), no new sentinel needed.  -->
+        <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+          <page string="Vendor relation" name="studio_page_R6zD7">
+            <group name="studio_group_R6zD7">
+              <group name="studio_group_R6zD7_left">
+                <field name="create_uid" invisible="1"/>
+              </group>
+              <group name="studio_group_R6zD7_right"/>
+            </group>
+          </page>
+          <page string="Credit Limit Details" name="studio_page_Dy8L1" invisible="True">
+            <group name="studio_group_Dy8L1">
+              <group name="studio_group_Dy8L1_left" string="Credit Limit Details">
+                <field name="x_studio_over_credit"/>
+                <field name="x_studio_customer_credit_limit" string="Customer Credit Limit"/>
+                <field name="x_studio_cust_total_receivable"/>
+                <field name="x_studio_current_tot_amount" string="Current Tot. Amount"/>
+                <field name="x_studio_over_credit_amount" string="Over Credit Amount"/>
+                <field name="x_studio_credit_limit_approved" force_save="True" readonly="1"/>
+                <field name="x_studio_approval_request_sent" string="Approval Request Sent" force_save="True" readonly="1" invisible="1"/>
+              </group>
+              <group name="studio_group_Dy8L1_right" string="Payment Method Details">
+                <field name="x_studio_customer_payment_method" string="Customer Payment Type"/>
+                <field name="x_studio_many2one_field_KjdJ3"/>
+              </group>
+            </group>
+          </page>
+          <page string="Overdue Details" name="studio_page_M0qDc" invisible="(x_studio_overdue == False) or (x_studio_customer_payment_method != 'Credit')">
+            <group name="studio_group_M0qDc">
+              <group name="studio_group_M0qDc_left" string="Overdue Details">
+                <field name="x_studio_overdue" string="Overdue" force_save="True" readonly="1"/>
+                <field name="x_studio_total_overdue" string="Total Overdue"/>
+                <field name="x_studio_overdue_approved" string="Overdue Approved" force_save="True" readonly="1"/>
+                <field name="x_studio_overdue_request_sent" string="Overdue Request Sent" force_save="True" readonly="1" invisible="1"/>
+              </group>
+              <group name="studio_group_M0qDc_right"/>
+            </group>
+          </page>
+          <page string="Bank Guarantee Details" name="studio_page_0PVZ9" invisible="x_studio_valid_bank_guarantee != True">
+            <group name="studio_group_0PVZ9">
+              <group name="studio_group_0PVZ9_left" string="Bank Guarantee Details">
+                <field name="x_studio_over_bank_guarantee" string="Over Bank Guarantee" force_save="True" readonly="1"/>
+                <field name="x_studio_customer_bank_guarantee" string="Customer Bank Guarantee" force_save="True" readonly="1"/>
+                <field name="x_studio_expiry_date" string="Bank Guarantee Expiry Date"/>
+                <field name="x_studio_guarantee_status" string="Guarantee Status"/>
+                <field name="x_studio_cust_total_receivable_1" string="Cust. Total Receivable"/>
+                <field name="x_studio_current_tot_amount_1" string="Current Tot. Amount" force_save="True" readonly="1"/>
+                <field name="x_studio_over_bank_guarantee_amount" string="Over Bank Guarantee Amount" force_save="True" readonly="1"/>
+                <field name="x_studio_bank_guarantee_approved" string="Bank Guarantee Approved" force_save="True" readonly="1"/>
+                <field name="x_studio_valid_bank_guarantee" string="Valid Bank Guarantee" invisible="1"/>
+                <field name="x_studio_bank_guarantee_request_sent" string="Bank Guarantee Request Sent" force_save="True" readonly="1" invisible="1"/>
+              </group>
+              <group name="studio_group_0PVZ9_right"/>
+            </group>
+          </page>
+          <page string="Repair Image" name="studio_page_86PwT" invisible="(task_id == False) or (x_studio_quotation_type != 'Repair')">
+            <group name="studio_group_86PwT">
+              <group name="studio_group_86PwT_left">
+                <field name="x_studio_repair_image_01" string="Repair Image 01" options="{&quot;size&quot;:[0,270]}" widget="image"/>
+              </group>
+              <group name="studio_group_86PwT_right">
+                <field name="x_studio_repair_image_02" string="Repair Image 02" options="{&quot;size&quot;:[0,270]}" widget="image"/>
+              </group>
+            </group>
+          </page>
+          <page string="Project Related Item Statistics" name="studio_page_yS3hw" invisible="x_studio_quotation_type != 'Project'">
+            <field name="x_studio_one2many_field_ERCBB" force_save="True" readonly="1">
+              <tree string="Sales Order Lines" create="false" edit="false" delete="false">
+                <field name="order_id" string="Sales Order Ref" column_invisible="1"/>
+                <field name="invoice_status" column_invisible="1"/>
+                <field name="warehouse_id" column_invisible="1"/>
+                <field optional="show" name="x_studio_invt_status" string="Invt. Status" widget="toggle_button"/>
+                <field name="product_id" string="Product"/>
+                <field name="product_uom_qty" string="Req. Qty"/>
+                <field name="name" column_invisible="1"/>
+                <field name="x_studio_cost_value" optional="show"/>
+                <field optional="show" name="x_studio_warehouse_id"/>
+                <field optional="show" name="x_studio_current_onhand" string="Current Onhand"/>
+                <field optional="show" name="x_studio_inventory_shortage" string="Inventory Shortage"/>
+                <field optional="show" name="x_studio_cost_amount_req_qty" string="Cost Amount (Req. Qty)" sum="Sum of Cost Amount (Req. Qty)" widget="float"/>
+                <field optional="show" name="x_studio_cost_amount_inventory_shortage" string="Cost Amount (Inventory Shortage)" sum="Sum of Cost Amount (Inventory Shortage)"/>
+                <field name="qty_delivered" string="Delivered Qty" column_invisible="1"/>
+                <field name="qty_to_deliver" column_invisible="1"/>
+                <field name="qty_invoiced" string="Invoiced Qty" column_invisible="1"/>
+                <field name="qty_to_invoice" string="Qty To Invoice" column_invisible="1"/>
+                <field name="product_uom" string="UOM" groups="uom.group_uom" column_invisible="1"/>
+                <field name="route_id" groups="stock.group_adv_location" options="{'no_create': True}" column_invisible="1"/>
+                <field name="discount" column_invisible="1"/>
+                <field name="price_subtotal" sum="Total" widget="monetary" column_invisible="1"/>
+                <field name="salesman_id" column_invisible="1"/>
+                <field name="create_uid" column_invisible="1"/>
+                <field name="create_date" column_invisible="1"/>
+                <field name="x_studio_category" optional="hide"/>
+                <field name="x_studio_project_no" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+              </tree>
+            </field>
+          </page>
+          <page string="Warranty Details" name="studio_page_J0MAg" invisible="(task_id == False) or (x_studio_quotation_type != 'Repair')">
+            <group name="studio_group_J0MAg">
+              <group name="studio_group_J0MAg_left">
+                <field name="x_studio_warranty_card" string="Warranty Card" options="{&quot;size&quot;:[0,270]}" widget="image"/>
+              </group>
+              <group name="studio_group_J0MAg_right">
+                <field name="x_studio_related_information" string="Related Information" widget="tablet_image"/>
+              </group>
+            </group>
+          </page>
+          <page string="Project Related Documents" name="studio_page_HdWNn" invisible="1">
+            <group name="studio_group_HdWNn">
+              <group name="studio_group_HdWNn_left" string="Documents">
+                <field widget="binary" name="x_studio_document_1" string="Document 1"/>
+                <field widget="binary" name="x_studio_document_2" string="Document 2"/>
+                <field widget="binary" name="x_studio_document_3" string="Document 3"/>
+              </group>
+              <group name="studio_group_HdWNn_right" string="Images">
+                <field widget="tablet_image" name="x_studio_image_1" string="Image 1"/>
+                <field widget="tablet_image" name="x_studio_image_2" string="Image 2"/>
+                <field widget="tablet_image" name="x_studio_image_3" string="Image 3"/>
+              </group>
+            </group>
+          </page>
+        </xpath>
+
 
         
         
