@@ -183,6 +183,30 @@
                   invisible="(state == 'cancel') or ((x_studio_bank_guarantee_notification != True) or (x_studio_bg_sent == True))"/>
         </xpath>
 
+        <!--1.2.13 Transfer Inventory + Customer Payment (Slice H, v0.1.0.127).
+             Ported from CDB view 2304. Cross-app buttons — 2096 opens
+             insufficient-transfer inventory details (Stock), 2341 creates
+             a customer payment record (Accounting). Both actions live in
+             BugFix-Sales/data/server_actions_v2.xml (no cross-repo depends
+             needed since BugFix-Sales already depends on stock + account
+             transitively via sale_stock + sale).  -->
+        <xpath expr="//sheet" position="inside">
+          <field name="x_studio_inventory_short" invisible="1"/>
+          <field name="x_studio_customer_payment_method" invisible="1"/>
+        </xpath>
+        <xpath expr="//header" position="inside">
+          <button type="action"
+                  name="%(BugFix-Sales.server_action_2096_rr_insufficient_transfer_inventory_details)d"
+                  string="View Transfer Inventory Details"
+                  class="btn-secondary"
+                  invisible="(state == 'cancel') or (x_studio_inventory_short != True)"/>
+          <button type="action"
+                  name="%(BugFix-Sales.server_action_2341_sls_create_customer_payment)d"
+                  string="Create Customer Payment"
+                  class="btn-primary"
+                  invisible="(state == 'cancel') or (state == 'draft') or (state == 'sent')"/>
+        </xpath>
+
 
         
         
