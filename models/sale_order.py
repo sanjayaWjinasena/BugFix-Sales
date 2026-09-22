@@ -468,10 +468,24 @@ class SaleOrder(models.Model):
         ondelete='set null',
     )
 
-    # Many2many to Chunk-1a-ported catalogue (1) --------------------------
-    x_studio_repair_reason = fields.Many2many(
-        'x_repair_reason',
-        string='Repair Reason (m2m)',
+    # Char placeholder (was Many2many to x_repair_reason).
+    #
+    # The x_repair_reason model is declared in Fix-repair which loads AFTER
+    # BugFix-Sales in the dep graph. At Sales install time the comodel didn't
+    # exist yet, so Odoo stored relation='_unknown' in ir.model.fields — and
+    # kept it stored that way even after Fix-repair created the model. Any
+    # form read on sale.order then crashed with:
+    #   ValueError: Invalid field 'id' on model '_unknown'
+    # in fields.py line 4879 (query.order = comodel._order_to_sql(...)).
+    #
+    # Repair Reason on sale.order is a repair-workflow concept - Studio sourced
+    # it via related='task_id.x_studio_repair_reason' on CDB. Downgrading to
+    # Char here loses the m2m semantics but unblocks all Sales-workflow reads.
+    # Permanent fix: move the x_repair_reason model declaration to BugFix-Sales
+    # (or an upstream shared module) so it exists before the m2m needs to
+    # resolve. Ticket left in memory as an open follow-up.
+    x_studio_repair_reason = fields.Char(
+        string='Repair Reason',
     )
 
     @api.onchange('bugfix_sales_intro_id')
