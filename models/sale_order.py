@@ -210,9 +210,21 @@ class SaleOrder(models.Model):
                     valid = True
                     break
             order.x_studio_valid_order_lines = valid
+    # Compute-only (unstored) — reads days-of-validity from the SO's company.
+    # Matches CDB compute: rec.company_id.x_studio_sales_order_validity.
     x_studio_sales_order_validity = fields.Integer(
         string='Sales Order Validity',
+        compute='_compute_x_studio_sales_order_validity',
+        store=False,
     )
+
+    @api.depends('company_id')
+    def _compute_x_studio_sales_order_validity(self):
+        for rec in self:
+            rec.x_studio_sales_order_validity = (
+                rec.company_id.x_studio_sales_order_validity or 0
+                if rec.company_id else 0
+            )
     # --- Re-estimate request tracker ---------------------------------------
     x_studio_re_estimate_request_count = fields.Boolean(
         string='Re-estimate Request Count (bool)',
@@ -360,8 +372,34 @@ class SaleOrder(models.Model):
     x_studio_tem_credit_approval_request_sent = fields.Boolean(string='Temporary Credit Approval Request Sent')
     x_studio_temporary_credit_approved = fields.Boolean(string='Temporary Credit Approved')
     x_studio_transfer_inventory_ok = fields.Boolean(string='Transfer Inventory OK')
-    x_studio_valid_order_lines_for_projects = fields.Boolean(string='Valid Order Lines for Projects')
-    x_studio_valid_order_lines_for_update_rfq_cost = fields.Boolean(string='Valid Order Lines for Update RFQ Cost')
+    # Compute (unstored) — True if the SO has at least one order line.
+    # Matches CDB compute: iterate rec.order_line, val=True if any.
+    x_studio_valid_order_lines_for_projects = fields.Boolean(
+        string='Valid Order Lines for Projects',
+        compute='_compute_x_studio_valid_order_lines_for_projects',
+        store=False,
+    )
+    # Compute (unstored) — True if all non-display order lines have qty > 0,
+    # and at least one such line exists. Matches CDB compute (val=True when
+    # a real line has qty>0, but any zero-qty real line disqualifies via val3).
+    x_studio_valid_order_lines_for_update_rfq_cost = fields.Boolean(
+        string='Valid Order Lines for Update RFQ Cost',
+        compute='_compute_x_studio_valid_order_lines_for_update_rfq_cost',
+        store=False,
+    )
+
+    @api.depends('order_line')
+    def _compute_x_studio_valid_order_lines_for_projects(self):
+        for rec in self:
+            rec.x_studio_valid_order_lines_for_projects = bool(rec.order_line)
+
+    @api.depends('order_line.product_uom_qty', 'order_line.display_type')
+    def _compute_x_studio_valid_order_lines_for_update_rfq_cost(self):
+        for rec in self:
+            real_lines = rec.order_line.filtered(lambda l: not l.display_type)
+            has_positive = any(l.product_uom_qty > 0 for l in real_lines)
+            has_zero = any(l.product_uom_qty == 0 for l in real_lines)
+            rec.x_studio_valid_order_lines_for_update_rfq_cost = has_positive and not has_zero
     x_studio_valid_transfer = fields.Boolean(string='Valid Transfer')
 
     # Texts / Chars (5) ----------------------------------------------------
@@ -379,18 +417,26 @@ class SaleOrder(models.Model):
     x_studio_customer_bank_guarantee = fields.Float(string='Customer BG Amount')
     x_studio_customer_credit_limit = fields.Float(string='Customer Credit Limit')
 
-    # Monetary (3) — currency_field defaults to currency_id on sale.order --
+    # Monetary (3) — related to partner receivables. Match CDB:
+    # cust_total_receivable / _1 both point at partner_id.credit (account),
+    # total_overdue points at partner_id.total_overdue (account_followup).
     x_studio_cust_total_receivable = fields.Monetary(
         string='Customer Total Receivable',
+        related='partner_id.credit',
         currency_field='currency_id',
+        store=False,
     )
     x_studio_cust_total_receivable_1 = fields.Monetary(
         string='Customer Total Receivable (v2)',
+        related='partner_id.credit',
         currency_field='currency_id',
+        store=False,
     )
     x_studio_total_overdue = fields.Monetary(
         string='Total Overdue',
+        related='partner_id.total_overdue',
         currency_field='currency_id',
+        store=False,
     )
 
     # Binary (9) — documents + images + warranty + related info -----------
@@ -405,10 +451,14 @@ class SaleOrder(models.Model):
     x_studio_repair_image_02 = fields.Binary(string='Repair Image 02')
     x_studio_warranty_card = fields.Binary(string='Warranty Card')
 
-    # Selection (1) — values verified vs Clear-DB ir.model.fields.selection
+    # Selection (1) — related to res.partner.x_studio_payment_method.
+    # CDB stores this related; keeping stored here so search/filter on the
+    # sale.order form works without extra joins.
     x_studio_customer_payment_method = fields.Selection(
         selection=[('Cash', 'Cash'), ('Credit', 'Credit')],
         string='Customer Payment Method',
+        related='partner_id.x_studio_payment_method',
+        store=True,
     )
 
     # Many2one to safe (already-existing) target (1) ----------------------
