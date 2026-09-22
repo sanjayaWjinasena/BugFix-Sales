@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.148',
+    'version': '17.0.1.0.149',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
@@ -219,6 +219,7 @@
                 'sale_subscription',  # is_subscription used in Slice A1 confirm-button modifiers
                 'sale_loyalty',       # is_reward_line used in Slice A1 price_unit tree readonly
                 'account_followup',   # partner_id.total_overdue related target on sale.order
+                'bank-data',          # res.partner.bank.x_studio_swift_code/bank_code_1/branch_code_1 refs
                 'Jinasena_Masterdata_Reporting', 'BugFix-Stock',
                 'base_automation',
                 'BugFix-Approvals',              # group refs in CSV / automations
