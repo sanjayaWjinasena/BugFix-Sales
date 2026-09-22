@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    CDB customizes sales_team.crm_team_action_sales to expose a LIST view
+    button in the top-right view-switcher chrome. Standard Odoo ships this
+    action with view_mode='kanban,form' (no list). CDB has
+    view_mode='tree,kanban,form'.
+
+    This data record overrides view_mode on the shared xmlid so the Sales
+    Teams menu on Dev exposes the same view switcher as CDB.
+
+    noupdate="0" (default) so this record re-applies on every module
+    upgrade — the customization is idempotent (a plain field write).
+-->
+<odoo>
+  <record id="sales_team.crm_team_action_sales" model="ir.actions.act_window">
+    <field name="view_mode">tree,kanban,form</field>
+  </record>
+</odoo>

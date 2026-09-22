@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.149',
+    'version': '17.0.1.0.150',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
@@ -290,6 +290,7 @@
         'data/menus_f6.xml',
         'data/menus_from_routing.xml',
         'data/menus_visual_fixes.xml',
+        'data/crm_team_action_view_mode.xml',
         'views/qweb_studio_ported.xml',
     ],
     'installable': True,
