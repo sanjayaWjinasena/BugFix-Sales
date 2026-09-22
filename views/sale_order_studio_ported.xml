@@ -202,9 +202,9 @@
                   invisible="(state == 'cancel') or (x_studio_inventory_short != True)"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_2341_sls_create_customer_payment)d"
-                  string="Create Customer Payment"
+                  string="Create Advance Payment"
                   class="btn-primary"
-                  invisible="(state == 'cancel') or (state == 'draft') or (state == 'sent')"/>
+                  invisible="(x_studio_quotation_type == 'Repair') or ((state in ['draft', 'sent', 'cancel']) or (x_studio_fully_paid == True))"/>
         </xpath>
 
         <!--1.2.14 Project Item Approval (Slice B-Proj, v0.1.0.128).
