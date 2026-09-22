@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Port of CDB view 2551 "Odoo Studio: product.template.product.form
+    customization". Two additions:
+
+      1. Sri Lanka Localization tab (studio_page_zujMt) with 3 x_studio
+         fields (tariff_code, charge_type, non_billable). All three are
+         Python-declared on Dev:
+           * x_studio_tariff_code   -> BugFix-Sales/models/product_template.py
+           * x_studio_charge_type   -> BugFix-Accounting/models/product_template.py
+           * x_studio_non_billable  -> BugFix-Accounting/models/product_template.py
+
+      2. Two header buttons for PLM item approval workflow:
+           * Request Item Approval (server_action_2293_plm_request_item_approval)
+           * Approve Item          (server_action_2301_plm_item_approval_final)
+
+    CDB's Sri Lanka page has groups="__export__.res_groups_271_7319010a" —
+    a Studio-only res.groups xmlid never ported to any module. Dropped
+    to make the page always visible (matching intended behavior on the
+    original manual-config res.group anyway).
+
+    All 4 button-modifier fields (x_studio_item_approval_request_sent_prod,
+    _approved, _approval_request_sent, _approved_prod) verified on Dev
+    via fields_get. All xpaths pre-flighted against composed arch.
+-->
+<odoo>
+  <record id="ported_product_template_studio_2551" model="ir.ui.view">
+    <field name="name">Odoo Studio: product.template.form customization</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_form_view"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+
+        <!-- Sentinels for the 4 fields referenced by button modifiers.
+             product.template form must have these as static <field>
+             declarations for install-time modifier validation. -->
+        <xpath expr="//form/sheet" position="inside">
+          <field name="x_studio_item_approval_request_sent_prod" invisible="1"/>
+          <field name="x_studio_item_approval_request_sent" invisible="1"/>
+          <field name="x_studio_item_approved" invisible="1"/>
+          <field name="x_studio_item_approved_prod" invisible="1"/>
+        </xpath>
+
+        <!-- Header buttons: Request Item Approval + Approve Item. -->
+        <xpath expr="//header" position="inside">
+          <button type="action"
+                  name="%(BugFix-Sales.server_action_2293_plm_request_item_approval)d"
+                  string="Request Item Approval"
+                  class="btn-primary"
+                  invisible="(x_studio_item_approval_request_sent_prod == True) or ((x_studio_item_approved == True) or (x_studio_item_approval_request_sent == True))"/>
+          <button type="action"
+                  name="%(BugFix-Sales.server_action_2301_plm_item_approval_final)d"
+                  string="Approve Item"
+                  class="btn-primary"
+                  studio_approval="True"
+                  invisible="(x_studio_item_approved_prod == True) or ((x_studio_item_approval_request_sent == False) or (x_studio_item_approved == True))"/>
+        </xpath>
+
+        <!-- Sri Lanka Localization tab -->
+        <xpath expr="//form/sheet/notebook" position="inside">
+          <page string="Sri Lanka Localization" name="studio_page_zujMt">
+            <group name="studio_group_zujMt">
+              <group name="studio_group_zujMt_left">
+                <field name="x_studio_tariff_code" string="Tariff Code" options="{'no_create': True}"/>
+              </group>
+              <group name="studio_group_zujMt_right">
+                <field name="x_studio_charge_type" string="Charge Type" widget="radio" readonly="type != 'service'"/>
+                <field name="x_studio_non_billable" string="Non Billable" readonly="type != 'service'"/>
+              </group>
+            </group>
+          </page>
+        </xpath>
+
+      </data>
+    </field>
+  </record>
+</odoo>
