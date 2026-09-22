@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.140',
+    'version': '17.0.1.0.141',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
@@ -216,6 +216,8 @@
     # studio_usermodel_migration removed in v52 (no load-time dep, cycle risk).
     'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale',
                 'purchase_requisition', 'website_sale',
+                'sale_subscription',  # is_subscription used in Slice A1 confirm-button modifiers
+                'sale_loyalty',       # is_reward_line used in Slice A1 price_unit tree readonly
                 'Jinasena_Masterdata_Reporting', 'BugFix-Stock',
                 'base_automation',
                 'BugFix-Approvals',              # group refs in CSV / automations
