@@ -57,17 +57,19 @@
                   invisible="(x_studio_item_approved_prod == True) or ((x_studio_item_approval_request_sent == False) or (x_studio_item_approved == True))"/>
         </xpath>
 
-        <!-- Sri Lanka Localization tab -->
+        <!-- Sri Lanka Localization tab. Only the tariff_code field lives
+             here (BugFix-Sales-owned). BugFix-Accounting adds its 2 fields
+             (charge_type + non_billable) to studio_group_zujMt_right via a
+             companion inherit view - split to avoid the upstream/downstream
+             load-order trap (Accounting loads AFTER Sales, so its field
+             decls aren't visible during Sales install-time validation). -->
         <xpath expr="//form/sheet/notebook" position="inside">
           <page string="Sri Lanka Localization" name="studio_page_zujMt">
             <group name="studio_group_zujMt">
               <group name="studio_group_zujMt_left">
                 <field name="x_studio_tariff_code" string="Tariff Code" options="{'no_create': True}"/>
               </group>
-              <group name="studio_group_zujMt_right">
-                <field name="x_studio_charge_type" string="Charge Type" widget="radio" readonly="type != 'service'"/>
-                <field name="x_studio_non_billable" string="Non Billable" readonly="type != 'service'"/>
-              </group>
+              <group name="studio_group_zujMt_right"/>
             </group>
           </page>
         </xpath>
