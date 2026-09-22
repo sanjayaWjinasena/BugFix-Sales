@@ -77,18 +77,18 @@
         <xpath expr="//header" position="inside">
           <button type="action"
                   name="%(BugFix-Sales.server_action_1513_sls_request_margin_approval)d"
-                  string="Request Margin Approval"
+                  string="Request Insufficient Marginn Approval"
                   class="btn-primary"
                   invisible="(state == 'cancel') or ((x_studio_margin_approval_request_sent == True) or ((x_studio_margin_approved == True) or ((x_studio_margin_exceed != True) or ((x_studio_valid_order_lines == False) or ((state == 'done') or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))))"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_1515_sls_margin_approval_main)d"
-                  string="Approve Margin"
+                  string="Approve Insufficient Margin"
                   class="btn-primary"
                   studio_approval="True"
                   invisible="(state == 'cancel') or ((x_studio_margin_approval_request_sent == False) or ((x_studio_margin_approved == True) or ((x_studio_margin_exceed != True) or (x_studio_expired == True))))"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_1517_sls_item_over_margin_details)d"
-                  string="Margin Details"
+                  string="Insufficient Margin Details"
                   class="btn-secondary"
                   invisible="(state == 'cancel') or ((x_studio_margin_exceed != True) or (x_studio_expired == True))"/>
         </xpath>
@@ -125,7 +125,7 @@
                   invisible="(state == 'cancel') or ((x_studio_approval_request_sent == False) or ((x_studio_credit_limit_approved == True) or ((x_studio_over_credit != True) or ((x_studio_order_payment_method != 'Credit') or (x_studio_expired == True)))))"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_1853_sls_view_credit_limit_validation)d"
-                  string="View Credit Limit Validation"
+                  string="View Credit Limit Overdue Details"
                   class="btn-secondary"
                   invisible="(state == 'cancel') or (x_studio_credit_limit_validation != True)"/>
           <button type="action"
@@ -173,12 +173,12 @@
                   invisible="(state == 'cancel') or ((x_studio_bank_guarantee_request_sent == False) or ((x_studio_bank_guarantee_approved == True) or ((x_studio_over_bank_guarantee != True) or (x_studio_expired == True))))"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_1849_sls_view_bank_guarantee_validation)d"
-                  string="View BG Validation"
+                  string="View Bank Guarantee Validity"
                   class="btn-secondary"
                   invisible="(state == 'cancel') or (x_studio_bank_guarantee_validation != True)"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_1850_sls_send_bank_guarantee_notification_main)d"
-                  string="Send BG Notification"
+                  string="Send Bank Guarantee Validity Notification"
                   class="btn-secondary"
                   invisible="(state == 'cancel') or ((x_studio_bank_guarantee_notification != True) or (x_studio_bg_sent == True))"/>
         </xpath>
@@ -197,7 +197,7 @@
         <xpath expr="//header" position="inside">
           <button type="action"
                   name="%(BugFix-Sales.server_action_2096_rr_insufficient_transfer_inventory_details)d"
-                  string="View Transfer Inventory Details"
+                  string="Insufficient Transfer Inventory Details"
                   class="btn-secondary"
                   invisible="(state == 'cancel') or (x_studio_inventory_short != True)"/>
           <button type="action"
@@ -220,7 +220,7 @@
         <xpath expr="//header" position="inside">
           <button type="action"
                   name="%(BugFix-Sales.server_action_2138_proj_project_item_approval_request_sent_validate)d"
-                  string="Approve Project Item"
+                  string="Project Item Approval Status"
                   class="btn-primary"
                   studio_approval="True"
                   invisible="(state == 'cancel') or ((x_studio_project_item_request_sent == False) or ((x_studio_project_item_approved == True) or (x_studio_expired == True)))"/>
