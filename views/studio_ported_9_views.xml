@@ -331,11 +331,17 @@
             <field name="type" invisible="1"/>
           </xpath>
 
-        <!-- DROPPED (xpath resolves to !=1 on target): //button[@name='198'] --><xpath expr="//button[@name='open_pricelist_rules']" position="attributes">
-          <attribute name="groups">product.group_product_pricelist,__export__.res_groups_271_7319010a</attribute>
+        <!-- DROPPED (xpath resolves to !=1 on target): //button[@name='198'] -->
+        <!-- pricelist_rules button: keep the standard product.group_product_pricelist gate.
+             __export__.res_groups_271_7319010a stripped (Studio-orphan group doesn't
+             resolve on Dev - would remove the button for everyone). -->
+        <xpath expr="//button[@name='open_pricelist_rules']" position="attributes">
+          <attribute name="groups">product.group_product_pricelist</attribute>
         </xpath>
+        <!-- is_published: was groups=__export__ (Studio-orphan). Cleared so
+             the standard website-published toggle is visible to all users. -->
         <xpath expr="//field[@name='is_published']" position="attributes">
-          <attribute name="groups">__export__.res_groups_271_7319010a</attribute>
+          <attribute name="groups"/>
         </xpath>
         <xpath expr="//button[@name='action_view_stock_move_lines']" position="attributes">
           <attribute name="groups"/>
@@ -386,20 +392,18 @@
         <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='inventory']" position="attributes">
           <attribute name="groups"/>
         </xpath>
+        <!-- Accounting tab: was groups=__export__ (Studio-orphan doesn't
+             resolve on Dev, stripped the tab from every user). Cleared so
+             standard account_readonly / account_invoice users see it. -->
         <xpath expr="//page[@name='invoicing']" position="attributes">
-          <attribute name="groups">__export__.res_groups_271_7319010a</attribute>
+          <attribute name="groups"/>
         </xpath>
-        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]" position="inside">
-          <page string="Sri Lanka Localization" name="studio_page_zujMt" groups="__export__.res_groups_271_7319010a">
-            <group name="studio_group_zujMt">
-              <group name="studio_group_zujMt_left">
-                <field name="x_studio_tariff_code" string="Tariff Code" options="{&quot;no_create&quot;:true}"/>
-              </group>
-              <group name="studio_group_zujMt_right">
-                <!-- DROPPED (orphan: x_studio_charge_type not on product.template) --><!-- DROPPED (orphan: x_studio_non_billable not on product.template) --></group>
-            </group>
-          </page>
-        </xpath>
+        <!-- Sri Lanka Localization tab moved to
+             views/product_template_studio_ported.xml (v0.1.0.151) with
+             the tariff_code field. Charge_type + non_billable get injected
+             by BugFix-Accounting via views/product_template_studio_pages_content.xml.
+             Keeping this xpath as a comment prevents accidental re-add. -->
+
       </data>
     </field>
   </record>
