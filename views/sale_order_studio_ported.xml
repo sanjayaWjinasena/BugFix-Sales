@@ -90,7 +90,7 @@
                   name="%(BugFix-Sales.server_action_1517_sls_item_over_margin_details)d"
                   string="Insufficient Margin Details"
                   class="btn-secondary"
-                  invisible="(state == 'cancel') or ((x_studio_margin_exceed != True) or (x_studio_expired == True))"/>
+                  invisible="(state == 'cancel') or ((x_studio_margin_approval_request_sent == True) or ((x_studio_margin_approved == True) or ((x_studio_margin_exceed != True) or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))"/>
         </xpath>
 
         <!--1.2.11 Credit Limit + Temp Credit Control in Sales Orders
@@ -116,7 +116,7 @@
                   name="%(BugFix-Sales.server_action_1458_sls_request_credit_limit_approval)d"
                   string="Request Credit Limit Approval"
                   class="btn-primary"
-                  invisible="(state == 'cancel') or ((x_studio_approval_request_sent == True) or ((x_studio_credit_limit_approved == True) or ((x_studio_over_credit != True) or ((x_studio_order_payment_method != 'Credit') or ((x_studio_valid_order_lines == False) or ((state == 'done') or ((x_studio_clear_free_items == True) or (x_studio_expired == True))))))))"/>
+                  invisible="((x_studio_over_commission_approved == False) and (x_studio_over_commission == True)) or (((x_studio_overdue_approved == False) and (x_studio_overdue == True)) or ((state == 'cancel') or ((x_studio_approval_request_sent == True) or ((x_studio_credit_limit_approved == True) or ((x_studio_over_credit != True) or ((x_studio_valid_order_lines == False) or ((state in ['done', 'cancel']) or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))))))"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_1435_sls_credit_limit_approval_main)d"
                   string="Approve Credit Limit"
@@ -127,7 +127,7 @@
                   name="%(BugFix-Sales.server_action_1853_sls_view_credit_limit_validation)d"
                   string="View Credit Limit Overdue Details"
                   class="btn-secondary"
-                  invisible="(state == 'cancel') or (x_studio_credit_limit_validation != True)"/>
+                  invisible="(x_studio_valid_order_lines == False) or ((state == 'cancel') or ((x_studio_credit_limit_validation != True) or ((state == 'done') or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_1468_sls_request_temporary_credit_approval)d"
                   string="Request Temporary Credit Approval"
@@ -164,7 +164,7 @@
                   name="%(BugFix-Sales.server_action_1485_sls_request_bank_guarantee_approval)d"
                   string="Request Bank Guarantee Approval"
                   class="btn-primary"
-                  invisible="(state == 'cancel') or ((x_studio_bank_guarantee_request_sent == True) or ((x_studio_bank_guarantee_approved == True) or ((x_studio_over_bank_guarantee != True) or ((x_studio_valid_order_lines == False) or ((state == 'done') or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))))"/>
+                  invisible="((x_studio_credit_limit_approved == False) and (x_studio_over_credit == True)) or ((state == 'cancel') or ((x_studio_bank_guarantee_request_sent == True) or ((x_studio_bank_guarantee_approved == True) or ((x_studio_over_bank_guarantee != True) or ((x_studio_valid_order_lines == False) or ((state in ['done', 'cancel']) or ((x_studio_clear_free_items == True) or (x_studio_expired == True))))))))"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_1487_sls_bank_guarantee_approval_main)d"
                   string="Approve Bank Guarantee"
@@ -175,12 +175,12 @@
                   name="%(BugFix-Sales.server_action_1849_sls_view_bank_guarantee_validation)d"
                   string="View Bank Guarantee Validity"
                   class="btn-secondary"
-                  invisible="(state == 'cancel') or (x_studio_bank_guarantee_validation != True)"/>
+                  invisible="(x_studio_valid_order_lines == False) or ((state == 'cancel') or ((x_studio_bank_guarantee_validation != True) or ((state == 'done') or ((x_studio_clear_free_items == True) or (x_studio_expired == True)))))"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_1850_sls_send_bank_guarantee_notification_main)d"
                   string="Send Bank Guarantee Validity Notification"
                   class="btn-secondary"
-                  invisible="(state == 'cancel') or ((x_studio_bank_guarantee_notification != True) or (x_studio_bg_sent == True))"/>
+                  invisible="((x_studio_bg_sent == True) and (x_studio_bank_guarantee_notification == True)) or ((state == 'cancel') or ((x_studio_bank_guarantee_notification != True) or ((x_studio_valid_order_lines == False) or ((state == 'done') or ((x_studio_clear_free_items == True) or (x_studio_expired == True))))))"/>
         </xpath>
 
         <!--1.2.13 Transfer Inventory + Customer Payment (Slice H, v0.1.0.127).
@@ -199,12 +199,12 @@
                   name="%(BugFix-Sales.server_action_2096_rr_insufficient_transfer_inventory_details)d"
                   string="Insufficient Transfer Inventory Details"
                   class="btn-secondary"
-                  invisible="(state == 'cancel') or (x_studio_inventory_short != True)"/>
+                  invisible="((state in ['sale', 'done', 'cancel']) and (x_studio_transfer_inventory_ok == True)) or ((x_studio_transfer_inventory_ok == False) or (x_studio_clear_free_items == True))"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_2341_sls_create_customer_payment)d"
                   string="Create Advance Payment"
                   class="btn-primary"
-                  invisible="(x_studio_quotation_type == 'Repair') or ((state in ['draft', 'sent', 'cancel']) or (x_studio_fully_paid == True))"/>
+                  invisible="x_studio_quotation_type != 'Sales' or state not in ('sale', 'done')"/>
         </xpath>
 
         <!--1.2.14 Project Item Approval (Slice B-Proj, v0.1.0.128).
@@ -223,7 +223,7 @@
                   string="Project Item Approval Status"
                   class="btn-primary"
                   studio_approval="True"
-                  invisible="(state == 'cancel') or ((x_studio_project_item_request_sent == False) or ((x_studio_project_item_approved == True) or (x_studio_expired == True)))"/>
+                  invisible="(state == 'cancel') or ((x_studio_new_item_from_project != True) or ((x_studio_valid_order_lines_for_projects == False) or (state == 'done')))"/>
         </xpath>
 
         <!-- Sentinel required by Slice A9 pages Repair Image + Warranty
