@@ -24,7 +24,8 @@ class ProductTemplate(models.Model):
     x_studio_melt_item = fields.Boolean(string='Melt Item')
     x_studio_product_type = fields.Selection(
         [('Motor', 'Motor'), ('Other Products', 'Other Products'),
-         ('Vehicles', 'Vehicles'), ('Pumps', 'Pumps')],
+         ('Vehicles', 'Vehicles'), ('Pumps', 'Pumps'),
+         ('None', 'None')],
         string='Internal Product Type')
     x_studio_sub_contract = fields.Boolean(string='Sub-Contract')
     x_studio_tariff_code = fields.Many2one(
