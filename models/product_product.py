@@ -48,7 +48,11 @@ class ProductProduct(models.Model):
     x_studio_melt_item = fields.Boolean(string='Melt Item')
     # Selection with empty options on Clear-DB (Studio user hadn't
     # configured values yet). Preserved verbatim.
-    x_studio_product_type = fields.Selection([], string='Internal Product Type')
+    x_studio_product_type = fields.Selection(
+        [('Motor', 'Motor'), ('Other Products', 'Other Products'),
+         ('Vehicles', 'Vehicles'), ('Pumps', 'Pumps'),
+         ('None', 'None')],
+        string='Internal Product Type')
     x_studio_related_field_59m_1iv4fum1u = fields.Boolean(string='New Related Field')
     x_studio_related_field_850_1iv4flunc = fields.Boolean(string='New Related Field')
     x_studio_related_field_YoMQf = fields.Integer(string='New Related Field')
