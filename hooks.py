@@ -174,7 +174,73 @@ def patch_sls_validate_mobile_action(env):
 
 
 
+# --- Field selection seeds (via Odoo _update_selection framework API) ---
+# Studio-15 populated ir.model.fields.selection rows for these fields in CDB;
+# Odoo 17 doesn't recreate them on install. ORM.create() is blocked for
+# state='base' fields ("Properties of base fields cannot be altered..."),
+# but Odoo's own _update_selection helper (used by
+# ir.model.fields._compute_selection in core, see
+# odoo/addons/base/models/ir_model.py:600) bypasses that guard. Uses
+# framework query_insert / query_update — no cr.execute in our code.
+# (model, field, value, label, sequence)
+_FIELD_SELECTIONS = [
+    ('sale.order.line', 'x_studio_quotation_type', 'Sales', 'Sales', 10),
+    ('sale.order.line', 'x_studio_product_status', 'Blank', 'Blank', 10),
+    ('sale.order.line', 'x_studio_purch_type', 'Local', 'Local', 10),
+    ('sale.order.line', 'x_studio_quotation_type', 'Project', 'Project', 1),
+    ('sale.order.line', 'x_studio_product_status', 'New Item', 'New Item', 1),
+    ('sale.order.line', 'x_studio_purch_type', 'Import', 'Import', 1),
+    ('sale.order.line', 'x_studio_quotation_type', 'Repair', 'Repair', 2),
+    ('sale.order.line', 'x_studio_product_status', 'Existing Item', 'Existing Item', 2),
+]
+
+
+def _seed_field_selections(env, entries):
+    """Add missing ir.model.fields.selection rows via Odoo's
+    _update_selection helper. Groups by (model, field), reads current
+    selection, appends missing CDB values, calls _update_selection with
+    the merged list — Odoo inserts only the new rows and keeps existing."""
+    Sel = env['ir.model.fields.selection'].sudo()
+    Fld = env['ir.model.fields'].sudo()
+    grouped = {}
+    for model, fname, value, label, seq in entries:
+        grouped.setdefault((model, fname), []).append((value, label, seq))
+    for (model, fname), values in grouped.items():
+        fld = Fld.search(
+            [('model', '=', model), ('name', '=', fname)], limit=1,
+        )
+        if not fld:
+            _logger.info(
+                "BugFix-Sales: skip %s.%s (field absent).", model, fname,
+            )
+            continue
+        existing_recs = Sel.search(
+            [('field_id', '=', fld.id)], order='sequence',
+        )
+        existing_pairs = [(r.value, r.name) for r in existing_recs]
+        existing_values = {v for v, _ in existing_pairs}
+        added = []
+        for v, l, _seq in sorted(values, key=lambda t: t[2]):
+            if v in existing_values:
+                continue
+            existing_pairs.append((v, l))
+            existing_values.add(v)
+            added.append(v)
+        if not added:
+            continue
+        try:
+            with env.cr.savepoint():
+                Sel._update_selection(model, fname, existing_pairs)
+                _logger.info(
+                    "BugFix-Sales: seeded %s.%s += %s.", model, fname, added,
+                )
+        except Exception as e:
+            _logger.warning(
+                "BugFix-Sales: seed failed %s.%s (%s).", model, fname, e,
+            )
+
 def post_init_hook(env):
     """Odoo 17 post-install hook signature: (env)."""
     strip_studio_xmlids_for_ported_fields(env)
     patch_sls_validate_mobile_action(env)
+    _seed_field_selections(env, _FIELD_SELECTIONS)
