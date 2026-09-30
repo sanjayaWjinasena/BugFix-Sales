@@ -40,3 +40,12 @@ class ProductPricelist(models.Model):
         ],
         string='zzzz',
     )
+
+
+class ProductPricelistItem(models.Model):
+    _inherit = 'product.pricelist.item'
+
+    x_studio_price_confirmed = fields.Boolean(
+        string='Price Confirmed',
+        copy=True,
+    )
