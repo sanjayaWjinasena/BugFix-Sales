@@ -3,14 +3,10 @@
 <odoo>
   <data noupdate="1">
 
-    <record id="default_586_product_template_x_studio_product_type" model="ir.default">
-      <field name="field_id" ref="BugFix-Sales.field_product_template__x_studio_product_type"/>
-      <field name="json_value">"None"</field>
-    </record>
-
     <record id="default_325_sale_order_line_x_studio_product_status" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_sale_order_line__x_studio_product_status"/>
       <field name="json_value">"Blank"</field>
     </record>
+    <!-- SKIPPED default_586_product_template_x_studio_product_type: target field declared as fields.Selection([]) in Python; runtime-only options can be transiently absent during registry rebuild, causing default validation to fail. -->
   </data>
 </odoo>
