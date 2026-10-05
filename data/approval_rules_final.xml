@@ -6,6 +6,7 @@
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="action_id" ref="BugFix-Sales.server_action_1435_sls_credit_limit_approval_main"/>
     <field name="group_id" ref="BugFix-Approvals.group_125_jin_sales_credit_limit_approvers"/>
+    <field name="message">Credit Limit Should be Approved</field>
   </record>
   <record id="ar_final_sales_order_sls_temporary_credit_approval_sales_temporary_cr" model="studio.approval.rule">
     <field name="name">Sales Order/SLS - Temporary Credit Approval (Sales / Temporary Credit Approver) (19)</field>
@@ -18,6 +19,7 @@
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="action_id" ref="BugFix-Sales.server_action_1478_sls_overdue_approval"/>
     <field name="group_id" ref="BugFix-Approvals.group_127_jin_sales_overdue_approvers"/>
+    <field name="message">You don't have permission to approve sales for overdue customers</field>
   </record>
   <record id="ar_final_sales_order_sls_bank_guarantee_approval_sales_bank_guarantee" model="studio.approval.rule">
     <field name="name">Sales Order/SLS - Bank Guarantee Approval (Sales / Bank Guarantee Approver) (23)</field>
