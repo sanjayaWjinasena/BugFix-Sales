@@ -457,6 +457,13 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             )
             if not field:
                 continue
+            # Staging_Migration: only Studio (manual) fields carry their
+            # compute in the database. Once a repo declares the field in
+            # Python (as on a production copy after adoption), its compute
+            # lives in code and Odoo refuses this write ("Properties of base
+            # fields cannot be altered in this manner").
+            if field.state != 'manual':
+                continue
             code = field.compute or ''
             if marker in code:
                 continue
