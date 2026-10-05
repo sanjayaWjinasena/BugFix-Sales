@@ -226,6 +226,8 @@
                 'studio_usermodel_migration',    # res.partner.x_studio_customer_group / _vendor_group
                 'seed_master_data_and_settings', # company_jinasena_pvt_ltd ref
     ],
+    # Staging_Migration: adopt existing Studio models for the ir.model pins.
+    'pre_init_hook': 'pre_init_hook',
     'post_init_hook': 'post_init_hook',
     # v47: bulk-port of remaining Studio artifacts via
     # scripts/scaffold_bugfix_module.py (adds 8 sale.order fields,
