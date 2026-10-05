@@ -3,6 +3,7 @@ from odoo import models, fields
 
 class X_minimum_sales_margin(models.Model):
     _name = 'x_minimum_sales_margin'
+    _rec_name = 'x_name'  # Clear-DB Studio model: records are named by x_name
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Minimum Sales Margin %'
 
