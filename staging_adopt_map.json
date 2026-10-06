@@ -1,0 +1,3522 @@
+{
+"access_1218_product_product_group_system": {
+"ir.model.access": [
+[
+1218,
+"2021-08-17 10:01:59"
+]
+]
+},
+"access_1219_product_product_group_user": {
+"ir.model.access": [
+[
+1219,
+"2021-08-17 10:01:59"
+]
+]
+},
+"access_1531_res_config_settings_group_system": {
+"ir.model.access": [
+[
+1531,
+"2022-09-14 02:49:53"
+]
+]
+},
+"access_1532_res_config_settings_group_user": {
+"ir.model.access": [
+[
+1532,
+"2022-09-14 02:49:53"
+]
+]
+},
+"access_1533_minimum_sales_margin_group_system": {
+"ir.model.access": [
+[
+1533,
+"2022-09-14 02:59:55"
+]
+]
+},
+"access_1534_minimum_sales_margin_group_user": {
+"ir.model.access": [
+[
+1534,
+"2022-09-14 02:59:55"
+]
+]
+},
+"access_5667_product_product_stock_user": {
+"ir.model.access": [
+[
+5667,
+"2023-11-27 04:27:47"
+]
+]
+},
+"access_5691_access_product_replenish": {
+"ir.model.access": [
+[
+5691,
+"2023-11-27 04:27:47"
+]
+]
+},
+"access_5700_sale_order_stock_worker": {
+"ir.model.access": [
+[
+5700,
+"2023-11-27 04:27:47"
+]
+]
+},
+"access_6086_user": {
+"ir.model.access": [
+[
+6086,
+"2023-12-06 08:18:20"
+]
+]
+},
+"access_6151_user": {
+"ir.model.access": [
+[
+6151,
+"2023-12-14 07:54:11"
+]
+]
+},
+"access_6246_inv___administrator": {
+"ir.model.access": [
+[
+6246,
+"2024-01-02 08:05:58"
+]
+]
+},
+"access_6402_product_product_stock_user": {
+"ir.model.access": [
+[
+6402,
+"2024-02-13 08:22:17"
+]
+]
+},
+"access_6426_access_product_replenish": {
+"ir.model.access": [
+[
+6426,
+"2024-02-13 08:22:17"
+]
+]
+},
+"access_6435_sale_order_stock_worker": {
+"ir.model.access": [
+[
+6435,
+"2024-02-13 08:22:17"
+]
+]
+},
+"access_6516_product_product_stock_user": {
+"ir.model.access": [
+[
+6516,
+"2024-02-14 09:10:51"
+]
+]
+},
+"access_6540_access_product_replenish": {
+"ir.model.access": [
+[
+6540,
+"2024-02-14 09:10:51"
+]
+]
+},
+"access_6549_sale_order_stock_worker": {
+"ir.model.access": [
+[
+6549,
+"2024-02-14 09:10:51"
+]
+]
+},
+"access_6672_res_config_settings": {
+"ir.model.access": [
+[
+6672,
+"2024-02-28 10:13:04"
+]
+]
+},
+"access_6678_procuct": {
+"ir.model.access": [
+[
+6678,
+"2024-02-29 04:32:56"
+]
+]
+},
+"access_6681_procuct": {
+"ir.model.access": [
+[
+6681,
+"2024-03-14 04:24:47"
+]
+]
+},
+"access_6685_customers": {
+"ir.model.access": [
+[
+6685,
+"2024-03-14 05:04:06"
+]
+]
+},
+"access_6769_res_partner_crm_user": {
+"ir.model.access": [
+[
+6769,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6770_res_partner_sale_user": {
+"ir.model.access": [
+[
+6770,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6774_product_product_sale_use": {
+"ir.model.access": [
+[
+6774,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6777_sale_order": {
+"ir.model.access": [
+[
+6777,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6809_res_partner_category_crm_user": {
+"ir.model.access": [
+[
+6809,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6811_product_pricelist_sale_user": {
+"ir.model.access": [
+[
+6811,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6813_product_packaging_user": {
+"ir.model.access": [
+[
+6813,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6815_sale_order_template": {
+"ir.model.access": [
+[
+6815,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6816_sale_order_template_line": {
+"ir.model.access": [
+[
+6816,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6817_sale_order_template_option": {
+"ir.model.access": [
+[
+6817,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6818_sale_order_option": {
+"ir.model.access": [
+[
+6818,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6819_access_sale_advance_payment_inv": {
+"ir.model.access": [
+[
+6819,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6822_access_sale_order_cancel": {
+"ir.model.access": [
+[
+6822,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6849_sales_order": {
+"ir.model.access": [
+[
+6849,
+"2024-03-21 07:52:20"
+]
+]
+},
+"access_6855_sale_order_template": {
+"ir.model.access": [
+[
+6855,
+"2024-03-21 07:58:58"
+]
+]
+},
+"access_6864_sale_advance_payment_inv": {
+"ir.model.access": [
+[
+6864,
+"2024-03-21 08:18:58"
+]
+]
+},
+"access_6888_res_partner_purchase": {
+"ir.model.access": [
+[
+6888,
+"2024-04-10 06:38:32"
+]
+]
+},
+"access_6893_product_product_purchase_user": {
+"ir.model.access": [
+[
+6893,
+"2024-04-10 06:52:15"
+]
+]
+},
+"access_6956_sale_order": {
+"ir.model.access": [
+[
+6956,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6997_res_config_settings": {
+"ir.model.access": [
+[
+6997,
+"2024-05-02 07:14:44"
+]
+]
+},
+"access_7051_sale_order": {
+"ir.model.access": [
+[
+7051,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7277_jin___administrator": {
+"ir.model.access": [
+[
+7277,
+"2024-08-15 02:15:32"
+]
+]
+},
+"access_8655_access_product_attribute_rohana_read": {
+"ir.model.access": [
+[
+8655,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8657_access_product_attribute_value_rohana_read": {
+"ir.model.access": [
+[
+8657,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8658_access_product_category_rohana_read": {
+"ir.model.access": [
+[
+8658,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8659_access_product_packaging_rohana_read": {
+"ir.model.access": [
+[
+8659,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8660_access_product_pricelist_rohana_read": {
+"ir.model.access": [
+[
+8660,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8661_access_product_product_rohana_read": {
+"ir.model.access": [
+[
+8661,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8664_access_product_template_attribute_line_rohana_read": {
+"ir.model.access": [
+[
+8664,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8665_access_product_template_attribute_value_rohana_read": {
+"ir.model.access": [
+[
+8665,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8666_access_res_partner_rohana_read": {
+"ir.model.access": [
+[
+8666,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8667_access_res_partner_category_rohana_read": {
+"ir.model.access": [
+[
+8667,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8668_access_sale_advance_payment_inv_rohana_read": {
+"ir.model.access": [
+[
+8668,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8669_access_sale_mass_cancel_orders_rohana_read": {
+"ir.model.access": [
+[
+8669,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8670_access_sale_order_rohana": {
+"ir.model.access": [
+[
+8670,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8671_access_sale_order_cancel_rohana_read": {
+"ir.model.access": [
+[
+8671,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8672_access_sale_order_discount_rohana_read": {
+"ir.model.access": [
+[
+8672,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8679_access_sale_order_option_rohana_read": {
+"ir.model.access": [
+[
+8679,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8680_access_sale_order_template_rohana_read": {
+"ir.model.access": [
+[
+8680,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8681_access_sale_order_template_line_rohana_read": {
+"ir.model.access": [
+[
+8681,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8682_access_sale_order_template_option_rohana_read": {
+"ir.model.access": [
+[
+8682,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8710_bugfix_sales_doc_intro_user": {
+"ir.model.access": [
+[
+8710,
+"2026-07-08 08:12:26"
+]
+]
+},
+"access_8711_bugfix_sales_doc_intro_manager": {
+"ir.model.access": [
+[
+8711,
+"2026-07-08 08:12:26"
+]
+]
+},
+"access_8712_bugfix_sales_doc_conclusion_user": {
+"ir.model.access": [
+[
+8712,
+"2026-07-08 08:12:26"
+]
+]
+},
+"access_8713_bugfix_sales_doc_conclusion_manager": {
+"ir.model.access": [
+[
+8713,
+"2026-07-08 08:12:26"
+]
+]
+},
+"act_window_1205_delivery_terms": {
+"ir.actions.act_window": [
+[
+1205,
+"2021-09-03 07:22:16"
+]
+]
+},
+"act_window_1273_expense_products": {
+"ir.actions.act_window": [
+[
+1273,
+"2021-09-28 17:58:14"
+]
+]
+},
+"act_window_1373_product_product": {
+"ir.actions.act_window": [
+[
+1373,
+"2021-10-26 05:17:00"
+]
+]
+},
+"act_window_1425_res_partner": {
+"ir.actions.act_window": [
+[
+1425,
+"2021-11-17 09:44:39"
+]
+]
+},
+"act_window_1447_customers": {
+"ir.actions.act_window": [
+[
+1447,
+"2021-11-25 05:58:02"
+]
+]
+},
+"act_window_1448_vendors": {
+"ir.actions.act_window": [
+[
+1448,
+"2021-11-25 06:19:50"
+]
+]
+},
+"act_window_1568_sales_order_lines": {
+"ir.actions.act_window": [
+[
+1568,
+"2022-02-15 13:35:44"
+]
+]
+},
+"act_window_1668_sales_report_type": {
+"ir.actions.act_window": [
+[
+1668,
+"2022-03-29 07:54:05"
+]
+]
+},
+"act_window_1750_sales_configurations": {
+"ir.actions.act_window": [
+[
+1750,
+"2022-09-14 02:59:55"
+]
+]
+},
+"act_window_204_products": {
+"ir.actions.act_window": [
+[
+204,
+"2021-02-03 05:30:53"
+]
+]
+},
+"act_window_2060_delivery_terms": {
+"ir.actions.act_window": [
+[
+2060,
+"2023-02-16 06:20:40"
+]
+]
+},
+"act_window_2193_line_items": {
+"ir.actions.act_window": [
+[
+2195,
+"2023-05-24 15:10:45"
+],
+[
+2194,
+"2023-05-24 09:41:39"
+],
+[
+2193,
+"2023-05-24 09:31:24"
+]
+]
+},
+"act_window_2194_line_items": {
+"ir.actions.act_window": [
+[
+2194,
+"2023-05-24 09:41:39"
+]
+]
+},
+"act_window_2195_line_items": {
+"ir.actions.act_window": [
+[
+2195,
+"2023-05-24 15:10:45"
+]
+]
+},
+"act_window_2200_sales_production_request_status": {
+"ir.actions.act_window": [
+[
+2200,
+"2023-05-31 21:58:12"
+]
+]
+},
+"act_window_2283_sale_order": {
+"ir.actions.act_window": [
+[
+2283,
+"2023-07-17 14:17:32"
+]
+]
+},
+"act_window_2288_product_template": {
+"ir.actions.act_window": [
+[
+2288,
+"2023-08-01 08:03:30"
+]
+]
+},
+"act_window_2330_repair_sales_order_list": {
+"ir.actions.act_window": [
+[
+2330,
+"2023-08-14 07:40:35"
+]
+]
+},
+"act_window_2338_project_sales_orders": {
+"ir.actions.act_window": [
+[
+2338,
+"2023-08-16 08:57:32"
+]
+]
+},
+"act_window_2439_ss": {
+"ir.actions.act_window": [
+[
+2439,
+"2023-11-08 07:46:35"
+]
+]
+},
+"act_window_2571_sales_orders": {
+"ir.actions.act_window": [
+[
+2571,
+"2024-06-06 02:33:37"
+]
+]
+},
+"act_window_2588_product_product": {
+"ir.actions.act_window": [
+[
+2588,
+"2024-07-08 15:52:07"
+],
+[
+2881,
+"2024-11-18 09:38:14"
+]
+]
+},
+"act_window_2622_product_template": {
+"ir.actions.act_window": [
+[
+2622,
+"2024-07-14 02:24:36"
+]
+]
+},
+"act_window_2840_companies_res_company": {
+"ir.actions.act_window": [
+[
+2840,
+"2024-10-21 11:24:18"
+]
+]
+},
+"act_window_2881_product_product": {
+"ir.actions.act_window": [
+[
+2881,
+"2024-11-18 09:38:14"
+]
+]
+},
+"act_window_3170_sales_analysis_by_salespersons": {
+"ir.actions.act_window": [
+[
+3170,
+"2025-03-18 10:24:39"
+]
+]
+},
+"act_window_3635_document_introductions": {
+"ir.actions.act_window": [
+[
+3635,
+"2026-07-08 08:12:26"
+]
+]
+},
+"act_window_3636_document_conclusions": {
+"ir.actions.act_window": [
+[
+3636,
+"2026-07-08 08:12:26"
+]
+]
+},
+"act_window_781_new_button": {
+"ir.actions.act_window": [
+[
+781,
+"2021-05-10 13:19:51"
+]
+]
+},
+"act_window_782_customers_of_this_group": {
+"ir.actions.act_window": [
+[
+782,
+"2021-05-10 13:29:01"
+]
+]
+},
+"act_window_783_customers_of_this_group": {
+"ir.actions.act_window": [
+[
+783,
+"2021-05-10 13:30:16"
+]
+]
+},
+"act_window_785_sales_orders": {
+"ir.actions.act_window": [
+[
+785,
+"2021-05-20 12:49:24"
+]
+]
+},
+"aw_f4_product_product_product_product_1": {
+"ir.actions.act_window": [
+[
+1,
+"2021-02-03 05:30:53"
+]
+]
+},
+"aw_f4_res_partner_customers_of_this_group_1": {
+"ir.actions.act_window": [
+[
+1,
+"2021-02-03 05:30:53"
+]
+]
+},
+"aw_f4_sale_order_sales_orders_1": {
+"ir.actions.act_window": [
+[
+1,
+"2021-02-03 05:30:53"
+]
+]
+},
+"base_automation_118_srm_auto_populate_report_type_in_so_lines": {
+"base.automation": [
+[
+118,
+"2022-08-04 03:57:44"
+]
+]
+},
+"base_automation_139_sls_customer_group_distributor_mandatory_bank_guarantee": {
+"base.automation": [
+[
+139,
+"2022-10-19 08:01:23"
+]
+]
+},
+"base_automation_140_sls_customer_group_not_in_general_validation": {
+"base.automation": [
+[
+140,
+"2022-10-19 08:09:24"
+]
+]
+},
+"base_automation_141_sls_validate_credit_limit_bank_guarantee_amount_1": {
+"base.automation": [
+[
+141,
+"2022-10-19 10:03:38"
+]
+]
+},
+"base_automation_146_sls_minimum_sales_margin_in_setup_page": {
+"base.automation": [
+[
+146,
+"2022-10-24 00:56:43"
+]
+]
+},
+"base_automation_147_sls_validate_bank_guarantee_in_so_confirm": {
+"base.automation": [
+[
+147,
+"2022-10-25 04:16:06"
+]
+]
+},
+"base_automation_150_sls_track_name_in_customer": {
+"base.automation": [
+[
+150,
+"2022-11-16 09:49:52"
+]
+]
+},
+"base_automation_151_sls_track_address1_in_customer": {
+"base.automation": [
+[
+151,
+"2022-11-16 09:52:28"
+]
+]
+},
+"base_automation_152_sls_track_address2_in_customer": {
+"base.automation": [
+[
+152,
+"2022-11-16 09:53:53"
+]
+]
+},
+"base_automation_153_sls_track_address3_in_customer": {
+"base.automation": [
+[
+153,
+"2022-11-16 09:55:02"
+]
+]
+},
+"base_automation_154_sls_track_tax_id_in_customer": {
+"base.automation": [
+[
+154,
+"2022-11-16 09:55:47"
+]
+]
+},
+"base_automation_155_sls_track_customer_group_in_customer": {
+"base.automation": [
+[
+155,
+"2022-11-16 09:58:09"
+]
+]
+},
+"base_automation_156_sls_track_phone_in_customer": {
+"base.automation": [
+[
+156,
+"2022-11-16 10:09:47"
+]
+]
+},
+"base_automation_157_sls_track_payment_term_in_customer": {
+"base.automation": [
+[
+157,
+"2022-11-16 10:12:06"
+]
+]
+},
+"base_automation_158_sls_track_payment_type_in_customer": {
+"base.automation": [
+[
+158,
+"2022-11-16 10:14:29"
+]
+]
+},
+"base_automation_159_sls_track_address4_in_customer": {
+"base.automation": [
+[
+159,
+"2022-12-20 04:14:49"
+]
+]
+},
+"base_automation_160_sls_track_address5_in_customer": {
+"base.automation": [
+[
+160,
+"2022-12-20 04:16:41"
+]
+]
+},
+"base_automation_161_sls_track_mobile_in_customer": {
+"base.automation": [
+[
+161,
+"2022-12-20 04:18:38"
+]
+]
+},
+"base_automation_162_sls_track_price_list_in_customer": {
+"base.automation": [
+[
+162,
+"2022-12-20 04:23:10"
+]
+]
+},
+"base_automation_163_sls_track_vat_registration_status_in_customer": {
+"base.automation": [
+[
+163,
+"2022-12-20 04:25:23"
+]
+]
+},
+"base_automation_164_sls_track_vat_registration_no_in_customer": {
+"base.automation": [
+[
+164,
+"2022-12-20 04:27:07"
+]
+]
+},
+"base_automation_165_sls_track_svat_registration_status_in_customer": {
+"base.automation": [
+[
+165,
+"2022-12-20 04:28:58"
+]
+]
+},
+"base_automation_166_sls_track_svat_registration_no_in_customer": {
+"base.automation": [
+[
+166,
+"2022-12-20 04:30:10"
+]
+]
+},
+"base_automation_167_sls_track_bank_guarantee_expiration_date_in_customer": {
+"base.automation": [
+[
+167,
+"2022-12-20 04:32:31"
+]
+]
+},
+"base_automation_168_sls_track_mandatory_bank_guarantee_in_customer": {
+"base.automation": [
+[
+168,
+"2022-12-20 04:35:03"
+]
+]
+},
+"base_automation_169_sls_validate_sos_without_lines": {
+"base.automation": [
+[
+169,
+"2022-12-20 07:09:39"
+]
+]
+},
+"base_automation_176_rr_auto_generate_quotation_type_for_repair_sos": {
+"base.automation": [
+[
+176,
+"2023-02-08 06:36:31"
+]
+]
+},
+"base_automation_180_sls_track_vat_exempted_number_in_customer": {
+"base.automation": [
+[
+180,
+"2023-02-15 09:41:48"
+]
+]
+},
+"base_automation_186_rr_auto_generate_quotation_type_for_project_sos": {
+"base.automation": [
+[
+186,
+"2023-03-21 09:35:49"
+]
+]
+},
+"base_automation_187_rr_auto_generate_quotation_type_for_project_sos_2": {
+"base.automation": [
+[
+187,
+"2023-03-22 02:58:49"
+]
+]
+},
+"base_automation_193_rr_sales_price_for_rug_items": {
+"base.automation": [
+[
+193,
+"2023-04-19 10:42:48"
+]
+]
+},
+"base_automation_196_proj_item_related_details_in_project_so": {
+"base.automation": [
+[
+196,
+"2023-04-27 03:53:11"
+]
+]
+},
+"base_automation_202_rr_track_lock_status": {
+"base.automation": [
+[
+202,
+"2023-06-28 05:07:44"
+]
+]
+},
+"base_automation_203_rr_track_lock_status_2": {
+"base.automation": [
+[
+203,
+"2023-06-28 05:11:03"
+]
+]
+},
+"base_automation_204_rr_track_lock_status_3": {
+"base.automation": [
+[
+204,
+"2023-06-28 05:36:17"
+]
+]
+},
+"base_automation_205_rr_track_lock_status_4": {
+"base.automation": [
+[
+205,
+"2023-06-28 06:04:16"
+]
+]
+},
+"base_automation_212_sls_apply_pricelist_in_so_lines": {
+"base.automation": [
+[
+212,
+"2023-08-08 06:33:26"
+]
+]
+},
+"base_automation_216_sls_clear_free_items_so_lines": {
+"base.automation": [
+[
+216,
+"2023-08-15 05:42:49"
+]
+]
+},
+"base_automation_217_sls_validate_phone": {
+"base.automation": [
+[
+217,
+"2023-08-15 15:09:13"
+]
+]
+},
+"base_automation_218_sls_validate_mobile": {
+"base.automation": [
+[
+218,
+"2023-08-16 02:39:42"
+]
+]
+},
+"base_automation_234_update_analytic_tag_parameters_sales_order_customer": {
+"base.automation": [
+[
+234,
+"2023-10-04 15:55:13"
+]
+]
+},
+"base_automation_235_update_analytic_tag_parameters_sales_order_user": {
+"base.automation": [
+[
+235,
+"2023-10-04 15:56:16"
+]
+]
+},
+"base_automation_236_update_analytic_tag_parameters_sales_line_product": {
+"base.automation": [
+[
+236,
+"2023-10-04 15:56:56"
+]
+]
+},
+"base_automation_257_jin_project_sales_order_seq_no": {
+"base.automation": [
+[
+257,
+"2024-06-11 15:59:02"
+]
+]
+},
+"base_automation_258_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro": {
+"base.automation": [
+[
+258,
+"2024-06-11 17:13:44"
+]
+]
+},
+"base_automation_259_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro": {
+"base.automation": [
+[
+259,
+"2024-06-12 01:05:32"
+]
+]
+},
+"base_automation_260_proj_validate_start_date_and_end_date_for_project_sos": {
+"base.automation": [
+[
+260,
+"2024-06-27 04:46:07"
+]
+]
+},
+"base_automation_268_jin_company_id_in_product": {
+"base.automation": [
+[
+268,
+"2024-07-08 14:57:57"
+]
+]
+},
+"base_automation_291_jin_company_id_in_product_category": {
+"base.automation": [
+[
+291,
+"2024-07-15 09:58:05"
+]
+]
+},
+"base_automation_2_sls_update_payment_term_customer": {
+"base.automation": [
+[
+2,
+"2021-06-13 04:43:05"
+]
+]
+},
+"base_automation_316_jin_company_id_in_delivery_terms": {
+"base.automation": [
+[
+316,
+"2024-07-18 02:22:21"
+]
+]
+},
+"base_automation_334_jin_company_id_in_pricelist": {
+"base.automation": [
+[
+334,
+"2024-10-15 09:45:13"
+]
+]
+},
+"base_automation_336_jin_company_id_in_respartner_inherit_model": {
+"base.automation": [
+[
+336,
+"2024-10-15 10:14:23"
+]
+]
+},
+"base_automation_340_jin_pricelist_in_respartner_inherit_model": {
+"base.automation": [
+[
+340,
+"2025-01-27 08:32:24"
+]
+]
+},
+"base_automation_341_proj_apply_project_price_list": {
+"base.automation": [
+[
+341,
+"2025-03-12 08:57:34"
+]
+]
+},
+"base_automation_342_proj_update_price_confirmed_status": {
+"base.automation": [
+[
+342,
+"2025-03-14 00:04:45"
+]
+]
+},
+"base_automation_66_imp_service_item_charge_duty_tax": {
+"base.automation": [
+[
+66,
+"2021-10-29 04:32:52"
+]
+]
+},
+"base_automation_77_sls_validate_credit_limit": {
+"base.automation": [
+[
+77,
+"2021-11-19 03:21:44"
+]
+]
+},
+"base_automation_78_sls_validate_payment_method": {
+"base.automation": [
+[
+78,
+"2021-11-19 03:24:10"
+]
+]
+},
+"base_automation_79_sls_pass_customer_pm_to_so": {
+"base.automation": [
+[
+79,
+"2021-11-19 05:51:47"
+]
+]
+},
+"base_automation_80_sls_validate_order_payment_type_in_so": {
+"base.automation": [
+[
+80,
+"2021-11-19 06:17:11"
+]
+]
+},
+"base_automation_82_sls_update_payment_term_vendor": {
+"base.automation": [
+[
+82,
+"2021-11-25 05:14:31"
+]
+]
+},
+"base_automation_83_imp_validate_default_split_method_in_item_master": {
+"base.automation": [
+[
+83,
+"2021-11-26 05:14:13"
+]
+]
+},
+"base_automation_84_imp_pass_split_method_in_item_master": {
+"base.automation": [
+[
+84,
+"2021-11-26 05:21:32"
+]
+]
+},
+"base_automation_88_sls_validate_customer_group": {
+"base.automation": [
+[
+88,
+"2021-12-08 05:46:31"
+]
+]
+},
+"base_automation_89_sls_validate_discount_in_so_line": {
+"base.automation": [
+[
+89,
+"2021-12-15 02:06:26"
+]
+]
+},
+"base_automation_90_sls_validate_commission_in_so_line": {
+"base.automation": [
+[
+90,
+"2021-12-15 02:19:58"
+]
+]
+},
+"base_automation_91_sls_validate_margin_in_so_line": {
+"base.automation": [
+[
+91,
+"2021-12-15 08:16:42"
+]
+]
+},
+"base_automation_92_sls_track_credit_limit_in_customer": {
+"base.automation": [
+[
+92,
+"2021-12-16 04:28:09"
+]
+]
+},
+"default_212_sale_order_x_studio_over_credit": {
+"ir.default": [
+[
+212,
+"2021-11-19 04:24:10"
+]
+]
+},
+"default_244_sale_order_line_x_studio_req_qty": {
+"ir.default": [
+[
+244,
+"2022-02-22 12:14:16"
+]
+]
+},
+"default_285_x_minimum_sales_margin_x_active": {
+"ir.default": [
+[
+285,
+"2022-09-14 02:59:55"
+]
+]
+},
+"default_286_x_minimum_sales_margin_x_studio_sequence": {
+"ir.default": [
+[
+286,
+"2022-09-14 02:59:55"
+]
+]
+},
+"default_325_sale_order_line_x_studio_product_status": {
+"ir.default": [
+[
+325,
+"2023-04-19 08:37:08"
+]
+]
+},
+"default_363_sale_order_x_studio_re_estimate_count": {
+"ir.default": [
+[
+363,
+"2023-06-28 03:13:09"
+]
+]
+},
+"default_364_sale_order_x_studio_re_estimate_request_count_1": {
+"ir.default": [
+[
+364,
+"2023-06-28 04:19:50"
+]
+]
+},
+"default_366_sale_order_line_x_studio_count_1": {
+"ir.default": [
+[
+366,
+"2023-06-28 07:17:10"
+]
+]
+},
+"default_367_sale_order_line_x_studio_count_2": {
+"ir.default": [
+[
+367,
+"2023-06-28 07:18:15"
+]
+]
+},
+"default_373_x_minimum_sales_margin_x_studio_sales_order_vali": {
+"ir.default": [
+[
+373,
+"2023-08-16 10:37:26"
+]
+]
+},
+"default_374_sale_order_x_studio_repair_validation": {
+"ir.default": [
+[
+374,
+"2023-08-23 05:15:10"
+]
+]
+},
+"default_384_sale_order_x_studio_sales_order_validity": {
+"ir.default": [
+[
+384,
+"2023-10-11 07:05:19"
+]
+]
+},
+"default_415_sale_order_x_studio_confirm_validation": {
+"ir.default": [
+[
+415,
+"2024-06-12 02:12:54"
+]
+]
+},
+"default_417_sale_order_x_studio_confirm_validation_1": {
+"ir.default": [
+[
+417,
+"2024-06-27 06:46:40"
+]
+]
+},
+"default_581_x_minimum_sales_margin_x_studio_last_purchase_pr": {
+"ir.default": [
+[
+581,
+"2025-03-12 09:01:38"
+]
+]
+},
+"default_586_product_template_x_studio_product_type": {
+"ir.default": [
+[
+586,
+"2025-07-16 06:25:28"
+]
+]
+},
+"menu_1060_sales_production_request_status": {
+"ir.ui.menu": [
+[
+1060,
+"2023-05-31 21:58:12"
+]
+]
+},
+"menu_1088_repair_sales_order_list": {
+"ir.ui.menu": [
+[
+1088,
+"2023-08-14 07:40:35"
+]
+]
+},
+"menu_1089_project_sales_orders": {
+"ir.ui.menu": [
+[
+1089,
+"2023-08-16 08:57:32"
+]
+]
+},
+"menu_832_sales_order_lines": {
+"ir.ui.menu": [
+[
+832,
+"2022-02-15 13:35:44"
+]
+]
+},
+"menu_doc_conclusion": {
+"ir.ui.menu": [
+[
+1866,
+"2026-07-08 08:12:26"
+]
+]
+},
+"menu_doc_intro": {
+"ir.ui.menu": [
+[
+1865,
+"2026-07-08 08:12:26"
+]
+]
+},
+"menu_f6_project_sales_orders": {
+"ir.ui.menu": [
+[
+1089,
+"2023-08-16 08:57:32"
+]
+]
+},
+"menu_f6_repair_sales_order_list": {
+"ir.ui.menu": [
+[
+1088,
+"2023-08-14 07:40:35"
+]
+]
+},
+"ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885": {
+"ir.ui.view": [
+[
+2712,
+"2021-09-03 07:22:16"
+]
+]
+},
+"ported_default_form_view_fo_e0d2cf85_360c_4576_b7f6_9020babe12f0": {
+"ir.ui.view": [
+[
+9162,
+"2025-12-09 04:01:14"
+]
+]
+},
+"ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e": {
+"ir.ui.view": [
+[
+2711,
+"2021-09-03 07:22:16"
+]
+]
+},
+"ported_default_pivot_view_f_b434dca2_4958_4f97_b58e_a253d775c63c": {
+"ir.ui.view": [
+[
+3260,
+"2022-02-15 13:48:33"
+]
+]
+},
+"ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe": {
+"ir.ui.view": [
+[
+2713,
+"2021-09-03 07:22:16"
+]
+]
+},
+"ported_odoo_studio_sale_ord_2b440c7b_edb5_4cd8_827e_19fbb95a85a9": {
+"ir.ui.view": [
+[
+3920,
+"2022-09-05 04:22:22"
+]
+]
+},
+"ported_odoo_studio_sale_ord_42b65c93_ce32_435b_8978_554c017d8d4c": {
+"ir.ui.view": [
+[
+7977,
+"2025-03-20 07:25:00"
+]
+]
+},
+"ported_odoo_studio_sale_ord_71749d4c_8fb8_46b0_a187_bfa8977a25fd": {
+"ir.ui.view": [
+[
+3126,
+"2021-12-07 05:55:50"
+]
+]
+},
+"ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5": {
+"ir.ui.view": [
+[
+3127,
+"2021-12-16 04:31:05"
+],
+[
+4733,
+"2023-02-08 10:40:25"
+]
+]
+},
+"ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3": {
+"ir.ui.view": [
+[
+2304,
+"2021-05-06 13:43:52"
+]
+]
+},
+"ported_product_template_studio_2551": {
+"ir.ui.view": [
+[
+2551,
+"2021-07-27 05:58:05"
+]
+]
+},
+"ported_view_2299_odoo_studio_res_partner_form_customizati": {
+"ir.ui.view": [
+[
+2299,
+"2021-04-30 13:23:43"
+]
+]
+},
+"ported_view_2300_odoo_studio_res_partner_tree_customizati": {
+"ir.ui.view": [
+[
+2300,
+"2021-04-30 13:28:33"
+]
+]
+},
+"ported_view_2551_odoo_studio_product_template_product_for": {
+"ir.ui.view": [
+[
+2551,
+"2021-07-27 05:58:05"
+]
+]
+},
+"ported_view_3029_odoo_studio_product_template_product_tre": {
+"ir.ui.view": [
+[
+3029,
+"2021-10-26 04:43:04"
+]
+]
+},
+"ported_view_3030_odoo_studio_product_product_tree_customi": {
+"ir.ui.view": [
+[
+3030,
+"2021-10-26 05:17:54"
+]
+]
+},
+"ported_view_3259_odoo_studio_sale_order_line_tree_customi": {
+"ir.ui.view": [
+[
+3259,
+"2022-02-15 13:37:48"
+]
+]
+},
+"ported_view_5065_odoo_studio_product_pricelist_tree_custo": {
+"ir.ui.view": [
+[
+5065,
+"2023-08-07 07:01:22"
+]
+]
+},
+"ported_view_5445_odoo_studio_product_template_view_tree": {
+"ir.ui.view": [
+[
+5445,
+"2024-02-10 11:03:03"
+]
+]
+},
+"ported_view_5547_odoo_studio_res_company_tree_customizati": {
+"ir.ui.view": [
+[
+5547,
+"2024-07-02 08:59:39"
+]
+]
+},
+"report_saleorder_studio_customization": {
+"ir.ui.view": [
+[
+3089,
+"2021-11-17 10:36:33"
+]
+]
+},
+"res_config_settings_view_form_bugfix_sales": {
+"ir.ui.view": [
+[
+9562,
+"2026-07-20 05:28:29"
+]
+]
+},
+"rule_157_sales_order_multi_company": {
+"ir.rule": [
+[
+157,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_162_portal_personal_quotations_sales_orders": {
+"ir.rule": [
+[
+162,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_164_personal_orders": {
+"ir.rule": [
+[
+164,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_165_all_orders": {
+"ir.rule": [
+[
+165,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_16_company_rule_portal": {
+"ir.rule": [
+[
+16,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_179_sales_advance_payment_invoice_rule": {
+"ir.rule": [
+[
+179,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_17_company_rule_employee": {
+"ir.rule": [
+[
+17,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_180_sales_order_cancel_rule": {
+"ir.rule": [
+[
+180,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_185_quotation_template_multi_company": {
+"ir.rule": [
+[
+185,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_18_company_rule_public": {
+"ir.rule": [
+[
+18,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_190_project_manager_sales_orders_line": {
+"ir.rule": [
+[
+190,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_191_subscription_multi_company": {
+"ir.rule": [
+[
+191,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_198_subscription_portal_access": {
+"ir.rule": [
+[
+198,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_19_company_rule_erp_manager": {
+"ir.rule": [
+[
+19,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_2_res_partner_company": {
+"ir.rule": [
+[
+2,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_337_sales_orders_for_sales_centers": {
+"ir.rule": [
+[
+337,
+"2022-01-18 05:28:07"
+]
+]
+},
+"rule_3_res_partner_portal_public_read_access_on_my_commercial_partn": {
+"ir.rule": [
+[
+3,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_40_product_pricelist_company_rule": {
+"ir.rule": [
+[
+40,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_43_product_packaging_company_rule": {
+"ir.rule": [
+[
+43,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_446_product_pricelist_company_rule": {
+"ir.rule": [
+[
+446,
+"2023-08-25 05:59:35"
+]
+]
+},
+"rule_498_jin_sales_add_edit_del_ca_customers": {
+"ir.rule": [
+[
+498,
+"2024-03-14 04:36:16"
+]
+]
+},
+"rule_499_jin_sales_add_edit_del_non_ca_customers": {
+"ir.rule": [
+[
+499,
+"2024-03-14 05:01:30"
+]
+]
+},
+"rule_500_sales_order_view_only": {
+"ir.rule": [
+[
+500,
+"2024-03-20 10:11:57"
+]
+]
+},
+"rule_638_jin_multi_company_minimum_sales_margin": {
+"ir.rule": [
+[
+638,
+"2025-03-13 14:25:41"
+]
+]
+},
+"rule_779_sales_mass_cancel_orders_access_only_your_own_wizard": {
+"ir.rule": [
+[
+779,
+"2025-03-18 10:24:39"
+]
+]
+},
+"sa_f5_product_pricelist_jin_company_id_in_pricelist": {
+"ir.actions.server": [
+[
+2826,
+"2024-10-15 09:45:13"
+]
+]
+},
+"sa_f5_res_partner_jin_company_id_in_respartner_inherit_model": {
+"ir.actions.server": [
+[
+2828,
+"2024-10-15 10:14:23"
+]
+]
+},
+"sa_f5_res_partner_jin_pricelist_in_respartner_inherit_model": {
+"ir.actions.server": [
+[
+2891,
+"2025-01-27 08:32:24"
+]
+]
+},
+"sa_f5_res_partner_sls_track_credit_limit_in_customer": {
+"ir.actions.server": [
+[
+1518,
+"2021-12-16 04:28:09"
+]
+]
+},
+"sa_f5_res_partner_sls_update_payment_term_customer": {
+"ir.actions.server": [
+[
+810,
+"2021-06-13 04:43:05"
+]
+]
+},
+"sa_f5_res_partner_sls_validate_credit_limit": {
+"ir.actions.server": [
+[
+1427,
+"2021-11-19 03:21:44"
+]
+]
+},
+"sa_f5_res_partner_sls_validate_credit_limit_bank_guarantee_amount_1": {
+"ir.actions.server": [
+[
+1771,
+"2022-10-19 10:03:38"
+]
+]
+},
+"sa_f5_sale_order_line_proj_update_price_confirmed_status": {
+"ir.actions.server": [
+[
+2898,
+"2025-03-14 00:04:45"
+]
+]
+},
+"sa_f5_sale_order_line_rr_sales_price_for_rug_items": {
+"ir.actions.server": [
+[
+2144,
+"2023-04-19 10:42:48"
+]
+]
+},
+"sa_f5_sale_order_line_rr_track_lock_status_3": {
+"ir.actions.server": [
+[
+2252,
+"2023-06-28 05:36:17"
+]
+]
+},
+"sa_f5_sale_order_proj_apply_project_price_list": {
+"ir.actions.server": [
+[
+2896,
+"2025-03-12 08:57:34"
+]
+]
+},
+"sa_f5_sale_order_proj_validate_start_date_and_end_date_for_project_sos": {
+"ir.actions.server": [
+[
+2576,
+"2024-06-27 04:46:07"
+]
+]
+},
+"sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos": {
+"ir.actions.server": [
+[
+2114,
+"2023-03-21 09:35:49"
+]
+]
+},
+"sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos_2": {
+"ir.actions.server": [
+[
+2117,
+"2023-03-22 02:58:49"
+]
+]
+},
+"sa_f5_sale_order_rr_auto_generate_quotation_type_for_repair_sos": {
+"ir.actions.server": [
+[
+1995,
+"2023-02-08 06:36:31"
+]
+]
+},
+"sa_f5_sale_order_rr_track_lock_status": {
+"ir.actions.server": [
+[
+2250,
+"2023-06-28 05:07:44"
+]
+]
+},
+"sa_f5_sale_order_rr_track_lock_status_2": {
+"ir.actions.server": [
+[
+2251,
+"2023-06-28 05:11:03"
+]
+]
+},
+"sa_f5_x_minimum_sales_margin_sls_minimum_sales_margin_in_setup_page": {
+"ir.actions.server": [
+[
+1776,
+"2022-10-24 00:56:43"
+]
+]
+},
+"server_action_1142_update_product_cost_work_center_cost_2": {
+"ir.actions.server": [
+[
+1142,
+"2021-08-15 15:05:05"
+]
+]
+},
+"server_action_1207_imp_copy_charges_to_delivery_terms": {
+"ir.actions.server": [
+[
+1207,
+"2021-09-03 08:02:20"
+]
+]
+},
+"server_action_1208_imp_clear_charges_from_delivery_terms": {
+"ir.actions.server": [
+[
+1208,
+"2021-09-03 08:13:05"
+]
+]
+},
+"server_action_1387_imp_service_item_charge_duty_tax": {
+"ir.actions.server": [
+[
+1387,
+"2021-10-29 04:32:52"
+]
+]
+},
+"server_action_1427_sls_validate_credit_limit": {
+"ir.actions.server": [
+[
+1427,
+"2021-11-19 03:21:44"
+]
+]
+},
+"server_action_1428_sls_validate_payment_method": {
+"ir.actions.server": [
+[
+1428,
+"2021-11-19 03:24:10"
+]
+]
+},
+"server_action_1430_sls_pass_customer_pm_to_so": {
+"ir.actions.server": [
+[
+1430,
+"2021-11-19 05:51:47"
+]
+]
+},
+"server_action_1434_sls_validate_order_payment_type_in_so": {
+"ir.actions.server": [
+[
+1434,
+"2021-11-19 06:17:11"
+]
+]
+},
+"server_action_1435_sls_credit_limit_approval_main": {
+"ir.actions.server": [
+[
+1435,
+"2021-11-19 07:55:45"
+]
+]
+},
+"server_action_1445_sls_update_payment_term_vendor": {
+"ir.actions.server": [
+[
+1445,
+"2021-11-25 05:14:31"
+]
+]
+},
+"server_action_1451_imp_validate_default_split_method_in_item_master": {
+"ir.actions.server": [
+[
+1451,
+"2021-11-26 05:14:13"
+]
+]
+},
+"server_action_1452_imp_pass_split_method_in_item_master": {
+"ir.actions.server": [
+[
+1452,
+"2021-11-26 05:21:32"
+]
+]
+},
+"server_action_1458_sls_request_credit_limit_approval": {
+"ir.actions.server": [
+[
+1458,
+"2021-12-01 08:11:17"
+]
+]
+},
+"server_action_1460_sls_request_approval_sent": {
+"ir.actions.server": [
+[
+1460,
+"2021-12-01 08:30:49"
+]
+]
+},
+"server_action_1462_sls_request_approval_notify_user": {
+"ir.actions.server": [
+[
+1462,
+"2021-12-01 08:39:08"
+]
+]
+},
+"server_action_1464_sls_temporary_credit_approval_sent": {
+"ir.actions.server": [
+[
+1464,
+"2021-12-02 05:20:19"
+]
+]
+},
+"server_action_1466_sls_request_temporary_credit_approval_notify_user": {
+"ir.actions.server": [
+[
+1466,
+"2021-12-02 05:25:08"
+]
+]
+},
+"server_action_1468_sls_request_temporary_credit_approval": {
+"ir.actions.server": [
+[
+1468,
+"2021-12-02 05:27:56"
+]
+]
+},
+"server_action_1470_sls_temporary_credit_approval_main": {
+"ir.actions.server": [
+[
+1470,
+"2021-12-02 05:58:16"
+]
+]
+},
+"server_action_1472_sls_overdue_approval_request_sent": {
+"ir.actions.server": [
+[
+1472,
+"2021-12-08 03:11:18"
+]
+]
+},
+"server_action_1474_sls_overdue_request_approval_notify_user": {
+"ir.actions.server": [
+[
+1474,
+"2021-12-08 03:12:45"
+]
+]
+},
+"server_action_1476_sls_request_overdue_approval": {
+"ir.actions.server": [
+[
+1476,
+"2021-12-08 03:13:29"
+]
+]
+},
+"server_action_1478_sls_overdue_approval": {
+"ir.actions.server": [
+[
+1478,
+"2021-12-08 03:15:31"
+]
+]
+},
+"server_action_1480_sls_validate_customer_group": {
+"ir.actions.server": [
+[
+1480,
+"2021-12-08 05:46:31"
+]
+]
+},
+"server_action_1481_sls_request_bank_guarantee_approval_sent": {
+"ir.actions.server": [
+[
+1481,
+"2021-12-08 10:24:14"
+]
+]
+},
+"server_action_1483_sls_request_bank_guarantee_approval_notify_user": {
+"ir.actions.server": [
+[
+1483,
+"2021-12-08 10:25:17"
+]
+]
+},
+"server_action_1485_sls_request_bank_guarantee_approval": {
+"ir.actions.server": [
+[
+1485,
+"2021-12-08 10:26:09"
+]
+]
+},
+"server_action_1487_sls_bank_guarantee_approval_main": {
+"ir.actions.server": [
+[
+1487,
+"2021-12-08 10:27:31"
+]
+]
+},
+"server_action_1497_sls_validate_discount_in_so_line": {
+"ir.actions.server": [
+[
+1497,
+"2021-12-15 02:06:26"
+]
+]
+},
+"server_action_1498_sls_validate_commission_in_so_line": {
+"ir.actions.server": [
+[
+1498,
+"2021-12-15 02:19:58"
+]
+]
+},
+"server_action_1499_sls_over_commission_approval_request_sent": {
+"ir.actions.server": [
+[
+1499,
+"2021-12-15 03:26:18"
+]
+]
+},
+"server_action_1501_sls_over_commission_request_approval_notify_user": {
+"ir.actions.server": [
+[
+1501,
+"2021-12-15 03:27:16"
+]
+]
+},
+"server_action_1503_sls_request_over_commission_approval": {
+"ir.actions.server": [
+[
+1503,
+"2021-12-15 03:28:34"
+]
+]
+},
+"server_action_1505_sls_over_commission_approval_main": {
+"ir.actions.server": [
+[
+1505,
+"2021-12-15 03:29:36"
+]
+]
+},
+"server_action_1507_sls_test": {
+"ir.actions.server": [
+[
+1507,
+"2021-12-15 05:07:57"
+]
+]
+},
+"server_action_1508_sls_validate_margin_in_so_line": {
+"ir.actions.server": [
+[
+1508,
+"2021-12-15 08:16:42"
+]
+]
+},
+"server_action_1509_sls_margin_approval_request_sent": {
+"ir.actions.server": [
+[
+1509,
+"2021-12-15 09:28:10"
+]
+]
+},
+"server_action_1511_sls_margin_request_approval_notify_user": {
+"ir.actions.server": [
+[
+1511,
+"2021-12-15 09:29:13"
+]
+]
+},
+"server_action_1513_sls_request_margin_approval": {
+"ir.actions.server": [
+[
+1513,
+"2021-12-15 09:30:05"
+]
+]
+},
+"server_action_1515_sls_margin_approval_main": {
+"ir.actions.server": [
+[
+1515,
+"2021-12-15 09:30:57"
+]
+]
+},
+"server_action_1517_sls_item_over_margin_details": {
+"ir.actions.server": [
+[
+1517,
+"2021-12-15 09:37:39"
+]
+]
+},
+"server_action_1518_sls_track_credit_limit_in_customer": {
+"ir.actions.server": [
+[
+1518,
+"2021-12-16 04:28:09"
+]
+]
+},
+"server_action_1729_srm_auto_populate_report_type_in_so_lines": {
+"ir.actions.server": [
+[
+1729,
+"2022-08-04 03:57:44"
+]
+]
+},
+"server_action_1767_sls_customer_group_distributor_mandatory_bank_guarantee": {
+"ir.actions.server": [
+[
+1767,
+"2022-10-19 08:01:23"
+]
+]
+},
+"server_action_1768_sls_customer_group_not_in_general_validation": {
+"ir.actions.server": [
+[
+1768,
+"2022-10-19 08:09:24"
+]
+]
+},
+"server_action_1769_sls_bank_guarantee_notify_user": {
+"ir.actions.server": [
+[
+1769,
+"2022-10-19 08:55:47"
+]
+]
+},
+"server_action_1771_sls_validate_credit_limit_bank_guarantee_amount_1": {
+"ir.actions.server": [
+[
+1771,
+"2022-10-19 10:03:38"
+]
+]
+},
+"server_action_1772_sls_111111111": {
+"ir.actions.server": [
+[
+1772,
+"2022-10-19 10:12:21"
+]
+]
+},
+"server_action_1773_sls_validate_bank_guarantee_in_so_confirm": {
+"ir.actions.server": [
+[
+1783,
+"2022-10-25 04:16:06"
+]
+]
+},
+"server_action_1776_sls_minimum_sales_margin_in_setup_page": {
+"ir.actions.server": [
+[
+1776,
+"2022-10-24 00:56:43"
+]
+]
+},
+"server_action_1783_sls_validate_bank_guarantee_in_so_confirm": {
+"ir.actions.server": [
+[
+1783,
+"2022-10-25 04:16:06"
+]
+]
+},
+"server_action_1821_sls_track_name_in_customer": {
+"ir.actions.server": [
+[
+1821,
+"2022-11-16 09:49:52"
+]
+]
+},
+"server_action_1822_sls_track_address1_in_customer": {
+"ir.actions.server": [
+[
+1822,
+"2022-11-16 09:52:28"
+]
+]
+},
+"server_action_1823_sls_track_address2_in_customer": {
+"ir.actions.server": [
+[
+1823,
+"2022-11-16 09:53:53"
+]
+]
+},
+"server_action_1824_sls_track_address3_in_customer": {
+"ir.actions.server": [
+[
+1824,
+"2022-11-16 09:55:02"
+]
+]
+},
+"server_action_1825_sls_track_tax_id_in_customer": {
+"ir.actions.server": [
+[
+1825,
+"2022-11-16 09:55:47"
+]
+]
+},
+"server_action_1826_sls_track_customer_group_in_customer": {
+"ir.actions.server": [
+[
+1826,
+"2022-11-16 09:58:09"
+]
+]
+},
+"server_action_1827_sls_track_phone_in_customer": {
+"ir.actions.server": [
+[
+1827,
+"2022-11-16 10:09:47"
+]
+]
+},
+"server_action_1828_sls_track_payment_term_in_customer": {
+"ir.actions.server": [
+[
+1828,
+"2022-11-16 10:12:06"
+]
+]
+},
+"server_action_1829_sls_track_payment_type_in_customer": {
+"ir.actions.server": [
+[
+1829,
+"2022-11-16 10:14:29"
+]
+]
+},
+"server_action_1830_sls_track_address4_in_customer": {
+"ir.actions.server": [
+[
+1830,
+"2022-12-20 04:14:49"
+]
+]
+},
+"server_action_1831_sls_track_address5_in_customer": {
+"ir.actions.server": [
+[
+1831,
+"2022-12-20 04:16:41"
+]
+]
+},
+"server_action_1832_sls_track_mobile_in_customer": {
+"ir.actions.server": [
+[
+1832,
+"2022-12-20 04:18:38"
+]
+]
+},
+"server_action_1833_sls_track_price_list_in_customer": {
+"ir.actions.server": [
+[
+1833,
+"2022-12-20 04:23:10"
+]
+]
+},
+"server_action_1834_sls_track_vat_registration_status_in_customer": {
+"ir.actions.server": [
+[
+1834,
+"2022-12-20 04:25:23"
+]
+]
+},
+"server_action_1835_sls_track_vat_registration_no_in_customer": {
+"ir.actions.server": [
+[
+1835,
+"2022-12-20 04:27:07"
+]
+]
+},
+"server_action_1836_sls_track_svat_registration_status_in_customer": {
+"ir.actions.server": [
+[
+1836,
+"2022-12-20 04:28:58"
+]
+]
+},
+"server_action_1837_sls_track_svat_registration_no_in_customer": {
+"ir.actions.server": [
+[
+1837,
+"2022-12-20 04:30:10"
+]
+]
+},
+"server_action_1838_sls_track_bank_guarantee_expiration_date_in_customer": {
+"ir.actions.server": [
+[
+1838,
+"2022-12-20 04:32:31"
+]
+]
+},
+"server_action_1839_sls_track_mandatory_bank_guarantee_in_customer": {
+"ir.actions.server": [
+[
+1839,
+"2022-12-20 04:35:03"
+]
+]
+},
+"server_action_1840_sls_validate_sos_without_lines": {
+"ir.actions.server": [
+[
+1840,
+"2022-12-20 07:09:39"
+]
+]
+},
+"server_action_1841_sls_overdue_approval_request_sent_validate": {
+"ir.actions.server": [
+[
+1841,
+"2022-12-20 07:19:44"
+]
+]
+},
+"server_action_1843_sls_request_approval_sent_validate": {
+"ir.actions.server": [
+[
+1843,
+"2022-12-20 07:23:22"
+]
+]
+},
+"server_action_1845_sls_request_bank_guarantee_approval_sent_validate": {
+"ir.actions.server": [
+[
+1845,
+"2022-12-20 07:27:58"
+]
+]
+},
+"server_action_1849_sls_view_bank_guarantee_validation": {
+"ir.actions.server": [
+[
+1849,
+"2023-01-05 04:17:41"
+]
+]
+},
+"server_action_1850_sls_send_bank_guarantee_notification_main": {
+"ir.actions.server": [
+[
+1850,
+"2023-01-05 04:19:48"
+]
+]
+},
+"server_action_1853_sls_view_credit_limit_validation": {
+"ir.actions.server": [
+[
+1853,
+"2023-01-11 06:07:18"
+]
+]
+},
+"server_action_1980_rr_request_rug_approval": {
+"ir.actions.server": [
+[
+1980,
+"2023-02-07 14:12:18"
+]
+]
+},
+"server_action_1981_rr_rug_approval": {
+"ir.actions.server": [
+[
+1981,
+"2023-02-07 14:26:35"
+]
+]
+},
+"server_action_1983_rr_rug_approval_request_sent": {
+"ir.actions.server": [
+[
+1983,
+"2023-02-07 14:28:02"
+]
+]
+},
+"server_action_1985_rr_rug_request_approval_notify_user": {
+"ir.actions.server": [
+[
+1985,
+"2023-02-07 14:29:44"
+]
+]
+},
+"server_action_1995_rr_auto_generate_quotation_type_for_repair_sos": {
+"ir.actions.server": [
+[
+1995,
+"2023-02-08 06:36:31"
+]
+]
+},
+"server_action_2004_rr_rug_rejection": {
+"ir.actions.server": [
+[
+2004,
+"2023-02-08 06:57:36"
+]
+]
+},
+"server_action_2037_sls_track_vat_exempted_number_in_customer": {
+"ir.actions.server": [
+[
+2037,
+"2023-02-15 09:41:48"
+]
+]
+},
+"server_action_2096_rr_insufficient_transfer_inventory_details": {
+"ir.actions.server": [
+[
+2096,
+"2023-03-06 10:45:47"
+]
+]
+},
+"server_action_2113_rr_auto_generate_quotation_type_for_projct_sos": {
+"ir.actions.server": [
+[
+2113,
+"2023-03-21 08:19:45"
+]
+]
+},
+"server_action_2114_rr_auto_generate_quotation_type_for_project_sos": {
+"ir.actions.server": [
+[
+2114,
+"2023-03-21 09:35:49"
+]
+]
+},
+"server_action_2117_rr_auto_generate_quotation_type_for_project_sos_2": {
+"ir.actions.server": [
+[
+2117,
+"2023-03-22 02:58:49"
+]
+]
+},
+"server_action_2134_proj_project_item_request_sent": {
+"ir.actions.server": [
+[
+2134,
+"2023-04-18 10:04:26"
+]
+]
+},
+"server_action_2136_proj_project_item_request_approval_notify_user": {
+"ir.actions.server": [
+[
+2136,
+"2023-04-18 10:05:30"
+]
+]
+},
+"server_action_2138_proj_project_item_approval_request_sent_validate": {
+"ir.actions.server": [
+[
+2138,
+"2023-04-18 10:06:25"
+]
+]
+},
+"server_action_2140_proj_request_project_item_approval": {
+"ir.actions.server": [
+[
+2140,
+"2023-04-18 10:12:22"
+]
+]
+},
+"server_action_2142_proj_project_item_approval": {
+"ir.actions.server": [
+[
+2142,
+"2023-04-18 10:18:21"
+]
+]
+},
+"server_action_2144_rr_sales_price_for_rug_items": {
+"ir.actions.server": [
+[
+2144,
+"2023-04-19 10:42:48"
+]
+]
+},
+"server_action_2162_proj_item_related_details_in_project_so": {
+"ir.actions.server": [
+[
+2162,
+"2023-04-27 03:53:11"
+]
+]
+},
+"server_action_2163_proj_item_approval_request_sent": {
+"ir.actions.server": [
+[
+2163,
+"2023-04-27 16:33:30"
+]
+]
+},
+"server_action_2165_proj_item_approval_request_notify_user": {
+"ir.actions.server": [
+[
+2165,
+"2023-04-27 16:34:59"
+]
+]
+},
+"server_action_2167_proj_request_item_approval": {
+"ir.actions.server": [
+[
+2167,
+"2023-04-27 16:36:08"
+]
+]
+},
+"server_action_2169_proj_item_approval": {
+"ir.actions.server": [
+[
+2169,
+"2023-04-27 16:47:13"
+]
+]
+},
+"server_action_2171_proj_item_approval_validate": {
+"ir.actions.server": [
+[
+2171,
+"2023-04-27 16:54:38"
+]
+]
+},
+"server_action_2173_proj_item_approval_final": {
+"ir.actions.server": [
+[
+2173,
+"2023-04-27 16:59:49"
+]
+]
+},
+"server_action_2178_proj_create_budget_entries": {
+"ir.actions.server": [
+[
+2178,
+"2023-05-10 01:08:32"
+]
+]
+},
+"server_action_2188_proj_create_pr_from_sales_quotation": {
+"ir.actions.server": [
+[
+2188,
+"2023-05-17 09:23:52"
+]
+]
+},
+"server_action_2192_proj_update_rfq_cost_to_sales_quotation": {
+"ir.actions.server": [
+[
+2192,
+"2023-05-18 00:53:51"
+]
+]
+},
+"server_action_2196_proj_item_approval_notify_project_user": {
+"ir.actions.server": [
+[
+2196,
+"2023-05-25 02:08:46"
+]
+]
+},
+"server_action_2243_rr_re_estimate_request_notify_user": {
+"ir.actions.server": [
+[
+2243,
+"2023-06-28 00:37:59"
+]
+]
+},
+"server_action_2244_rr_re_estimate_request_sent": {
+"ir.actions.server": [
+[
+2244,
+"2023-06-28 00:48:08"
+]
+]
+},
+"server_action_2246_rr_re_estimate_request_sent_validate": {
+"ir.actions.server": [
+[
+2246,
+"2023-06-28 03:12:27"
+]
+]
+},
+"server_action_2248_rr_request_re_estimate_permission": {
+"ir.actions.server": [
+[
+2248,
+"2023-06-28 04:24:33"
+]
+]
+},
+"server_action_2250_rr_track_lock_status": {
+"ir.actions.server": [
+[
+2250,
+"2023-06-28 05:07:44"
+]
+]
+},
+"server_action_2251_rr_track_lock_status_2": {
+"ir.actions.server": [
+[
+2251,
+"2023-06-28 05:11:03"
+]
+]
+},
+"server_action_2252_rr_track_lock_status_3": {
+"ir.actions.server": [
+[
+2252,
+"2023-06-28 05:36:17"
+]
+]
+},
+"server_action_2253_rr_track_lock_status_4": {
+"ir.actions.server": [
+[
+2253,
+"2023-06-28 06:04:16"
+]
+]
+},
+"server_action_2260_sls_bank_guarantee_notify_user": {
+"ir.actions.server": [
+[
+2260,
+"2023-07-06 01:58:24"
+]
+]
+},
+"server_action_2289_plm_item_approval_request_sent": {
+"ir.actions.server": [
+[
+2289,
+"2023-08-01 09:18:17"
+]
+]
+},
+"server_action_2291_plm_item_approval_request_notify_user": {
+"ir.actions.server": [
+[
+2291,
+"2023-08-01 09:19:53"
+]
+]
+},
+"server_action_2293_plm_request_item_approval": {
+"ir.actions.server": [
+[
+2293,
+"2023-08-01 09:20:32"
+]
+]
+},
+"server_action_2295_plm_item_approval": {
+"ir.actions.server": [
+[
+2295,
+"2023-08-01 09:21:58"
+]
+]
+},
+"server_action_2297_plm_item_approval_notify_project_user": {
+"ir.actions.server": [
+[
+2297,
+"2023-08-01 09:22:38"
+]
+]
+},
+"server_action_2299_plm_item_approval_validate": {
+"ir.actions.server": [
+[
+2299,
+"2023-08-01 09:23:10"
+]
+]
+},
+"server_action_2301_plm_item_approval_final": {
+"ir.actions.server": [
+[
+2301,
+"2023-08-01 09:23:56"
+]
+]
+},
+"server_action_2314_sls_apply_pricelist_in_so_lines": {
+"ir.actions.server": [
+[
+2314,
+"2023-08-08 04:47:30"
+]
+]
+},
+"server_action_2315_sls_apply_pricelist_in_so_lines": {
+"ir.actions.server": [
+[
+2315,
+"2023-08-08 06:33:26"
+]
+]
+},
+"server_action_2332_sls_clear_free_items_so_lines": {
+"ir.actions.server": [
+[
+2332,
+"2023-08-15 05:42:49"
+]
+]
+},
+"server_action_2335_sls_validate_phone": {
+"ir.actions.server": [
+[
+2335,
+"2023-08-15 15:09:13"
+]
+]
+},
+"server_action_2336_sls_validate_mobile": {
+"ir.actions.server": [
+[
+2336,
+"2023-08-16 02:39:42"
+]
+]
+},
+"server_action_2337_sls_validate_sales": {
+"ir.actions.server": [
+[
+2337,
+"2023-08-16 04:58:29"
+]
+]
+},
+"server_action_2341_sls_create_customer_payment": {
+"ir.actions.server": [
+[
+2341,
+"2023-08-17 00:25:06"
+]
+]
+},
+"server_action_2414_update_analytic_tag_parameters_sales_order_customer": {
+"ir.actions.server": [
+[
+2414,
+"2023-10-04 15:55:13"
+]
+]
+},
+"server_action_2415_update_analytic_tag_parameters_sales_order_user": {
+"ir.actions.server": [
+[
+2415,
+"2023-10-04 15:56:16"
+]
+]
+},
+"server_action_2416_update_analytic_tag_parameters_sales_line_product": {
+"ir.actions.server": [
+[
+2416,
+"2023-10-04 15:56:56"
+]
+]
+},
+"server_action_2458_sls_request_overdue_approval_final01": {
+"ir.actions.server": [
+[
+2458,
+"2023-12-21 07:34:49"
+]
+]
+},
+"server_action_2460_sls_overdue_request_approval_notify_user_01": {
+"ir.actions.server": [
+[
+2460,
+"2023-12-21 07:46:45"
+]
+]
+},
+"server_action_2495_sls_margin_approval": {
+"ir.actions.server": [
+[
+2495,
+"2024-02-20 06:58:50"
+]
+]
+},
+"server_action_2497_sls_margin_approval_confirm": {
+"ir.actions.server": [
+[
+2497,
+"2024-02-20 07:00:06"
+]
+]
+},
+"server_action_2499_sls_over_commission_approval": {
+"ir.actions.server": [
+[
+2499,
+"2024-02-20 07:04:00"
+]
+]
+},
+"server_action_2501_sls_over_commission_approval_confirm": {
+"ir.actions.server": [
+[
+2501,
+"2024-02-20 07:04:12"
+]
+]
+},
+"server_action_2503_sls_credit_limit_approval": {
+"ir.actions.server": [
+[
+2503,
+"2024-02-20 07:06:58"
+]
+]
+},
+"server_action_2505_sls_credit_limit_approval_confirm": {
+"ir.actions.server": [
+[
+2505,
+"2024-02-20 07:07:08"
+]
+]
+},
+"server_action_2507_sls_bank_guarantee_approval": {
+"ir.actions.server": [
+[
+2507,
+"2024-02-20 07:08:34"
+]
+]
+},
+"server_action_2509_sls_bank_guarantee_approval_confirm": {
+"ir.actions.server": [
+[
+2509,
+"2024-02-20 07:08:44"
+]
+]
+},
+"server_action_2511_sls_temporary_credit_approval": {
+"ir.actions.server": [
+[
+2511,
+"2024-02-20 07:10:44"
+]
+]
+},
+"server_action_2513_sls_temporary_credit_approval_confirm": {
+"ir.actions.server": [
+[
+2513,
+"2024-02-20 07:11:00"
+]
+]
+},
+"server_action_2515_sls_send_bank_guarantee_notification": {
+"ir.actions.server": [
+[
+2515,
+"2024-02-20 07:40:20"
+]
+]
+},
+"server_action_2516_sls_send_bank_guarantee_notification_confirm": {
+"ir.actions.server": [
+[
+2516,
+"2024-02-20 07:40:29"
+]
+]
+},
+"server_action_2572_proj_update_with_main_so": {
+"ir.actions.server": [
+[
+2572,
+"2024-06-06 04:18:39"
+]
+]
+},
+"server_action_2573_project_sales_order_seq_no": {
+"ir.actions.server": [
+[
+2573,
+"2024-06-11 15:59:02"
+]
+]
+},
+"server_action_2574_project_sales_order_seq_no_2": {
+"ir.actions.server": [
+[
+2574,
+"2024-06-11 17:13:44"
+]
+]
+},
+"server_action_2575_project_sales_order_seq_no_3": {
+"ir.actions.server": [
+[
+2575,
+"2024-06-12 01:05:32"
+]
+]
+},
+"server_action_2576_proj_validate_start_date_and_end_date_for_project_sos": {
+"ir.actions.server": [
+[
+2576,
+"2024-06-27 04:46:07"
+]
+]
+},
+"server_action_2587_jin_company_id_in_product": {
+"ir.actions.server": [
+[
+2587,
+"2024-07-08 14:57:57"
+]
+]
+},
+"server_action_2623_jin_company_id_in_product_category": {
+"ir.actions.server": [
+[
+2623,
+"2024-07-15 09:58:05"
+]
+]
+},
+"server_action_2682_jin_company_id_in_delivery_terms": {
+"ir.actions.server": [
+[
+2682,
+"2024-07-18 02:22:21"
+]
+]
+},
+"server_action_2826_jin_company_id_in_pricelist": {
+"ir.actions.server": [
+[
+2826,
+"2024-10-15 09:45:13"
+]
+]
+},
+"server_action_2828_jin_company_id_in_respartner_inherit_model": {
+"ir.actions.server": [
+[
+2828,
+"2024-10-15 10:14:23"
+]
+]
+},
+"server_action_2891_jin_pricelist_in_respartner_inherit_model": {
+"ir.actions.server": [
+[
+2891,
+"2025-01-27 08:32:24"
+]
+]
+},
+"server_action_2896_proj_apply_project_price_list": {
+"ir.actions.server": [
+[
+2896,
+"2025-03-12 08:57:34"
+]
+]
+},
+"server_action_2898_proj_update_price_confirmed_status": {
+"ir.actions.server": [
+[
+2898,
+"2025-03-14 00:04:45"
+]
+]
+},
+"server_action_808_avoid_product_duplicate": {
+"ir.actions.server": [
+[
+808,
+"2021-06-09 08:11:23"
+]
+]
+},
+"server_action_810_sls_update_payment_term_customer": {
+"ir.actions.server": [
+[
+810,
+"2021-06-13 04:43:05"
+]
+]
+},
+"view_3260_default_pivot_view_for_ir_model_599_e": {
+"ir.ui.view": [
+[
+3260,
+"2022-02-15 13:48:33"
+]
+]
+},
+"view_3922_odoo_studio_sale_order_form_customization_button_2_e": {
+"ir.ui.view": [
+[
+3922,
+"2022-09-05 05:01:51"
+]
+]
+},
+"view_3927_default_list_view_for_x_minimum_sales_margin_e": {
+"ir.ui.view": [
+[
+3927,
+"2022-09-14 02:59:55"
+]
+]
+},
+"view_3928_default_form_view_for_x_minimum_sales_margin_e": {
+"ir.ui.view": [
+[
+3928,
+"2022-09-14 02:59:55"
+]
+]
+},
+"view_3929_default_search_view_for_x_minimum_sales_margin_e": {
+"ir.ui.view": [
+[
+3929,
+"2022-09-14 02:59:55"
+]
+]
+},
+"view_4935_odoo_studio_product_product_product_form_button_e": {
+"ir.ui.view": [
+[
+4935,
+"2023-04-27 16:10:18"
+]
+]
+},
+"view_4936_odoo_studio_product_product_form_customization_e": {
+"ir.ui.view": [
+[
+4936,
+"2023-04-27 16:27:40"
+]
+]
+},
+"view_5064_odoo_studio_product_pricelist_form_customization_e": {
+"ir.ui.view": [
+[
+5064,
+"2023-08-07 06:27:13"
+]
+]
+},
+"view_8329_odoo_studio_product_product_stock_tree_customization_e": {
+"ir.ui.view": [
+[
+8329,
+"2025-06-26 07:55:12"
+]
+]
+},
+"view_doc_conclusion_form": {
+"ir.ui.view": [
+[
+9555,
+"2026-07-08 08:12:26"
+]
+]
+},
+"view_doc_conclusion_tree": {
+"ir.ui.view": [
+[
+9554,
+"2026-07-08 08:12:26"
+]
+]
+},
+"view_doc_intro_form": {
+"ir.ui.view": [
+[
+9553,
+"2026-07-08 08:12:26"
+]
+]
+},
+"view_doc_intro_tree": {
+"ir.ui.view": [
+[
+9552,
+"2026-07-08 08:12:26"
+]
+]
+},
+"view_final_x_minimum_sales_margin_odoo_studio_default_form_view_for_x_minimum_sales_margin": {
+"ir.ui.view": [
+[
+5074,
+"2023-08-16 10:36:23"
+]
+]
+},
+"view_final_x_minimum_sales_margin_odoo_studio_default_list_view_for_x_minimum_sales_margin": {
+"ir.ui.view": [
+[
+3930,
+"2022-09-14 03:01:40"
+]
+]
+},
+"view_order_form_bugfix_sales": {
+"ir.ui.view": [
+[
+9556,
+"2026-07-08 08:12:26"
+]
+]
+},
+"view_partner_form_bugfix_sales": {
+"ir.ui.view": [
+[
+9561,
+"2026-07-20 05:28:29"
+]
+]
+},
+"view_sale_advance_payment_inv_bugfix_sales": {
+"ir.ui.view": [
+[
+9565,
+"2026-07-22 10:13:35"
+]
+]
+}
+}
