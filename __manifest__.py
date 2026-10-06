@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.164',
+    'version': '17.0.1.0.165',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
@@ -252,6 +252,7 @@
         'data/bugfix_sales_data.xml',
         'data/server_actions.xml',
         'security/ir.model.access.csv',
+        'security/removed_handmade_access_rights.xml',
         'data/server_actions_v2.xml',
         'data/approval_rules_final.xml',
         'data/automations.xml',
