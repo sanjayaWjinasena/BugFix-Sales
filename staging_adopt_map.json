@@ -47,30 +47,6 @@
 ]
 ]
 },
-"access_5667_product_product_stock_user": {
-"ir.model.access": [
-[
-5667,
-"2023-11-27 04:27:47"
-]
-]
-},
-"access_5691_access_product_replenish": {
-"ir.model.access": [
-[
-5691,
-"2023-11-27 04:27:47"
-]
-]
-},
-"access_5700_sale_order_stock_worker": {
-"ir.model.access": [
-[
-5700,
-"2023-11-27 04:27:47"
-]
-]
-},
 "access_6086_user": {
 "ir.model.access": [
 [
@@ -79,203 +55,11 @@
 ]
 ]
 },
-"access_6151_user": {
-"ir.model.access": [
-[
-6151,
-"2023-12-14 07:54:11"
-]
-]
-},
 "access_6246_inv___administrator": {
 "ir.model.access": [
 [
 6246,
 "2024-01-02 08:05:58"
-]
-]
-},
-"access_6402_product_product_stock_user": {
-"ir.model.access": [
-[
-6402,
-"2024-02-13 08:22:17"
-]
-]
-},
-"access_6426_access_product_replenish": {
-"ir.model.access": [
-[
-6426,
-"2024-02-13 08:22:17"
-]
-]
-},
-"access_6435_sale_order_stock_worker": {
-"ir.model.access": [
-[
-6435,
-"2024-02-13 08:22:17"
-]
-]
-},
-"access_6516_product_product_stock_user": {
-"ir.model.access": [
-[
-6516,
-"2024-02-14 09:10:51"
-]
-]
-},
-"access_6540_access_product_replenish": {
-"ir.model.access": [
-[
-6540,
-"2024-02-14 09:10:51"
-]
-]
-},
-"access_6549_sale_order_stock_worker": {
-"ir.model.access": [
-[
-6549,
-"2024-02-14 09:10:51"
-]
-]
-},
-"access_6672_res_config_settings": {
-"ir.model.access": [
-[
-6672,
-"2024-02-28 10:13:04"
-]
-]
-},
-"access_6678_procuct": {
-"ir.model.access": [
-[
-6678,
-"2024-02-29 04:32:56"
-]
-]
-},
-"access_6681_procuct": {
-"ir.model.access": [
-[
-6681,
-"2024-03-14 04:24:47"
-]
-]
-},
-"access_6685_customers": {
-"ir.model.access": [
-[
-6685,
-"2024-03-14 05:04:06"
-]
-]
-},
-"access_6769_res_partner_crm_user": {
-"ir.model.access": [
-[
-6769,
-"2024-03-20 06:21:14"
-]
-]
-},
-"access_6770_res_partner_sale_user": {
-"ir.model.access": [
-[
-6770,
-"2024-03-20 06:21:14"
-]
-]
-},
-"access_6774_product_product_sale_use": {
-"ir.model.access": [
-[
-6774,
-"2024-03-20 06:21:14"
-]
-]
-},
-"access_6777_sale_order": {
-"ir.model.access": [
-[
-6777,
-"2024-03-20 06:21:14"
-]
-]
-},
-"access_6809_res_partner_category_crm_user": {
-"ir.model.access": [
-[
-6809,
-"2024-03-20 06:21:14"
-]
-]
-},
-"access_6811_product_pricelist_sale_user": {
-"ir.model.access": [
-[
-6811,
-"2024-03-20 06:21:14"
-]
-]
-},
-"access_6813_product_packaging_user": {
-"ir.model.access": [
-[
-6813,
-"2024-03-20 06:21:14"
-]
-]
-},
-"access_6815_sale_order_template": {
-"ir.model.access": [
-[
-6815,
-"2024-03-20 06:21:14"
-]
-]
-},
-"access_6816_sale_order_template_line": {
-"ir.model.access": [
-[
-6816,
-"2024-03-20 06:21:14"
-]
-]
-},
-"access_6817_sale_order_template_option": {
-"ir.model.access": [
-[
-6817,
-"2024-03-20 06:21:14"
-]
-]
-},
-"access_6818_sale_order_option": {
-"ir.model.access": [
-[
-6818,
-"2024-03-20 06:21:14"
-]
-]
-},
-"access_6819_access_sale_advance_payment_inv": {
-"ir.model.access": [
-[
-6819,
-"2024-03-20 06:21:14"
-]
-]
-},
-"access_6822_access_sale_order_cancel": {
-"ir.model.access": [
-[
-6822,
-"2024-03-20 06:21:14"
 ]
 ]
 },
@@ -303,203 +87,11 @@
 ]
 ]
 },
-"access_6888_res_partner_purchase": {
-"ir.model.access": [
-[
-6888,
-"2024-04-10 06:38:32"
-]
-]
-},
-"access_6893_product_product_purchase_user": {
-"ir.model.access": [
-[
-6893,
-"2024-04-10 06:52:15"
-]
-]
-},
-"access_6956_sale_order": {
-"ir.model.access": [
-[
-6956,
-"2024-04-22 09:03:43"
-]
-]
-},
-"access_6997_res_config_settings": {
-"ir.model.access": [
-[
-6997,
-"2024-05-02 07:14:44"
-]
-]
-},
-"access_7051_sale_order": {
-"ir.model.access": [
-[
-7051,
-"2024-05-03 10:19:19"
-]
-]
-},
 "access_7277_jin___administrator": {
 "ir.model.access": [
 [
 7277,
 "2024-08-15 02:15:32"
-]
-]
-},
-"access_8655_access_product_attribute_rohana_read": {
-"ir.model.access": [
-[
-8655,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8657_access_product_attribute_value_rohana_read": {
-"ir.model.access": [
-[
-8657,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8658_access_product_category_rohana_read": {
-"ir.model.access": [
-[
-8658,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8659_access_product_packaging_rohana_read": {
-"ir.model.access": [
-[
-8659,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8660_access_product_pricelist_rohana_read": {
-"ir.model.access": [
-[
-8660,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8661_access_product_product_rohana_read": {
-"ir.model.access": [
-[
-8661,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8664_access_product_template_attribute_line_rohana_read": {
-"ir.model.access": [
-[
-8664,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8665_access_product_template_attribute_value_rohana_read": {
-"ir.model.access": [
-[
-8665,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8666_access_res_partner_rohana_read": {
-"ir.model.access": [
-[
-8666,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8667_access_res_partner_category_rohana_read": {
-"ir.model.access": [
-[
-8667,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8668_access_sale_advance_payment_inv_rohana_read": {
-"ir.model.access": [
-[
-8668,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8669_access_sale_mass_cancel_orders_rohana_read": {
-"ir.model.access": [
-[
-8669,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8670_access_sale_order_rohana": {
-"ir.model.access": [
-[
-8670,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8671_access_sale_order_cancel_rohana_read": {
-"ir.model.access": [
-[
-8671,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8672_access_sale_order_discount_rohana_read": {
-"ir.model.access": [
-[
-8672,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8679_access_sale_order_option_rohana_read": {
-"ir.model.access": [
-[
-8679,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8680_access_sale_order_template_rohana_read": {
-"ir.model.access": [
-[
-8680,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8681_access_sale_order_template_line_rohana_read": {
-"ir.model.access": [
-[
-8681,
-"2026-05-20 02:54:10"
-]
-]
-},
-"access_8682_access_sale_order_template_option_rohana_read": {
-"ir.model.access": [
-[
-8682,
-"2026-05-20 02:54:10"
 ]
 ]
 },
@@ -800,6 +392,62 @@
 [
 785,
 "2021-05-20 12:49:24"
+]
+]
+},
+"ar_final_sales_order_sls_bank_guarantee_approval_sales_bank_guarantee": {
+"studio.approval.rule": [
+[
+23,
+"2021-12-08 10:29:31"
+]
+]
+},
+"ar_final_sales_order_sls_create_customer_payment_user_types_internal_": {
+"studio.approval.rule": [
+[
+99,
+"2024-04-22 04:19:45"
+]
+]
+},
+"ar_final_sales_order_sls_credit_limit_approval_sales_credit_limit_app": {
+"studio.approval.rule": [
+[
+18,
+"2021-12-01 05:03:39"
+]
+]
+},
+"ar_final_sales_order_sls_margin_approval_sales_margin_approver_27": {
+"studio.approval.rule": [
+[
+27,
+"2021-12-16 01:59:23"
+]
+]
+},
+"ar_final_sales_order_sls_over_commission_approval_sales_over_commissi": {
+"studio.approval.rule": [
+[
+26,
+"2021-12-15 05:38:44"
+]
+]
+},
+"ar_final_sales_order_sls_overdue_approval_sales_overdue_approver_22": {
+"studio.approval.rule": [
+[
+22,
+"2021-12-08 03:17:29"
+]
+]
+},
+"ar_final_sales_order_sls_temporary_credit_approval_sales_temporary_cr": {
+"studio.approval.rule": [
+[
+19,
+"2021-12-02 05:59:19"
 ]
 ]
 },
