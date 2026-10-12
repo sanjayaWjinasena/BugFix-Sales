@@ -3,6 +3,15 @@
      view inherits, byte-verbatim from Clear-DB. Sentinels injected
      for undeclared modifier field refs. -->
 <odoo>
+  <!-- upgrade-testing: local copy of Clear-DB action 1696 "Purchase Agreements" (BugFix-Purchase.action_1696_purchase_agreements loads after this module).
+       The button used the numeric id 1696, which does not exist on upgrade-testing. -->
+  <record id="action_1696_purchase_agreements" model="ir.actions.act_window">
+    <field name="name">Purchase Agreements</field>
+    <field name="res_model">purchase.requisition</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('vendor_id', '=', active_id)]</field>
+    <field name="context">{'search_default_vendor_id': active_id,'default_vendor_id': active_id}</field>
+  </record>
 
   <record id="ported_view_3259_odoo_studio_sale_order_line_tree_customi" model="ir.ui.view">
     <field name="name">Odoo Studio: sale.order.line.tree customization</field>
@@ -75,7 +84,7 @@
           </xpath>
 
         <xpath expr="//button[@name='action_see_documents']" position="after">
-          <button class="oe_stat_button" icon="fa-briefcase" type="action" name="1696" studio-view-group-names="User" studio-view-group-ids="87">
+          <button class="oe_stat_button" icon="fa-briefcase" type="action" name="%(BugFix-Sales.action_1696_purchase_agreements)d" studio-view-group-names="User" studio-view-group-ids="87">
             <field widget="statinfo" name="x_vendor_id__purchase_requisition_count" string="Purchase Agreements" studio-view-group-names="User" studio-view-group-ids="87"/>
           </button>
         </xpath>
