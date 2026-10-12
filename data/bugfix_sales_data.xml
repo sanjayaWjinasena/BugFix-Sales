@@ -12,8 +12,8 @@
          preserved before v22 stops maintaining the old rows.
          Idempotent (only writes keys that don't already exist), so
          Settings edits done between upgrades survive future runs. -->
-    <function model="bugfix_sales.minimum_sales_margin.seed"
-              name="_migrate_to_config_parameter"/>
+    <!-- upgrade-testing: writes data, not run on this branch: <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_migrate_to_config_parameter"/> -->
 
     <!-- v22 defaults: seed sensible defaults into ir.config_parameter
          for every company that ended up with no keys after the
@@ -22,8 +22,8 @@
          (_seed_minimum_sales_margin_per_company). Idempotent — only
          writes keys that are absent, so user Settings edits are
          never overwritten. -->
-    <function model="bugfix_sales.minimum_sales_margin.seed"
-              name="_seed_ir_config_parameter_defaults"/>
+    <!-- upgrade-testing: writes data, not run on this branch: <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_seed_ir_config_parameter_defaults"/> -->
 
     <!-- v22 cutover: surgically rewrite every Studio Python reader of
          env['x_minimum_sales_margin'].search(...) so it reads the

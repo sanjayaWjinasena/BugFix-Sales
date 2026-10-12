@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 {
+    # upgrade-testing branch: data files below are commented out - this branch installs functions only, no data is seeded.
     'name': 'Jinasena : Module : Sales',
     'version': '17.0.1.0.165',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
@@ -281,8 +282,8 @@
         'data/server_actions_gap.xml',
         'data/automations_gap.xml',
         'data/window_actions_gap.xml',
-        'data/ir_defaults_gap.xml',
-        'data/ir_defaults_unblocked.xml',
+        # 'data/ir_defaults_gap.xml',  # upgrade-testing: data, not shipped
+        # 'data/ir_defaults_unblocked.xml',  # upgrade-testing: data, not shipped
         'views/product_pricelist_e_views.xml',
         'views/product_product_e_views.xml',
         'views/sale_order_e_views.xml',
