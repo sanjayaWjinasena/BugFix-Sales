@@ -67,11 +67,13 @@
       <field name="json_value">"Profit Margin %\" item is not added in sales lines. Add the margin % line."</field>
     </record>
 
+    <!-- upgrade-testing: points at a specific record (company/user/partner/location/stage...), not shipped (company/user specific):
     <record id="default_581_x_minimum_sales_margin_x_studio_last_purchase_pr" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_x_minimum_sales_margin__x_studio_last_purchase_price_validity_days"/>
       <field name="json_value">"0"</field>
       <field name="company_id" ref="seed_master_data_and_settings.company_jinasena_pvt_ltd"/>
     </record>
+    -->
 
     <!-- DROPPED default_586_product_template_x_studio_product_type: selection value 'None' not in field allowed set --></data>
 </odoo>
