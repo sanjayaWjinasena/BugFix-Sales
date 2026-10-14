@@ -44,16 +44,21 @@ This repo adds product fields such as Internal Product Type, Sub-Contract, Maxim
 
 ```python
 if record.default_code:
-  
-  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-  company = env['res.company'].browse(company_id)
-  
-  product = env['product.template'].search([('default_code', '=ilike', record.default_code),('company_id', '=', company.id)], limit=1)
-  
-  if product:
-    for p in product:
-      if p.id != record.id:
-        raise UserError("Duplicate Found Try Another Code!")
+    company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+    company = env["res.company"].browse(company_id)
+
+    product = env["product.template"].search(
+        [
+            ("default_code", "=ilike", record.default_code),
+            ("company_id", "=", company.id),
+        ],
+        limit=1,
+    )
+
+    if product:
+        for p in product:
+            if p.id != record.id:
+                raise UserError("Duplicate Found Try Another Code!")
 ```
   </details>
 - **IMP - Pass Split Method in Item Master** (`server_action_1452_imp_pass_split_method_in_item_master`, type `code`)
@@ -64,9 +69,9 @@ if record.default_code:
 
 ```python
 if record.landed_cost_ok == True:
-  def_split = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
-  if def_split:
-    record['split_method_landed_cost'] = def_split.x_studio_cost_allocation_method
+    def_split = env["x_imports_ledger_setup"].search([("id", "=", 1)], limit=1)
+    if def_split:
+        record["split_method_landed_cost"] = def_split.x_studio_cost_allocation_method
 ```
   </details>
 - **IMP - Service Item - Charge-Duty-Tax** (`server_action_1387_imp_service_item_charge_duty_tax`, type `code`)
@@ -76,48 +81,94 @@ if record.landed_cost_ok == True:
   <details><summary>code (47 lines)</summary>
 
 ```python
-if record.type == 'service':
-  
-  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-  company = env['res.company'].browse(company_id)
-  
-  if record.x_studio_charge_type == 'Charge' and record.x_studio_non_billable == False:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Charge'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
-    if product:
-      for p in product:
-        if p.id != record.id:
-          raise UserError("Only One Service Item can be Setup as Charge/ Not Non Billable Item!")
+if record.type == "service":
+    company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+    company = env["res.company"].browse(company_id)
 
-  if record.x_studio_charge_type == 'Duty' and record.x_studio_non_billable == False:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Duty'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
-    if product:
-      for p in product:
-        if p.id != record.id:
-          raise UserError("Ony One Service Item can be Setup as Duty/ Not Non Billable Item!")
+    if (
+        record.x_studio_charge_type == "Charge"
+        and record.x_studio_non_billable == False
+    ):
+        product = env["product.template"].search(
+            [
+                ("x_studio_charge_type", "=", "Charge"),
+                ("x_studio_non_billable", "=", False),
+                ("company_id", "=", company.id),
+            ],
+            limit=1,
+        )
+        if product:
+            for p in product:
+                if p.id != record.id:
+                    raise UserError(
+                        "Only One Service Item can be Setup as Charge/ Not Non Billable Item!"
+                    )
 
-  if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == False:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Tax'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
-    if product:
-      for p in product:
-        if p.id != record.id:
-          raise UserError("Ony One Service Item can be Setup as Tax/ Not Non Billable Item!")
-          
-          
-  if record.x_studio_charge_type == 'Charge' and record.x_studio_non_billable == True:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Charge'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
-    if product:
-      for p in product:
-        if p.id != record.id:
-          raise UserError("Ony One Service Item can be Setup as Charge/ Non Billable Item!")
+    if record.x_studio_charge_type == "Duty" and record.x_studio_non_billable == False:
+        product = env["product.template"].search(
+            [
+                ("x_studio_charge_type", "=", "Duty"),
+                ("x_studio_non_billable", "=", False),
+                ("company_id", "=", company.id),
+            ],
+            limit=1,
+        )
+        if product:
+            for p in product:
+                if p.id != record.id:
+                    raise UserError(
+                        "Ony One Service Item can be Setup as Duty/ Not Non Billable Item!"
+                    )
 
-  if record.x_studio_charge_type == 'Duty' and record.x_studio_non_billable == True:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Duty'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
-    if product:
-      for p in product:
-        if p.id != record.id:
-          raise UserError("Ony One Service Item can be Setup as Duty/ Non Billable Item!")
+    if record.x_studio_charge_type == "Tax" and record.x_studio_non_billable == False:
+        product = env["product.template"].search(
+            [
+                ("x_studio_charge_type", "=", "Tax"),
+                ("x_studio_non_billable", "=", False),
+                ("company_id", "=", company.id),
+            ],
+            limit=1,
+        )
+        if product:
+            for p in product:
+                if p.id != record.id:
+                    raise UserError(
+                        "Ony One Service Item can be Setup as Tax/ Not Non Billable Item!"
+                    )
 
-  """if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == True:
+    if record.x_studio_charge_type == "Charge" and record.x_studio_non_billable == True:
+        product = env["product.template"].search(
+            [
+                ("x_studio_charge_type", "=", "Charge"),
+                ("x_studio_non_billable", "=", True),
+                ("company_id", "=", company.id),
+            ],
+            limit=1,
+        )
+        if product:
+            for p in product:
+                if p.id != record.id:
+                    raise UserError(
+                        "Ony One Service Item can be Setup as Charge/ Non Billable Item!"
+                    )
+
+    if record.x_studio_charge_type == "Duty" and record.x_studio_non_billable == True:
+        product = env["product.template"].search(
+            [
+                ("x_studio_charge_type", "=", "Duty"),
+                ("x_studio_non_billable", "=", True),
+                ("company_id", "=", company.id),
+            ],
+            limit=1,
+        )
+        if product:
+            for p in product:
+                if p.id != record.id:
+                    raise UserError(
+                        "Ony One Service Item can be Setup as Duty/ Non Billable Item!"
+                    )
+
+    """if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == True:
     product = env['product.template'].search([('x_studio_charge_type', '=', 'Tax'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
     if product:
       for p in product:
@@ -133,10 +184,12 @@ if record.type == 'service':
 
 ```python
 if record.landed_cost_ok == True:
-  def_split = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
-  if def_split:
-    if record.split_method_landed_cost != def_split.x_studio_cost_allocation_method:
-      raise UserError('Default Split Method Should be Equal to Cost Allocation Method in Imports Ledger Setup')
+    def_split = env["x_imports_ledger_setup"].search([("id", "=", 1)], limit=1)
+    if def_split:
+        if record.split_method_landed_cost != def_split.x_studio_cost_allocation_method:
+            raise UserError(
+                "Default Split Method Should be Equal to Cost Allocation Method in Imports Ledger Setup"
+            )
 ```
   </details>
 - **JIN - Company Id in Product** (`server_action_2587_jin_company_id_in_product`, type `code`)
@@ -146,10 +199,10 @@ if record.landed_cost_ok == True:
   <details><summary>code (4 lines)</summary>
 
 ```python
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-record['company_id'] = company.id
+record["company_id"] = company.id
 ```
   </details>
 - **PLM - Item Approval** (`server_action_2295_plm_item_approval`, type `code`)
@@ -159,11 +212,15 @@ record['company_id'] = company.id
   <details><summary>code (5 lines)</summary>
 
 ```python
-record['x_studio_item_approved'] = True
+record["x_studio_item_approved"] = True
 
-product_product = env['product.product'].search([('id', '=', record.product_variant_id.id)],limit=1)
+product_product = env["product.product"].search(
+    [("id", "=", record.product_variant_id.id)], limit=1
+)
 if product_product:
-  product_product.write({'x_studio_item_approved':True,'x_studio_item_approved_temp':True})
+    product_product.write(
+        {"x_studio_item_approved": True, "x_studio_item_approved_temp": True}
+    )
 ```
   </details>
 - **PLM - Item Approval - Final** (`server_action_2301_plm_item_approval_final`, type `multi`)
@@ -216,8 +273,7 @@ if product_product:
 
 ```python
 if record.default_code == False:
-
-  raise UserError("Internal Reference should be filled in to proceed!")
+    raise UserError("Internal Reference should be filled in to proceed!")
 ```
   </details>
 - **PLM - Item Approval Request  Sent** (`server_action_2289_plm_item_approval_request_sent`, type `code`)
@@ -227,11 +283,18 @@ if record.default_code == False:
   <details><summary>code (5 lines)</summary>
 
 ```python
-record['x_studio_item_approval_request_sent'] = True
+record["x_studio_item_approval_request_sent"] = True
 
-product_product = env['product.product'].search([('id', '=', record.product_variant_id.id)],limit=1)
+product_product = env["product.product"].search(
+    [("id", "=", record.product_variant_id.id)], limit=1
+)
 if product_product:
-  product_product.write({'x_studio_item_approval_request_sent':True,'x_studio_item_approval_request_sent_temp':True})
+    product_product.write(
+        {
+            "x_studio_item_approval_request_sent": True,
+            "x_studio_item_approval_request_sent_temp": True,
+        }
+    )
 ```
   </details>
 - **PLM - Item Approval Request - Notify User** (`server_action_2291_plm_item_approval_request_notify_user`, type `next_activity`)
@@ -242,14 +305,15 @@ if product_product:
 
 ```python
 if record.mobile:
-    stripped = ''.join(c for c in str(record.mobile) if c.isdigit())
+    stripped = "".join(c for c in str(record.mobile) if c.isdigit())
     # Blank / all-non-digit strings are allowed through — either a
     # legitimate empty field or a data-cleanup task, not our concern
     # here. Only enforce when the user has typed actual digits.
     if stripped and len(stripped) not in (10, 11, 12):
         raise UserError(
-            'Invalid mobile number. Enter a valid mobile '
-            '(10 digits, optionally with country code).')
+            "Invalid mobile number. Enter a valid mobile "
+            "(10 digits, optionally with country code)."
+        )
 ```
   </details>
 - **PLM - Request Item Approval** (`server_action_2293_plm_request_item_approval`, type `multi`)

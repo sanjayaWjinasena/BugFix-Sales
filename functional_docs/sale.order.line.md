@@ -68,11 +68,15 @@ This repo adds about 40 fields to order lines, including Quotation Type, commiss
   <details><summary>code (5 lines)</summary>
 
 ```python
-
-if record.x_studio_quotation_type == 'Repair':
-  original_price = record.price_unit
-  if record.x_studio_rug_confirmed == True:
-    record.write({'price_unit': record.product_template_id.standard_price,'x_studio_price_unit_original': original_price})
+if record.x_studio_quotation_type == "Repair":
+    original_price = record.price_unit
+    if record.x_studio_rug_confirmed == True:
+        record.write(
+            {
+                "price_unit": record.product_template_id.standard_price,
+                "x_studio_price_unit_original": original_price,
+            }
+        )
 ```
   </details>
 - **Execute Code** (`server_action_2252_rr_track_lock_status_3`, type `code`)
@@ -82,11 +86,10 @@ if record.x_studio_quotation_type == 'Repair':
   <details><summary>code (5 lines)</summary>
 
 ```python
-
-if record.x_studio_quotation_type == 'Repair': 
- if record.x_studio_unlocked == True:
-    record['x_studio_re_estimated'] = True
-    record['x_studio_count_1'] = record.x_studio_re_estimate_count + 1
+if record.x_studio_quotation_type == "Repair":
+    if record.x_studio_unlocked == True:
+        record["x_studio_re_estimated"] = True
+        record["x_studio_count_1"] = record.x_studio_re_estimate_count + 1
 ```
   </details>
 - **Execute Code** (`server_action_2898_proj_update_price_confirmed_status`, type `code`)
@@ -96,24 +99,24 @@ if record.x_studio_quotation_type == 'Repair':
   <details><summary>code (18 lines)</summary>
 
 ```python
+if record.x_studio_quotation_type == "Project":
+    if record.product_id.id != False:
+        pricelist = env["product.pricelist.item"].search(
+            [
+                ("pricelist_id", "=", record.x_studio_pricelist_id.id),
+                ("product_tmpl_id", "=", record.product_template_id.id),
+            ],
+            limit=1,
+        )
 
-if record.x_studio_quotation_type == 'Project':
+        if pricelist:
+            record["x_studio_price_confirmed"] = pricelist.x_studio_price_confirmed
 
-  if record.product_id.id  != False:
-
-    pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id)],limit=1)
-
-    if pricelist:
-
-      record['x_studio_price_confirmed'] = pricelist.x_studio_price_confirmed
-
-    else:
-
-      record['discount'] = False
+        else:
+            record["discount"] = False
 
 else:
-
-  record['x_studio_price_confirmed'] = False
+    record["x_studio_price_confirmed"] = False
 ```
   </details>
 - **PROJ - Update Price Confirmed Status** (`sa_f5_sale_order_line_proj_update_price_confirmed_status`, type `code`)
@@ -123,23 +126,24 @@ else:
   <details><summary>code (17 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == 'Project':
+if record.x_studio_quotation_type == "Project":
+    if record.product_id.id != False:
+        pricelist = env["product.pricelist.item"].search(
+            [
+                ("pricelist_id", "=", record.x_studio_pricelist_id.id),
+                ("product_tmpl_id", "=", record.product_template_id.id),
+            ],
+            limit=1,
+        )
 
-  if record.product_id.id  != False:
+        if pricelist:
+            record["x_studio_price_confirmed"] = pricelist.x_studio_price_confirmed
 
-    pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id)],limit=1)
-
-    if pricelist:
-
-      record['x_studio_price_confirmed'] = pricelist.x_studio_price_confirmed
-
-    else:
-
-      record['discount'] = False
+        else:
+            record["discount"] = False
 
 else:
-
-  record['x_studio_price_confirmed'] = False
+    record["x_studio_price_confirmed"] = False
 ```
   </details>
 - **PROJ-Item Related Details In Project SO** (`server_action_2162_proj_item_related_details_in_project_so`, type `code`)
@@ -149,33 +153,73 @@ else:
   <details><summary>code (27 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == 'Project':
-  onhand_qty = 0
-  qty_short = 0
-  re_wh = False
-  status = True 
-  if record.x_studio_product_status != 'Blank':
-    so_loc = env['stock.warehouse'].search([('id', '=', record.warehouse_id.id)],limit=1)
-    if so_loc:
-      for sup_lines in so_loc.resupply_wh_ids:
-        for routes in record.product_template_id.route_ids:
-          if routes.supplier_wh_id:
-            if routes.supplier_wh_id.id == sup_lines.id:
-              if routes.supplied_wh_id.id == record.warehouse_id.id:
-                onhand = env['stock.quant'].search([('product_tmpl_id', '=', record.product_template_id.id),('location_id', '=', routes.supplier_wh_id.lot_stock_id.id)], limit=1)
-                if onhand:
-                  onhand_qty = onhand.available_quantity
-              re_wh = routes.supplier_wh_id.id
-   
-    if record.product_template_id.detailed_type == 'service':
-      qty_short = 0
-    else:
-      if record.product_uom_qty > onhand_qty:
-        qty_short = (record.product_uom_qty - onhand_qty)
-        status = False
-    record.write({'x_studio_cost_value': record.product_template_id.standard_price, 'x_studio_warehouse_id': re_wh, 'x_studio_current_onhand': onhand_qty, 'x_studio_inventory_shortage': qty_short, 'x_studio_cost_amount_req_qty': (record.product_uom_qty * record.product_template_id.standard_price), 'x_studio_cost_amount_inventory_shortage': (qty_short * record.product_template_id.standard_price), 'x_studio_invt_status': status})
+if record.x_studio_quotation_type == "Project":
+    onhand_qty = 0
+    qty_short = 0
+    re_wh = False
+    status = True
+    if record.x_studio_product_status != "Blank":
+        so_loc = env["stock.warehouse"].search(
+            [("id", "=", record.warehouse_id.id)], limit=1
+        )
+        if so_loc:
+            for sup_lines in so_loc.resupply_wh_ids:
+                for routes in record.product_template_id.route_ids:
+                    if routes.supplier_wh_id:
+                        if routes.supplier_wh_id.id == sup_lines.id:
+                            if routes.supplied_wh_id.id == record.warehouse_id.id:
+                                onhand = env["stock.quant"].search(
+                                    [
+                                        (
+                                            "product_tmpl_id",
+                                            "=",
+                                            record.product_template_id.id,
+                                        ),
+                                        (
+                                            "location_id",
+                                            "=",
+                                            routes.supplier_wh_id.lot_stock_id.id,
+                                        ),
+                                    ],
+                                    limit=1,
+                                )
+                                if onhand:
+                                    onhand_qty = onhand.available_quantity
+                            re_wh = routes.supplier_wh_id.id
+
+        if record.product_template_id.detailed_type == "service":
+            qty_short = 0
+        else:
+            if record.product_uom_qty > onhand_qty:
+                qty_short = record.product_uom_qty - onhand_qty
+                status = False
+        record.write(
+            {
+                "x_studio_cost_value": record.product_template_id.standard_price,
+                "x_studio_warehouse_id": re_wh,
+                "x_studio_current_onhand": onhand_qty,
+                "x_studio_inventory_shortage": qty_short,
+                "x_studio_cost_amount_req_qty": (
+                    record.product_uom_qty * record.product_template_id.standard_price
+                ),
+                "x_studio_cost_amount_inventory_shortage": (
+                    qty_short * record.product_template_id.standard_price
+                ),
+                "x_studio_invt_status": status,
+            }
+        )
 else:
-   record.write({'x_studio_cost_value': 0, 'x_studio_warehouse_id': False, 'x_studio_current_onhand': 0, 'x_studio_inventory_shortage': 0, 'x_studio_cost_amount_req_qty': 0, 'x_studio_cost_amount_inventory_shortage': 0, 'x_studio_invt_status': False})
+    record.write(
+        {
+            "x_studio_cost_value": 0,
+            "x_studio_warehouse_id": False,
+            "x_studio_current_onhand": 0,
+            "x_studio_inventory_shortage": 0,
+            "x_studio_cost_amount_req_qty": 0,
+            "x_studio_cost_amount_inventory_shortage": 0,
+            "x_studio_invt_status": False,
+        }
+    )
 ```
   </details>
 - **RR - Sales Price For RUG Items** (`sa_f5_sale_order_line_rr_sales_price_for_rug_items`, type `code`)
@@ -185,10 +229,15 @@ else:
   <details><summary>code (4 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == 'Repair':
-  original_price = record.price_unit
-  if record.x_studio_rug_confirmed == True:
-    record.write({'price_unit': record.product_template_id.standard_price,'x_studio_price_unit_original': original_price})
+if record.x_studio_quotation_type == "Repair":
+    original_price = record.price_unit
+    if record.x_studio_rug_confirmed == True:
+        record.write(
+            {
+                "price_unit": record.product_template_id.standard_price,
+                "x_studio_price_unit_original": original_price,
+            }
+        )
 ```
   </details>
 - **RR - Track Lock Status - 3** (`sa_f5_sale_order_line_rr_track_lock_status_3`, type `code`)
@@ -198,10 +247,10 @@ if record.x_studio_quotation_type == 'Repair':
   <details><summary>code (4 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == 'Repair': 
- if record.x_studio_unlocked == True:
-    record['x_studio_re_estimated'] = True
-    record['x_studio_count_1'] = record.x_studio_re_estimate_count + 1
+if record.x_studio_quotation_type == "Repair":
+    if record.x_studio_unlocked == True:
+        record["x_studio_re_estimated"] = True
+        record["x_studio_count_1"] = record.x_studio_re_estimate_count + 1
 ```
   </details>
 - **SLS - Apply Pricelist in SO Lines** (`server_action_2315_sls_apply_pricelist_in_so_lines`, type `code`)
@@ -211,19 +260,23 @@ if record.x_studio_quotation_type == 'Repair':
   <details><summary>code (13 lines)</summary>
 
 ```python
-if record.product_id.id  != False:
+if record.product_id.id != False:
+    pricelist = env["product.pricelist.item"].search(
+        [
+            ("pricelist_id", "=", record.x_studio_pricelist_id.id),
+            ("product_tmpl_id", "=", record.product_template_id.id),
+            ("min_quantity", "<=", record.product_uom_qty),
+        ],
+        limit=1,
+    )
 
-  pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id),('min_quantity', '<=', record.product_uom_qty)], limit=1)
+    if pricelist:
+        record["price_unit"] = record.price_unit / (1 - pricelist.price_discount / 100)
 
-  if pricelist:
+        record["discount"] = pricelist.price_discount
 
-    record['price_unit'] = record.price_unit/(1-pricelist.price_discount/100)
-
-    record['discount'] = pricelist.price_discount
-
-  else:
-
-    record['discount'] = 0
+    else:
+        record["discount"] = 0
 ```
   </details>
 - **SLS - Apply Pricelist in SO Lines** (`server_action_2314_sls_apply_pricelist_in_so_lines`, type `code`)
@@ -233,13 +286,18 @@ if record.product_id.id  != False:
   <details><summary>code (7 lines)</summary>
 
 ```python
-if record.product_id.id  != False:
+if record.product_id.id != False:
+    pricelist = env["product.pricelist.item"].search(
+        [
+            ("pricelist_id", "=", record.x_studio_pricelist_id.id),
+            ("product_tmpl_id", "=", record.product_template_id.id),
+            ("min_quantity", "<=", record.product_uom_qty),
+        ],
+        limit=1,
+    )
 
-  pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id),('min_quantity', '<=', record.product_uom_qty)], limit=1)
-
-  if pricelist:
-
-    record['discount'] = pricelist.price_discount
+    if pricelist:
+        record["discount"] = pricelist.price_discount
 ```
   </details>
 - **SLS - Clear Free Items SO Lines** (`server_action_2332_sls_clear_free_items_so_lines`, type `code`)
@@ -249,15 +307,15 @@ if record.product_id.id  != False:
   <details><summary>code (9 lines)</summary>
 
 ```python
-if record.product_id.id  != False: 
+if record.product_id.id != False:
+    # free_items = env['sale.order.line'].search([('order_id', '=', record.order_id._origin.id),('is_reward_line', '=', True)]).unlink()
 
-  #free_items = env['sale.order.line'].search([('order_id', '=', record.order_id._origin.id),('is_reward_line', '=', True)]).unlink()
+    free_items = env["sale.order.line"].search(
+        [("order_id", "=", record.order_id._origin.id), ("is_reward_line", "=", True)]
+    )
 
-  free_items = env['sale.order.line'].search([('order_id', '=', record.order_id._origin.id),('is_reward_line', '=', True)])
-
-  if free_items:
-
-    record['x_studio_clear_free_items'] = True
+    if free_items:
+        record["x_studio_clear_free_items"] = True
 ```
   </details>
 - **SLS - Validate Commission in SO Line** (`server_action_1498_sls_validate_commission_in_so_line`, type `code`)
@@ -267,19 +325,21 @@ if record.product_id.id  != False:
   <details><summary>code (35 lines)</summary>
 
 ```python
-#if record.x_studio_commission > 0.00:
+# if record.x_studio_commission > 0.00:
 
-if record.x_studio_commission > record.product_id.x_studio_maximum_discount - record.discount:
+if (
+    record.x_studio_commission
+    > record.product_id.x_studio_maximum_discount - record.discount
+):
+    record["x_studio_over_commission"] = True
 
-  record['x_studio_over_commission'] = True
-
-  """
+    """
 
   title = "Over Commission"
 
   message = "The Commission % Applied to the Line Exceeds the Authorised Limit and Require Approval to Further Process."
 
-  
+
 
   action = {
 
@@ -294,14 +354,11 @@ if record.x_studio_commission > record.product_id.x_studio_maximum_discount - re
   """
 
 else:
-
-  record['x_studio_over_commission'] = False
-
+    record["x_studio_over_commission"] = False
 
 
 if record.x_studio_commission < 0.00:
-
-  raise UserError('Commission Percentage Should not be a Negative.')
+    raise UserError("Commission Percentage Should not be a Negative.")
 ```
   </details>
 - **SLS - Validate Discount in SO Line** (`server_action_1497_sls_validate_discount_in_so_line`, type `code`)
@@ -312,8 +369,10 @@ if record.x_studio_commission < 0.00:
 
 ```python
 if record.id:
-  if record.product_id.x_studio_maximum_discount < record.discount:
-    raise UserError('Line Discount Exceeds the Max. Discount Allowed for the Selected Item.')
+    if record.product_id.x_studio_maximum_discount < record.discount:
+        raise UserError(
+            "Line Discount Exceeds the Max. Discount Allowed for the Selected Item."
+        )
 ```
   </details>
 - **SLS - Validate Margin in SO Line** (`server_action_1508_sls_validate_margin_in_so_line`, type `code`)
@@ -325,58 +384,44 @@ if record.id:
 ```python
 # bugfix_sales:config-cutover-v22
 if record.product_id.id:
+    if record.x_studio_quotation_type != "Project":
+        value_1 = 0
 
-  if record.x_studio_quotation_type != 'Project':
+        value_2 = 0
 
-    value_1 = 0
+        min_magin = record.company_id
 
-    value_2 = 0
+        if record.product_uom_qty > 0.00:
+            value_1 = (
+                (record.price_subtotal / record.product_uom_qty)
+                - (record.price_subtotal * (record.x_studio_commission / 100))
+                - record.product_id.standard_price
+            )
 
-    
+            value_2 = (record.price_subtotal / record.product_uom_qty) - (
+                record.price_subtotal * (record.x_studio_commission / 100)
+            )
 
-    min_magin = record.company_id
+        if value_2 > 0.00:
+            net_margin = (value_1 / value_2) * 100
 
-    
+        else:
+            net_margin = 0
 
-    
+        # if net_margin < 20:
 
-    if record.product_uom_qty > 0.00:
+        if net_margin != 0:
+            if net_margin < min_magin.x_studio_minimum_sales_margin_:
+                record["x_studio_margin_exceed"] = True
 
-      value_1 = ((record.price_subtotal/record.product_uom_qty)-(record.price_subtotal*(record.x_studio_commission/100))-record.product_id.standard_price)
+            else:
+                record["x_studio_margin_exceed"] = False
 
-      value_2 = (record.price_subtotal/record.product_uom_qty)-(record.price_subtotal*(record.x_studio_commission/100))
-
-    
-
-    if value_2 > 0.00:
-
-      net_margin = (value_1/value_2)*100
-
-    else:
-
-      net_margin = 0
-
-      
-
-    #if net_margin < 20:
-
-    if net_margin != 0:
-
-      if net_margin < min_magin.x_studio_minimum_sales_margin_:  
-
-        record['x_studio_margin_exceed'] = True
-
-      else:
-
-        record['x_studio_margin_exceed'] = False
+        else:
+            record["x_studio_margin_exceed"] = False
 
     else:
-
-      record['x_studio_margin_exceed'] = False
-
-  else:
-
-    record['x_studio_margin_exceed'] = False
+        record["x_studio_margin_exceed"] = False
 ```
   </details>
 - **SRM - Auto Populate Report Type in SO Lines** (`server_action_1729_srm_auto_populate_report_type_in_so_lines`, type `code`)
@@ -387,7 +432,7 @@ if record.product_id.id:
 
 ```python
 if record.id:
-  record['x_studio_sales_report_type'] = 9
+    record["x_studio_sales_report_type"] = 9
 ```
   </details>
 - **Update Analytic Tag Parameters - Sales Line - Product** (`server_action_2416_update_analytic_tag_parameters_sales_line_product`, type `code`)
@@ -398,16 +443,20 @@ if record.id:
 
 ```python
 if record.product_id:
-  #record['x_studio_account_mandatory'] = True
-  tag_rule= env['account.analytic.distribution.model'].search([('product_id', '=', record.product_id.id)],limit=1)
-  if tag_rule:
-    record['x_studio_account_mandatory'] = tag_rule.x_studio_product_mandatory
-  else:
-    tag_rule2= env['account.analytic.distribution.model'].search([('partner_id.user_id', '=', uid)],limit=1)
-    if tag_rule2:
-      record['x_studio_account_mandatory'] = tag_rule2.x_studio_user_mandatory
+    # record['x_studio_account_mandatory'] = True
+    tag_rule = env["account.analytic.distribution.model"].search(
+        [("product_id", "=", record.product_id.id)], limit=1
+    )
+    if tag_rule:
+        record["x_studio_account_mandatory"] = tag_rule.x_studio_product_mandatory
     else:
-      record['x_studio_account_mandatory'] = False
+        tag_rule2 = env["account.analytic.distribution.model"].search(
+            [("partner_id.user_id", "=", uid)], limit=1
+        )
+        if tag_rule2:
+            record["x_studio_account_mandatory"] = tag_rule2.x_studio_user_mandatory
+        else:
+            record["x_studio_account_mandatory"] = False
 ```
   </details>
 **Automations (11):**

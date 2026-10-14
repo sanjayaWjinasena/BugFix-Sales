@@ -27,21 +27,22 @@ class ResConfigSettings(models.TransientModel):
     guard). All of that goes away — Odoo's related-field write path
     on res.company covers it cleanly.
     """
-    _inherit = 'res.config.settings'
+
+    _inherit = "res.config.settings"
 
     x_studio_minimum_sales_margin_ = fields.Float(
-        related='company_id.x_studio_minimum_sales_margin_',
+        related="company_id.x_studio_minimum_sales_margin_",
         readonly=False,
     )
     x_studio_advance_payment_ = fields.Float(
-        related='company_id.x_studio_advance_payment_',
+        related="company_id.x_studio_advance_payment_",
         readonly=False,
     )
     x_studio_sales_order_validity = fields.Integer(
-        related='company_id.x_studio_sales_order_validity',
+        related="company_id.x_studio_sales_order_validity",
         readonly=False,
     )
     x_studio_last_purchase_price_validity_days = fields.Integer(
-        related='company_id.x_studio_last_purchase_price_validity_days',
+        related="company_id.x_studio_last_purchase_price_validity_days",
         readonly=False,
     )

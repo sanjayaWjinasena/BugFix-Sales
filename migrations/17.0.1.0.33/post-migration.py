@@ -4,6 +4,7 @@ Additional sale.order + sale.order.line fields ported in v33. Runs the
 same strip function as v32; idempotent, so already-stripped v30-v31
 xmlids are no-op'd and only the new v33 xmlids get unlinked.
 """
+
 import importlib.util
 import os
 
@@ -15,9 +16,10 @@ def migrate(cr, version):
     if not version:
         return
 
-    hooks_path = os.path.join(get_module_path('BugFix-Sales'), 'hooks.py')
+    hooks_path = os.path.join(get_module_path("BugFix-Sales"), "hooks.py")
     spec = importlib.util.spec_from_file_location(
-        'bugfix_sales_hooks', hooks_path,
+        "bugfix_sales_hooks",
+        hooks_path,
     )
     hooks = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(hooks)

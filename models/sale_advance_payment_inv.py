@@ -26,39 +26,39 @@ class SaleAdvancePaymentInv(models.TransientModel):
          a Sales-only wizard flips the default back to 'delivered'
          so the user sees Regular preselected and can't change it.
     """
-    _inherit = 'sale.advance.payment.inv'
+
+    _inherit = "sale.advance.payment.inv"
 
     bugfix_sales_only_regular = fields.Boolean(
-        compute='_compute_bugfix_sales_only_regular',
+        compute="_compute_bugfix_sales_only_regular",
     )
 
-    @api.depends('sale_order_ids')
+    @api.depends("sale_order_ids")
     def _compute_bugfix_sales_only_regular(self):
         for wizard in self:
             orders = wizard.sale_order_ids
             wizard.bugfix_sales_only_regular = bool(orders) and all(
-                (o.x_studio_quotation_type or '') == 'Sales'
-                for o in orders
+                (o.x_studio_quotation_type or "") == "Sales" for o in orders
             )
 
     @api.model
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
-        if self.env.context.get('active_model') != 'sale.order':
+        if self.env.context.get("active_model") != "sale.order":
             return res
-        active_ids = self.env.context.get('active_ids') or []
-        if not active_ids and self.env.context.get('active_id'):
-            active_ids = [self.env.context['active_id']]
+        active_ids = self.env.context.get("active_ids") or []
+        if not active_ids and self.env.context.get("active_id"):
+            active_ids = [self.env.context["active_id"]]
         if not active_ids:
             return res
-        orders = self.env['sale.order'].sudo().browse(active_ids).exists()
+        orders = self.env["sale.order"].sudo().browse(active_ids).exists()
         if not orders:
             return res
-        if all((o.x_studio_quotation_type or '') == 'Sales' for o in orders):
+        if all((o.x_studio_quotation_type or "") == "Sales" for o in orders):
             # Force Regular invoice — overrides
             # default_advance_payment_method='percentage' that the grey
             # create_invoice_percentage button passes in context, and
             # matches the readonly view gate below so the salesperson
             # can't switch to a down-payment option.
-            res['advance_payment_method'] = 'delivered'
+            res["advance_payment_method"] = "delivered"
         return res

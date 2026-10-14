@@ -39,10 +39,13 @@ This repo adds customer credit fields to contacts: Payment Type (Cash or Credit)
   <details><summary>code (4 lines)</summary>
 
 ```python
-
 if record.x_studio_customer_group.id:
-  record['property_payment_term_id'] = record.x_studio_customer_group.x_studio_payment_term.id
-  record['property_account_receivable_id'] = record.x_studio_customer_group.x_studio_receivable_account.id
+    record["property_payment_term_id"] = (
+        record.x_studio_customer_group.x_studio_payment_term.id
+    )
+    record["property_account_receivable_id"] = (
+        record.x_studio_customer_group.x_studio_receivable_account.id
+    )
 ```
   </details>
 - **Execute Code** (`server_action_1427_sls_validate_credit_limit`, type `code`)
@@ -52,18 +55,21 @@ if record.x_studio_customer_group.id:
   <details><summary>code (12 lines)</summary>
 
 ```python
-
 if record.id:
-  #if record.customer_rank > 0 and record.x_studio_payment_method == 'Credit' and record.credit_limit < 1:
-    #raise UserError('Invalid Credit Limit.')
-    
-  if record.customer_rank > 0 and record.x_studio_group_type == 'Distributor' and record.x_studio_bank_guarantee_amount == 0:
-    raise UserError('Bank Guarantee Amount must be Specified for Distributors.')
+    # if record.customer_rank > 0 and record.x_studio_payment_method == 'Credit' and record.credit_limit < 1:
+    # raise UserError('Invalid Credit Limit.')
 
-  if record.x_studio_bank_guarantee_amount > 0.00:
-    record['x_studio_valid_bank_guarantee'] = True
-  else:
-    record['x_studio_valid_bank_guarantee'] = False
+    if (
+        record.customer_rank > 0
+        and record.x_studio_group_type == "Distributor"
+        and record.x_studio_bank_guarantee_amount == 0
+    ):
+        raise UserError("Bank Guarantee Amount must be Specified for Distributors.")
+
+    if record.x_studio_bank_guarantee_amount > 0.00:
+        record["x_studio_valid_bank_guarantee"] = True
+    else:
+        record["x_studio_valid_bank_guarantee"] = False
 ```
   </details>
 - **Execute Code** (`server_action_1518_sls_track_credit_limit_in_customer`, type `code`)
@@ -73,10 +79,9 @@ if record.id:
   <details><summary>code (4 lines)</summary>
 
 ```python
-
 if record.credit_limit:
-  #records.message_post(body="Credit Limit Modified. --> " + record.name + "-->" + str(record.credit_limit))  #... No need to include the customer name in to the log record since the log is already within the customer.
-  records.message_post(body="Credit Limit Modified. --> " + str(record.credit_limit))
+    # records.message_post(body="Credit Limit Modified. --> " + record.name + "-->" + str(record.credit_limit))  #... No need to include the customer name in to the log record since the log is already within the customer.
+    records.message_post(body="Credit Limit Modified. --> " + str(record.credit_limit))
 ```
   </details>
 - **Execute Code** (`server_action_2828_jin_company_id_in_respartner_inherit_model`, type `code`)
@@ -86,11 +91,10 @@ if record.credit_limit:
   <details><summary>code (5 lines)</summary>
 
 ```python
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
-
-record['company_id'] = company.id
+record["company_id"] = company.id
 ```
   </details>
 - **Execute Code** (`server_action_2891_jin_pricelist_in_respartner_inherit_model`, type `code`)
@@ -100,13 +104,18 @@ record['company_id'] = company.id
   <details><summary>code (7 lines)</summary>
 
 ```python
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
-
-pricelist = env['product.pricelist'].search([('x_studio_group_type', '=', record.x_studio_group_type),('company_id', '=', company.id)], limit=1) 
+pricelist = env["product.pricelist"].search(
+    [
+        ("x_studio_group_type", "=", record.x_studio_group_type),
+        ("company_id", "=", company.id),
+    ],
+    limit=1,
+)
 if pricelist:
-  record['property_product_pricelist'] = pricelist.id
+    record["property_product_pricelist"] = pricelist.id
 ```
   </details>
 - **JIN - Company Id in ResPartner Inherit Model** (`sa_f5_res_partner_jin_company_id_in_respartner_inherit_model`, type `code`)
@@ -116,10 +125,10 @@ if pricelist:
   <details><summary>code (4 lines)</summary>
 
 ```python
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-record['company_id'] = company.id
+record["company_id"] = company.id
 ```
   </details>
 - **JIN - Pricelist in ResPartner Inherit Model** (`sa_f5_res_partner_jin_pricelist_in_respartner_inherit_model`, type `code`)
@@ -129,12 +138,18 @@ record['company_id'] = company.id
   <details><summary>code (6 lines)</summary>
 
 ```python
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-pricelist = env['product.pricelist'].search([('x_studio_group_type', '=', record.x_studio_group_type),('company_id', '=', company.id)], limit=1) 
+pricelist = env["product.pricelist"].search(
+    [
+        ("x_studio_group_type", "=", record.x_studio_group_type),
+        ("company_id", "=", company.id),
+    ],
+    limit=1,
+)
 if pricelist:
-  record['property_product_pricelist'] = pricelist.id
+    record["property_product_pricelist"] = pricelist.id
 ```
   </details>
 - **SLS - 111111111** (`server_action_1772_sls_111111111`, type `code`)
@@ -145,8 +160,15 @@ if pricelist:
 
 ```python
 if record.credit_limit < record.x_studio_bank_guarantee_amount:
-
-  records.message_post(body="The bank guarantee amount is less than the credit limit." + "\n" + "Credit Limit--> " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount--> " + str(record.x_studio_bank_guarantee_amount))
+    records.message_post(
+        body="The bank guarantee amount is less than the credit limit."
+        + "\n"
+        + "Credit Limit--> "
+        + str(record.credit_limit)
+        + "\n"
+        + "Bank Guarantee Amount--> "
+        + str(record.x_studio_bank_guarantee_amount)
+    )
 ```
   </details>
 - **SLS - Customer Group - Distributor - Mandatory Bank Guarantee** (`server_action_1767_sls_customer_group_distributor_mandatory_bank_guarantee`, type `code`)
@@ -156,10 +178,10 @@ if record.credit_limit < record.x_studio_bank_guarantee_amount:
   <details><summary>code (4 lines)</summary>
 
 ```python
-if record.x_studio_customer_group.x_studio_group_type == 'Distributor':
-  record['x_studio_mandatory_bank_guarantee'] = True
+if record.x_studio_customer_group.x_studio_group_type == "Distributor":
+    record["x_studio_mandatory_bank_guarantee"] = True
 else:
-  record['x_studio_mandatory_bank_guarantee'] = False
+    record["x_studio_mandatory_bank_guarantee"] = False
 ```
   </details>
 - **SLS - Customer Group - not in General - Validation** (`server_action_1768_sls_customer_group_not_in_general_validation`, type `code`)
@@ -170,14 +192,18 @@ else:
 
 ```python
 if record.active == True:
-  if record.customer_rank > 0:
-    if record.x_studio_customer_group == True:
-      if record.x_studio_customer_group.x_studio_group_type != 'General':
-        if record.x_studio_bank_guarantee_amount <= 0.00:
-          raise UserError('Bank Guarantee Amount for the Selected Customer must be Defined.')
-          
-        if record.x_studio_expiry_date == False:
-          raise UserError('Expiry Date of the Bank Guarantee Amount must be Defined.')
+    if record.customer_rank > 0:
+        if record.x_studio_customer_group == True:
+            if record.x_studio_customer_group.x_studio_group_type != "General":
+                if record.x_studio_bank_guarantee_amount <= 0.00:
+                    raise UserError(
+                        "Bank Guarantee Amount for the Selected Customer must be Defined."
+                    )
+
+                if record.x_studio_expiry_date == False:
+                    raise UserError(
+                        "Expiry Date of the Bank Guarantee Amount must be Defined."
+                    )
 ```
   </details>
 - **SLS - Track  Address1 in Customer** (`server_action_1822_sls_track_address1_in_customer`, type `code`)
@@ -188,7 +214,7 @@ if record.active == True:
 
 ```python
 if record.street:
-  records.message_post(body="Customer Address Modified. --> " + record.street)
+    records.message_post(body="Customer Address Modified. --> " + record.street)
 ```
   </details>
 - **SLS - Track  Address2 in Customer** (`server_action_1823_sls_track_address2_in_customer`, type `code`)
@@ -199,7 +225,7 @@ if record.street:
 
 ```python
 if record.city:
-  records.message_post(body="Customer Address Modified. --> " + record.city)
+    records.message_post(body="Customer Address Modified. --> " + record.city)
 ```
   </details>
 - **SLS - Track  Address3 in Customer** (`server_action_1824_sls_track_address3_in_customer`, type `code`)
@@ -210,7 +236,7 @@ if record.city:
 
 ```python
 if record.zip:
-  records.message_post(body="Customer Address Modified. --> " + record.zip)
+    records.message_post(body="Customer Address Modified. --> " + record.zip)
 ```
   </details>
 - **SLS - Track  Address4 in Customer** (`server_action_1830_sls_track_address4_in_customer`, type `code`)
@@ -221,7 +247,7 @@ if record.zip:
 
 ```python
 if record.street2:
-  records.message_post(body="Customer Address Modified. --> " + record.street2)
+    records.message_post(body="Customer Address Modified. --> " + record.street2)
 ```
   </details>
 - **SLS - Track  Address5 in Customer** (`server_action_1831_sls_track_address5_in_customer`, type `code`)
@@ -232,7 +258,9 @@ if record.street2:
 
 ```python
 if record.country_id:
-  records.message_post(body="Customer Address Modified. --> " + record.country_id.name)
+    records.message_post(
+        body="Customer Address Modified. --> " + record.country_id.name
+    )
 ```
   </details>
 - **SLS - Track  Bank Guarantee Expiration Date in Customer** (`server_action_1838_sls_track_bank_guarantee_expiration_date_in_customer`, type `code`)
@@ -243,7 +271,10 @@ if record.country_id:
 
 ```python
 if record.x_studio_expiry_date:
-  records.message_post(body="Customer Bank Guarantee Expiration Date Modified. --> " + str(record.x_studio_expiry_date))
+    records.message_post(
+        body="Customer Bank Guarantee Expiration Date Modified. --> "
+        + str(record.x_studio_expiry_date)
+    )
 ```
   </details>
 - **SLS - Track  Customer Group in Customer** (`server_action_1826_sls_track_customer_group_in_customer`, type `code`)
@@ -254,7 +285,9 @@ if record.x_studio_expiry_date:
 
 ```python
 if record.x_studio_customer_group.x_name:
-  records.message_post(body="Customer Group Modified. --> " + record.x_studio_customer_group.x_name)
+    records.message_post(
+        body="Customer Group Modified. --> " + record.x_studio_customer_group.x_name
+    )
 ```
   </details>
 - **SLS - Track  Mandatory Bank Guarantee in Customer** (`server_action_1839_sls_track_mandatory_bank_guarantee_in_customer`, type `code`)
@@ -264,8 +297,11 @@ if record.x_studio_customer_group.x_name:
   <details><summary>code (2 lines)</summary>
 
 ```python
-#if record.x_studio_mandatory_bank_guarantee:
-records.message_post(body="Customer Mandatory Bank Guarantee Modified. --> " + str(record.x_studio_mandatory_bank_guarantee))
+# if record.x_studio_mandatory_bank_guarantee:
+records.message_post(
+    body="Customer Mandatory Bank Guarantee Modified. --> "
+    + str(record.x_studio_mandatory_bank_guarantee)
+)
 ```
   </details>
 - **SLS - Track  Mobile in Customer** (`server_action_1832_sls_track_mobile_in_customer`, type `code`)
@@ -276,7 +312,7 @@ records.message_post(body="Customer Mandatory Bank Guarantee Modified. --> " + s
 
 ```python
 if record.mobile:
-  records.message_post(body="Customer Mobile Modified. --> " + record.mobile)
+    records.message_post(body="Customer Mobile Modified. --> " + record.mobile)
 ```
   </details>
 - **SLS - Track  Payment Term in Customer** (`server_action_1828_sls_track_payment_term_in_customer`, type `code`)
@@ -287,7 +323,10 @@ if record.mobile:
 
 ```python
 if record.property_payment_term_id.id:
-  records.message_post(body="Customer Payment Term Modified. --> " + record.property_payment_term_id.name)
+    records.message_post(
+        body="Customer Payment Term Modified. --> "
+        + record.property_payment_term_id.name
+    )
 ```
   </details>
 - **SLS - Track  Payment Type in Customer** (`server_action_1829_sls_track_payment_type_in_customer`, type `code`)
@@ -298,7 +337,10 @@ if record.property_payment_term_id.id:
 
 ```python
 if record.x_studio_payment_method:
-  records.message_post(body="Customer Payment Type Modified. --> " + str(record.x_studio_payment_method))
+    records.message_post(
+        body="Customer Payment Type Modified. --> "
+        + str(record.x_studio_payment_method)
+    )
 ```
   </details>
 - **SLS - Track  Phone in Customer** (`server_action_1827_sls_track_phone_in_customer`, type `code`)
@@ -309,7 +351,7 @@ if record.x_studio_payment_method:
 
 ```python
 if record.phone:
-  records.message_post(body="Customer Phone No Modified. --> " + record.phone)
+    records.message_post(body="Customer Phone No Modified. --> " + record.phone)
 ```
   </details>
 - **SLS - Track  Price List in Customer** (`server_action_1833_sls_track_price_list_in_customer`, type `code`)
@@ -320,7 +362,10 @@ if record.phone:
 
 ```python
 if record.property_product_pricelist:
-  records.message_post(body="Customer Price List Modified. --> " + record.property_product_pricelist.name)
+    records.message_post(
+        body="Customer Price List Modified. --> "
+        + record.property_product_pricelist.name
+    )
 ```
   </details>
 - **SLS - Track  SVAT Registration No in Customer** (`server_action_1837_sls_track_svat_registration_no_in_customer`, type `code`)
@@ -331,7 +376,10 @@ if record.property_product_pricelist:
 
 ```python
 if record.x_studio_svat_registration_number:
-  records.message_post(body="Customer SVAT Registration No Modified. --> " + record.x_studio_svat_registration_number)
+    records.message_post(
+        body="Customer SVAT Registration No Modified. --> "
+        + record.x_studio_svat_registration_number
+    )
 ```
   </details>
 - **SLS - Track  SVAT Registration Status in Customer** (`server_action_1836_sls_track_svat_registration_status_in_customer`, type `code`)
@@ -342,7 +390,10 @@ if record.x_studio_svat_registration_number:
 
 ```python
 if record.x_studio_svat_registration_status:
-  records.message_post(body="Customer SVAT Registration Status Modified. --> " + str(record.x_studio_svat_registration_status))
+    records.message_post(
+        body="Customer SVAT Registration Status Modified. --> "
+        + str(record.x_studio_svat_registration_status)
+    )
 ```
   </details>
 - **SLS - Track  Tax ID in Customer** (`server_action_1825_sls_track_tax_id_in_customer`, type `code`)
@@ -353,7 +404,7 @@ if record.x_studio_svat_registration_status:
 
 ```python
 if record.vat:
-  records.message_post(body="Customer Tax ID Modified. --> " + record.vat)
+    records.message_post(body="Customer Tax ID Modified. --> " + record.vat)
 ```
   </details>
 - **SLS - Track  VAT Exempted Number in Customer** (`server_action_2037_sls_track_vat_exempted_number_in_customer`, type `code`)
@@ -364,7 +415,10 @@ if record.vat:
 
 ```python
 if record.x_studio_vat_exempted_number:
-  records.message_post(body="Customer VAT Registration Status Modified. --> " + str(record.x_studio_vat_exempted_number))
+    records.message_post(
+        body="Customer VAT Registration Status Modified. --> "
+        + str(record.x_studio_vat_exempted_number)
+    )
 ```
   </details>
 - **SLS - Track  VAT Registration No in Customer** (`server_action_1835_sls_track_vat_registration_no_in_customer`, type `code`)
@@ -375,7 +429,10 @@ if record.x_studio_vat_exempted_number:
 
 ```python
 if record.x_studio_vat_registration_number:
-  records.message_post(body="Customer VAT Registration No Modified. --> " + record.x_studio_vat_registration_number)
+    records.message_post(
+        body="Customer VAT Registration No Modified. --> "
+        + record.x_studio_vat_registration_number
+    )
 ```
   </details>
 - **SLS - Track  VAT Registration Status in Customer** (`server_action_1834_sls_track_vat_registration_status_in_customer`, type `code`)
@@ -386,7 +443,10 @@ if record.x_studio_vat_registration_number:
 
 ```python
 if record.x_studio_vat_registration_status:
-  records.message_post(body="Customer VAT Registration Status Modified. --> " + str(record.x_studio_vat_registration_status))
+    records.message_post(
+        body="Customer VAT Registration Status Modified. --> "
+        + str(record.x_studio_vat_registration_status)
+    )
 ```
   </details>
 - **SLS - Track Credit Limit in Customer** (`sa_f5_res_partner_sls_track_credit_limit_in_customer`, type `code`)
@@ -397,8 +457,8 @@ if record.x_studio_vat_registration_status:
 
 ```python
 if record.credit_limit:
-  #records.message_post(body="Credit Limit Modified. --> " + record.name + "-->" + str(record.credit_limit))  #... No need to include the customer name in to the log record since the log is already within the customer.
-  records.message_post(body="Credit Limit Modified. --> " + str(record.credit_limit))
+    # records.message_post(body="Credit Limit Modified. --> " + record.name + "-->" + str(record.credit_limit))  #... No need to include the customer name in to the log record since the log is already within the customer.
+    records.message_post(body="Credit Limit Modified. --> " + str(record.credit_limit))
 ```
   </details>
 - **SLS - Track Name in Customer** (`server_action_1821_sls_track_name_in_customer`, type `code`)
@@ -409,7 +469,7 @@ if record.credit_limit:
 
 ```python
 if record.name:
-  records.message_post(body="Customer Name Modified. --> " + record.name)
+    records.message_post(body="Customer Name Modified. --> " + record.name)
 ```
   </details>
 - **SLS - Update Payment Term - Customer** (`sa_f5_res_partner_sls_update_payment_term_customer`, type `code`)
@@ -420,8 +480,12 @@ if record.name:
 
 ```python
 if record.x_studio_customer_group.id:
-  record['property_payment_term_id'] = record.x_studio_customer_group.x_studio_payment_term.id
-  record['property_account_receivable_id'] = record.x_studio_customer_group.x_studio_receivable_account.id
+    record["property_payment_term_id"] = (
+        record.x_studio_customer_group.x_studio_payment_term.id
+    )
+    record["property_account_receivable_id"] = (
+        record.x_studio_customer_group.x_studio_receivable_account.id
+    )
 ```
   </details>
 - **SLS - Update Payment Term - Vendor** (`server_action_1445_sls_update_payment_term_vendor`, type `code`)
@@ -432,8 +496,12 @@ if record.x_studio_customer_group.id:
 
 ```python
 if record.x_studio_vendor_group.id:
-  record['property_supplier_payment_term_id'] = record.x_studio_vendor_group.x_studio_payment_term.id
-  record['property_account_payable_id'] = record.x_studio_vendor_group.x_studio_payable_account.id
+    record["property_supplier_payment_term_id"] = (
+        record.x_studio_vendor_group.x_studio_payment_term.id
+    )
+    record["property_account_payable_id"] = (
+        record.x_studio_vendor_group.x_studio_payable_account.id
+    )
 ```
   </details>
 - **SLS - Validate Credit Limit** (`sa_f5_res_partner_sls_validate_credit_limit`, type `code`)
@@ -444,16 +512,20 @@ if record.x_studio_vendor_group.id:
 
 ```python
 if record.id:
-  #if record.customer_rank > 0 and record.x_studio_payment_method == 'Credit' and record.credit_limit < 1:
-    #raise UserError('Invalid Credit Limit.')
-    
-  if record.customer_rank > 0 and record.x_studio_group_type == 'Distributor' and record.x_studio_bank_guarantee_amount == 0:
-    raise UserError('Bank Guarantee Amount must be Specified for Distributors.')
+    # if record.customer_rank > 0 and record.x_studio_payment_method == 'Credit' and record.credit_limit < 1:
+    # raise UserError('Invalid Credit Limit.')
 
-  if record.x_studio_bank_guarantee_amount > 0.00:
-    record['x_studio_valid_bank_guarantee'] = True
-  else:
-    record['x_studio_valid_bank_guarantee'] = False
+    if (
+        record.customer_rank > 0
+        and record.x_studio_group_type == "Distributor"
+        and record.x_studio_bank_guarantee_amount == 0
+    ):
+        raise UserError("Bank Guarantee Amount must be Specified for Distributors.")
+
+    if record.x_studio_bank_guarantee_amount > 0.00:
+        record["x_studio_valid_bank_guarantee"] = True
+    else:
+        record["x_studio_valid_bank_guarantee"] = False
 ```
   </details>
 - **SLS - Validate Credit Limit & Bank Guarantee Amount - 1** (`sa_f5_res_partner_sls_validate_credit_limit_bank_guarantee_amount_1`, type `code`)
@@ -464,8 +536,15 @@ if record.id:
 
 ```python
 if record.credit_limit > record.x_studio_bank_guarantee_amount:
-
-  records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Credit Limit: " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount: " + str(record.x_studio_bank_guarantee_amount))
+    records.message_post(
+        body="The credit limit is higher than the bank guarantee amount."
+        + "\n"
+        + "Credit Limit: "
+        + str(record.credit_limit)
+        + "\n"
+        + "Bank Guarantee Amount: "
+        + str(record.x_studio_bank_guarantee_amount)
+    )
 ```
   </details>
 - **SLS - Validate Credit Limit & Bank Guarantee Amount - 1** (`server_action_1771_sls_validate_credit_limit_bank_guarantee_amount_1`, type `code`)
@@ -475,10 +554,16 @@ if record.credit_limit > record.x_studio_bank_guarantee_amount:
   <details><summary>code (4 lines)</summary>
 
 ```python
-
 if record.credit_limit > record.x_studio_bank_guarantee_amount:
-
-  records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Credit Limit: " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount: " + str(record.x_studio_bank_guarantee_amount))
+    records.message_post(
+        body="The credit limit is higher than the bank guarantee amount."
+        + "\n"
+        + "Credit Limit: "
+        + str(record.credit_limit)
+        + "\n"
+        + "Bank Guarantee Amount: "
+        + str(record.x_studio_bank_guarantee_amount)
+    )
 ```
   </details>
 - **SLS - Validate Customer Group** (`server_action_1480_sls_validate_customer_group`, type `code`)
@@ -488,7 +573,7 @@ if record.credit_limit > record.x_studio_bank_guarantee_amount:
   <details><summary>code (1 lines)</summary>
 
 ```python
-record['x_studio_bank_guarantee_amount'] = 0
+record["x_studio_bank_guarantee_amount"] = 0
 ```
   </details>
 - **SLS - Validate Mobile** (`server_action_2336_sls_validate_mobile`, type `code`)
@@ -499,12 +584,9 @@ record['x_studio_bank_guarantee_amount'] = 0
 
 ```python
 if record.mobile != False:
-
-  if len(record.mobile) != 0:
-
-    if len(record.mobile) != 10:
-
-      raise UserError('Invalid mobile number.')
+    if len(record.mobile) != 0:
+        if len(record.mobile) != 10:
+            raise UserError("Invalid mobile number.")
 ```
   </details>
 - **SLS - Validate Payment Method** (`server_action_1428_sls_validate_payment_method`, type `code`)
@@ -514,8 +596,8 @@ if record.mobile != False:
   <details><summary>code (2 lines)</summary>
 
 ```python
-if record.x_studio_payment_method == 'Cash':
-  record['credit_limit'] = 0
+if record.x_studio_payment_method == "Cash":
+    record["credit_limit"] = 0
 ```
   </details>
 - **SLS - Validate Phone** (`server_action_2335_sls_validate_phone`, type `code`)
@@ -526,8 +608,9 @@ if record.x_studio_payment_method == 'Cash':
 
 ```python
 if record.phone and len(record.phone) != 10:
-
-    raise UserError('Invalid phone number. - ' + str(len(record.phone)) + " - " + str(record.phone))
+    raise UserError(
+        "Invalid phone number. - " + str(len(record.phone)) + " - " + str(record.phone)
+    )
 ```
   </details>
 **Automations (33):**

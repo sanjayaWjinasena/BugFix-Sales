@@ -6,6 +6,7 @@ cleanup needs to run at upgrade time too. This migration script does
 exactly what the post_init_hook does — same function, same idempotent
 behaviour.
 """
+
 import importlib.util
 import os
 
@@ -20,9 +21,10 @@ def migrate(cr, version):
 
     # Dynamic-load hooks.py: the module name 'BugFix-Sales' has a dash,
     # which breaks `from odoo.addons.BugFix-Sales.hooks import ...`.
-    hooks_path = os.path.join(get_module_path('BugFix-Sales'), 'hooks.py')
+    hooks_path = os.path.join(get_module_path("BugFix-Sales"), "hooks.py")
     spec = importlib.util.spec_from_file_location(
-        'bugfix_sales_hooks', hooks_path,
+        "bugfix_sales_hooks",
+        hooks_path,
     )
     hooks = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(hooks)

@@ -1,11 +1,11 @@
 {
     # upgrade-testing branch: data files below are commented out - this branch installs functions only, no data is seeded.
-    'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.165',
-    'summary': 'Bug fixes and enhancements for the Sales workflow',
-    'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
-    'category': 'Sales',
-    'license': 'LGPL-3',
+    "name": "Jinasena : Module : Sales",
+    "version": "17.0.1.0.165",
+    "summary": "Bug fixes and enhancements for the Sales workflow",
+    "author": "Jinasena Agricultural Machinery (Pvt) Ltd.",
+    "category": "Sales",
+    "license": "LGPL-3",
     # v0.1.0.71: salvage the 9th view (5445) skipped in v0.1.0.67.
     # Original CDB arch xpath //tree[1]/field[@name='id'] doesn't
     # resolve on target's composed website_sale product tree (no id
@@ -214,19 +214,25 @@
     # registry on every startup. Fix: x_sales_report_type.py converted to
     # _inherit; Jinasena_Masterdata_Reporting (the canonical owner) added here.
     # studio_usermodel_migration removed in v52 (no load-time dep, cycle risk).
-    'depends': ['base_setup', 'sale', 'sale_stock', 'industry_fsm_sale',
-                'purchase_requisition', 'website_sale',
-                'sale_subscription',  # is_subscription used in Slice A1 confirm-button modifiers
-                'sale_loyalty',       # is_reward_line used in Slice A1 price_unit tree readonly
-                'account_followup',   # partner_id.total_overdue related target on sale.order
-                'bank-data',          # res.partner.bank.x_studio_swift_code/bank_code_1/branch_code_1 refs
-                'Jinasena_Masterdata_Reporting', 'BugFix-Stock',
-                'base_automation',
-                'BugFix-Approvals',              # group refs in CSV / automations
-                'studio_usermodel_migration',    # res.partner.x_studio_customer_group / _vendor_group
-                'seed_master_data_and_settings', # company_jinasena_pvt_ltd ref
+    "depends": [
+        "base_setup",
+        "sale",
+        "sale_stock",
+        "industry_fsm_sale",
+        "purchase_requisition",
+        "website_sale",
+        "sale_subscription",  # is_subscription used in Slice A1 confirm-button modifiers
+        "sale_loyalty",  # is_reward_line used in Slice A1 price_unit tree readonly
+        "account_followup",  # partner_id.total_overdue related target on sale.order
+        "bank-data",  # res.partner.bank.x_studio_swift_code/bank_code_1/branch_code_1 refs
+        "Jinasena_Masterdata_Reporting",
+        "BugFix-Stock",
+        "base_automation",
+        "BugFix-Approvals",  # group refs in CSV / automations
+        "studio_usermodel_migration",  # res.partner.x_studio_customer_group / _vendor_group
+        "seed_master_data_and_settings",  # company_jinasena_pvt_ltd ref
     ],
-    'post_init_hook': 'post_init_hook',
+    "post_init_hook": "post_init_hook",
     # v47: bulk-port of remaining Studio artifacts via
     # scripts/scaffold_bugfix_module.py (adds 8 sale.order fields,
     # 36 sale.order.line fields, sale.order.alert model, 3 custom
@@ -243,58 +249,58 @@
     #     -> studio_migrations -> BugFix-Sales
     # Removed alongside dropping studio_migrations from
     # studio_usermodel_migration's depends (v0.0.9 of that module).
-    'data': [
-        'data/defaults_final.xml',
-        'data/server_actions_f5.xml',
-        'data/window_actions_f4.xml',
-        'data/defaults_f2.xml',
-        'security/ir_model_pins.xml',
-        'data/bugfix_sales_data.xml',
-        'data/server_actions.xml',
-        'security/ir.model.access.csv',
-        'security/removed_handmade_access_rights.xml',
-        'data/server_actions_v2.xml',
-        'data/approval_rules_final.xml',
-        'data/automations.xml',
-        'data/window_actions.xml',
-        'views/doc_intro_views.xml',
-        'views/doc_conclusion_views.xml',
-        'views/res_partner_views.xml',
-        'views/res_config_settings_views.xml',
-        'views/sale_advance_payment_inv_views.xml',
-        'views/sale_order_views.xml',
-        'views/x_delivery_terms_studio_ported.xml',
-        'views/res_partner_studio_ported.xml',
-        'views/sale_order_studio_ported.xml',
-        'views/product_pricelist_studio_ported.xml',
-        'views/sale_report_studio_ported.xml',
-        'views/res_company_studio_ported.xml',
-        'views/sale_order_line_studio_ported.xml',
-        'views/studio_ported_9_views.xml',
-        'data/record_rules.xml',
-        'data/server_actions_backlog.xml',
-        'data/automations_backlog.xml',
-        'data/window_actions_backlog.xml',
-        'data/record_rules_from_analytics.xml',
-        'data/gap_automations.xml',
-        'data/record_rules_gap.xml',
-        'data/server_actions_gap.xml',
-        'data/automations_gap.xml',
-        'data/window_actions_gap.xml',
-        'data/ir_defaults_gap.xml',  # upgrade-testing: form defaults shipped; record-specific ones commented inside
-        'data/ir_defaults_unblocked.xml',  # upgrade-testing: form defaults shipped; record-specific ones commented inside
-        'views/product_pricelist_e_views.xml',
-        'views/product_product_e_views.xml',
-        'views/sale_order_e_views.xml',
-        'views/sale_order_line_e_views.xml',
-        'views/x_minimum_sales_margin_e_views.xml',
-        'views/views_final.xml',
-        'data/menus_f6.xml',
-        'data/menus_from_routing.xml',
-        'data/menus_visual_fixes.xml',
-        'data/crm_team_action_view_mode.xml',
-        'views/qweb_studio_ported.xml',
-        'views/product_template_studio_ported.xml',
+    "data": [
+        "data/defaults_final.xml",
+        "data/server_actions_f5.xml",
+        "data/window_actions_f4.xml",
+        "data/defaults_f2.xml",
+        "security/ir_model_pins.xml",
+        "data/bugfix_sales_data.xml",
+        "data/server_actions.xml",
+        "security/ir.model.access.csv",
+        "security/removed_handmade_access_rights.xml",
+        "data/server_actions_v2.xml",
+        "data/approval_rules_final.xml",
+        "data/automations.xml",
+        "data/window_actions.xml",
+        "views/doc_intro_views.xml",
+        "views/doc_conclusion_views.xml",
+        "views/res_partner_views.xml",
+        "views/res_config_settings_views.xml",
+        "views/sale_advance_payment_inv_views.xml",
+        "views/sale_order_views.xml",
+        "views/x_delivery_terms_studio_ported.xml",
+        "views/res_partner_studio_ported.xml",
+        "views/sale_order_studio_ported.xml",
+        "views/product_pricelist_studio_ported.xml",
+        "views/sale_report_studio_ported.xml",
+        "views/res_company_studio_ported.xml",
+        "views/sale_order_line_studio_ported.xml",
+        "views/studio_ported_9_views.xml",
+        "data/record_rules.xml",
+        "data/server_actions_backlog.xml",
+        "data/automations_backlog.xml",
+        "data/window_actions_backlog.xml",
+        "data/record_rules_from_analytics.xml",
+        "data/gap_automations.xml",
+        "data/record_rules_gap.xml",
+        "data/server_actions_gap.xml",
+        "data/automations_gap.xml",
+        "data/window_actions_gap.xml",
+        "data/ir_defaults_gap.xml",  # upgrade-testing: form defaults shipped; record-specific ones commented inside
+        "data/ir_defaults_unblocked.xml",  # upgrade-testing: form defaults shipped; record-specific ones commented inside
+        "views/product_pricelist_e_views.xml",
+        "views/product_product_e_views.xml",
+        "views/sale_order_e_views.xml",
+        "views/sale_order_line_e_views.xml",
+        "views/x_minimum_sales_margin_e_views.xml",
+        "views/views_final.xml",
+        "data/menus_f6.xml",
+        "data/menus_from_routing.xml",
+        "data/menus_visual_fixes.xml",
+        "data/crm_team_action_view_mode.xml",
+        "views/qweb_studio_ported.xml",
+        "views/product_template_studio_ported.xml",
     ],
-    'application': False,
+    "application": False,
 }

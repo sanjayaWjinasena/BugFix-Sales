@@ -65,13 +65,14 @@ A Minimum Sales Margin % record holds a company's sales configuration: minimum s
   <details><summary>code (7 lines)</summary>
 
 ```python
-
 if record.id:
-  update = env['x_minimum_sales_margin'].search([('x_studio_active', '=', True)], limit=1)
-  if update:
-    raise UserError("Only one Minimum Sales Margin % can exist.") 
-  else:
-    record['x_studio_active'] = True
+    update = env["x_minimum_sales_margin"].search(
+        [("x_studio_active", "=", True)], limit=1
+    )
+    if update:
+        raise UserError("Only one Minimum Sales Margin % can exist.")
+    else:
+        record["x_studio_active"] = True
 ```
   </details>
 - **SLS - Minimum Sales Margin % - in Setup Page** (`sa_f5_x_minimum_sales_margin_sls_minimum_sales_margin_in_setup_page`, type `code`)
@@ -82,11 +83,13 @@ if record.id:
 
 ```python
 if record.id:
-  update = env['x_minimum_sales_margin'].search([('x_studio_active', '=', True)], limit=1)
-  if update:
-    raise UserError("Only one Minimum Sales Margin % can exist.") 
-  else:
-    record['x_studio_active'] = True
+    update = env["x_minimum_sales_margin"].search(
+        [("x_studio_active", "=", True)], limit=1
+    )
+    if update:
+        raise UserError("Only one Minimum Sales Margin % can exist.")
+    else:
+        record["x_studio_active"] = True
 ```
   </details>
 **Automations (1):**

@@ -8,17 +8,19 @@ class BugFixSalesDocConclusion(models.Model):
     separate model so the two lookups on sale.order are unambiguous
     and the config menu labels stay clear.
     """
-    _name = 'bugfix_sales.doc_conclusion'
-    _description = 'Quotation Document Conclusion'
-    _order = 'name'
 
-    name = fields.Char(string='Title', required=True, index=True)
+    _name = "bugfix_sales.doc_conclusion"
+    _description = "Quotation Document Conclusion"
+    _order = "name"
+
+    name = fields.Char(string="Title", required=True, index=True)
     description = fields.Text(
-        string='Conclusion Text', required=True,
-        help='Multi-line body printed after the totals on the quotation.',
+        string="Conclusion Text",
+        required=True,
+        help="Multi-line body printed after the totals on the quotation.",
     )
     company_id = fields.Many2one(
-        'res.company',
+        "res.company",
         default=lambda self: self.env.company,
     )
     active = fields.Boolean(default=True)

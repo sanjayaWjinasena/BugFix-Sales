@@ -13,8 +13,9 @@ during topological load, leaving x_studio_journal_items_id absent from the
 model's _fields at setup_models() time. That caused a KeyError on every
 related-field setup in x_sales_report_model and brought down the registry.
 """
+
 from odoo import models
 
 
 class XSalesReportType(models.Model):
-    _inherit = 'x_sales_report_type'
+    _inherit = "x_sales_report_type"

@@ -24,10 +24,10 @@ This repo adds one automation, JIN - Company Id in Product Category, which runs 
 
 ```python
 if record.id == False:
- company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
- company = env['res.company'].browse(company_id)
-    
- record['x_studio_company_id'] = company.id
+    company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+    company = env["res.company"].browse(company_id)
+
+    record["x_studio_company_id"] = company.id
 ```
   </details>
 **Automations (1):**

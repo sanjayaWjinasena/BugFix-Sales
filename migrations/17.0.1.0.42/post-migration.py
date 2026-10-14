@@ -9,6 +9,7 @@ expression fails on `x_studio_valid_order_lines == False`.
 Runs the compute directly via ORM recompute for the whole table.
 Idempotent.
 """
+
 from odoo import SUPERUSER_ID, api
 
 
@@ -16,8 +17,8 @@ def migrate(cr, version):
     if not version:
         return
     env = api.Environment(cr, SUPERUSER_ID, {})
-    all_sos = env['sale.order'].sudo().search([])
-    all_sos.invalidate_recordset(['x_studio_valid_order_lines'])
+    all_sos = env["sale.order"].sudo().search([])
+    all_sos.invalidate_recordset(["x_studio_valid_order_lines"])
     # Access triggers the compute + store.
     for so in all_sos:
         _ = so.x_studio_valid_order_lines

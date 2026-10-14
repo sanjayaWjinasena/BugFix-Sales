@@ -46,10 +46,11 @@ class MinimumSalesMarginSeed(models.AbstractModel):
     Fix-repair / BugFix-Sales applies: skip companies that already
     carry a row.
     """
-    _name = 'bugfix_sales.minimum_sales_margin.seed'
-    _description = 'Seed Minimum Sales Margin config per company'
 
-    _DEFAULT_NAME = 'Sales Configurations'
+    _name = "bugfix_sales.minimum_sales_margin.seed"
+    _description = "Seed Minimum Sales Margin config per company"
+
+    _DEFAULT_NAME = "Sales Configurations"
     _DEFAULT_ADVANCE_PCT = 50.0
     _DEFAULT_MARGIN_PCT = 35.0
     _DEFAULT_SO_VALIDITY_DAYS = 1
@@ -67,7 +68,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         companies can override their values later via the config
         form; the seed only touches rows it creates.
         """
-        companies = self.env['res.company'].sudo().search([])
+        companies = self.env["res.company"].sudo().search([])
         if not companies:
             return
 
@@ -117,16 +118,16 @@ class MinimumSalesMarginSeed(models.AbstractModel):
     # Marker embedded in every Studio code reader we've patched. Presence
     # of the marker means the code has already been swept once, so future
     # upgrades skip that reader and any manual Studio edit stays intact.
-    _CUTOVER_MARKER = '# bugfix_sales:config-cutover-v22'
+    _CUTOVER_MARKER = "# bugfix_sales:config-cutover-v22"
 
     # Sensible defaults used when seeding ir.config_parameter for a
     # freshly-added company. Mirror the same defaults the old row seed
     # was using (see _seed_minimum_sales_margin_per_company).
     _DEFAULT_IR_CONFIG_VALUES = {
-        'bugfix_sales.minimum_sales_margin': _DEFAULT_MARGIN_PCT,
-        'bugfix_sales.sales_order_validity': _DEFAULT_SO_VALIDITY_DAYS,
-        'bugfix_sales.advance_payment_pct': _DEFAULT_ADVANCE_PCT,
-        'bugfix_sales.last_purchase_price_validity_days': _DEFAULT_PURCHASE_VALIDITY_DAYS,
+        "bugfix_sales.minimum_sales_margin": _DEFAULT_MARGIN_PCT,
+        "bugfix_sales.sales_order_validity": _DEFAULT_SO_VALIDITY_DAYS,
+        "bugfix_sales.advance_payment_pct": _DEFAULT_ADVANCE_PCT,
+        "bugfix_sales.last_purchase_price_validity_days": _DEFAULT_PURCHASE_VALIDITY_DAYS,
     }
 
     @api.model
@@ -146,13 +147,14 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         Idempotent — only writes keys that are currently absent, so
         Settings edits done between upgrades never get clobbered.
         """
-        Icp = self.env['ir.config_parameter'].sudo()
-        companies = self.env['res.company'].sudo().search([])
+        Icp = self.env["ir.config_parameter"].sudo()
+        companies = self.env["res.company"].sudo().search([])
         for company in companies:
             for base_key, default in self._DEFAULT_IR_CONFIG_VALUES.items():
-                param_key = '%s.%s' % (base_key, company.id)
+                param_key = "%s.%s" % (base_key, company.id)
                 existing = Icp.search(
-                    [('key', '=', param_key)], limit=1,
+                    [("key", "=", param_key)],
+                    limit=1,
                 )
                 if existing:
                     continue
@@ -187,15 +189,15 @@ class MinimumSalesMarginSeed(models.AbstractModel):
     )
 
     _LINE_MARGIN_EXCEED_DEPENDS = (
-        'product_id,'
-        'product_id.standard_price,'
-        'product_uom_qty,'
-        'price_subtotal,'
-        'x_studio_commission,'
-        'x_studio_quotation_type'
+        "product_id,"
+        "product_id.standard_price,"
+        "product_uom_qty,"
+        "price_subtotal,"
+        "x_studio_commission,"
+        "x_studio_quotation_type"
     )
 
-    _HEADER_MARGIN_EXCEED_DEPENDS = 'order_line.x_studio_margin_exceed'
+    _HEADER_MARGIN_EXCEED_DEPENDS = "order_line.x_studio_margin_exceed"
 
     @api.model
     def _suppress_validate_sales_lines_button(self):
@@ -232,12 +234,19 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         Reversibility — set base.automation 216 active=True from
         Developer Mode to bring the feature back.
         """
-        auto = self.env['base.automation'].sudo().search([
-            ('model_name', '=', 'sale.order.line'),
-            ('name', '=', 'SLS - Clear Free Items SO Lines'),
-        ], limit=1)
+        auto = (
+            self.env["base.automation"]
+            .sudo()
+            .search(
+                [
+                    ("model_name", "=", "sale.order.line"),
+                    ("name", "=", "SLS - Clear Free Items SO Lines"),
+                ],
+                limit=1,
+            )
+        )
         if auto and auto.active:
-            auto.write({'active': False})
+            auto.write({"active": False})
 
     @api.model
     def _convert_line_margin_flag_to_computed(self):
@@ -292,42 +301,61 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         declaration itself owns the compute/depends/store, so
         this method has nothing to do — skip.
         """
-        Field = self.env['ir.model.fields'].sudo()
-        marker = '# bugfix_sales:margin-exceed-computed-v23'
+        Field = self.env["ir.model.fields"].sudo()
+        marker = "# bugfix_sales:margin-exceed-computed-v23"
 
         # Step 1 — line field
-        line_field = Field.search([
-            ('model', '=', 'sale.order.line'),
-            ('name', '=', 'x_studio_margin_exceed'),
-        ], limit=1)
-        if (line_field and line_field.state == 'manual'
-                and marker not in (line_field.compute or '')):
-            line_field.write({
-                'store': False,
-                'compute': self._LINE_MARGIN_EXCEED_COMPUTE,
-                'depends': self._LINE_MARGIN_EXCEED_DEPENDS,
-                'readonly': True,
-            })
+        line_field = Field.search(
+            [
+                ("model", "=", "sale.order.line"),
+                ("name", "=", "x_studio_margin_exceed"),
+            ],
+            limit=1,
+        )
+        if (
+            line_field
+            and line_field.state == "manual"
+            and marker not in (line_field.compute or "")
+        ):
+            line_field.write(
+                {
+                    "store": False,
+                    "compute": self._LINE_MARGIN_EXCEED_COMPUTE,
+                    "depends": self._LINE_MARGIN_EXCEED_DEPENDS,
+                    "readonly": True,
+                }
+            )
 
         # Step 2 — header field depends tightening
-        header_field = Field.search([
-            ('model', '=', 'sale.order'),
-            ('name', '=', 'x_studio_margin_exceed'),
-        ], limit=1)
-        if (header_field and header_field.state == 'manual'
-                and header_field.depends != self._HEADER_MARGIN_EXCEED_DEPENDS):
-            header_field.write({
-                'depends': self._HEADER_MARGIN_EXCEED_DEPENDS,
-            })
+        header_field = Field.search(
+            [
+                ("model", "=", "sale.order"),
+                ("name", "=", "x_studio_margin_exceed"),
+            ],
+            limit=1,
+        )
+        if (
+            header_field
+            and header_field.state == "manual"
+            and header_field.depends != self._HEADER_MARGIN_EXCEED_DEPENDS
+        ):
+            header_field.write(
+                {
+                    "depends": self._HEADER_MARGIN_EXCEED_DEPENDS,
+                }
+            )
 
         # Step 3 — retire the automation that used to set the stored value
-        Auto = self.env['base.automation'].sudo()
-        auto_91 = Auto.search([
-            ('model_name', '=', 'sale.order.line'),
-            ('name', '=', 'SLS - Validate Margin in SO Line'),
-        ], limit=1)
+        Auto = self.env["base.automation"].sudo()
+        auto_91 = Auto.search(
+            [
+                ("model_name", "=", "sale.order.line"),
+                ("name", "=", "SLS - Validate Margin in SO Line"),
+            ],
+            limit=1,
+        )
         if auto_91 and auto_91.active:
-            auto_91.write({'active': False})
+            auto_91.write({"active": False})
 
     @api.model
     def _patch_studio_readers_to_use_company(self):
@@ -369,8 +397,8 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         fetch line — safer than blind replace.
         """
         marker = self._CUTOVER_MARKER
-        Server = self.env['ir.actions.server'].sudo()
-        Field = self.env['ir.model.fields'].sudo()
+        Server = self.env["ir.actions.server"].sudo()
+        Field = self.env["ir.model.fields"].sudo()
 
         # Server-action patches: (id, old_snippet, new_snippet, comment)
         server_patches = [
@@ -379,90 +407,95 @@ class MinimumSalesMarginSeed(models.AbstractModel):
                 1508,
                 "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
                 "min_magin = record.company_id",
-                'Read minimum margin from the current SO line company.',
+                "Read minimum margin from the current SO line company.",
             ),
             # 1517 — SLS - Item Over Margin Details (sale.order)
             (
                 1517,
                 "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
                 "min_magin = record.company_id",
-                'Read minimum margin from the current SO company.',
+                "Read minimum margin from the current SO company.",
             ),
             # 2340 — SLS - Cancel SOs more than 3 Months (cron; no record in scope)
             (
                 2340,
                 "no_of_days = env['x_minimum_sales_margin'].search([])",
                 "no_of_days = env.company",
-                'Read SO validity days from the caller company '
-                '(cron traditionally used first row).',
+                "Read SO validity days from the caller company "
+                "(cron traditionally used first row).",
             ),
             # 2341 — SLS - Create Customer Payment (sale.order); has TWO occurrences
             (
                 2341,
                 "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
                 "min_magin = record.company_id",
-                'Read advance payment % from the current SO company.',
+                "Read advance payment % from the current SO company.",
             ),
             # 2427 — RR - Validate Payment % (account.payment)
             (
                 2427,
                 "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
                 "min_magin = record.company_id",
-                'Read advance payment % from the current payment company.',
+                "Read advance payment % from the current payment company.",
             ),
             # 2897 — PROJ - Update Project Pricelist (product.pricelist);
             # already had explicit company scoping via x_studio_company_id
             (
                 2897,
-                ("sales_configuration = env['x_minimum_sales_margin'].search("
-                 "[('x_studio_company_id', '=', company.id)],limit=1)"),
-                'sales_configuration = company',
-                'Read last-purchase-price validity from the resolved company.',
+                (
+                    "sales_configuration = env['x_minimum_sales_margin'].search("
+                    "[('x_studio_company_id', '=', company.id)],limit=1)"
+                ),
+                "sales_configuration = company",
+                "Read last-purchase-price validity from the resolved company.",
             ),
         ]
         for action_id, old, new, _why in server_patches:
             action = Server.browse(action_id).exists()
             if not action:
                 continue
-            code = action.code or ''
+            code = action.code or ""
             if marker in code:
                 continue
             if old not in code:
                 continue
             # replace(count=-1) covers the double-occurrence in action 2341
             new_code = code.replace(old, new)
-            action.write({'code': marker + '\n' + new_code})
+            action.write({"code": marker + "\n" + new_code})
 
         # Compute-field patches: same idea but on ir.model.fields.compute.
         # Identify by model + field-name (safer than id — surviving Studio
         # rebuilds that may renumber ids).
         field_patches = [
             (
-                'account.payment', 'x_studio_payment_validation',
+                "account.payment",
+                "x_studio_payment_validation",
                 "min_magin = self.env['x_minimum_sales_margin'].search([], limit=1)",
-                'min_magin = record.company_id',
-                'Read advance payment % from the current payment company.',
+                "min_magin = record.company_id",
+                "Read advance payment % from the current payment company.",
             ),
             (
-                'sale.order', 'x_studio_sales_order_validity',
+                "sale.order",
+                "x_studio_sales_order_validity",
                 "setup = self.env['x_minimum_sales_margin'].search([])",
-                'setup = rec.company_id',
-                'Read SO validity days from the current SO company.',
+                "setup = rec.company_id",
+                "Read SO validity days from the current SO company.",
             ),
         ]
         for model, name, old, new, _why in field_patches:
             field = Field.search(
-                [('model', '=', model), ('name', '=', name)], limit=1,
+                [("model", "=", model), ("name", "=", name)],
+                limit=1,
             )
             if not field:
                 continue
-            code = field.compute or ''
+            code = field.compute or ""
             if marker in code:
                 continue
             if old not in code:
                 continue
             new_code = code.replace(old, new)
-            field.write({'compute': marker + '\n' + new_code})
+            field.write({"compute": marker + "\n" + new_code})
 
     @api.model
     def _migrate_to_config_parameter(self):
@@ -501,11 +534,11 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         install with no Jinasena Studio state), there's nothing to
         migrate and we early-return before the missing-model KeyError.
         """
-        if 'x_minimum_sales_margin' not in self.env:
+        if "x_minimum_sales_margin" not in self.env:
             return
-        Icp = self.env['ir.config_parameter'].sudo()
-        IcpModel = self.env['ir.config_parameter'].sudo()
-        rows = self.env['x_minimum_sales_margin'].sudo().search([])
+        Icp = self.env["ir.config_parameter"].sudo()
+        IcpModel = self.env["ir.config_parameter"].sudo()
+        rows = self.env["x_minimum_sales_margin"].sudo().search([])
         if not rows:
             return
         # Import the mapping from res.company so field-name / key-base
@@ -513,41 +546,42 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         # have been registered yet on the very first install pass; the
         # data XML calls this AFTER models are loaded, so the lookup
         # is safe here.
-        keymap = self.env['res.company']._BUGFIX_SALES_CONFIG
+        keymap = self.env["res.company"]._BUGFIX_SALES_CONFIG
         for row in rows:
             company = row.x_studio_company_id
             if not company:
                 continue
             for fname, (key_base, _ttype, _default) in keymap.items():
-                param_key = '%s.%s' % (key_base, company.id)
+                param_key = "%s.%s" % (key_base, company.id)
                 # Use a direct search so we can distinguish "key
                 # exists with value 0" from "key missing". get_param
                 # returns False for both cases.
                 existing = IcpModel.search(
-                    [('key', '=', param_key)], limit=1,
+                    [("key", "=", param_key)],
+                    limit=1,
                 )
                 if existing:
                     continue
                 Icp.set_param(param_key, str(row[fname]))
 
-    _C01_REPORT_NAME = 'C01 Sales Quotation'
-    _C01_INHERIT_XMLID = 'bugfix_sales_c01_quotation_intro_conclusion'
+    _C01_REPORT_NAME = "C01 Sales Quotation"
+    _C01_INHERIT_XMLID = "bugfix_sales_c01_quotation_intro_conclusion"
     _C01_INHERIT_ARCH = (
-        '<data>'
+        "<data>"
         '<xpath expr="//table[hasclass(\'table-sm\')][1]" position="before">'
         '<div t-if="doc.bugfix_sales_intro_text" class="mt-3 mb-3" '
         'style="white-space: pre-wrap; font-size: 10pt;">'
-        '<strong>Notes:</strong><br/>'
+        "<strong>Notes:</strong><br/>"
         '<t t-out="doc.bugfix_sales_intro_text"/>'
-        '</div>'
-        '</xpath>'
+        "</div>"
+        "</xpath>"
         '<xpath expr="//table[hasclass(\'table-sm\')][2]" position="after">'
         '<div t-if="doc.bugfix_sales_conclusion_text" class="mt-3 mb-3" '
         'style="white-space: pre-wrap; font-size: 10pt;">'
         '<t t-out="doc.bugfix_sales_conclusion_text"/>'
-        '</div>'
-        '</xpath>'
-        '</data>'
+        "</div>"
+        "</xpath>"
+        "</data>"
     )
 
     @api.model
@@ -586,41 +620,50 @@ class MinimumSalesMarginSeed(models.AbstractModel):
 
         Idempotent — reruns with unchanged state no-op.
         """
-        Report = self.env['ir.actions.report'].sudo()
-        View = self.env['ir.ui.view'].sudo()
-        Data = self.env['ir.model.data'].sudo()
+        Report = self.env["ir.actions.report"].sudo()
+        View = self.env["ir.ui.view"].sudo()
+        Data = self.env["ir.model.data"].sudo()
 
-        existing = View.search([
-            ('key', '=', 'bugfix_sales.' + self._C01_INHERIT_XMLID),
-        ], limit=1)
+        existing = View.search(
+            [
+                ("key", "=", "bugfix_sales." + self._C01_INHERIT_XMLID),
+            ],
+            limit=1,
+        )
 
-        report = Report.search([
-            ('name', '=', self._C01_REPORT_NAME),
-            ('model', '=', 'sale.order'),
-        ], limit=1)
+        report = Report.search(
+            [
+                ("name", "=", self._C01_REPORT_NAME),
+                ("model", "=", "sale.order"),
+            ],
+            limit=1,
+        )
         if not report:
             if existing:
                 existing.unlink()
             return
 
-        rname = report.report_name or ''
-        if '.' not in rname:
+        rname = report.report_name or ""
+        if "." not in rname:
             if existing:
                 existing.unlink()
             return
 
-        module_prefix, tail = rname.split('.', 1)
-        if '_copy' in tail:
-            idx = tail.index('_copy')
-            doc_tail = tail[:idx] + '_document' + tail[idx:]
+        module_prefix, tail = rname.split(".", 1)
+        if "_copy" in tail:
+            idx = tail.index("_copy")
+            doc_tail = tail[:idx] + "_document" + tail[idx:]
         else:
-            doc_tail = tail + '_document'
-        doc_key = '%s.%s' % (module_prefix, doc_tail)
+            doc_tail = tail + "_document"
+        doc_key = "%s.%s" % (module_prefix, doc_tail)
 
-        target = View.search([
-            ('key', '=', doc_key),
-            ('type', '=', 'qweb'),
-        ], limit=1)
+        target = View.search(
+            [
+                ("key", "=", doc_key),
+                ("type", "=", "qweb"),
+            ],
+            limit=1,
+        )
         if not target:
             if existing:
                 existing.unlink()
@@ -629,28 +672,32 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         if existing:
             updates = {}
             if existing.inherit_id.id != target.id:
-                updates['inherit_id'] = target.id
-            if (existing.arch_db or '').strip() != self._C01_INHERIT_ARCH.strip():
-                updates['arch'] = self._C01_INHERIT_ARCH
+                updates["inherit_id"] = target.id
+            if (existing.arch_db or "").strip() != self._C01_INHERIT_ARCH.strip():
+                updates["arch"] = self._C01_INHERIT_ARCH
             if updates:
                 existing.write(updates)
             return
 
-        new_view = View.create({
-            'name': 'BugFix-Sales: C01 Quotation Intro/Conclusion',
-            'type': 'qweb',
-            'inherit_id': target.id,
-            'mode': 'extension',
-            'arch': self._C01_INHERIT_ARCH,
-            'key': 'bugfix_sales.' + self._C01_INHERIT_XMLID,
-        })
-        Data.create({
-            'module': 'bugfix_sales',
-            'name': self._C01_INHERIT_XMLID,
-            'model': 'ir.ui.view',
-            'res_id': new_view.id,
-            'noupdate': True,
-        })
+        new_view = View.create(
+            {
+                "name": "BugFix-Sales: C01 Quotation Intro/Conclusion",
+                "type": "qweb",
+                "inherit_id": target.id,
+                "mode": "extension",
+                "arch": self._C01_INHERIT_ARCH,
+                "key": "bugfix_sales." + self._C01_INHERIT_XMLID,
+            }
+        )
+        Data.create(
+            {
+                "module": "bugfix_sales",
+                "name": self._C01_INHERIT_XMLID,
+                "model": "ir.ui.view",
+                "res_id": new_view.id,
+                "noupdate": True,
+            }
+        )
 
     @api.model
     def _cleanup_orphan_studio_menu_pins(self):
@@ -677,17 +724,17 @@ class MinimumSalesMarginSeed(models.AbstractModel):
 
         Idempotent: reruns find no orphans and no-op.
         """
-        Data = self.env['ir.model.data'].sudo()
-        Menu = self.env['ir.ui.menu'].sudo().with_context(active_test=False)
-        pins = Data.search([
-            ('module', '=', 'studio_customization'),
-            ('model', '=', 'ir.ui.menu'),
-        ])
+        Data = self.env["ir.model.data"].sudo()
+        Menu = self.env["ir.ui.menu"].sudo().with_context(active_test=False)
+        pins = Data.search(
+            [
+                ("module", "=", "studio_customization"),
+                ("model", "=", "ir.ui.menu"),
+            ]
+        )
         if not pins:
             return
-        orphans = pins.filtered(
-            lambda p: not Menu.browse(p.res_id).exists()
-        )
+        orphans = pins.filtered(lambda p: not Menu.browse(p.res_id).exists())
         if orphans:
             orphans.unlink()
 
@@ -712,15 +759,13 @@ class MinimumSalesMarginSeed(models.AbstractModel):
 
         Idempotent: reruns find no still-active menus and no-op.
         """
-        ActWindow = self.env['ir.actions.act_window'].sudo()
-        actions = ActWindow.search(
-            [('res_model', '=', 'x_minimum_sales_margin')]
-        )
+        ActWindow = self.env["ir.actions.act_window"].sudo()
+        actions = ActWindow.search([("res_model", "=", "x_minimum_sales_margin")])
         if not actions:
             return
-        Menu = self.env['ir.ui.menu'].sudo().with_context(active_test=False)
-        refs = ['ir.actions.act_window,%s' % a.id for a in actions]
-        menus = Menu.search([('action', 'in', refs)])
+        Menu = self.env["ir.ui.menu"].sudo().with_context(active_test=False)
+        refs = ["ir.actions.act_window,%s" % a.id for a in actions]
+        menus = Menu.search([("action", "in", refs)])
         active_menus = menus.filtered(lambda m: m.active)
         if active_menus:
-            active_menus.write({'active': False})
+            active_menus.write({"active": False})

@@ -1,5 +1,6 @@
 """Phase F1: seed ir.model.fields.selection records for state=base fields via SQL.
 Odoo 17: `name` column is JSONB (translation) - must be JSON-encoded, not plain str."""
+
 import json
 
 
@@ -8,19 +9,26 @@ def migrate(cr, version):
         return
     # (model, field_name, value, display_name, sequence)
     data = [
-        ('sale.order.line', 'x_studio_quotation_type', 'Sales', 'Sales', 10),
-        ('sale.order.line', 'x_studio_product_status', 'Blank', 'Blank', 10),
-        ('sale.order.line', 'x_studio_purch_type', 'Local', 'Local', 10),
-        ('sale.order.line', 'x_studio_quotation_type', 'Project', 'Project', 1),
-        ('sale.order.line', 'x_studio_product_status', 'New Item', 'New Item', 1),
-        ('sale.order.line', 'x_studio_purch_type', 'Import', 'Import', 1),
-        ('sale.order.line', 'x_studio_quotation_type', 'Repair', 'Repair', 2),
-        ('sale.order.line', 'x_studio_product_status', 'Existing Item', 'Existing Item', 2),
+        ("sale.order.line", "x_studio_quotation_type", "Sales", "Sales", 10),
+        ("sale.order.line", "x_studio_product_status", "Blank", "Blank", 10),
+        ("sale.order.line", "x_studio_purch_type", "Local", "Local", 10),
+        ("sale.order.line", "x_studio_quotation_type", "Project", "Project", 1),
+        ("sale.order.line", "x_studio_product_status", "New Item", "New Item", 1),
+        ("sale.order.line", "x_studio_purch_type", "Import", "Import", 1),
+        ("sale.order.line", "x_studio_quotation_type", "Repair", "Repair", 2),
+        (
+            "sale.order.line",
+            "x_studio_product_status",
+            "Existing Item",
+            "Existing Item",
+            2,
+        ),
     ]
     for model, name, value, display, seq in data:
         # Name is a JSONB translation field in Odoo 17
         name_json = json.dumps({"en_US": display})
-        cr.execute("""
+        cr.execute(
+            """
             INSERT INTO ir_model_fields_selection
                 (field_id, value, name, sequence, create_uid, create_date, write_uid, write_date)
             SELECT f.id, %s, %s::jsonb, %s, 1, NOW() AT TIME ZONE 'UTC', 1, NOW() AT TIME ZONE 'UTC'
@@ -29,4 +37,6 @@ def migrate(cr, version):
                 SELECT 1 FROM ir_model_fields_selection s
                 WHERE s.field_id = f.id AND s.value = %s
             )
-        """, (value, name_json, seq, model, name, value))
+        """,
+            (value, name_json, seq, model, name, value),
+        )

@@ -66,12 +66,14 @@ A Delivery Term is a named shipping or delivery condition, with a description, s
 
 ```python
 if record.id:
-  temp_rec = env['x_delivery_term_charge'].search([('x_studio_delivery_terms_id', '=', record.id)])
-  if temp_rec:
-    for del_temp_rec in temp_rec:
-      del_temp_rec.unlink()   
+    temp_rec = env["x_delivery_term_charge"].search(
+        [("x_studio_delivery_terms_id", "=", record.id)]
+    )
+    if temp_rec:
+        for del_temp_rec in temp_rec:
+            del_temp_rec.unlink()
 
-  record['x_studio_copied'] = False
+    record["x_studio_copied"] = False
 ```
   </details>
 - **IMP - Copy Charges to Delivery Terms** (`server_action_1207_imp_copy_charges_to_delivery_terms`, type `code`)
@@ -81,12 +83,20 @@ if record.id:
   <details><summary>code (6 lines)</summary>
 
 ```python
-loop_misc_charge_codes_c = env['x_misc_charge_codes'].search([('x_studio_charge_group', '=', 'Charges')])
+loop_misc_charge_codes_c = env["x_misc_charge_codes"].search(
+    [("x_studio_charge_group", "=", "Charges")]
+)
 if loop_misc_charge_codes_c:
-  for find_charges in loop_misc_charge_codes_c:
-    create_delivery_charges = env['x_delivery_term_charge'].create({'x_studio_delivery_terms_id':record.id,'x_name':find_charges.x_name,'x_studio_description':find_charges.x_studio_description})
-  
-  record['x_studio_copied'] = True
+    for find_charges in loop_misc_charge_codes_c:
+        create_delivery_charges = env["x_delivery_term_charge"].create(
+            {
+                "x_studio_delivery_terms_id": record.id,
+                "x_name": find_charges.x_name,
+                "x_studio_description": find_charges.x_studio_description,
+            }
+        )
+
+    record["x_studio_copied"] = True
 ```
   </details>
 - **JIN - Company Id in Delivery Terms** (`server_action_2682_jin_company_id_in_delivery_terms`, type `code`)
@@ -96,10 +106,10 @@ if loop_misc_charge_codes_c:
   <details><summary>code (4 lines)</summary>
 
 ```python
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-record['x_studio_company_id'] = company.id
+record["x_studio_company_id"] = company.id
 ```
   </details>
 **Automations (1):**

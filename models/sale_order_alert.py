@@ -5,21 +5,22 @@ sale_subscription addon. Two are text (Char), two are Selection with
 empty option lists on CDB (Studio-created but never populated with
 options — kept portable for schema parity).
 """
+
 from odoo import fields, models
 
 
 class SaleOrderAlert(models.Model):
-    _inherit = 'sale.order.alert'
+    _inherit = "sale.order.alert"
 
-    x_studio_char_field_dpQHc = fields.Char(string='New Text', copy=True)
-    x_studio_comments = fields.Char(string='Comments', copy=True)
+    x_studio_char_field_dpQHc = fields.Char(string="New Text", copy=True)
+    x_studio_comments = fields.Char(string="Comments", copy=True)
     x_studio_selection_field_ogQSe = fields.Selection(
         selection=[],
-        string='New Selection',
+        string="New Selection",
         copy=True,
     )
     x_studio_status = fields.Selection(
         selection=[],
-        string='Status',
+        string="Status",
         copy=True,
     )

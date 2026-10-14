@@ -32,11 +32,10 @@ This repo adds Group Type (General, Distributor or Dealer), Order Payment Method
   <details><summary>code (5 lines)</summary>
 
 ```python
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
-
-record['company_id'] = company.id
+record["company_id"] = company.id
 ```
   </details>
 - **JIN - Company Id in Pricelist** (`sa_f5_product_pricelist_jin_company_id_in_pricelist`, type `code`)
@@ -46,10 +45,10 @@ record['company_id'] = company.id
   <details><summary>code (4 lines)</summary>
 
 ```python
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-record['company_id'] = company.id
+record["company_id"] = company.id
 ```
   </details>
 **Automations (1):**

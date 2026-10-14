@@ -135,8 +135,7 @@ This repo adds 43 Studio fields to product variants, most of them unused placeho
 
 ```python
 if record.default_code == False:
-
-  raise UserError("Internal Reference should be filled in to proceed!")
+    raise UserError("Internal Reference should be filled in to proceed!")
 ```
   </details>
 - **PROJ - Item Approval Request  Sent** (`server_action_2163_proj_item_approval_request_sent`, type `object_write`)

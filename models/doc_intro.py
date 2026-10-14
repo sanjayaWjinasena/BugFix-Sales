@@ -7,17 +7,19 @@ class BugFixSalesDocIntro(models.Model):
     description is copied into an editable text field on the SO so any
     per-order tweaks don't mutate the library entry.
     """
-    _name = 'bugfix_sales.doc_intro'
-    _description = 'Quotation Document Introduction'
-    _order = 'name'
 
-    name = fields.Char(string='Title', required=True, index=True)
+    _name = "bugfix_sales.doc_intro"
+    _description = "Quotation Document Introduction"
+    _order = "name"
+
+    name = fields.Char(string="Title", required=True, index=True)
     description = fields.Text(
-        string='Introduction Text', required=True,
-        help='Multi-line body printed at the top of the quotation.',
+        string="Introduction Text",
+        required=True,
+        help="Multi-line body printed at the top of the quotation.",
     )
     company_id = fields.Many2one(
-        'res.company',
+        "res.company",
         default=lambda self: self.env.company,
     )
     active = fields.Boolean(default=True)

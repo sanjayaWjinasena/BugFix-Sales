@@ -48,54 +48,59 @@ class ResCompany(models.Model):
     but that's the accepted cutover point. Each remaining consumer
     gets migrated to env.company.x_studio_* in follow-up commits.
     """
-    _inherit = 'res.company'
+
+    _inherit = "res.company"
 
     # Ordering — key_base, python_type, default when missing.
     # Kept as a class-level constant so _migrate_to_config_parameter in
     # minimum_sales_margin_seed can reuse the exact same mapping.
     _BUGFIX_SALES_CONFIG = {
-        'x_studio_minimum_sales_margin_':
-            ('bugfix_sales.minimum_sales_margin', float, 0.0),
-        'x_studio_sales_order_validity':
-            ('bugfix_sales.sales_order_validity', int, 0),
-        'x_studio_advance_payment_':
-            ('bugfix_sales.advance_payment_pct', float, 0.0),
-        'x_studio_last_purchase_price_validity_days':
-            ('bugfix_sales.last_purchase_price_validity_days', int, 0),
+        "x_studio_minimum_sales_margin_": (
+            "bugfix_sales.minimum_sales_margin",
+            float,
+            0.0,
+        ),
+        "x_studio_sales_order_validity": ("bugfix_sales.sales_order_validity", int, 0),
+        "x_studio_advance_payment_": ("bugfix_sales.advance_payment_pct", float, 0.0),
+        "x_studio_last_purchase_price_validity_days": (
+            "bugfix_sales.last_purchase_price_validity_days",
+            int,
+            0,
+        ),
     }
 
     x_studio_minimum_sales_margin_ = fields.Float(
-        string='Minimum Sales Margin %',
-        compute='_compute_bugfix_sales_config',
-        inverse='_inverse_bugfix_sales_config',
+        string="Minimum Sales Margin %",
+        compute="_compute_bugfix_sales_config",
+        inverse="_inverse_bugfix_sales_config",
         store=False,
-        help='Minimum margin percentage enforced on Sales / Project '
-             'quotations at the Confirm gate.',
+        help="Minimum margin percentage enforced on Sales / Project "
+        "quotations at the Confirm gate.",
     )
     x_studio_sales_order_validity = fields.Integer(
-        string='Sales Order Validity (Days)',
-        compute='_compute_bugfix_sales_config',
-        inverse='_inverse_bugfix_sales_config',
+        string="Sales Order Validity (Days)",
+        compute="_compute_bugfix_sales_config",
+        inverse="_inverse_bugfix_sales_config",
         store=False,
-        help='How many days a quotation remains valid before it is '
-             'flagged expired on the Confirm gate.',
+        help="How many days a quotation remains valid before it is "
+        "flagged expired on the Confirm gate.",
     )
     x_studio_advance_payment_ = fields.Float(
-        string='Advance Payment %',
-        compute='_compute_bugfix_sales_config',
-        inverse='_inverse_bugfix_sales_config',
+        string="Advance Payment %",
+        compute="_compute_bugfix_sales_config",
+        inverse="_inverse_bugfix_sales_config",
         store=False,
-        help='Minimum advance-payment percentage required before '
-             'deliveries can be validated on non-RUG repair sale '
-             'orders.',
+        help="Minimum advance-payment percentage required before "
+        "deliveries can be validated on non-RUG repair sale "
+        "orders.",
     )
     x_studio_last_purchase_price_validity_days = fields.Integer(
-        string='Last Purchase Price Validity (Days)',
-        compute='_compute_bugfix_sales_config',
-        inverse='_inverse_bugfix_sales_config',
+        string="Last Purchase Price Validity (Days)",
+        compute="_compute_bugfix_sales_config",
+        inverse="_inverse_bugfix_sales_config",
         store=False,
         help="Age limit (days) before a product's last purchase price "
-             "is considered stale.",
+        "is considered stale.",
     )
 
     def _compute_bugfix_sales_config(self):
@@ -106,10 +111,10 @@ class ResCompany(models.Model):
         every value for the rest of the transaction. Fields with no
         stored key fall back to the type-default (0 / 0.0).
         """
-        Icp = self.env['ir.config_parameter'].sudo()
+        Icp = self.env["ir.config_parameter"].sudo()
         for company in self:
             for fname, (key_base, ttype, default) in self._BUGFIX_SALES_CONFIG.items():
-                raw = Icp.get_param('%s.%s' % (key_base, company.id))
+                raw = Icp.get_param("%s.%s" % (key_base, company.id))
                 if raw:
                     try:
                         company[fname] = ttype(raw)
@@ -128,10 +133,14 @@ class ResCompany(models.Model):
         the cost is four set_param calls per config write, which are
         negligible at Settings-page edit frequency.
         """
-        Icp = self.env['ir.config_parameter'].sudo()
+        Icp = self.env["ir.config_parameter"].sudo()
         for company in self:
-            for fname, (key_base, _ttype, _default) in self._BUGFIX_SALES_CONFIG.items():
+            for fname, (
+                key_base,
+                _ttype,
+                _default,
+            ) in self._BUGFIX_SALES_CONFIG.items():
                 Icp.set_param(
-                    '%s.%s' % (key_base, company.id),
+                    "%s.%s" % (key_base, company.id),
                     str(company[fname]),
                 )
