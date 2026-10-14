@@ -297,7 +297,5 @@
         'views/qweb_studio_ported.xml',
         'views/product_template_studio_ported.xml',
     ],
-    'installable': True,
-    'auto_install': False,
     'application': False,
 }
