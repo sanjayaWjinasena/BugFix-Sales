@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """One-shot upgrade cleanup for v33.
 
 Additional sale.order + sale.order.line fields ported in v33. Runs the
@@ -8,7 +7,7 @@ xmlids are no-op'd and only the new v33 xmlids get unlinked.
 import importlib.util
 import os
 
-from odoo import api, SUPERUSER_ID
+from odoo import SUPERUSER_ID, api
 from odoo.modules.module import get_module_path
 
 

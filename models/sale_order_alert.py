@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Studio fields on sale.order.alert (sale_subscription addon).
 
 CDB Studio added 4 fields to the sale.order.alert model from the

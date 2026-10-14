@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Customer-master Studio fields ported into BugFix-Sales.
 
 These fields were originally created by Odoo Studio on res.partner

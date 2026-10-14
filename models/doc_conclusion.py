@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo import fields, models
 
 
@@ -19,7 +18,7 @@ class BugFixSalesDocConclusion(models.Model):
         help='Multi-line body printed after the totals on the quotation.',
     )
     company_id = fields.Many2one(
-        'res.company', string='Company',
+        'res.company',
         default=lambda self: self.env.company,
     )
     active = fields.Boolean(default=True)

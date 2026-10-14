@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
 from odoo import api, fields, models
-
 
 # Header fields hidden on Sales-type quotations. Project quotations
 # keep them (Project genuinely uses Recurring Plan + Main Project No

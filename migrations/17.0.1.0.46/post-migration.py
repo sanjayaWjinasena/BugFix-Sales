@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """v46 upgrade -- declare 4 Studio fields on product.pricelist.
 
 Ports the Clear-DB Studio schema:

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """v44 upgrade -- declare two line-level Studio fields required by
 Fix-repair v283's port of the Track Lock Status automations.
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Post-install cleanup hook for BugFix-Sales.
 
 Once the 34 x_studio_* fields ported in v30-v31 have Python declarations

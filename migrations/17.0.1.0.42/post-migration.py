@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """v42 upgrade — force-recompute x_studio_valid_order_lines on every
 sale.order after converting it from plain Boolean to stored compute.
 
@@ -10,7 +9,7 @@ expression fails on `x_studio_valid_order_lines == False`.
 Runs the compute directly via ORM recompute for the whole table.
 Idempotent.
 """
-from odoo import api, SUPERUSER_ID
+from odoo import SUPERUSER_ID, api
 
 
 def migrate(cr, version):

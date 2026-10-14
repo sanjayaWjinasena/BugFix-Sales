@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """v43 upgrade — declare x_studio_price_unit_original on
 sale.order.line so Fix-repair v279's RUG-repricing override has
 somewhere to write the pre-reset price.

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_delivery_terms - also declared in BugFix-Purchase (canonical owner).
 Both modules use _name (not _inherit); Odoo merges declarations at runtime.
 

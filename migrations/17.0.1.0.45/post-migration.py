@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """v45 upgrade -- declare two Studio fields on account.payment
 required by Fix-repair v284's port of Studio automation 241
 (RR - Validate Payment %):

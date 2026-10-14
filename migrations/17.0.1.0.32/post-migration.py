@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """One-shot upgrade cleanup for v32.
 
 post_init_hook only fires on install, never on upgrade. The 34 x_studio_*
@@ -10,7 +9,7 @@ behaviour.
 import importlib.util
 import os
 
-from odoo import api, SUPERUSER_ID
+from odoo import SUPERUSER_ID, api
 from odoo.modules.module import get_module_path
 
 

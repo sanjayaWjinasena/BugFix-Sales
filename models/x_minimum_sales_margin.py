@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import fields, models
+
 
 class X_minimum_sales_margin(models.Model):
     _name = 'x_minimum_sales_margin'

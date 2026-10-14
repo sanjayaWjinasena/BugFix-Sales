@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_sales_report_type is owned by Jinasena_Masterdata_Reporting.
 
 All fields (x_active, x_name, x_studio_report_code, x_studio_sequence,
