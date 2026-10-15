@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="sa_f5_sale_order_line_rr_sales_price_for_rug_items" model="ir.actions.server">
+    <field name="name">RR - Sales Price For RUG Items</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Repair':
+  original_price = record.price_unit
+  if record.x_studio_rug_confirmed == True:
+    record.write({'price_unit': record.product_template_id.standard_price,'x_studio_price_unit_original': original_price})
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+  </record>
+  <record id="sa_f5_sale_order_line_rr_track_lock_status_3" model="ir.actions.server">
+    <field name="name">RR - Track Lock Status - 3</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Repair': 
+ if record.x_studio_unlocked == True:
+    record['x_studio_re_estimated'] = True
+    record['x_studio_count_1'] = record.x_studio_re_estimate_count + 1
+    
+  
+  
+ 
+
+]]></field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+  </record>
+  <record id="sa_f5_sale_order_line_proj_update_price_confirmed_status" model="ir.actions.server">
+    <field name="name">PROJ - Update Price Confirmed Status</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
+
+  if record.product_id.id  != False:
+
+    pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id)],limit=1)
+
+    if pricelist:
+
+      record['x_studio_price_confirmed'] = pricelist.x_studio_price_confirmed
+
+    else:
+
+      record['discount'] = False
+
+else:
+
+  record['x_studio_price_confirmed'] = False
+
+]]></field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+  </record>
+  <record id="server_action_1497_sls_validate_discount_in_so_line" model="ir.actions.server">
+    <field name="name">SLS - Validate Discount in SO Line</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.id:
+  if record.product_id.x_studio_maximum_discount < record.discount:
+    raise UserError('Line Discount Exceeds the Max. Discount Allowed for the Selected Item.') 
+
+
+
+]]></field>
+  </record>
+  <record id="server_action_1498_sls_validate_commission_in_so_line" model="ir.actions.server">
+    <field name="name">SLS - Validate Commission in SO Line</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[#if record.x_studio_commission > 0.00:
+
+if record.x_studio_commission > record.product_id.x_studio_maximum_discount - record.discount:
+
+  record['x_studio_over_commission'] = True
+
+  """
+
+  title = "Over Commission"
+
+  message = "The Commission % Applied to the Line Exceeds the Authorised Limit and Require Approval to Further Process."
+
+  
+
+  action = {
+
+            'type': 'ir.actions.client',
+
+            'tag': 'display_notification',
+
+            'params': {'title': title,'message': message,'sticky': True,}
+
+            } 
+
+  """
+
+else:
+
+  record['x_studio_over_commission'] = False
+
+
+
+if record.x_studio_commission < 0.00:
+
+  raise UserError('Commission Percentage Should not be a Negative.')
+
+
+
+]]></field>
+  </record>
+  <record id="server_action_1729_srm_auto_populate_report_type_in_so_lines" model="ir.actions.server">
+    <field name="name">SRM - Auto Populate Report Type in SO Lines</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.id:
+  record['x_studio_sales_report_type'] = 9]]></field>
+  </record>
+  <record id="server_action_2144_rr_sales_price_for_rug_items" model="ir.actions.server">
+    <field name="name">RR - Sales Price For RUG Items</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Repair':
+  original_price = record.price_unit
+  if record.x_studio_rug_confirmed == True:
+    record.write({'price_unit': record.product_template_id.standard_price,'x_studio_price_unit_original': original_price})
+
+
+
+]]></field>
+  </record>
+  <record id="server_action_2162_proj_item_related_details_in_project_so" model="ir.actions.server">
+    <field name="name">PROJ-Item Related Details In Project SO</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
+  onhand_qty = 0
+  qty_short = 0
+  re_wh = False
+  status = True 
+  if record.x_studio_product_status != 'Blank':
+    so_loc = env['stock.warehouse'].search([('id', '=', record.warehouse_id.id)],limit=1)
+    if so_loc:
+      for sup_lines in so_loc.resupply_wh_ids:
+        for routes in record.product_template_id.route_ids:
+          if routes.supplier_wh_id:
+            if routes.supplier_wh_id.id == sup_lines.id:
+              if routes.supplied_wh_id.id == record.warehouse_id.id:
+                onhand = env['stock.quant'].search([('product_tmpl_id', '=', record.product_template_id.id),('location_id', '=', routes.supplier_wh_id.lot_stock_id.id)], limit=1)
+                if onhand:
+                  onhand_qty = onhand.available_quantity
+              re_wh = routes.supplier_wh_id.id
+   
+    if record.product_template_id.detailed_type == 'service':
+      qty_short = 0
+    else:
+      if record.product_uom_qty > onhand_qty:
+        qty_short = (record.product_uom_qty - onhand_qty)
+        status = False
+    record.write({'x_studio_cost_value': record.product_template_id.standard_price, 'x_studio_warehouse_id': re_wh, 'x_studio_current_onhand': onhand_qty, 'x_studio_inventory_shortage': qty_short, 'x_studio_cost_amount_req_qty': (record.product_uom_qty * record.product_template_id.standard_price), 'x_studio_cost_amount_inventory_shortage': (qty_short * record.product_template_id.standard_price), 'x_studio_invt_status': status})
+else:
+   record.write({'x_studio_cost_value': 0, 'x_studio_warehouse_id': False, 'x_studio_current_onhand': 0, 'x_studio_inventory_shortage': 0, 'x_studio_cost_amount_req_qty': 0, 'x_studio_cost_amount_inventory_shortage': 0, 'x_studio_invt_status': False})
+      
+
+
+
+
+
+               
+              
+              
+
+
+
+ 
+
+
+
+    
+   
+
+
+
+
+]]></field>
+  </record>
+  <record id="server_action_2252_rr_track_lock_status_3" model="ir.actions.server">
+    <field name="name">RR - Track Lock Status - 3</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Repair': 
+ if record.x_studio_unlocked == True:
+    record['x_studio_re_estimated'] = True
+    record['x_studio_count_1'] = record.x_studio_re_estimate_count + 1
+    
+  
+  
+ 
+
+]]></field>
+  </record>
+  <record id="server_action_2315_sls_apply_pricelist_in_so_lines" model="ir.actions.server">
+    <field name="name">SLS - Apply Pricelist in SO Lines</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.product_id.id  != False:
+
+  pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id),('min_quantity', '<=', record.product_uom_qty)], limit=1)
+
+  if pricelist:
+
+    record['price_unit'] = record.price_unit/(1-pricelist.price_discount/100)
+
+    record['discount'] = pricelist.price_discount
+
+  else:
+
+    record['discount'] = 0
+
+]]></field>
+  </record>
+  <record id="server_action_2416_update_analytic_tag_parameters_sales_line_product" model="ir.actions.server">
+    <field name="name">Update Analytic Tag Parameters - Sales Line - Product</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.product_id:
+  #record['x_studio_account_mandatory'] = True
+  tag_rule= env['account.analytic.distribution.model'].search([('product_id', '=', record.product_id.id)],limit=1)
+  if tag_rule:
+    record['x_studio_account_mandatory'] = tag_rule.x_studio_product_mandatory
+  else:
+    tag_rule2= env['account.analytic.distribution.model'].search([('partner_id.user_id', '=', uid)],limit=1)
+    if tag_rule2:
+      record['x_studio_account_mandatory'] = tag_rule2.x_studio_user_mandatory
+    else:
+      record['x_studio_account_mandatory'] = False
+ 
+  
+    
+   
+
+
+
+
+]]></field>
+  </record>
+  <record id="server_action_2898_proj_update_price_confirmed_status" model="ir.actions.server">
+    <field name="name">PROJ - Update Price Confirmed Status</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
+
+  if record.product_id.id  != False:
+
+    pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id)],limit=1)
+
+    if pricelist:
+
+      record['x_studio_price_confirmed'] = pricelist.x_studio_price_confirmed
+
+    else:
+
+      record['discount'] = False
+
+else:
+
+  record['x_studio_price_confirmed'] = False
+
+]]></field>
+  </record>
+  <record id="server_action_2314_sls_apply_pricelist_in_so_lines" model="ir.actions.server">
+    <field name="name">SLS - Apply Pricelist in SO Lines</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.product_id.id  != False:
+
+  pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id),('min_quantity', '<=', record.product_uom_qty)], limit=1)
+
+  if pricelist:
+
+    record['discount'] = pricelist.price_discount
+
+]]></field>
+  </record>
+  <record id="server_action_2332_sls_clear_free_items_so_lines" model="ir.actions.server">
+    <field name="name">SLS - Clear Free Items SO Lines</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.product_id.id  != False: 
+
+  #free_items = env['sale.order.line'].search([('order_id', '=', record.order_id._origin.id),('is_reward_line', '=', True)]).unlink()
+
+  free_items = env['sale.order.line'].search([('order_id', '=', record.order_id._origin.id),('is_reward_line', '=', True)])
+
+  if free_items:
+
+    record['x_studio_clear_free_items'] = True
+
+    
+
+]]></field>
+  </record>
+  <record id="server_action_1508_sls_validate_margin_in_so_line" model="ir.actions.server">
+    <field name="name">SLS - Validate Margin in SO Line</field>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[# bugfix_sales:config-cutover-v22
+if record.product_id.id:
+
+  if record.x_studio_quotation_type != 'Project':
+
+    value_1 = 0
+
+    value_2 = 0
+
+    
+
+    min_magin = record.company_id
+
+    
+
+    
+
+    if record.product_uom_qty > 0.00:
+
+      value_1 = ((record.price_subtotal/record.product_uom_qty)-(record.price_subtotal*(record.x_studio_commission/100))-record.product_id.standard_price)
+
+      value_2 = (record.price_subtotal/record.product_uom_qty)-(record.price_subtotal*(record.x_studio_commission/100))
+
+    
+
+    if value_2 > 0.00:
+
+      net_margin = (value_1/value_2)*100
+
+    else:
+
+      net_margin = 0
+
+      
+
+    #if net_margin < 20:
+
+    if net_margin != 0:
+
+      if net_margin < min_magin.x_studio_minimum_sales_margin_:  
+
+        record['x_studio_margin_exceed'] = True
+
+      else:
+
+        record['x_studio_margin_exceed'] = False
+
+    else:
+
+      record['x_studio_margin_exceed'] = False
+
+  else:
+
+    record['x_studio_margin_exceed'] = False
+
+
+
+]]></field>
+  </record>
+  <record id="base_automation_89_sls_validate_discount_in_so_line" model="base.automation">
+    <field name="name">SLS - Validate Discount in SO Line</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__discount')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1497_sls_validate_discount_in_so_line')])]"/>
+  </record>
+  <record id="base_automation_90_sls_validate_commission_in_so_line" model="base.automation">
+    <field name="name">SLS - Validate Commission in SO Line</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__discount'), ref('BugFix-Sales.field_sale_order_line__x_studio_commission')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1498_sls_validate_commission_in_so_line')])]"/>
+  </record>
+  <record id="base_automation_118_srm_auto_populate_report_type_in_so_lines" model="base.automation">
+    <field name="name">SRM - Auto Populate Report Type in SO Lines</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1729_srm_auto_populate_report_type_in_so_lines')])]"/>
+  </record>
+  <record id="base_automation_193_rr_sales_price_for_rug_items" model="base.automation">
+    <field name="name">RR - Sales Price For RUG Items</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2144_rr_sales_price_for_rug_items')])]"/>
+  </record>
+  <record id="base_automation_196_proj_item_related_details_in_project_so" model="base.automation">
+    <field name="name">PROJ-Item Related Details In Project SO</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2162_proj_item_related_details_in_project_so')])]"/>
+  </record>
+  <record id="base_automation_204_rr_track_lock_status_3" model="base.automation">
+    <field name="name">RR - Track Lock Status - 3</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__product_id')])]"/>
+    <field name="filter_pre_domain">[]</field>
+    <field name="filter_domain">[["x_studio_quotation_type","=","Repair"]]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2252_rr_track_lock_status_3')])]"/>
+  </record>
+  <record id="base_automation_212_sls_apply_pricelist_in_so_lines" model="base.automation">
+    <field name="name">SLS - Apply Pricelist in SO Lines</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__product_id'), ref('sale.field_sale_order_line__product_uom_qty')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2315_sls_apply_pricelist_in_so_lines')])]"/>
+  </record>
+  <record id="base_automation_236_update_analytic_tag_parameters_sales_line_product" model="base.automation">
+    <field name="name">Update Analytic Tag Parameters - Sales Line - Product</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__product_id')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2416_update_analytic_tag_parameters_sales_line_product')])]"/>
+  </record>
+  <record id="base_automation_342_proj_update_price_confirmed_status" model="base.automation">
+    <field name="name">PROJ - Update Price Confirmed Status</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__product_id')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2898_proj_update_price_confirmed_status')])]"/>
+  </record>
+  <record id="server_action_2144_rr_sales_price_for_rug_items" model="ir.actions.server">
+    <field name="name">RR - Sales Price For RUG Items</field>
+    <field name="model_id" ref="sale.model_sale_order_line"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_quotation_type == 'Repair':
+  original_price = record.price_unit
+  if record.x_studio_rug_confirmed == True:
+    record.write({'price_unit': record.product_template_id.standard_price,'x_studio_price_unit_original': original_price})
+
+
+
+
+    ]]></field>
+  </record>
+  <record id="server_action_2252_rr_track_lock_status_3" model="ir.actions.server">
+    <field name="name">RR - Track Lock Status - 3</field>
+    <field name="model_id" ref="sale.model_sale_order_line"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_quotation_type == 'Repair': 
+ if record.x_studio_unlocked == True:
+    record['x_studio_re_estimated'] = True
+    record['x_studio_count_1'] = record.x_studio_re_estimate_count + 1
+    
+  
+  
+ 
+
+
+    ]]></field>
+  </record>
+  <record id="server_action_2898_proj_update_price_confirmed_status" model="ir.actions.server">
+    <field name="name">PROJ - Update Price Confirmed Status</field>
+    <field name="model_id" ref="sale.model_sale_order_line"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_quotation_type == 'Project':
+
+  if record.product_id.id  != False:
+
+    pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id)],limit=1)
+
+    if pricelist:
+
+      record['x_studio_price_confirmed'] = pricelist.x_studio_price_confirmed
+
+    else:
+
+      record['discount'] = False
+
+else:
+
+  record['x_studio_price_confirmed'] = False
+
+
+    ]]></field>
+  </record>
+  <record id="base_automation_91_sls_validate_margin_in_so_line" model="base.automation">
+    <field name="name">SLS - Validate Margin in SO Line</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="sale.model_sale_order_line"/>
+    <field name="trigger">on_change</field>
+  </record>
+  <record id="base_automation_216_sls_clear_free_items_so_lines" model="base.automation">
+    <field name="name">SLS - Clear Free Items SO Lines</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="sale.model_sale_order_line"/>
+    <field name="trigger">on_change</field>
+    <field name="filter_domain">[]</field>
+  </record>
+    <data noupdate="1">
+    <record id="default_244_sale_order_line_x_studio_req_qty" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order_line__x_studio_req_qty"/>
+      <field name="json_value">"0"</field>
+    </record>
+    <record id="default_366_sale_order_line_x_studio_count_1" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order_line__x_studio_count_1"/>
+      <field name="json_value">"0"</field>
+    </record>
+    <record id="default_367_sale_order_line_x_studio_count_2" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order_line__x_studio_count_2"/>
+      <field name="json_value">"0"</field>
+    </record>
+    <record id="default_325_sale_order_line_x_studio_product_status" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order_line__x_studio_product_status"/>
+      <field name="json_value">"Blank"</field>
+    </record>
+    </data>
+</odoo>

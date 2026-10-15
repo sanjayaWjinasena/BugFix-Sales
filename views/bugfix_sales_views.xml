@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="sales_team.crm_team_action_sales" model="ir.actions.act_window">
+    <field name="view_mode">tree,kanban,form</field>
+  </record>
+</odoo>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Register <function model="..." name="..."/> calls here as new
+         bug-fix seed/patch functions are added.  Each call runs on
+         every install and upgrade of this module. -->
+    <!-- v21 migration: copy every existing x_minimum_sales_margin row's
+         values into ir.config_parameter under per-company keys (see
+         res.company._BUGFIX_SALES_CONFIG for the key format). Runs
+         first so any old-model data — from the original manual
+         Studio setup or the v20-and-earlier seed function — is
+         preserved before v22 stops maintaining the old rows.
+         Idempotent (only writes keys that don't already exist), so
+         Settings edits done between upgrades survive future runs. -->
+    <!-- upgrade-testing: writes data, not run on this branch: <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_migrate_to_config_parameter"/> -->
+    <!-- v22 defaults: seed sensible defaults into ir.config_parameter
+         for every company that ended up with no keys after the
+         migration above (fresh installs and newly-added companies).
+         Same values the old row-seed function used
+         (_seed_minimum_sales_margin_per_company). Idempotent — only
+         writes keys that are absent, so user Settings edits are
+         never overwritten. -->
+    <!-- upgrade-testing: writes data, not run on this branch: <function model="bugfix_sales.minimum_sales_margin.seed"
+              name="_seed_ir_config_parameter_defaults"/> -->
+    <!-- v22 cutover: surgically rewrite every Studio Python reader of
+         env['x_minimum_sales_margin'].search(...) so it reads the
+         new res.company proxy fields (env.company.x_studio_* /
+         record.company_id.x_studio_*). Because the proxy fields
+         keep the same names as the old catalogue model's, every
+         downstream field access on the fetched variable keeps
+         working verbatim; only the fetch line changes. Idempotent
+         via a marker in the rewritten code — manual Studio edits
+         stay intact on re-upgrades. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed" name="_patch_studio_readers_to_use_company"/>
+    <!-- v23: convert sale.order.line.x_studio_margin_exceed from a
+         stored boolean (set via base.automation 91's on_change) to a
+         non-stored computed field. Ensures the margin check is fresh
+         on every read — Settings threshold changes propagate
+         immediately without needing anyone to touch each line.
+         Also tightens the sale.order header rollup's depends and
+         deactivates automation 91. Idempotent via marker. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed" name="_convert_line_margin_flag_to_computed"/>
+    <!-- v24: suppress the 'Validate Sales Lines' button on sale.order
+         by deactivating base.automation 216 (SLS - Clear Free Items
+         SO Lines). Without the automation, x_studio_clear_free_items
+         never flips True and the button stays hidden. Margin / credit
+         / discount checks are separate automations — untouched. The
+         button's target action (server action 2337) also stays intact
+         so re-enabling the feature later is just flipping the
+         automation active=True in Developer Mode. Idempotent. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed" name="_suppress_validate_sales_lines_button"/>
+    <!-- Hide the Studio-generated 'Sales Configurations' list/form
+         menus since v17 (this module) moved the four config values
+         into Settings → Sales. Editing a database-record list is the
+         wrong UX for what is really a per-company configuration —
+         users could accidentally create duplicate rows (hitting
+         automation 146's cross-company guard) or edit rows for a
+         company they're not currently in. Menus are deactivated, not
+         deleted: model, actions, views, and rows all stay intact for
+         debugging. Idempotent. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed" name="_hide_minimum_sales_margin_menus"/>
+    <!-- Sweep orphan studio_customization pins on ir.ui.menu whose
+         target menu record no longer exists. Ran into two such
+         orphans after v18 (deactivation cascade missed the pin
+         cleanup). Narrow-scoped, idempotent. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed" name="_cleanup_orphan_studio_menu_pins"/>
+    <!-- Attach the Document Introduction / Conclusion QWeb overlay to
+         the Studio 'C01 Sales Quotation' report. Uses the report's
+         human name as the stable lookup key (not the per-database
+         Studio UUID), so the module installs cleanly on any
+         instance regardless of Studio state. If the C01 report isn't
+         present on this database, the method skips silently and the
+         module still installs. Idempotent. -->
+    <function model="bugfix_sales.minimum_sales_margin.seed" name="_attach_c01_intro_conclusion_view"/>
+</odoo>

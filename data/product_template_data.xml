@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="server_action_1387_imp_service_item_charge_duty_tax" model="ir.actions.server">
+    <field name="name">IMP - Service Item - Charge-Duty-Tax</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.type == 'service':
+  
+  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+  company = env['res.company'].browse(company_id)
+  
+  if record.x_studio_charge_type == 'Charge' and record.x_studio_non_billable == False:
+    product = env['product.template'].search([('x_studio_charge_type', '=', 'Charge'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
+    if product:
+      for p in product:
+        if p.id != record.id:
+          raise UserError("Only One Service Item can be Setup as Charge/ Not Non Billable Item!")
+
+  if record.x_studio_charge_type == 'Duty' and record.x_studio_non_billable == False:
+    product = env['product.template'].search([('x_studio_charge_type', '=', 'Duty'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
+    if product:
+      for p in product:
+        if p.id != record.id:
+          raise UserError("Ony One Service Item can be Setup as Duty/ Not Non Billable Item!")
+
+  if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == False:
+    product = env['product.template'].search([('x_studio_charge_type', '=', 'Tax'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
+    if product:
+      for p in product:
+        if p.id != record.id:
+          raise UserError("Ony One Service Item can be Setup as Tax/ Not Non Billable Item!")
+          
+          
+  if record.x_studio_charge_type == 'Charge' and record.x_studio_non_billable == True:
+    product = env['product.template'].search([('x_studio_charge_type', '=', 'Charge'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
+    if product:
+      for p in product:
+        if p.id != record.id:
+          raise UserError("Ony One Service Item can be Setup as Charge/ Non Billable Item!")
+
+  if record.x_studio_charge_type == 'Duty' and record.x_studio_non_billable == True:
+    product = env['product.template'].search([('x_studio_charge_type', '=', 'Duty'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
+    if product:
+      for p in product:
+        if p.id != record.id:
+          raise UserError("Ony One Service Item can be Setup as Duty/ Non Billable Item!")
+
+  """if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == True:
+    product = env['product.template'].search([('x_studio_charge_type', '=', 'Tax'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
+    if product:
+      for p in product:
+        if p.id != record.id:
+          raise UserError("Ony One Service Item can be Setup as Tax/ Non Billable Item!")"""
+]]></field>
+  </record>
+  <record id="server_action_1451_imp_validate_default_split_method_in_item_master" model="ir.actions.server">
+    <field name="name">IMP - Validate Default Split Method in Item Master</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.landed_cost_ok == True:
+  def_split = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+  if def_split:
+    if record.split_method_landed_cost != def_split.x_studio_cost_allocation_method:
+      raise UserError('Default Split Method Should be Equal to Cost Allocation Method in Imports Ledger Setup')
+
+
+
+]]></field>
+  </record>
+  <record id="server_action_1452_imp_pass_split_method_in_item_master" model="ir.actions.server">
+    <field name="name">IMP - Pass Split Method in Item Master</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.landed_cost_ok == True:
+  def_split = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+  if def_split:
+    record['split_method_landed_cost'] = def_split.x_studio_cost_allocation_method
+    ]]></field>
+  </record>
+  <record id="server_action_2587_jin_company_id_in_product" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Product</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['company_id'] = company.id
+
+
+]]></field>
+  </record>
+  <record id="server_action_2297_plm_item_approval_notify_project_user" model="ir.actions.server">
+    <field name="name">PLM - Item Approval - Notify  Project User</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Customer Overdue</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+  <record id="server_action_2291_plm_item_approval_request_notify_user" model="ir.actions.server">
+    <field name="name">PLM - Item Approval Request - Notify User</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Approve Customer Overdue</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+  <record id="server_action_808_avoid_product_duplicate" model="ir.actions.server">
+    <field name="name">Avoid Product Duplicate</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.default_code:
+  
+  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+  company = env['res.company'].browse(company_id)
+  
+  product = env['product.template'].search([('default_code', '=ilike', record.default_code),('company_id', '=', company.id)], limit=1)
+  
+  if product:
+    for p in product:
+      if p.id != record.id:
+        raise UserError("Duplicate Found Try Another Code!")
+
+
+
+
+
+
+
+
+
+]]></field>
+  </record>
+  <record id="server_action_2295_plm_item_approval" model="ir.actions.server">
+    <field name="name">PLM - Item Approval</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[record['x_studio_item_approved'] = True
+
+product_product = env['product.product'].search([('id', '=', record.product_variant_id.id)],limit=1)
+if product_product:
+  product_product.write({'x_studio_item_approved':True,'x_studio_item_approved_temp':True})
+]]></field>
+  </record>
+  <record id="server_action_2299_plm_item_approval_validate" model="ir.actions.server">
+    <field name="name">PLM - Item Approval - Validate</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.default_code == False:
+
+  raise UserError("Internal Reference should be filled in to proceed!")]]></field>
+  </record>
+  <record id="server_action_2289_plm_item_approval_request_sent" model="ir.actions.server">
+    <field name="name">PLM - Item Approval Request  Sent</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[record['x_studio_item_approval_request_sent'] = True
+
+product_product = env['product.product'].search([('id', '=', record.product_variant_id.id)],limit=1)
+if product_product:
+  product_product.write({'x_studio_item_approval_request_sent':True,'x_studio_item_approval_request_sent_temp':True})
+
+
+
+]]></field>
+  </record>
+  <record id="server_action_1142_update_product_cost_work_center_cost_2" model="ir.actions.server">
+    <field name="name">Update Product Cost - Work Center Cost - 2</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[]]></field>
+  </record>
+  <record id="server_action_2301_plm_item_approval_final" model="ir.actions.server">
+    <field name="name">PLM - Item Approval - Final</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2295_plm_item_approval'), ref('BugFix-Sales.server_action_2297_plm_item_approval_notify_project_user'), ref('BugFix-Sales.server_action_2299_plm_item_approval_validate')])]"/>
+  </record>
+  <record id="server_action_2293_plm_request_item_approval" model="ir.actions.server">
+    <field name="name">PLM - Request Item Approval</field>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="state">multi</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2289_plm_item_approval_request_sent'), ref('BugFix-Sales.server_action_2291_plm_item_approval_request_notify_user')])]"/>
+  </record>
+  <record id="base_automation_66_imp_service_item_charge_duty_tax" model="base.automation">
+    <field name="name">IMP - Service Item - Charge-Duty-Tax</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1387_imp_service_item_charge_duty_tax')])]"/>
+  </record>
+  <record id="base_automation_83_imp_validate_default_split_method_in_item_master" model="base.automation">
+    <field name="name">IMP - Validate Default Split Method in Item Master</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('stock_landed_costs.field_product_template__split_method_landed_cost')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1451_imp_validate_default_split_method_in_item_master')])]"/>
+  </record>
+  <record id="base_automation_84_imp_pass_split_method_in_item_master" model="base.automation">
+    <field name="name">IMP - Pass Split Method in Item Master</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('stock_landed_costs.field_product_template__landed_cost_ok')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1452_imp_pass_split_method_in_item_master')])]"/>
+  </record>
+  <record id="base_automation_268_jin_company_id_in_product" model="base.automation">
+    <field name="name">JIN - Company Id in Product</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'product.template')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('product.field_product_template__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2587_jin_company_id_in_product')])]"/>
+  </record>
+    <data noupdate="1">
+    <record id="default_586_product_template_x_studio_product_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_product_template__x_studio_product_type"/>
+      <field name="json_value">"None"</field>
+    </record>
+    </data>
+</odoo>

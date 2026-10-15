@@ -72,3 +72,9 @@ class ResPartner(models.Model):
             "credit-limit gates via a related field."
         ),
     )
+
+
+class ResPartnerGap(models.Model):
+    _inherit = "res.partner"
+
+    x_vendor_id__purchase_requisition_count = fields.Integer(string="Vendor count")

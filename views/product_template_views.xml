@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="act_window_204_products" model="ir.actions.act_window">
+    <field name="name">Products</field>
+    <field name="res_model">product.template</field>
+    <field name="view_mode">tree,kanban,form</field>
+    <field name="context">{"search_default_consumable": 1, 'default_type': 'product'}</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                No product found. Let's create one!
+            </p><p>
+                Track your stock quantities by creating storable products.
+            </p>
+        </field>
+  </record>
+  <record id="act_window_2288_product_template" model="ir.actions.act_window">
+    <field name="name">Product.Template</field>
+    <field name="res_model">product.template</field>
+    <field name="view_mode">kanban,tree,form,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            </field>
+  </record>
+  <record id="act_window_2622_product_template" model="ir.actions.act_window">
+    <field name="name">product.template</field>
+    <field name="res_model">product.template</field>
+    <field name="view_mode">kanban,tree,form,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            </field>
+  </record>
+  <record id="ported_view_2551_odoo_studio_product_template_product_for" model="ir.ui.view">
+    <field name="name">Odoo Studio: product.template.product.form customization</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_only_form_view"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+          <xpath expr="//sheet" position="inside">
+            <field name="type" invisible="1"/>
+          </xpath>
+
+        <!-- DROPPED (xpath resolves to !=1 on target): //button[@name='198'] -->
+        <!-- pricelist_rules button: keep the standard product.group_product_pricelist gate.
+             __export__.res_groups_271_7319010a stripped (Studio-orphan group doesn't
+             resolve on Dev - would remove the button for everyone). -->
+        <xpath expr="//button[@name='open_pricelist_rules']" position="attributes">
+          <attribute name="groups">product.group_product_pricelist</attribute>
+        </xpath>
+        <!-- is_published: was groups=__export__ (Studio-orphan). Cleared so
+             the standard website-published toggle is visible to all users. -->
+        <xpath expr="//field[@name='is_published']" position="attributes">
+          <attribute name="groups"/>
+        </xpath>
+        <xpath expr="//button[@name='action_view_stock_move_lines']" position="attributes">
+          <attribute name="groups"/>
+        </xpath>
+        <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
+          <attribute name="groups"/>
+        </xpath>
+        <xpath expr="//field[@name='invoice_policy']" position="attributes">
+          <attribute name="invisible">type == 'service'</attribute>
+          <attribute name="required">type == 'service'</attribute>
+        </xpath>
+        <xpath expr="//field[@name='product_tooltip']" position="after">
+          <field name="x_studio_sub_contract" string="Sub-Contract"/>
+        </xpath>
+        <xpath expr="//field[@name='uom_po_id']" position="after">
+          <field name="x_studio_maximum_discount" string="Maximum  Discount %"/>
+        </xpath>
+        <xpath expr="//field[@name='standard_price']" position="attributes">
+          <attribute name="groups">account.group_warning_account</attribute>
+        </xpath>
+        <xpath expr="//field[@name='categ_id']" position="after">
+          <field name="x_studio_product_type" string="Internal Product Type"/>
+          <field name="x_studio_melt_item" string="Melt Item"/>
+        </xpath>
+        <xpath expr="//field[@name='default_code']" position="attributes">
+          <attribute name="required">1</attribute>
+        </xpath>
+        <!-- DROPPED (xpath resolves to !=1 on target): //field[@name='barcode'] --><!-- DROPPED (xpath resolves to !=1 on target): //field[@name='barcode'] --><xpath expr="//field[@name='seller_ids']" position="inside">
+          <tree string="Vendor Information" multi_edit="1" editable="bottom">
+            <field name="sequence" widget="handle"/>
+            <field name="partner_id" readonly="0"/>
+            <field name="product_id" readonly="0" optional="hide" invisible="context.get('product_template_invisible_variant', False)" groups="product.group_product_variant"/>
+            <field name="purchase_requisition_id" readonly="1" optional="hide"/>
+            <field name="product_tmpl_id" string="Product" readonly="1" invisible="context.get('visible_product_tmpl_id', True)"/>
+            <field name="product_name" optional="hide"/>
+            <field name="product_code" optional="hide"/>
+            <field name="currency_id" groups="base.group_multi_currency"/>
+            <field name="date_start" optional="hide"/>
+            <field name="date_end" optional="hide"/>
+            <field name="company_id" readonly="0" groups="base.group_multi_company" optional="hide"/>
+            <field name="min_qty" optional="hide"/>
+            <field name="product_uom" groups="uom.group_uom"/>
+            <field name="price" string="Price"/>
+            <field name="delay" optional="show"/>
+            <field name="company_id" column_invisible="1"/>
+          </tree>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='inventory']" position="attributes">
+          <attribute name="groups"/>
+        </xpath>
+        <!-- Accounting tab: was groups=__export__ (Studio-orphan doesn't
+             resolve on Dev, stripped the tab from every user). Cleared so
+             standard account_readonly / account_invoice users see it. -->
+        <xpath expr="//page[@name='invoicing']" position="attributes">
+          <attribute name="groups"/>
+        </xpath>
+        <!-- Sri Lanka Localization tab moved to
+             views/product_template_studio_ported.xml (v0.1.0.151) with
+             the tariff_code field. Charge_type + non_billable get injected
+             by BugFix-Accounting via views/product_template_studio_pages_content.xml.
+             Keeping this xpath as a comment prevents accidental re-add. -->
+
+      </data>
+    </field>
+  </record>
+  <record id="ported_view_3029_odoo_studio_product_template_product_tre" model="ir.ui.view">
+    <field name="name">Odoo Studio: product.template.product.tree customization</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_tree_view"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='priority']" position="after">
+          <xpath expr="//field[@name='default_code']" position="move"/>
+          <field name="bom_ids" optional="show"/>
+        </xpath>
+        <xpath expr="//tree[1]/field[@name='name']" position="after">
+          <xpath expr="//field[@name='categ_id']" position="move"/>
+          <field name="x_studio_product_type" optional="show"/>
+          <xpath expr="//field[@name='product_tag_ids']" position="move"/>
+        </xpath>
+        <xpath expr="//field[@name='responsible_id']" position="attributes">
+          <attribute name="column_invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='responsible_id']" position="after">
+          <field name="invoice_policy" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='uom_id']" position="after">
+          <field name="weight" optional="show"/>
+          <field name="volume" optional="show"/>
+          <field optional="show" name="x_studio_category_id" string="Category ID"/>
+          <!-- DROPPED (orphan: x_studio_charge_type not on product.template) --><!-- DROPPED (orphan: x_studio_non_billable not on product.template) --><field name="landed_cost_ok" optional="show"/>
+          <field name="split_method_landed_cost" optional="show"/>
+          <field name="id"/>
+        </xpath>
+        <xpath expr="//field[@name='categ_id']" position="attributes">
+          <attribute name="optional">show</attribute>
+        </xpath>
+      </data>
+    </field>
+  </record>
+  <!-- View 5445 salvaged (v0.1.0.71): original xpath //tree[1]/field[@name='id']
+       doesn't resolve on target (no id column in composed website_sale tree).
+       Rewritten to append columns after public_categ_ids. Dropped 3 fields:
+       - x_studio_charge_type, x_studio_non_billable (pinned to BugFix-Accounting,
+         reverse-dep of Sales - not load-safe)
+       - re-added id field (target has no id column) -->
+  <record id="ported_view_5445_odoo_studio_product_template_view_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: product.template.view.tree.website_sale customization</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="website_sale.product_template_view_tree_website_sale"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree/field[@name='public_categ_ids']" position="after">
+          <field name="weight" optional="show"/>
+          <field name="volume" optional="show"/>
+          <field name="landed_cost_ok" optional="show"/>
+          <field name="split_method_landed_cost" optional="show"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+  <record id="ported_product_template_studio_2551" model="ir.ui.view">
+    <field name="name">Odoo Studio: product.template.form customization</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_form_view"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+
+        <!-- Sentinels for the 4 fields referenced by button modifiers.
+             product.template form must have these as static <field>
+             declarations for install-time modifier validation. -->
+        <xpath expr="//form/sheet" position="inside">
+          <field name="x_studio_item_approval_request_sent_prod" invisible="1"/>
+          <field name="x_studio_item_approval_request_sent" invisible="1"/>
+          <field name="x_studio_item_approved" invisible="1"/>
+          <field name="x_studio_item_approved_prod" invisible="1"/>
+        </xpath>
+
+        <!-- Header buttons: Request Item Approval + Approve Item. -->
+        <xpath expr="//header" position="inside">
+          <button type="action" name="%(BugFix-Sales.server_action_2293_plm_request_item_approval)d" string="Request Item Approval" class="btn-primary" invisible="(x_studio_item_approval_request_sent_prod == True) or ((x_studio_item_approved == True) or (x_studio_item_approval_request_sent == True))"/>
+          <button type="action" name="%(BugFix-Sales.server_action_2301_plm_item_approval_final)d" string="Approve Item" class="btn-primary" studio_approval="True" invisible="(x_studio_item_approved_prod == True) or ((x_studio_item_approval_request_sent == False) or (x_studio_item_approved == True))"/>
+        </xpath>
+
+        <!-- Sri Lanka Localization tab. Only the tariff_code field lives
+             here (BugFix-Sales-owned). BugFix-Accounting adds its 2 fields
+             (charge_type + non_billable) to studio_group_zujMt_right via a
+             companion inherit view - split to avoid the upstream/downstream
+             load-order trap (Accounting loads AFTER Sales, so its field
+             decls aren't visible during Sales install-time validation). -->
+        <xpath expr="//form/sheet/notebook" position="inside">
+          <page string="Sri Lanka Localization" name="studio_page_zujMt">
+            <group name="studio_group_zujMt">
+              <group name="studio_group_zujMt_left">
+                <field name="x_studio_tariff_code" string="Tariff Code" options="{'no_create': True}"/>
+              </group>
+              <group name="studio_group_zujMt_right"/>
+            </group>
+          </page>
+        </xpath>
+
+      </data>
+    </field>
+  </record>
+</odoo>

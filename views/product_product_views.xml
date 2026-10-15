@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="aw_f4_product_product_product_product" model="ir.actions.act_window">
+    <field name="name">product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+  </record>
+  <record id="aw_f4_product_product_product_product_1" model="ir.actions.act_window">
+    <field name="name">Product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+  </record>
+  <record id="act_window_1273_expense_products" model="ir.actions.act_window">
+    <field name="name">Expense Products</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">tree,kanban,form</field>
+    <field name="domain">[('can_be_expensed', '=', True)]</field>
+    <field name="context">{"default_can_be_expensed": 1, 'default_detailed_type': 'service',
+            'default_invoice_policy':'delivery', 'default_expense_policy' : 'cost'}</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                No expense products found. Let's create one!
+              </p><p>
+                Expense products can be reinvoiced to your customers.
+              </p>
+            </field>
+  </record>
+  <record id="act_window_1373_product_product" model="ir.actions.act_window">
+    <field name="name">Product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            </field>
+  </record>
+  <record id="act_window_2588_product_product" model="ir.actions.act_window">
+    <field name="name">product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            </field>
+  </record>
+  <record id="act_window_2881_product_product" model="ir.actions.act_window">
+    <field name="name">product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            </field>
+  </record>
+  <record id="ported_view_3030_odoo_studio_product_product_tree_customi" model="ir.ui.view">
+    <field name="name">Odoo Studio: product.product.tree customization</field>
+    <field name="model">product.product</field>
+    <field name="inherit_id" ref="product.product_product_tree_view"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='virtual_available']" position="after">
+          <field name="property_account_expense_id" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='uom_id']" position="after">
+          <field name="id"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+  <record id="act_window_2588_product_product" model="ir.actions.act_window">
+    <field name="name">product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+  </record>
+  <record id="act_window_2881_product_product" model="ir.actions.act_window">
+    <field name="name">product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+  </record>
+  <record id="act_window_1373_product_product" model="ir.actions.act_window">
+    <field name="name">Product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+  </record>
+    <record id="view_4936_odoo_studio_product_product_form_customization_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: product.product.form customization</field>
+      <field name="model">product.product</field>
+      <field name="type">form</field>
+      <field name="priority">99</field>
+      <field name="active" eval="False"/>
+      <field name="inherit_id" ref="product.product_normal_form_view"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <!-- STRIPPED xpath allow_negative_stock: not on ported parent view -->
+</data>
+      </field>
+    </record>
+    <record id="view_4935_odoo_studio_product_product_product_form_button_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: product.product.product.form_button</field>
+      <field name="model">product.product</field>
+      <field name="type">form</field>
+      <field name="priority">99</field>
+      <field name="active" eval="False"/>
+      <field name="inherit_id" ref="product.product_normal_form_view"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+    <xpath expr="//button[@name='action_open_label_layout']" position="before">
+      <!-- STRIPPED action button aid=2167 unresolvable -->
+    </xpath>
+    
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->
+  </data>
+      </field>
+    </record>
+    <record id="view_8329_odoo_studio_product_product_stock_tree_customization_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: product.product.stock.tree customization</field>
+      <field name="model">product.product</field>
+      <field name="type">tree</field>
+      <field name="priority">160</field>
+      <field name="inherit_id" ref="stock.product_product_stock_tree"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <!-- STRIPPED sentinel x_studio_available_qty: field pinned only to studio_migrations, not loaded in runtime class --><xpath expr="//field[@name='id']" position="after">
+    <field name="default_code" optional="show"/>
+  </xpath>
+  <!-- STRIPPED xpath avg_cost: not on ported parent view -->
+  <xpath expr="//field[@name='incoming_qty']" position="after">
+    <!-- STRIPPED x_studio_available_qty: ghost field pinned only to studio_migrations -->
+</xpath>
+</data>
+      </field>
+    </record>
+</odoo>

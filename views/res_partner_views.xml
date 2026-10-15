@@ -1,6 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
+  <record id="aw_f4_res_partner_customers" model="ir.actions.act_window">
+    <field name="name">Customers</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_customer_group', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_customer_group': active_id,'default_x_studio_customer_group': active_id}</field>
+  </record>
+  <record id="aw_f4_res_partner_customers_of_this_group" model="ir.actions.act_window">
+    <field name="name">Customers of this group</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+  <record id="aw_f4_res_partner_customers_of_this_group_1" model="ir.actions.act_window">
+    <field name="name">Customers of this group:</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+  <record id="aw_f4_res_partner_new_button" model="ir.actions.act_window">
+    <field name="name">New Button</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+  <record id="aw_f4_res_partner_res_partner" model="ir.actions.act_window">
+    <field name="name">res.partner</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">kanban,tree,form,map,activity</field>
+  </record>
+  <record id="aw_f4_res_partner_vendors" model="ir.actions.act_window">
+    <field name="name">Vendors</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_vendor_group', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_vendor_group': active_id,'default_x_studio_vendor_group': active_id}</field>
+  </record>
+  <record id="act_window_781_new_button" model="ir.actions.act_window">
+    <field name="name">New Button</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+  <record id="act_window_782_customers_of_this_group" model="ir.actions.act_window">
+    <field name="name">Customers of this group</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+  <record id="act_window_783_customers_of_this_group" model="ir.actions.act_window">
+    <field name="name">Customers of this group:</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+  <record id="act_window_1425_res_partner" model="ir.actions.act_window">
+    <field name="name">res.partner</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">kanban,tree,form,map,activity</field>
+    <field name="context">{}</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            </field>
+  </record>
+  <record id="act_window_1447_customers" model="ir.actions.act_window">
+    <field name="name">Customers</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_customer_group', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_customer_group': active_id,'default_x_studio_customer_group': active_id}</field>
+  </record>
+  <record id="act_window_1448_vendors" model="ir.actions.act_window">
+    <field name="name">Vendors</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_vendor_group', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_vendor_group': active_id,'default_x_studio_vendor_group': active_id}</field>
+  </record>
     <record id="view_partner_form_bugfix_sales" model="ir.ui.view">
         <field name="name">res.partner.form.bugfix_sales</field>
         <field name="model">res.partner</field>
@@ -13,19 +104,278 @@
                  name H1 — rendered in its own <h1> so the styling
                  matches the name (big + bold). company_registry and
                  company_id stay where they were. -->
-            <xpath expr="//group[@name='misc']/field[@name='ref']"
-                   position="replace"/>
+            <xpath expr="//group[@name='misc']/field[@name='ref']" position="replace"/>
 
-            <xpath expr="//div[hasclass('oe_title')]//h1"
-                   position="before">
+            <xpath expr="//div[hasclass('oe_title')]//h1" position="before">
                 <h1>
-                    <field name="ref"
-                           class="text-break"
-                           placeholder="Reference"/>
+                    <field name="ref" class="text-break" placeholder="Reference"/>
                 </h1>
             </xpath>
 
         </field>
     </record>
+  <record id="ported_view_2299_odoo_studio_res_partner_form_customizati" model="ir.ui.view">
+    <field name="name">Odoo Studio: res.partner.form customization</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+          <xpath expr="//sheet" position="inside">
+            <field name="is_coa_installed" invisible="1"/>
+            <field name="parent_id" invisible="1"/>
+            <field name="type" invisible="1"/>
+          </xpath>
 
+        <xpath expr="//button[@name='action_see_documents']" position="after">
+          <button class="oe_stat_button" icon="fa-briefcase" type="action" name="%(BugFix-Sales.action_1696_purchase_agreements)d" studio-view-group-names="User" studio-view-group-ids="87">
+            <field widget="statinfo" name="x_vendor_id__purchase_requisition_count" string="Purchase Agreements" studio-view-group-names="User" studio-view-group-ids="87"/>
+          </button>
+        </xpath>
+        <!-- DROPPED (xpath resolves to !=1 on target): //form[1]/sheet[1]/div[not(@name)][1]/h1[1]/field[@name='name'] --><xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[1]/field[@name='street']" position="attributes">
+          <attribute name="readonly">(type == 'contact' and parent_id) or ((parent_id != False) and (type == 'contact'))</attribute>
+          <attribute name="required">((x_studio_payment_method == 'Credit') and (x_studio_group_type != 'Dealer')) or (x_studio_group_type == 'Dealer')</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[1]/field[@name='street2']" position="attributes">
+          <attribute name="invisible">True</attribute>
+          <attribute name="readonly">(type == 'contact' and parent_id) or ((parent_id != False) and (type == 'contact'))</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[1]/field[@name='city']" position="attributes">
+          <attribute name="invisible">True</attribute>
+          <attribute name="readonly">(type == 'contact' and parent_id) or ((parent_id != False) and (type == 'contact'))</attribute>
+        </xpath>
+        <xpath expr="//field[@name='vat']" position="attributes">
+          <attribute name="readonly">(parent_id) or (parent_id != False)</attribute>
+          <attribute name="required">((x_studio_payment_method == 'Credit') and (x_studio_group_type != 'Dealer')) or (x_studio_group_type == 'Dealer')</attribute>
+        </xpath>
+        <xpath expr="//field[@name='vat']" position="after">
+          <field name="x_studio_customer_group" string="Customer Group" force_save="True" options="{&quot;no_create&quot;:true}" invisible="customer_rank == 0" required="customer_rank &gt; 0"/>
+          <field name="x_studio_vendor_group" string="Vendor Group" invisible="supplier_rank == 0" required="supplier_rank &gt; 0"/>
+        </xpath>
+        <!-- DROPPED (xpath resolves to !=1 on target): //form[1]/sheet[1]/group[1]/group[2]/div[1]/field[@name='phone'] --><xpath expr="//form[1]/sheet[1]/group[1]/group[2]/div[2]/field[@name='mobile']" position="attributes">
+          <attribute name="required">False</attribute>
+        </xpath>
+        <xpath expr="//field[@name='property_product_pricelist']" position="after">
+          <field name="x_studio_payment_method" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" string="Payment Type" force_save="True" help="Cash / Credit" invisible="False" required="customer_rank &gt; 0"/>
+          <field name="credit_limit" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" force_save="1" invisible="supplier_rank &gt; 0" readonly="x_studio_payment_method == 'Cash'" required="(x_studio_payment_method == 'Credit') and (customer_rank &gt; 0)"/>
+          <field name="credit" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" invisible="supplier_rank &gt; 0"/>
+          <field name="total_overdue" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" invisible="supplier_rank &gt; 0"/>
+          <field name="x_studio_group_type" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" string="Group Type" invisible="1"/>
+          <field name="x_studio_valid_bank_guarantee" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" string="Valid Bank Guarantee" force_save="True" readonly="1" invisible="1"/>
+          <field name="customer_rank" studio-view-group-names="Basic Pricelists" studio-view-group-ids="13" force_save="True" readonly="1" invisible="1"/>
+        </xpath>
+        <xpath expr="//field[@name='property_purchase_currency_id']" position="attributes">
+          <attribute name="required">supplier_rank &gt; 0</attribute>
+        </xpath>
+        <xpath expr="//field[@name='property_purchase_currency_id']" position="after">
+          <field name="supplier_rank" force_save="True" readonly="1" invisible="1"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='sales_purchases']/group[@name='container_row_2']/group[@name='misc']/field[@name='company_id']" position="attributes">
+          <attribute name="force_save">True</attribute>
+          <attribute name="readonly">1</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='accounting']/group[1]/group[@name='banks']/field[@name='bank_ids']/tree[1]" position="after">
+          <form string="Bank account" name="bank_account_form">
+            <sheet name="studio_sheet_2fb0f3">
+              <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+              <group name="studio_group_a2584a">
+                <group name="studio_group_60707f">
+                  <field name="sequence" invisible="1"/>
+                  <field name="acc_type" invisible="1"/>
+                  <field name="acc_number" readonly="lock_trust_fields" force_save="1"/>
+                  <field name="acc_holder_name"/>
+                  <field name="bank_id"/>
+                  <!-- Bank codes on res.partner.bank (Python-declared in bank-data) -->
+                  <field name="x_studio_swift_code"/>
+                  <field name="x_studio_bank_code_1"/>
+                  <field name="x_studio_branch_code_1"/>
+                  <field name="partner_id" readonly="lock_trust_fields" force_save="1"/>
+                </group>
+                <group name="studio_group_75baf5">
+                  <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                  <field name="currency_id" groups="base.group_multi_currency" options="{'no_create': True}"/>
+                  <field name="user_has_group_validate_bank_account" invisible="1"/>
+                  <field name="lock_trust_fields" invisible="1"/>
+                  <label for="allow_out_payment"/>
+                  <div class="d-flex gap-2" name="studio_div_436d5b">
+                    <field name="allow_out_payment" widget="boolean_toggle" options="{'autosave': False}" readonly="not user_has_group_validate_bank_account"/>
+                    <span class="d-flex gap-2 w-100">
+                      <span invisible="allow_out_payment" class="text-muted">Untrusted</span>
+                      <span invisible="not allow_out_payment" class="text-success">Trusted</span>
+                    </span>
+                  </div>
+                  <div invisible="allow_out_payment" colspan="2" name="studio_div_c2e819">
+                    <field name="has_money_transfer_warning" invisible="1"/>
+                    <div invisible="not has_money_transfer_warning" class="mb-1" name="studio_div_cde426">
+                      <span class="text-danger">High risk</span>: <field name="money_transfer_service" nolabel="1" class="oe_inline"/> is a money transfer service and not a bank.
+                                  Double check if the account can be trusted by calling the vendor.<br/>
+                      <a target="_blank" href="https://www.odoo.com/documentation/17.0/applications/finance/accounting/payables/pay/trusted_accounts.html">Check why.</a>
+                    </div>
+                    <field name="has_iban_warning" invisible="1"/>
+                    <div invisible="not has_iban_warning" name="studio_div_7beb61">
+                      <span class="text-warning">Medium risk</span>: Iban <field name="sanitized_acc_number" nolabel="1" class="oe_inline fw-bold"/>
+                                  is not from the same country as the partner (<field name="partner_country_name" nolabel="1" class="oe_inline"/>).<br/>
+                      <a target="_blank" href="https://www.odoo.com/documentation/17.0/applications/finance/accounting/payables/pay/trusted_accounts.html">Check why it's risky.</a>
+                    </div>
+                  </div>
+                  <field name="active" invisible="1"/>
+                </group>
+              </group>
+            </sheet>
+          </form>
+        </xpath>
+        <xpath expr="//group[@name='accounting_entries']" position="attributes">
+          <attribute name="invisible">is_coa_installed == True</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='accounting']/group[1]/group[@name='accounting_entries']/field[@name='currency_id']" position="attributes">
+          <attribute name="invisible">False</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+          <page string="Tax Registration" name="studio_page_L0Ae5">
+            <group name="studio_group_L0Ae5">
+              <group name="studio_group_L0Ae5_left">
+                <!-- DROPPED (orphan: x_studio_vat_registration_status not on res.partner) --><!-- DROPPED (orphan: x_studio_vat_registration_number not on res.partner) --><!-- DROPPED (orphan: x_studio_vat_exempted_number not on res.partner) --></group>
+              <group name="studio_group_L0Ae5_right">
+                <!-- DROPPED (orphan: x_studio_svat_registration_status not on res.partner) --><!-- DROPPED (orphan: x_studio_svat_registration_number not on res.partner) --></group>
+            </group>
+          </page>
+          <page string="Customer Vendor Relation" name="studio_page_SuozI">
+            <group name="studio_group_SuozI">
+              <group name="studio_group_SuozI_right" string="Vendor relation">
+                <!-- DROPPED (orphan: x_studio_vendor_account not on res.partner) --><!-- DROPPED (orphan: x_studio_address not on res.partner) --><field name="contact_address_complete"/>
+              </group>
+            </group>
+          </page>
+          <page string="Bank Guarantee Details" name="studio_page_yhybZ" invisible="supplier_rank &gt; 0">
+            <group name="studio_group_yhybZ">
+              <group name="studio_group_yhybZ_left" string="Bank Guarantee Details">
+                <field name="x_studio_bank_guarantee_amount" required="x_studio_group_type == 'Distributor'"/>
+                <field name="x_studio_expiry_date" string="Expiry Date" required="x_studio_group_type == 'Distributor'"/>
+                <!-- DROPPED (orphan: x_studio_mandatory_bank_guarantee not on res.partner) --><!-- DROPPED (orphan: x_studio_bank_guarantee_docs not on res.partner) --><!-- DROPPED (orphan: x_studio_bank_guarantee_docs_filename not on res.partner) --></group>
+              <group name="studio_group_yhybZ_right"/>
+            </group>
+          </page>
+        </xpath>
+      </data>
+    </field>
+  </record>
+  <record id="ported_view_2300_odoo_studio_res_partner_tree_customizati" model="ir.ui.view">
+    <field name="name">Odoo Studio: res.partner.tree customization</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_tree"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='user_id']" position="replace"/>
+        <xpath expr="//field[@name='email']" position="replace"/>
+        <xpath expr="//field[@name='phone']" position="replace"/>
+        <xpath expr="//field[@name='display_name']" position="before">
+          <field name="self"/>
+          <field name="x_studio_customer_group" optional="show"/>
+          <field name="x_studio_vendor_group" optional="show"/>
+          <field name="company_registry" optional="show"/>
+          <field name="title"/>
+          <field name="total_overdue"/>
+          <field name="total_due"/>
+          <field name="credit"/>
+          <field name="user_ids"/>
+          <field name="commercial_company_name" optional="show"/>
+          <field name="create_uid" optional="show"/>
+          <field name="create_date" optional="show"/>
+          <field name="total_invoiced"/>
+          <field name="account_represented_company_ids" optional="show"/>
+          <field name="task_ids"/>
+          <field name="property_supplier_payment_term_id"/>
+          <field name="supplier_rank" optional="show"/>
+          <field name="customer_rank"/>
+          <field name="date"/>
+          <field name="property_stock_customer"/>
+          <field name="property_payment_term_id"/>
+          <field name="currency_id"/>
+          <xpath expr="//field[@name='country_id']" position="move"/>
+          <field name="credit_limit"/>
+          <field name="payment_token_count"/>
+          <field name="contact_address_complete"/>
+          <field name="company_type"/>
+          <field name="child_ids"/>
+          <field name="contact_address"/>
+        </xpath>
+        <xpath expr="//field[@name='display_name']" position="after">
+          <field name="company_name"/>
+          <field name="partner_gid"/>
+          <field name="ref_company_ids"/>
+          <field name="commercial_partner_id"/>
+          <field name="color"/>
+          <field name="channel_ids"/>
+          <field name="message_bounce"/>
+          <field name="phone_blacklisted"/>
+          <field name="mobile_blacklisted"/>
+          <field name="is_blacklisted"/>
+          <field name="barcode"/>
+          <field name="bank_ids"/>
+          <field name="bank_account_count"/>
+          <field name="message_attachment_count"/>
+          <field name="type"/>
+          <!-- DROPPED (orphan: x_studio_address not on res.partner) --><field name="additional_info"/>
+          <field name="message_needaction"/>
+          <field name="active_lang_count"/>
+          <field name="property_account_receivable_id"/>
+          <field name="property_account_payable_id"/>
+          <field name="supplier_invoice_count"/>
+          <field name="task_count"/>
+          <field name="meeting_count"/>
+          <field name="signature_count"/>
+          <field name="ref"/>
+        </xpath>
+        <xpath expr="//field[@name='state_id']" position="after">
+          <!-- DROPPED (orphan: x_studio_vat_registration_number not on res.partner) --><!-- DROPPED (orphan: x_studio_svat_registration_number not on res.partner) --><xpath expr="//field[@name='company_id']" position="move"/>
+          <field name="id"/>
+        </xpath>
+        <xpath expr="//field[@name='country_id']" position="attributes">
+          <attribute name="optional"/>
+          <attribute name="readonly"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+  <record id="act_window_1447_customers" model="ir.actions.act_window">
+    <field name="name">Customers</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_customer_group', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_customer_group': active_id,'default_x_studio_customer_group': active_id}</field>
+  </record>
+  <record id="act_window_782_customers_of_this_group" model="ir.actions.act_window">
+    <field name="name">Customers of this group</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+  <record id="act_window_783_customers_of_this_group" model="ir.actions.act_window">
+    <field name="name">Customers of this group:</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+  <record id="act_window_781_new_button" model="ir.actions.act_window">
+    <field name="name">New Button</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+  <record id="act_window_1425_res_partner" model="ir.actions.act_window">
+    <field name="name">res.partner</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">kanban,tree,form,map,activity</field>
+  </record>
+  <record id="act_window_1448_vendors" model="ir.actions.act_window">
+    <field name="name">Vendors</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_vendor_group', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_vendor_group': active_id,'default_x_studio_vendor_group': active_id}</field>
+  </record>
 </odoo>

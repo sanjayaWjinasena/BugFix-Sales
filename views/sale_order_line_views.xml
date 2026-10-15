@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="aw_f4_sale_order_line_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('project_id', '=', active_id)]</field>
+    <field name="context">{'search_default_project_id': active_id,'default_project_id': active_id}</field>
+  </record>
+  <record id="aw_f4_sale_order_line_sales_order_lines" model="ir.actions.act_window">
+    <field name="name">Sales Order Lines</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form,pivot</field>
+  </record>
+  <record id="aw_f4_sale_order_line_sales_production_request_status" model="ir.actions.act_window">
+    <field name="name">Sales - Production Request Status</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,kanban,form,pivot</field>
+  </record>
+  <record id="act_window_1568_sales_order_lines" model="ir.actions.act_window">
+    <field name="name">Sales Order Lines</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form,pivot</field>
+    <field name="context">{}</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            </field>
+  </record>
+  <record id="act_window_2193_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('project_id', '=', active_id)]</field>
+    <field name="context">{'search_default_project_id': active_id,'default_project_id': active_id}</field>
+  </record>
+  <record id="act_window_2194_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+  </record>
+  <record id="act_window_2195_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_main_project_2', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_main_project_2': active_id,'default_x_studio_main_project_2': active_id}</field>
+  </record>
+  <record id="act_window_2200_sales_production_request_status" model="ir.actions.act_window">
+    <field name="name">Sales - Production Request Status</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,kanban,form,pivot</field>
+    <field name="context">{}</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            </field>
+  </record>
+  <record id="ported_default_pivot_view_f_b434dca2_4958_4f97_b58e_a253d775c63c" model="ir.ui.view">
+    <field name="name">Default pivot view for ir.model(599,)</field>
+    <field name="model">sale.order.line</field>
+    <field name="key">studio_customization.default_pivot_view_f_b434dca2-4958-4f97-b58e-a253d775c63c</field>
+    <field name="type">pivot</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <pivot string="Sales Order Line"/>
+    </field>
+  </record>
+  <record id="ported_view_3259_odoo_studio_sale_order_line_tree_customi" model="ir.ui.view">
+    <field name="name">Odoo Studio: sale.order.line.tree customization</field>
+    <field name="model">sale.order.line</field>
+    <field name="inherit_id" ref="sale.view_order_line_tree"/>
+    <field name="priority">99</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='order_id']" position="attributes">
+          <attribute name="string">Sales Order Ref</attribute>
+        </xpath>
+        <xpath expr="//field[@name='order_partner_id']" position="after">
+          <field name="invoice_status"/>
+          <field name="warehouse_id" column_invisible="1"/>
+        </xpath>
+        <xpath expr="//tree[1]/field[@name='name']" position="after">
+          <field optional="show" name="x_studio_price_unit_original" string="Price Unit Original" column_invisible="1"/>
+        </xpath>
+        <xpath expr="//field[@name='product_uom_qty']" position="attributes">
+          <attribute name="string">Order Qty</attribute>
+        </xpath>
+        <xpath expr="//field[@name='product_uom_qty']" position="after">
+          <field name="price_unit" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='qty_delivered']" position="attributes">
+          <attribute name="string">Delivered Qty</attribute>
+        </xpath>
+        <xpath expr="//field[@name='qty_delivered']" position="after">
+          <field name="qty_to_deliver"/>
+        </xpath>
+        <xpath expr="//field[@name='qty_invoiced']" position="attributes">
+          <attribute name="string">Invoiced Qty</attribute>
+        </xpath>
+        <xpath expr="//field[@name='qty_to_invoice']" position="attributes">
+          <attribute name="string">Qty To Invoice</attribute>
+        </xpath>
+        <xpath expr="//field[@name='qty_to_invoice']" position="after">
+          <field name="x_studio_req_qty" optional="show" widget="many2one_reference"/>
+          <field name="x_studio_production_completed" optional="show"/>
+          <field name="x_studio_many2one_field_btM1W" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='product_uom']" position="attributes">
+          <attribute name="string">UOM</attribute>
+        </xpath>
+        <xpath expr="//field[@name='route_id']" position="after">
+          <field name="discount"/>
+        </xpath>
+        <xpath expr="//field[@name='price_subtotal']" position="after">
+          <xpath expr="//field[@name='salesman_id']" position="move"/>
+          <field name="create_uid"/>
+          <field name="create_date"/>
+          <field name="x_studio_category" optional="hide"/>
+          <field name="x_studio_project_no" optional="hide"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+  <record id="act_window_2195_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_main_project_2', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_main_project_2': active_id,'default_x_studio_main_project_2': active_id}</field>
+  </record>
+  <record id="act_window_2194_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+  </record>
+  <record id="act_window_2193_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('project_id', '=', active_id)]</field>
+    <field name="context">{'search_default_project_id': active_id,'default_project_id': active_id}</field>
+  </record>
+  <record id="act_window_1568_sales_order_lines" model="ir.actions.act_window">
+    <field name="name">Sales Order Lines</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form,pivot</field>
+  </record>
+  <record id="act_window_2200_sales_production_request_status" model="ir.actions.act_window">
+    <field name="name">Sales - Production Request Status</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,kanban,form,pivot</field>
+  </record>
+    <record id="view_3260_default_pivot_view_for_ir_model_599_e" model="ir.ui.view">
+      <field name="name">Default pivot view for ir.model(599,)</field>
+      <field name="model">sale.order.line</field>
+      <field name="type">pivot</field>
+      <field name="arch" type="xml">
+        <pivot string="Sales Order Line"/>
+      </field>
+    </record>
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_doc_intro_tree" model="ir.ui.view">
+        <field name="name">bugfix_sales.doc_intro.tree</field>
+        <field name="model">bugfix_sales.doc_intro</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="company_id" optional="hide" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_doc_intro_form" model="ir.ui.view">
+        <field name="name">bugfix_sales.doc_intro.form</field>
+        <field name="model">bugfix_sales.doc_intro</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Title"/>
+                        <h1><field name="name" placeholder="e.g. Standard Alternative Offer"/></h1>
+                    </div>
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="active" invisible="1"/>
+                    </group>
+                    <separator string="Introduction Text"/>
+                    <field name="description" nolabel="1" class="w-100" placeholder="Multi-line body printed at the top of the quotation..."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_doc_intro" model="ir.actions.act_window">
+        <field name="name">Document Introductions</field>
+        <field name="res_model">bugfix_sales.doc_intro</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Document Introduction
+            </p>
+            <p>
+                Introductions are reusable blocks of text printed at the top of a
+                quotation, between the customer address and the order lines. Pick one
+                on a Sales Order and edit the copy per-quote if needed.
+            </p>
+        </field>
+    </record>
+  <record id="act_window_3635_document_introductions" model="ir.actions.act_window">
+    <field name="name">Document Introductions</field>
+    <field name="res_model">bugfix_sales.doc_intro</field>
+    <field name="view_mode">tree,form</field>
+    <field name="context">{}</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                Create a Document Introduction
+            </p>
+            <p>
+                Introductions are reusable blocks of text printed at the top of a
+                quotation, between the customer address and the order lines. Pick one
+                on a Sales Order and edit the copy per-quote if needed.
+            </p>
+        </field>
+  </record>
+  <!-- STRIPPED act_window_1750_sales_configurations: model x_minimum_sales_margin not on target -->
+<!-- STRIPPED act_window_1749_config_settings: model x_res_config_settings not on target -->
+</odoo>

@@ -18,3 +18,11 @@ class X_minimum_sales_margin(models.Model):
     x_studio_minimum_sales_margin_ = fields.Float(string="Minimum Sales Margin %")
     x_studio_sales_order_validity = fields.Integer(string="Sales Order Validity (Days)")
     x_studio_sequence = fields.Integer(string="Sequence")
+
+
+class XMinimumSalesMarginGap(models.Model):
+    _inherit = "x_minimum_sales_margin"
+    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+
+    x_active = fields.Boolean(string="Active")
+    x_name = fields.Char(string="Name")
