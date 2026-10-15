@@ -455,7 +455,6 @@ class SaleOrder(models.Model):
     # CDB stores this related; keeping stored here so search/filter on the
     # sale.order form works without extra joins.
     x_studio_customer_payment_method = fields.Selection(
-        selection=[('Cash', 'Cash'), ('Credit', 'Credit')],
         string='Customer Payment Method',
         related='partner_id.x_studio_payment_method',
         store=True,
