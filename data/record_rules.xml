@@ -115,7 +115,7 @@
     <field name="perm_create" eval="False"/>
     <field name="perm_unlink" eval="False"/>
     <field name="active" eval="True"/>
-    <field name="groups" eval="[(6, 0, [ref('BugFix-Approvals.group_132_jin_sales_pos_users')])]"/>
+    <!-- groups are set in BugFix-Studio-Misc data/record_rules.xml, which owns the Jin groups -->
   </record>
 
   <record id="rule_499_jin_sales_add_edit_del_non_ca_customers" model="ir.rule">
@@ -127,7 +127,7 @@
     <field name="perm_create" eval="False"/>
     <field name="perm_unlink" eval="False"/>
     <field name="active" eval="True"/>
-    <field name="groups" eval="[(6, 0, [ref('BugFix-Approvals.group_132_jin_sales_pos_users')])]"/>
+    <!-- groups are set in BugFix-Studio-Misc data/record_rules.xml, which owns the Jin groups -->
   </record>
 
   <record id="rule_179_sales_advance_payment_invoice_rule" model="ir.rule">
