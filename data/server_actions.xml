@@ -213,25 +213,25 @@ record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_met
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[#if record.x_studio_commission > 0.00:
-if record.x_studio_commission > record.product_id.x_studio_maximum_discount - record.discount:
-  record['x_studio_over_commission'] = True
-  """
-  title = "Over Commission"
-  message = "The Commission % Applied to the Line Exceeds the Authorised Limit and Require Approval to Further Process."
-  
-  action = {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {'title': title,'message': message,'sticky': True,}
-            } 
-  """
-else:
-  record['x_studio_over_commission'] = False
-
-if record.x_studio_commission < 0.00:
-  raise UserError('Commission Percentage Should not be a Negative.')
-
+    <field name="code"><![CDATA[#if record.x_studio_commission > 0.00:
+if record.x_studio_commission > record.product_id.x_studio_maximum_discount - record.discount:
+  record['x_studio_over_commission'] = True
+  """
+  title = "Over Commission"
+  message = "The Commission % Applied to the Line Exceeds the Authorised Limit and Require Approval to Further Process."
+  
+  action = {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {'title': title,'message': message,'sticky': True,}
+            } 
+  """
+else:
+  record['x_studio_over_commission'] = False
+
+if record.x_studio_commission < 0.00:
+  raise UserError('Commission Percentage Should not be a Negative.')
+
 ]]></field>
   </record>
 
@@ -757,13 +757,13 @@ if (record.x_studio_quotation_type == 'Repair'
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.product_id.id  != False:
-  pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id),('min_quantity', '<=', record.product_uom_qty)], limit=1)
-  if pricelist:
-    record['price_unit'] = record.price_unit/(1-pricelist.price_discount/100)
-    record['discount'] = pricelist.price_discount
-  else:
-    record['discount'] = 0
+    <field name="code"><![CDATA[if record.product_id.id  != False:
+  pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id),('min_quantity', '<=', record.product_uom_qty)], limit=1)
+  if pricelist:
+    record['price_unit'] = record.price_unit/(1-pricelist.price_discount/100)
+    record['discount'] = pricelist.price_discount
+  else:
+    record['discount'] = 0
 ]]></field>
   </record>
 
@@ -773,12 +773,12 @@ if (record.x_studio_quotation_type == 'Repair'
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.mobile != False:
-  if len(record.mobile) != 0:
-    if len(record.mobile) != 10:
-      raise UserError('Invalid mobile number.')
-
-    
+    <field name="code"><![CDATA[if record.mobile != False:
+  if len(record.mobile) != 0:
+    if len(record.mobile) != 10:
+      raise UserError('Invalid mobile number.')
+
+    
 ]]></field>
   </record>
 
@@ -998,15 +998,15 @@ else:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
-  if record.product_id.id  != False:
-    pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id)],limit=1)
-    if pricelist:
-      record['x_studio_price_confirmed'] = pricelist.x_studio_price_confirmed
-    else:
-      record['discount'] = False
-else:
-  record['x_studio_price_confirmed'] = False
+    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
+  if record.product_id.id  != False:
+    pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id)],limit=1)
+    if pricelist:
+      record['x_studio_price_confirmed'] = pricelist.x_studio_price_confirmed
+    else:
+      record['discount'] = False
+else:
+  record['x_studio_price_confirmed'] = False
 ]]></field>
   </record>
 
