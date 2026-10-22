@@ -114,7 +114,7 @@ class ResCompany(models.Model):
         Icp = self.env["ir.config_parameter"].sudo()
         for company in self:
             for fname, (key_base, ttype, default) in self._BUGFIX_SALES_CONFIG.items():
-                raw = Icp.get_param("%s.%s" % (key_base, company.id))
+                raw = Icp.get_param(f"{key_base}.{company.id}")
                 if raw:
                     try:
                         company[fname] = ttype(raw)
@@ -141,6 +141,6 @@ class ResCompany(models.Model):
                 _default,
             ) in self._BUGFIX_SALES_CONFIG.items():
                 Icp.set_param(
-                    "%s.%s" % (key_base, company.id),
+                    f"{key_base}.{company.id}",
                     str(company[fname]),
                 )
