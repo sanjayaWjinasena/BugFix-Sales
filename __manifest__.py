@@ -285,5 +285,4 @@
         "views/bugfix_sales_templates.xml",
         "views/bugfix_sales_menus.xml",
     ],
-    "application": False,
 }

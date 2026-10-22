@@ -68,7 +68,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         companies can override their values later via the config
         form; the seed only touches rows it creates.
         """
-        companies = self.env["res.company"].sudo().search([])
+        companies = self.env["res.company"].sudo().search([])  # pylint: disable=no-search-all
         if not companies:
             return
 
@@ -148,7 +148,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         Settings edits done between upgrades never get clobbered.
         """
         Icp = self.env["ir.config_parameter"].sudo()
-        companies = self.env["res.company"].sudo().search([])
+        companies = self.env["res.company"].sudo().search([])  # pylint: disable=no-search-all
         for company in companies:
             for base_key, default in self._DEFAULT_IR_CONFIG_VALUES.items():
                 param_key = "%s.%s" % (base_key, company.id)
@@ -538,7 +538,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             return
         Icp = self.env["ir.config_parameter"].sudo()
         IcpModel = self.env["ir.config_parameter"].sudo()
-        rows = self.env["x_minimum_sales_margin"].sudo().search([])
+        rows = self.env["x_minimum_sales_margin"].sudo().search([])  # pylint: disable=no-search-all
         if not rows:
             return
         # Import the mapping from res.company so field-name / key-base
