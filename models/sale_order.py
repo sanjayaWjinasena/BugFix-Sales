@@ -427,9 +427,9 @@ class SaleOrder(models.Model):
     @api.depends("order_line.product_uom_qty", "order_line.display_type")
     def _compute_x_studio_valid_order_lines_for_update_rfq_cost(self):
         for rec in self:
-            real_lines = rec.order_line.filtered(lambda l: not l.display_type)
-            has_positive = any(l.product_uom_qty > 0 for l in real_lines)
-            has_zero = any(l.product_uom_qty == 0 for l in real_lines)
+            real_lines = rec.order_line.filtered(lambda line: not line.display_type)
+            has_positive = any(line.product_uom_qty > 0 for line in real_lines)
+            has_zero = any(line.product_uom_qty == 0 for line in real_lines)
             rec.x_studio_valid_order_lines_for_update_rfq_cost = (
                 has_positive and not has_zero
             )
