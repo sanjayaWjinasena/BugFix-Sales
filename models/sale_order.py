@@ -361,8 +361,10 @@ class SaleOrder(models.Model):
     #   - x_studio_project_budget (m2o crossovered.budget — deprecated)
     #   - x_studio_many2one_field_KjdJ3 (m2o account.budget.post — deprecated)
     #   - x_studio_one2many_field_ERCBB (o2m subclass sale.order.line)
-    #   - x_x_studio_created_from_sales_order_1_crossovered_budget_count (int, depends on above)
-    #   - x_x_studio_created_from_so_x_purchase_request_count (int, depends on Purchase Request Studio)
+    # - x_x_studio_created_from_sales_order_1_crossovered_budget_count (int, depends on
+    # above)
+    # - x_x_studio_created_from_so_x_purchase_request_count (int, depends on Purchase
+    # Request Studio)
     #   - x_x_studio_sales_order_account_payment_count (int, depends on above)
     #   - x_x_studio_subcontracting_so_purchase_order_count (int, depends on above)
     #
