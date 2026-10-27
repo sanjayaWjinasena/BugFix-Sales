@@ -1,4 +1,5 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 # Header fields hidden on Sales-type quotations. Project quotations
 # keep them (Project genuinely uses Recurring Plan + Main Project No
@@ -12,6 +13,15 @@ _HIDE_ON_SALES_TYPE_FIELDS = (
     "x_studio_re_estimate_request_count_1",  # integer counter
     "x_studio_re_estimate_count",
     "plan_id",  # Recurring Plan (core)
+)
+
+# Header fields that must be filled before a Sales-type quotation can be
+# saved from the form or confirmed into a Sales Order (bug sheet, Sales
+# rows 1-3, 16/Oct: "Make these Fields Mandatory").
+_REQUIRED_ON_SALES_CONFIRM = (
+    "payment_term_id",  # Payment Terms
+    "user_id",  # Salesperson
+    "team_id",  # Sales Team
 )
 
 
@@ -491,7 +501,6 @@ class SaleOrder(models.Model):
     # CDB stores this related; keeping stored here so search/filter on the
     # sale.order form works without extra joins.
     x_studio_customer_payment_method = fields.Selection(
-        selection=[("Cash", "Cash"), ("Credit", "Credit")],
         string="Customer Payment Method",
         related="partner_id.x_studio_payment_method",
         store=True,
@@ -538,6 +547,31 @@ class SaleOrder(models.Model):
                     order.bugfix_sales_conclusion_id.description
                 )
 
+    def _bugfix_sales_check_required_on_confirm(self):
+        """Block confirming a Sales-type quotation that is missing
+        Payment Terms, Salesperson or Sales Team. Project and Repair
+        quotations are not affected."""
+        for order in self:
+            if order.x_studio_quotation_type not in (False, "Sales"):
+                continue
+            missing = [
+                order._fields[fname].get_description(self.env)["string"]
+                for fname in _REQUIRED_ON_SALES_CONFIRM
+                if not order[fname]
+            ]
+            if missing:
+                raise UserError(
+                    _(
+                        "Quotation %(name)s cannot be confirmed. Please fill in: %(fields)s.",
+                        name=order.name,
+                        fields=", ".join(missing),
+                    )
+                )
+
+    def action_confirm(self):
+        self._bugfix_sales_check_required_on_confirm()
+        return super().action_confirm()
+
     @api.model
     def _get_view(self, view_id=None, view_type="form", **options):
         """Hide the header fields listed in _HIDE_ON_SALES_TYPE_FIELDS
@@ -577,4 +611,15 @@ class SaleOrder(models.Model):
                         )
                     else:
                         el.set("invisible", sales_only)
+            # Payment Terms / Salesperson / Sales Team are mandatory on
+            # Sales-type quotations, so the form flags them on save too.
+            # The server-side check in action_confirm covers every other
+            # path (e.g. confirming from the list view).
+            for fname in _REQUIRED_ON_SALES_CONFIRM:
+                for el in arch.xpath(f"//field[@name='{fname}']"):
+                    existing = el.get("required", "")
+                    if existing and existing not in ("0", "False"):
+                        el.set("required", f"({existing}) or ({sales_only})")
+                    else:
+                        el.set("required", sales_only)
         return arch, view

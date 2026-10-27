@@ -124,8 +124,13 @@ if record.x_studio_commission < 0.00:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
+    <!-- Clear-DB writes the hard-coded id 9 ("Sales Details for Insentive
+         Calculation"). Report types are environment data (no xmlid), so ids
+         differ between databases; look the type up by its report code. -->
     <field name="code"><![CDATA[if record.id:
-  record['x_studio_sales_report_type'] = 9]]></field>
+  rpt = env['x_sales_report_type'].search([('x_studio_report_code', '=', 'Sales Details for Incentive Calc.')], limit=1)
+  if rpt:
+    record['x_studio_sales_report_type'] = rpt.id]]></field>
   </record>
   <record id="server_action_2144_rr_sales_price_for_rug_items" model="ir.actions.server">
     <field name="name">RR - Sales Price For RUG Items</field>
