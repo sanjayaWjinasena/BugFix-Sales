@@ -1,5 +1,6 @@
 {
-    # upgrade-testing branch: data files below are commented out - this branch installs functions only, no data is seeded.
+    # upgrade-testing branch: data files below are commented out - this branch installs
+    # functions only, no data is seeded.
     "name": "Jinasena : Module : Sales",
     "version": "17.0.1.0.165",
     "summary": "Bug fixes and enhancements for the Sales workflow",
@@ -103,7 +104,7 @@
     # coverage on all schema categories.
     # v0.1.0.65: hotfix v0.1.0.64. Still crashed with same error.
     # Read Odoo 17's odoo/import_xml.rng directly:
-    #   <field type="html"> requires <rng:oneOrMore><rng:ref name="any"/></rng:oneOrMore>
+    # <field type="html"> requires <rng:oneOrMore><rng:ref name="any"/></rng:oneOrMore>
     #   where "any" is <rng:element>...</rng:element> - CHILD XML ELEMENTS.
     # CDATA text was rejected because it's <rng:text/>, not an element.
     # Entity-escaped text also rejected (decodes to text).
@@ -221,15 +222,18 @@
         "industry_fsm_sale",
         "purchase_requisition",
         "website_sale",
-        "sale_subscription",  # is_subscription used in Slice A1 confirm-button modifiers
+        # is_subscription used in Slice A1 confirm-button modifiers
+        "sale_subscription",
         "sale_loyalty",  # is_reward_line used in Slice A1 price_unit tree readonly
         "account_followup",  # partner_id.total_overdue related target on sale.order
-        "bank-data",  # res.partner.bank.x_studio_swift_code/bank_code_1/branch_code_1 refs
+        # res.partner.bank.x_studio_swift_code/bank_code_1/branch_code_1 refs
+        "bank-data",
         "Jinasena_Masterdata_Reporting",
         "BugFix-Stock",
         "base_automation",
         "BugFix-Approvals",  # group refs in CSV / automations
-        "studio_usermodel_migration",  # res.partner.x_studio_customer_group / _vendor_group
+        # res.partner.x_studio_customer_group / _vendor_group
+        "studio_usermodel_migration",
         "seed_master_data_and_settings",  # company_jinasena_pvt_ltd ref
     ],
     "post_init_hook": "post_init_hook",

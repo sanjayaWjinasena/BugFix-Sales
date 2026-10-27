@@ -361,8 +361,10 @@ class SaleOrder(models.Model):
     #   - x_studio_project_budget (m2o crossovered.budget — deprecated)
     #   - x_studio_many2one_field_KjdJ3 (m2o account.budget.post — deprecated)
     #   - x_studio_one2many_field_ERCBB (o2m subclass sale.order.line)
-    #   - x_x_studio_created_from_sales_order_1_crossovered_budget_count (int, depends on above)
-    #   - x_x_studio_created_from_so_x_purchase_request_count (int, depends on Purchase Request Studio)
+    # - x_x_studio_created_from_sales_order_1_crossovered_budget_count (int, depends on
+    # above)
+    # - x_x_studio_created_from_so_x_purchase_request_count (int, depends on Purchase
+    # Request Studio)
     #   - x_x_studio_sales_order_account_payment_count (int, depends on above)
     #   - x_x_studio_subcontracting_so_purchase_order_count (int, depends on above)
     #
@@ -427,9 +429,9 @@ class SaleOrder(models.Model):
     @api.depends("order_line.product_uom_qty", "order_line.display_type")
     def _compute_x_studio_valid_order_lines_for_update_rfq_cost(self):
         for rec in self:
-            real_lines = rec.order_line.filtered(lambda l: not l.display_type)
-            has_positive = any(l.product_uom_qty > 0 for l in real_lines)
-            has_zero = any(l.product_uom_qty == 0 for l in real_lines)
+            real_lines = rec.order_line.filtered(lambda line: not line.display_type)
+            has_positive = any(line.product_uom_qty > 0 for line in real_lines)
+            has_zero = any(line.product_uom_qty == 0 for line in real_lines)
             rec.x_studio_valid_order_lines_for_update_rfq_cost = (
                 has_positive and not has_zero
             )

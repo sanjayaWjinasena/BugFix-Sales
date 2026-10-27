@@ -151,7 +151,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         companies = self.env["res.company"].sudo().search([])
         for company in companies:
             for base_key, default in self._DEFAULT_IR_CONFIG_VALUES.items():
-                param_key = "%s.%s" % (base_key, company.id)
+                param_key = f"{base_key}.{company.id}"
                 existing = Icp.search(
                     [("key", "=", param_key)],
                     limit=1,
@@ -552,7 +552,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             if not company:
                 continue
             for fname, (key_base, _ttype, _default) in keymap.items():
-                param_key = "%s.%s" % (key_base, company.id)
+                param_key = f"{key_base}.{company.id}"
                 # Use a direct search so we can distinguish "key
                 # exists with value 0" from "key missing". get_param
                 # returns False for both cases.
@@ -655,7 +655,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             doc_tail = tail[:idx] + "_document" + tail[idx:]
         else:
             doc_tail = tail + "_document"
-        doc_key = "%s.%s" % (module_prefix, doc_tail)
+        doc_key = f"{module_prefix}.{doc_tail}"
 
         target = View.search(
             [
@@ -764,7 +764,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         if not actions:
             return
         Menu = self.env["ir.ui.menu"].sudo().with_context(active_test=False)
-        refs = ["ir.actions.act_window,%s" % a.id for a in actions]
+        refs = [f"ir.actions.act_window,{a.id}" for a in actions]
         menus = Menu.search([("action", "in", refs)])
         active_menus = menus.filtered(lambda m: m.active)
         if active_menus:
