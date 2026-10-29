@@ -421,8 +421,10 @@ class MinimumSalesMarginSeed(models.AbstractModel):
                 2340,
                 "no_of_days = env['minimum_sales_margin'].search([])",
                 "no_of_days = env.company",
-                "Read SO validity days from the caller company "
-                "(cron traditionally used first row).",
+                (
+                    "Read SO validity days from the caller company "
+                    "(cron traditionally used first row)."
+                ),
             ),
             # 2341 — SLS - Create Customer Payment (sale.order); has TWO occurrences
             (
