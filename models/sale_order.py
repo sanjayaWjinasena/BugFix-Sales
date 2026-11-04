@@ -11,7 +11,7 @@ _HIDE_ON_SALES_TYPE_FIELDS = (
     "x_studio_main_project_no",
     "x_studio_re_estimate_request_count",  # boolean
     "x_studio_re_estimate_request_count_1",  # integer counter
-    "x_studio_re_estimate_count",
+    "re_estimate_count",
     "plan_id",  # Recurring Plan (core)
 )
 
@@ -99,7 +99,7 @@ class SaleOrder(models.Model):
     # so it must be Python-declared on sale.order or fresh installs of
     # Fix-repair blow up in setup_related. Kept as a Selection here to
     # match the Studio-manual shape and preserve stored values.
-    x_studio_quotation_type = fields.Selection(
+    quotation_type = fields.Selection(
         [
             ("Sales", "Sales"),
             ("Project", "Project"),
@@ -114,7 +114,7 @@ class SaleOrder(models.Model):
     # calls assign them, they must exist at Python setup time on any DB
     # where Fix-repair is installed — hence Python declarations here
     # rather than leaving them state=manual on sale.order.
-    x_studio_rug_approved = fields.Boolean(
+    rug_approved = fields.Boolean(
         string="RUG Approved",
         help="Repair-Under-Guarantee approved on this SO — releases the "
         "downstream repair pickings and closes the RUG cycle.",
@@ -126,17 +126,17 @@ class SaleOrder(models.Model):
     )
     # v40: RUG confirmed flag — read by Studio invisible expressions
     # in the sale.order form arch (Confirm-button gate references
-    # x_studio_rug_confirmed together with x_studio_rug_rejected and
+    # rug_confirmed together with x_studio_rug_rejected and
     # ticket_repair_stage_state). Missed in v38's RUG batch; landing
-    # now so form-arch load stops raising Name 'x_studio_rug_confirmed'
+    # now so form-arch load stops raising Name 'rug_confirmed'
     # is not defined.
-    x_studio_rug_confirmed = fields.Boolean(
+    rug_confirmed = fields.Boolean(
         string="RUG Confirmed",
         help="Repair-Under-Guarantee confirmed by the operator — one "
         "step before rug_approved; used by button-gate expressions "
         'to distinguish "in review" from final decision.',
     )
-    x_studio_re_estimate_count = fields.Integer(
+    re_estimate_count = fields.Integer(
         string="Re-estimate Count",
         help="Counter incremented every time the repair is re-estimated "
         "(driven by Fix-repair). Ticket-side re-estimate status "
@@ -150,10 +150,10 @@ class SaleOrder(models.Model):
     x_studio_bank_guarantee_approved = fields.Boolean(
         string="Bank Guarantee Approved",
     )
-    x_studio_over_bank_guarantee = fields.Boolean(
+    over_bank_guarantee = fields.Boolean(
         string="Over Bank Guarantee",
     )
-    x_studio_over_bank_guarantee_amount = fields.Float(
+    over_bank_guarantee_amount = fields.Float(
         string="Over Bank Guarantee Amount",
     )
     x_studio_valid_bank_guarantee = fields.Boolean(
@@ -162,21 +162,21 @@ class SaleOrder(models.Model):
         store=True,
     )
     # --- Over-credit --------------------------------------------------------
-    x_studio_over_credit = fields.Boolean(
+    over_credit = fields.Boolean(
         string="Over Credit",
     )
-    x_studio_over_credit_amount = fields.Float(
+    over_credit_amount = fields.Float(
         string="Over Credit Amount",
     )
     # --- Over-commission ----------------------------------------------------
-    x_studio_over_commission = fields.Boolean(
+    over_commission = fields.Boolean(
         string="Over Commission",
     )
     x_studio_over_commission_approved = fields.Boolean(
         string="Over Commission Approved",
     )
     # --- Overdue ------------------------------------------------------------
-    x_studio_overdue = fields.Boolean(
+    overdue = fields.Boolean(
         string="Overdue",
     )
     x_studio_overdue_approved = fields.Boolean(
@@ -270,7 +270,7 @@ class SaleOrder(models.Model):
     x_studio_new_item_from_project = fields.Boolean(
         string="New Item from Project",
     )
-    x_studio_guarantee_status = fields.Char(
+    guarantee_status = fields.Char(
         string="Guarantee Status",
     )
     x_studio_inventory_short = fields.Boolean(
@@ -383,7 +383,7 @@ class SaleOrder(models.Model):
     x_studio_bank_guarantee_request_sent = fields.Boolean(string="BG Request Sent")
     x_studio_bank_guarantee_validation = fields.Boolean(string="BG Validation")
     x_studio_bg_sent = fields.Boolean(string="BG Sent")
-    x_studio_cancelled = fields.Boolean(string="Cancelled")
+    cancelled = fields.Boolean(string="Cancelled")
     x_studio_clear_free_items = fields.Boolean(string="Clear Free Items")
     x_studio_credit_limit_validation = fields.Boolean(string="Credit Limit Validation")
     x_studio_fsm_done = fields.Boolean(string="FSM Done")
@@ -405,7 +405,7 @@ class SaleOrder(models.Model):
     x_studio_project_item_request_sent = fields.Boolean(
         string="Project Item Request Sent"
     )
-    x_studio_rug_request_sent = fields.Boolean(string="RUG Request Sent")
+    rug_request_sent = fields.Boolean(string="RUG Request Sent")
     x_studio_sell_and_win = fields.Boolean(string="Sell and Win")
     x_studio_sub_contract = fields.Boolean(string="Sub Contract")
     x_studio_tem_credit_approval_request_sent = fields.Boolean(
@@ -492,10 +492,10 @@ class SaleOrder(models.Model):
     x_studio_image_1 = fields.Binary(string="Image 1")
     x_studio_image_2 = fields.Binary(string="Image 2")
     x_studio_image_3 = fields.Binary(string="Image 3")
-    x_studio_related_information = fields.Binary(string="Related Information")
-    x_studio_repair_image_01 = fields.Binary(string="Repair Image 01")
-    x_studio_repair_image_02 = fields.Binary(string="Repair Image 02")
-    x_studio_warranty_card = fields.Binary(string="Warranty Card")
+    related_information = fields.Binary(string="Related Information")
+    repair_image_01 = fields.Binary(string="Repair Image 01")
+    repair_image_02 = fields.Binary(string="Repair Image 02")
+    warranty_card = fields.Binary(string="Warranty Card")
 
     # Selection (1) — related to res.partner.x_studio_payment_method.
     # CDB stores this related; keeping stored here so search/filter on the
@@ -513,9 +513,9 @@ class SaleOrder(models.Model):
         ondelete="set null",
     )
 
-    # Char placeholder (was Many2many to x_repair_reason).
+    # Char placeholder (was Many2many to repair_reason).
     #
-    # The x_repair_reason model is declared in Fix-repair which loads AFTER
+    # The repair_reason model is declared in Fix-repair which loads AFTER
     # BugFix-Sales in the dep graph. At Sales install time the comodel didn't
     # exist yet, so Odoo stored relation='_unknown' in ir.model.fields — and
     # kept it stored that way even after Fix-repair created the model. Any
@@ -524,12 +524,12 @@ class SaleOrder(models.Model):
     # in fields.py line 4879 (query.order = comodel._order_to_sql(...)).
     #
     # Repair Reason on sale.order is a repair-workflow concept - Studio sourced
-    # it via related='task_id.x_studio_repair_reason' on CDB. Downgrading to
+    # it via related='task_id.repair_reason' on CDB. Downgrading to
     # Char here loses the m2m semantics but unblocks all Sales-workflow reads.
-    # Permanent fix: move the x_repair_reason model declaration to BugFix-Sales
+    # Permanent fix: move the repair_reason model declaration to BugFix-Sales
     # (or an upstream shared module) so it exists before the m2m needs to
     # resolve. Ticket left in memory as an open follow-up.
-    x_studio_repair_reason = fields.Char(
+    repair_reason = fields.Char(
         string="Repair Reason",
     )
 
@@ -552,7 +552,7 @@ class SaleOrder(models.Model):
         Payment Terms, Salesperson or Sales Team. Project and Repair
         quotations are not affected."""
         for order in self:
-            if order.x_studio_quotation_type not in (False, "Sales"):
+            if order.quotation_type not in (False, "Sales"):
                 continue
             missing = [
                 order._fields[fname].get_description(self.env)["string"]
@@ -580,19 +580,17 @@ class SaleOrder(models.Model):
 
         Merges with any existing `invisible` expression instead of
         overwriting it — e.g. Fix-repair sets
-        invisible="x_studio_quotation_type == 'Repair'" on the same
+        invisible="quotation_type == 'Repair'" on the same
         fields; our OR keeps both conditions in place so a field is
         hidden on Sales OR Repair, visible on Project.
         """
         arch, view = super()._get_view(view_id, view_type, **options)
         if view_type == "form":
-            # `not x_studio_quotation_type` also covers a brand-new SO
+            # `not quotation_type` also covers a brand-new SO
             # where the type hasn't been picked yet — we want the fields
             # gone from form open, not to flash into view before the
             # user selects a type.
-            sales_only = (
-                "not x_studio_quotation_type or x_studio_quotation_type == 'Sales'"
-            )
+            sales_only = "not quotation_type or quotation_type == 'Sales'"
             for fname in _HIDE_ON_SALES_TYPE_FIELDS:
                 # The responsive SO header renders labels and fields as
                 # sibling elements — <label for="fname"/> sits in one

@@ -2,7 +2,7 @@
     # upgrade-testing branch: data files below are commented out - this branch installs
     # functions only, no data is seeded.
     "name": "Jinasena : Module : Sales",
-    "version": "17.0.1.0.170",
+    "version": "17.0.1.0.171",
     "summary": "Bug fixes and enhancements for the Sales workflow",
     "author": "Jinasena Agricultural Machinery (Pvt) Ltd.",
     "category": "Sales",
@@ -41,7 +41,7 @@
     # v0.1.0.69: hotfix v0.1.0.68 - refine orphan-strip rule.
     # v0.1.0.68 over-stripped (removed x_studio_customer_group and
     # similar Sales-owned/studio_usermodel_migration fields), also
-    # missed x_studio_vat_registration_status (pinned to Fix-repair
+    # missed vat_registration_status (pinned to Fix-repair
     # which depends on Sales - loads AFTER us).
     # Correct load-time visibility rule:
     #   A field is safe to reference from Sales' views IFF at least
@@ -201,7 +201,7 @@
     # got shadowed at runtime ("Invalid field ... on model
     # x_delivery_terms" error at read time).
     # Fix: mirror Purchase's declaration in Sales - add the O2M
-    # declaration + default=True on x_active. Now field sets match
+    # declaration + default=True on active. Now field sets match
     # regardless of merge order. NEW DEP BugFix-Purchase (needed for
     # x_delivery_term_charge comodel to resolve).
     # v54: added Jinasena_Masterdata_Reporting to depends.

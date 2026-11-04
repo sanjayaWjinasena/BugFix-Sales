@@ -13,11 +13,11 @@
         <form>
   <header/>
   <sheet string="Minimum Sales Margin %">
-    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-    <field name="x_active" invisible="1"/>
+    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+    <field name="active" invisible="1"/>
     <div class="oe_title">
                 <h1>
-                    <field name="x_name" required="1" placeholder="Name..."/>
+                    <field name="name" required="1" placeholder="Name..."/>
                 </h1>
             </div>
     <group name="studio_group_457e75">
@@ -39,8 +39,8 @@
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree>
-  <field name="x_studio_sequence" widget="handle"/>
-  <field name="x_name"/>
+  <field name="sequence" widget="handle"/>
+  <field name="name"/>
 </tree>
       </field>
     </record>
@@ -50,9 +50,9 @@
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search>
-  <field name="x_name"/>
+  <field name="name"/>
   <separator/>
-  <filter string="Archived" name="archived_x_minimum_sales_margin" domain="[['x_active', '=', False]]"/>
+  <filter string="Archived" name="archived_x_minimum_sales_margin" domain="[['active', '=', False]]"/>
   <separator/>
 </search>
       </field>
@@ -73,7 +73,7 @@
   <xpath expr="//group[@name='studio_group_457e75_right']" position="inside">
     <field name="x_studio_sales_order_validity" string="Sales Order Validity (Days)"/>
     <field name="x_studio_last_purchase_price_validity_days" string="Last Purchase Price Validity (Days)"/>
-    <field name="x_studio_company_id" string="Company"/>
+    <field name="accounting_company_id" string="Company"/>
   </xpath>
 </data>
       </field>
@@ -91,10 +91,10 @@
     <attribute name="create">false</attribute>
     <attribute name="delete">false</attribute>
   </xpath>
-  <xpath expr="//field[@name='x_studio_sequence']" position="attributes">
+  <xpath expr="//field[@name='sequence']" position="attributes">
     <attribute name="column_invisible">1</attribute></xpath>
-  <xpath expr="//field[@name='x_name']" position="after">
-    <field name="x_studio_company_id" optional="show"/>
+  <xpath expr="//field[@name='name']" position="after">
+    <field name="accounting_company_id" optional="show"/>
     <field name="id" optional="show"/>
     <field name="x_studio_minimum_sales_margin_" string="Minimum Sales Margin %" column_invisible="1"/>
     <field name="x_studio_active" string="Active" column_invisible="1"/>

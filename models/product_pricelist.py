@@ -7,7 +7,7 @@ class ProductPricelist(models.Model):
     # v46: Studio fields ported from Clear-DB. Read by customer-group
     # -> pricelist resolution logic on sale.order line creation. The
     # values (General/Distributor/Dealer, Cash/Credit) mirror
-    # sale.order.x_studio_quotation_type / customer_group.x_studio_group_type
+    # sale.order.quotation_type / customer_group.x_studio_group_type
     # so the accounts team can filter pricelists by segment when
     # setting the SO pricelist manually.
     x_studio_group_type = fields.Selection(

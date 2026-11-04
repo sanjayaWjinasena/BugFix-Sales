@@ -4,9 +4,9 @@
     <field name="name">RR - Sales Price For RUG Items</field>
     <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Repair':
+    <field name="code"><![CDATA[if record.quotation_type == 'Repair':
   original_price = record.price_unit
-  if record.x_studio_rug_confirmed == True:
+  if record.rug_confirmed == True:
     record.write({'price_unit': record.product_template_id.standard_price,'x_studio_price_unit_original': original_price})
 
 
@@ -19,10 +19,10 @@
     <field name="name">RR - Track Lock Status - 3</field>
     <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Repair': 
+    <field name="code"><![CDATA[if record.quotation_type == 'Repair': 
  if record.x_studio_unlocked == True:
     record['x_studio_re_estimated'] = True
-    record['x_studio_count_1'] = record.x_studio_re_estimate_count + 1
+    record['x_studio_count_1'] = record.re_estimate_count + 1
     
   
   
@@ -36,7 +36,7 @@
     <field name="name">PROJ - Update Price Confirmed Status</field>
     <field name="model_id" search="[('model', '=', 'sale.order.line')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
+    <field name="code"><![CDATA[if record.quotation_type == 'Project':
 
   if record.product_id.id  != False:
 
@@ -82,7 +82,7 @@ else:
 
 if record.x_studio_commission > record.product_id.x_studio_maximum_discount - record.discount:
 
-  record['x_studio_over_commission'] = True
+  record['over_commission'] = True
 
   """
 
@@ -106,7 +106,7 @@ if record.x_studio_commission > record.product_id.x_studio_maximum_discount - re
 
 else:
 
-  record['x_studio_over_commission'] = False
+  record['over_commission'] = False
 
 
 
@@ -138,9 +138,9 @@ if record.x_studio_commission < 0.00:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Repair':
+    <field name="code"><![CDATA[if record.quotation_type == 'Repair':
   original_price = record.price_unit
-  if record.x_studio_rug_confirmed == True:
+  if record.rug_confirmed == True:
     record.write({'price_unit': record.product_template_id.standard_price,'x_studio_price_unit_original': original_price})
 
 
@@ -153,7 +153,7 @@ if record.x_studio_commission < 0.00:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
+    <field name="code"><![CDATA[if record.quotation_type == 'Project':
   onhand_qty = 0
   qty_short = 0
   re_wh = False
@@ -210,10 +210,10 @@ else:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Repair': 
+    <field name="code"><![CDATA[if record.quotation_type == 'Repair': 
  if record.x_studio_unlocked == True:
     record['x_studio_re_estimated'] = True
-    record['x_studio_count_1'] = record.x_studio_re_estimate_count + 1
+    record['x_studio_count_1'] = record.re_estimate_count + 1
     
   
   
@@ -276,7 +276,7 @@ else:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
+    <field name="code"><![CDATA[if record.quotation_type == 'Project':
 
   if record.product_id.id  != False:
 
@@ -341,7 +341,7 @@ else:
     <field name="code"><![CDATA[# bugfix_sales:config-cutover-v22
 if record.product_id.id:
 
-  if record.x_studio_quotation_type != 'Project':
+  if record.quotation_type != 'Project':
 
     value_1 = 0
 
@@ -444,7 +444,7 @@ if record.product_id.id:
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order_line__product_id')])]"/>
     <field name="filter_pre_domain">[]</field>
-    <field name="filter_domain">[["x_studio_quotation_type","=","Repair"]]</field>
+    <field name="filter_domain">[["quotation_type","=","Repair"]]</field>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2252_rr_track_lock_status_3')])]"/>
   </record>
   <record id="base_automation_212_sls_apply_pricelist_in_so_lines" model="base.automation">
@@ -477,9 +477,9 @@ if record.product_id.id:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-if record.x_studio_quotation_type == 'Repair':
+if record.quotation_type == 'Repair':
   original_price = record.price_unit
-  if record.x_studio_rug_confirmed == True:
+  if record.rug_confirmed == True:
     record.write({'price_unit': record.product_template_id.standard_price,'x_studio_price_unit_original': original_price})
 
 
@@ -493,10 +493,10 @@ if record.x_studio_quotation_type == 'Repair':
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-if record.x_studio_quotation_type == 'Repair': 
+if record.quotation_type == 'Repair': 
  if record.x_studio_unlocked == True:
     record['x_studio_re_estimated'] = True
-    record['x_studio_count_1'] = record.x_studio_re_estimate_count + 1
+    record['x_studio_count_1'] = record.re_estimate_count + 1
     
   
   
@@ -511,7 +511,7 @@ if record.x_studio_quotation_type == 'Repair':
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-if record.x_studio_quotation_type == 'Project':
+if record.quotation_type == 'Project':
 
   if record.product_id.id  != False:
 

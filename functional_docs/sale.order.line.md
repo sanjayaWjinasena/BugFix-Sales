@@ -6,7 +6,7 @@
 
 *Extends a model created by `sale`.* Python: `models/sale_order_line.py`.
 
-Other repos that use this model: `access right BugFix-Analytics.access_6247_inv___administrator` (BugFix-Analytics)<br>`access right BugFix-Analytics.access_7003_sales_order_lines` (BugFix-Analytics)<br>`helpdesk.ticket._compute_x_studio_task_status()` (Fix-repair)<br>`helpdesk.ticket._compute_x_studio_valid_delivered_so()` (Fix-repair)<br>`record rule BugFix-Analytics.rule_158_sales_order_line_multi_company` (BugFix-Analytics)<br>`record rule BugFix-Analytics.rule_163_portal_sales_orders_line` (BugFix-Analytics)<br>`record rule BugFix-Analytics.rule_168_personal_order_lines` (BugFix-Analytics)<br>`record rule BugFix-Analytics.rule_169_all_orders_lines` (BugFix-Analytics)<details><summary>+13 more</summary>`record rule BugFix-Analytics.rule_419_sale_planning_planning_admin_can_see_every_service_sol` (BugFix-Analytics)<br>`report BugFix-Studio-Misc.action_report_1596_sales_order_lines` (BugFix-Studio-Misc)<br>`sale.order._fix_repair_apply_track_lock_status()` (Fix-repair)<br>`server action BugFix-Accounting.sa_f5_x_sales_report_model_srm_rpt_project_gross_margin` (BugFix-Accounting)<br>`server action BugFix-Accounting.sa_f5_x_sales_report_model_srm_rpt_sales_production_purchase_report` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1726_srm_auto_populate_data` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1763_srm_rpt_sales_production_purchase_report` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_2102_srm_rpt_project_gross_margin` (BugFix-Accounting)<br>`server action BugFix-Studio-Misc.server_action_2268_sample_server_action_2` (BugFix-Studio-Misc)<br>`x_purchase_request_lin.x_studio_sales_line_id` (BugFix-Purchase)<br>`x_sales_report_model.x_studio_related_field_DqBBB` (Jinasena_Masterdata_Reporting)<br>`x_sales_report_type.x_studio_sales_lines_id` (Jinasena_Masterdata_Reporting)<br>`x_temp_estimated.x_studio_sales_order_line_id` (BugFix-Accounting)</details>
+Other repos that use this model: `access right BugFix-Analytics.access_6247_inv___administrator` (BugFix-Analytics)<br>`access right BugFix-Analytics.access_7003_sales_order_lines` (BugFix-Analytics)<br>`helpdesk.ticket._compute_task_status()` (Fix-repair)<br>`helpdesk.ticket._compute_valid_delivered_so()` (Fix-repair)<br>`record rule BugFix-Analytics.rule_158_sales_order_line_multi_company` (BugFix-Analytics)<br>`record rule BugFix-Analytics.rule_163_portal_sales_orders_line` (BugFix-Analytics)<br>`record rule BugFix-Analytics.rule_168_personal_order_lines` (BugFix-Analytics)<br>`record rule BugFix-Analytics.rule_169_all_orders_lines` (BugFix-Analytics)<details><summary>+13 more</summary>`record rule BugFix-Analytics.rule_419_sale_planning_planning_admin_can_see_every_service_sol` (BugFix-Analytics)<br>`report BugFix-Studio-Misc.action_report_1596_sales_order_lines` (BugFix-Studio-Misc)<br>`sale.order._fix_repair_apply_track_lock_status()` (Fix-repair)<br>`server action BugFix-Accounting.sa_f5_x_sales_report_model_srm_rpt_project_gross_margin` (BugFix-Accounting)<br>`server action BugFix-Accounting.sa_f5_x_sales_report_model_srm_rpt_sales_production_purchase_report` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1726_srm_auto_populate_data` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1763_srm_rpt_sales_production_purchase_report` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_2102_srm_rpt_project_gross_margin` (BugFix-Accounting)<br>`server action BugFix-Studio-Misc.server_action_2268_sample_server_action_2` (BugFix-Studio-Misc)<br>`x_purchase_request_lin.x_studio_sales_line_id` (BugFix-Purchase)<br>`x_sales_report_model.x_studio_related_field_DqBBB` (Jinasena_Masterdata_Reporting)<br>`x_sales_report_type.x_studio_sales_lines_id` (Jinasena_Masterdata_Reporting)<br>`x_temp_estimated.x_studio_sales_order_line_id` (BugFix-Accounting)</details>
 
 **Summary:**
 
@@ -35,7 +35,7 @@ This repo adds about 40 fields to order lines, including Quotation Type, commiss
 | `x_studio_main_project_no` | Main Project No | many2one → `project.project` | Main project link on the line. Not used by any view or logic in this repo. | not stored | `model project.project` (project) |  |
 | `x_studio_many2one_field_btM1W` | Production Order | many2one → `mrp.production` | Manufacturing order linked to the line; shown in the order line list. | stored | `model mrp.production` (mrp) | `view BugFix-Sales.ported_view_3259_odoo_studio_sale_order_line_tree_customi` |
 | `x_studio_margin_exceed` | Margin Exceed | boolean | True when the line breaches the margin rule; set by 'SLS Validate Margin in SO Line'. | not stored |  | `server action BugFix-Sales.server_action_1508_sls_validate_margin_in_so_line` |
-| `x_studio_over_commission` | Over Commission | boolean | True when the line's commission exceeds the allowed level; set by 'SLS Validate Commission in SO Line'. | stored |  | `server action BugFix-Sales.server_action_1498_sls_validate_commission_in_so_line` |
+| `over_commission` | Over Commission | boolean | True when the line's commission exceeds the allowed level; set by 'SLS Validate Commission in SO Line'. | stored |  | `server action BugFix-Sales.server_action_1498_sls_validate_commission_in_so_line` |
 | `x_studio_pr_created` | PR Created | boolean | Marks that a purchase request was created for this line. Not used by any view or logic in this repo. | stored |  |  |
 | `x_studio_price_confirmed` | Price Confirmed | boolean | Marks the line's price as confirmed; updated by the 'PROJ Update Price Confirmed Status' actions. | stored |  | `server action BugFix-Sales.sa_f5_sale_order_line_proj_update_price_confirmed_status`<br>`server action BugFix-Sales.server_action_2898_proj_update_price_confirmed_status` |
 | `x_studio_price_unit_original` | Price Unit Original | float | Original unit price saved before RUG pricing is applied; set by 'RR Sales Price for RUG Items' and shown in the line list. | stored |  | `server action BugFix-Sales.sa_f5_sale_order_line_rr_sales_price_for_rug_items`<br>`server action BugFix-Sales.server_action_2144_rr_sales_price_for_rug_items`<br>`view BugFix-Sales.ported_view_3259_odoo_studio_sale_order_line_tree_customi` |
@@ -45,13 +45,13 @@ This repo adds about 40 fields to order lines, including Quotation Type, commiss
 | `x_studio_project_no` | Project No | many2one → `project.project` | Project of the line; shown in the order line list and used by the 'Line Items' window action. | stored | `model project.project` (project) | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`<br>`view BugFix-Sales.ported_view_3259_odoo_studio_sale_order_line_tree_customi`<br>`window action BugFix-Sales.act_window_2194_line_items` |
 | `x_studio_project_no_1` | Project No | many2one → `project.project` | Second project link on the line. Not used by any view or logic in this repo. | stored | `model project.project` (project) |  |
 | `x_studio_purch_type` | Purch. Type | selection: Local=Local; Import=Import | Purchase type for the line: Local or Import. Not used by any view or logic in this repo. | stored |  |  |
-| `x_studio_quotation_type` | Quotation Type | selection: Sales=Sales; Project=Project; Repair=Repair | Quotation type of the line (Sales, Project, Repair); used by lock tracking, RUG pricing, margin validation, price-confirmed and project item details actions. | stored |  | `automation BugFix-Sales.base_automation_204_rr_track_lock_status_3`<br>`server action BugFix-Sales.sa_f5_sale_order_line_proj_update_price_confirmed_status`<br>`server action BugFix-Sales.sa_f5_sale_order_line_rr_sales_price_for_rug_items`<br>`server action BugFix-Sales.sa_f5_sale_order_line_rr_track_lock_status_3`<br>`server action BugFix-Sales.server_action_1508_sls_validate_margin_in_so_line`<details><summary>+4 more</summary>`server action BugFix-Sales.server_action_2144_rr_sales_price_for_rug_items`<br>`server action BugFix-Sales.server_action_2162_proj_item_related_details_in_project_so`<br>`server action BugFix-Sales.server_action_2252_rr_track_lock_status_3`<br>`server action BugFix-Sales.server_action_2898_proj_update_price_confirmed_status`</details> |
-| `x_studio_re_estimate_count` | Re-estimate Count | integer | Re-estimate counter on the line; used by the 'RR Track Lock Status 3' actions. | stored |  | `server action BugFix-Sales.sa_f5_sale_order_line_rr_track_lock_status_3`<br>`server action BugFix-Sales.server_action_2252_rr_track_lock_status_3` |
+| `quotation_type` | Quotation Type | selection: Sales=Sales; Project=Project; Repair=Repair | Quotation type of the line (Sales, Project, Repair); used by lock tracking, RUG pricing, margin validation, price-confirmed and project item details actions. | stored |  | `automation BugFix-Sales.base_automation_204_rr_track_lock_status_3`<br>`server action BugFix-Sales.sa_f5_sale_order_line_proj_update_price_confirmed_status`<br>`server action BugFix-Sales.sa_f5_sale_order_line_rr_sales_price_for_rug_items`<br>`server action BugFix-Sales.sa_f5_sale_order_line_rr_track_lock_status_3`<br>`server action BugFix-Sales.server_action_1508_sls_validate_margin_in_so_line`<details><summary>+4 more</summary>`server action BugFix-Sales.server_action_2144_rr_sales_price_for_rug_items`<br>`server action BugFix-Sales.server_action_2162_proj_item_related_details_in_project_so`<br>`server action BugFix-Sales.server_action_2252_rr_track_lock_status_3`<br>`server action BugFix-Sales.server_action_2898_proj_update_price_confirmed_status`</details> |
+| `re_estimate_count` | Re-estimate Count | integer | Re-estimate counter on the line; used by the 'RR Track Lock Status 3' actions. | stored |  | `server action BugFix-Sales.sa_f5_sale_order_line_rr_track_lock_status_3`<br>`server action BugFix-Sales.server_action_2252_rr_track_lock_status_3` |
 | `x_studio_re_estimate_request_sent` | Re-estimate Request Sent | boolean | Marks that a re-estimate request was sent for the line. Not used by any view or logic in this repo. | stored |  |  |
 | `x_studio_re_estimated` | Re-estimated | boolean | Marks the line as re-estimated; maintained by the 'RR Track Lock Status 3' actions. | stored |  | `server action BugFix-Sales.sa_f5_sale_order_line_rr_track_lock_status_3`<br>`server action BugFix-Sales.server_action_2252_rr_track_lock_status_3` |
 | `x_studio_req_for_production` | Req. for Production | boolean | Flags that the line requires production. Not used by any view or logic in this repo. | stored |  |  |
 | `x_studio_req_qty` | Req. Qty | integer | Required quantity for the line (default via a default record); shown in the order line list. | stored |  | `default BugFix-Sales.default_244_sale_order_line_x_studio_req_qty`<br>`view BugFix-Sales.ported_view_3259_odoo_studio_sale_order_line_tree_customi` |
-| `x_studio_rug_confirmed` | RUG Confirmed | boolean | Repair-Under-Guarantee confirmed flag on the line; used by 'RR Sales Price for RUG Items' to adjust prices. | stored |  | `server action BugFix-Sales.sa_f5_sale_order_line_rr_sales_price_for_rug_items`<br>`server action BugFix-Sales.server_action_2144_rr_sales_price_for_rug_items` |
+| `rug_confirmed` | RUG Confirmed | boolean | Repair-Under-Guarantee confirmed flag on the line; used by 'RR Sales Price for RUG Items' to adjust prices. | stored |  | `server action BugFix-Sales.sa_f5_sale_order_line_rr_sales_price_for_rug_items`<br>`server action BugFix-Sales.server_action_2144_rr_sales_price_for_rug_items` |
 | `x_studio_sales_report_type` | Sales Report Type | many2one → `x_sales_report_type` | Sales report category of the order line (link to Sales Report Type); filled automatically by the 'SRM auto populate report type in SO lines' server action. | stored | `model x_sales_report_type` (Jinasena_Masterdata_Reporting) | `server action BugFix-Sales.server_action_1729_srm_auto_populate_report_type_in_so_lines` |
 | `x_studio_sub_contract` | Sub-Contract | boolean | Flags the line as sub-contract. Not used by any view or logic in this repo. | not stored |  |  |
 | `x_studio_total` | Total | char | Free-text 'Total' field on the line. Not used by any view or logic in this repo. | not stored |  |  |
@@ -63,14 +63,14 @@ This repo adds about 40 fields to order lines, including Quotation Type, commiss
 
 - **Execute Code** (`server_action_2144_rr_sales_price_for_rug_items`, type `code`)
   - Function: Run by its automation: on RUG-confirmed Repair order lines, saves the current price as Original Price and sets the unit price to the product cost.
-  - Depends on: `model sale.order.line` (sale), `sale.order.line.price_unit` (sale), `sale.order.line.product_template_id` (sale), `sale.order.line.x_studio_price_unit_original`, `sale.order.line.x_studio_quotation_type`<details><summary>+1 more</summary>`sale.order.line.x_studio_rug_confirmed`</details>
+  - Depends on: `model sale.order.line` (sale), `sale.order.line.price_unit` (sale), `sale.order.line.product_template_id` (sale), `sale.order.line.x_studio_price_unit_original`, `sale.order.line.quotation_type`<details><summary>+1 more</summary>`sale.order.line.rug_confirmed`</details>
   - Used by: `automation BugFix-Sales.base_automation_193_rr_sales_price_for_rug_items`
   <details><summary>code (5 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == "Repair":
+if record.quotation_type == "Repair":
     original_price = record.price_unit
-    if record.x_studio_rug_confirmed == True:
+    if record.rug_confirmed == True:
         record.write(
             {
                 "price_unit": record.product_template_id.standard_price,
@@ -81,25 +81,25 @@ if record.x_studio_quotation_type == "Repair":
   </details>
 - **Execute Code** (`server_action_2252_rr_track_lock_status_3`, type `code`)
   - Function: Run by its automation: on lines of Unlocked Repair orders, marks the line Re-estimated and sets its count to the order's re-estimate count plus one.
-  - Depends on: `model sale.order.line` (sale), `sale.order.line.x_studio_count_1`, `sale.order.line.x_studio_quotation_type`, `sale.order.line.x_studio_re_estimate_count`, `sale.order.line.x_studio_re_estimated`<details><summary>+1 more</summary>`sale.order.line.x_studio_unlocked`</details>
+  - Depends on: `model sale.order.line` (sale), `sale.order.line.x_studio_count_1`, `sale.order.line.quotation_type`, `sale.order.line.re_estimate_count`, `sale.order.line.x_studio_re_estimated`<details><summary>+1 more</summary>`sale.order.line.x_studio_unlocked`</details>
   - Used by: `automation BugFix-Sales.base_automation_204_rr_track_lock_status_3`
   <details><summary>code (5 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == "Repair":
+if record.quotation_type == "Repair":
     if record.x_studio_unlocked == True:
         record["x_studio_re_estimated"] = True
-        record["x_studio_count_1"] = record.x_studio_re_estimate_count + 1
+        record["x_studio_count_1"] = record.re_estimate_count + 1
 ```
   </details>
 - **Execute Code** (`server_action_2898_proj_update_price_confirmed_status`, type `code`)
   - Function: Run by its automation: for Project lines copies Price Confirmed from the product's pricelist item (clears discount if none); non-Project lines get Price Confirmed cleared.
-  - Depends on: `model product.pricelist.item` (product), `model sale.order.line` (sale), `sale.order.line.product_id` (sale), `sale.order.line.product_template_id` (sale), `sale.order.line.x_studio_price_confirmed`<details><summary>+2 more</summary>`sale.order.line.x_studio_pricelist_id`, `sale.order.line.x_studio_quotation_type`</details>
+  - Depends on: `model product.pricelist.item` (product), `model sale.order.line` (sale), `sale.order.line.product_id` (sale), `sale.order.line.product_template_id` (sale), `sale.order.line.x_studio_price_confirmed`<details><summary>+2 more</summary>`sale.order.line.x_studio_pricelist_id`, `sale.order.line.quotation_type`</details>
   - Used by: `automation BugFix-Sales.base_automation_342_proj_update_price_confirmed_status`
   <details><summary>code (18 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == "Project":
+if record.quotation_type == "Project":
     if record.product_id.id != False:
         pricelist = env["product.pricelist.item"].search(
             [
@@ -121,12 +121,12 @@ else:
   </details>
 - **PROJ - Update Price Confirmed Status** (`sa_f5_sale_order_line_proj_update_price_confirmed_status`, type `code`)
   - Function: For Project order lines, copies Price Confirmed from the matching pricelist item for the product (clears the discount if none found); for non-Project lines, clears Price Confirmed.
-  - Depends on: `model product.pricelist.item` (product), `model sale.order.line` (sale), `sale.order.line.product_id` (sale), `sale.order.line.product_template_id` (sale), `sale.order.line.x_studio_price_confirmed`<details><summary>+2 more</summary>`sale.order.line.x_studio_pricelist_id`, `sale.order.line.x_studio_quotation_type`</details>
+  - Depends on: `model product.pricelist.item` (product), `model sale.order.line` (sale), `sale.order.line.product_id` (sale), `sale.order.line.product_template_id` (sale), `sale.order.line.x_studio_price_confirmed`<details><summary>+2 more</summary>`sale.order.line.x_studio_pricelist_id`, `sale.order.line.quotation_type`</details>
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (17 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == "Project":
+if record.quotation_type == "Project":
     if record.product_id.id != False:
         pricelist = env["product.pricelist.item"].search(
             [
@@ -148,12 +148,12 @@ else:
   </details>
 - **PROJ-Item Related Details In Project SO** (`server_action_2162_proj_item_related_details_in_project_so`, type `code`)
   - Function: On Project order lines, finds the resupply warehouse and its on-hand qty via product routes, then writes cost, on-hand, shortage qty, cost amounts and inventory status; resets these values on non-Project lines.
-  - Depends on: `model sale.order.line` (sale), `model stock.quant` (stock), `model stock.warehouse` (stock), `sale.order.line.product_template_id` (sale), `sale.order.line.product_uom_qty` (sale)<details><summary>+10 more</summary>`sale.order.line.warehouse_id` (sale_stock), `sale.order.line.x_studio_cost_amount_inventory_shortage`, `sale.order.line.x_studio_cost_amount_req_qty`, `sale.order.line.x_studio_cost_value`, `sale.order.line.x_studio_current_onhand`, `sale.order.line.x_studio_inventory_shortage`, `sale.order.line.x_studio_invt_status`, `sale.order.line.x_studio_product_status`, `sale.order.line.x_studio_quotation_type`, `sale.order.line.x_studio_warehouse_id`</details>
+  - Depends on: `model sale.order.line` (sale), `model stock.quant` (stock), `model stock.warehouse` (stock), `sale.order.line.product_template_id` (sale), `sale.order.line.product_uom_qty` (sale)<details><summary>+10 more</summary>`sale.order.line.warehouse_id` (sale_stock), `sale.order.line.x_studio_cost_amount_inventory_shortage`, `sale.order.line.x_studio_cost_amount_req_qty`, `sale.order.line.x_studio_cost_value`, `sale.order.line.x_studio_current_onhand`, `sale.order.line.x_studio_inventory_shortage`, `sale.order.line.x_studio_invt_status`, `sale.order.line.x_studio_product_status`, `sale.order.line.quotation_type`, `sale.order.line.x_studio_warehouse_id`</details>
   - Used by: `automation BugFix-Sales.base_automation_196_proj_item_related_details_in_project_so`
   <details><summary>code (27 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == "Project":
+if record.quotation_type == "Project":
     onhand_qty = 0
     qty_short = 0
     re_wh = False
@@ -224,14 +224,14 @@ else:
   </details>
 - **RR - Sales Price For RUG Items** (`sa_f5_sale_order_line_rr_sales_price_for_rug_items`, type `code`)
   - Function: On Repair orders, when the line is RUG-confirmed, saves the current unit price as Original Price and replaces the unit price with the product's cost.
-  - Depends on: `model sale.order.line` (sale), `sale.order.line.price_unit` (sale), `sale.order.line.product_template_id` (sale), `sale.order.line.x_studio_price_unit_original`, `sale.order.line.x_studio_quotation_type`<details><summary>+1 more</summary>`sale.order.line.x_studio_rug_confirmed`</details>
+  - Depends on: `model sale.order.line` (sale), `sale.order.line.price_unit` (sale), `sale.order.line.product_template_id` (sale), `sale.order.line.x_studio_price_unit_original`, `sale.order.line.quotation_type`<details><summary>+1 more</summary>`sale.order.line.rug_confirmed`</details>
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (4 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == "Repair":
+if record.quotation_type == "Repair":
     original_price = record.price_unit
-    if record.x_studio_rug_confirmed == True:
+    if record.rug_confirmed == True:
         record.write(
             {
                 "price_unit": record.product_template_id.standard_price,
@@ -242,15 +242,15 @@ if record.x_studio_quotation_type == "Repair":
   </details>
 - **RR - Track Lock Status - 3** (`sa_f5_sale_order_line_rr_track_lock_status_3`, type `code`)
   - Function: On Repair order lines edited while the order is Unlocked, marks the line Re-estimated and sets its count to the order's re-estimate count plus one.
-  - Depends on: `model sale.order.line` (sale), `sale.order.line.x_studio_count_1`, `sale.order.line.x_studio_quotation_type`, `sale.order.line.x_studio_re_estimate_count`, `sale.order.line.x_studio_re_estimated`<details><summary>+1 more</summary>`sale.order.line.x_studio_unlocked`</details>
+  - Depends on: `model sale.order.line` (sale), `sale.order.line.x_studio_count_1`, `sale.order.line.quotation_type`, `sale.order.line.re_estimate_count`, `sale.order.line.x_studio_re_estimated`<details><summary>+1 more</summary>`sale.order.line.x_studio_unlocked`</details>
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (4 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == "Repair":
+if record.quotation_type == "Repair":
     if record.x_studio_unlocked == True:
         record["x_studio_re_estimated"] = True
-        record["x_studio_count_1"] = record.x_studio_re_estimate_count + 1
+        record["x_studio_count_1"] = record.re_estimate_count + 1
 ```
   </details>
 - **SLS - Apply Pricelist in SO Lines** (`server_action_2315_sls_apply_pricelist_in_so_lines`, type `code`)
@@ -320,7 +320,7 @@ if record.product_id.id != False:
   </details>
 - **SLS - Validate Commission in SO Line** (`server_action_1498_sls_validate_commission_in_so_line`, type `code`)
   - Function: Sets Over Commission on the order line when the commission % exceeds the product's maximum discount minus the line discount; raises an error for negative commission.
-  - Depends on: `model sale.order.line` (sale), `sale.order.line.discount` (sale), `sale.order.line.product_id` (sale), `sale.order.line.x_studio_commission`, `sale.order.line.x_studio_over_commission`
+  - Depends on: `model sale.order.line` (sale), `sale.order.line.discount` (sale), `sale.order.line.product_id` (sale), `sale.order.line.x_studio_commission`, `sale.order.line.over_commission`
   - Used by: `automation BugFix-Sales.base_automation_90_sls_validate_commission_in_so_line`
   <details><summary>code (35 lines)</summary>
 
@@ -331,7 +331,7 @@ if (
     record.x_studio_commission
     > record.product_id.x_studio_maximum_discount - record.discount
 ):
-    record["x_studio_over_commission"] = True
+    record["over_commission"] = True
 
     """
 
@@ -354,7 +354,7 @@ if (
   """
 
 else:
-    record["x_studio_over_commission"] = False
+    record["over_commission"] = False
 
 
 if record.x_studio_commission < 0.00:
@@ -377,14 +377,14 @@ if record.id:
   </details>
 - **SLS - Validate Margin in SO Line** (`server_action_1508_sls_validate_margin_in_so_line`, type `code`)
   - Function: On non-Project lines, computes net margin after commission and cost and sets Margin Exceed when it is non-zero and below the company's Minimum Sales Margin %; otherwise clears it. Its automation is deactivated by the module.
-  - Depends on: `model sale.order.line` (sale), `sale.order.line.company_id` (sale), `sale.order.line.price_subtotal` (sale), `sale.order.line.product_id` (sale), `sale.order.line.product_uom_qty` (sale)<details><summary>+3 more</summary>`sale.order.line.x_studio_commission`, `sale.order.line.x_studio_margin_exceed`, `sale.order.line.x_studio_quotation_type`</details>
+  - Depends on: `model sale.order.line` (sale), `sale.order.line.company_id` (sale), `sale.order.line.price_subtotal` (sale), `sale.order.line.product_id` (sale), `sale.order.line.product_uom_qty` (sale)<details><summary>+3 more</summary>`sale.order.line.x_studio_commission`, `sale.order.line.x_studio_margin_exceed`, `sale.order.line.quotation_type`</details>
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (54 lines)</summary>
 
 ```python
 # bugfix_sales:config-cutover-v22
 if record.product_id.id:
-    if record.x_studio_quotation_type != "Project":
+    if record.quotation_type != "Project":
         value_1 = 0
 
         value_2 = 0
@@ -466,7 +466,7 @@ if record.product_id:
 | PROJ - Update Price Confirmed Status | `base_automation_342_proj_update_price_confirmed_status` |  | When a watched field changes in the form on Sales Order Line, runs _Execute Code_. | `model sale.order.line` (sale)<br>`sale.order.line.product_id` (sale)<br>`server action BugFix-Sales.server_action_2898_proj_update_price_confirmed_status` |  |
 | PROJ-Item Related Details In Project SO | `base_automation_196_proj_item_related_details_in_project_so` |  | When a record is created or updated on Sales Order Line, runs _PROJ-Item Related Details In Project SO_. | `model sale.order.line` (sale)<br>`sale.order.line.create_date` (sale)<br>`server action BugFix-Sales.server_action_2162_proj_item_related_details_in_project_so` |  |
 | RR - Sales Price For RUG Items | `base_automation_193_rr_sales_price_for_rug_items` |  | When a record is created or updated on Sales Order Line, runs _Execute Code_. | `model sale.order.line` (sale)<br>`sale.order.line.create_date` (sale)<br>`server action BugFix-Sales.server_action_2144_rr_sales_price_for_rug_items` |  |
-| RR - Track Lock Status - 3 | `base_automation_204_rr_track_lock_status_3` |  | When a watched field changes in the form on Sales Order Line and `[["x_studio_quotation_type","=","Repair"]]`, runs _Execute Code_. | `model sale.order.line` (sale)<br>`sale.order.line.product_id` (sale)<br>`sale.order.line.x_studio_quotation_type`<br>`server action BugFix-Sales.server_action_2252_rr_track_lock_status_3` |  |
+| RR - Track Lock Status - 3 | `base_automation_204_rr_track_lock_status_3` |  | When a watched field changes in the form on Sales Order Line and `[["quotation_type","=","Repair"]]`, runs _Execute Code_. | `model sale.order.line` (sale)<br>`sale.order.line.product_id` (sale)<br>`sale.order.line.quotation_type`<br>`server action BugFix-Sales.server_action_2252_rr_track_lock_status_3` |  |
 | SLS - Apply Pricelist in SO Lines | `base_automation_212_sls_apply_pricelist_in_so_lines` |  | When a watched field changes in the form on Sales Order Line, runs _SLS - Apply Pricelist in SO Lines_. | `model sale.order.line` (sale)<br>`sale.order.line.product_id` (sale)<br>`sale.order.line.product_uom_qty` (sale)<br>`server action BugFix-Sales.server_action_2315_sls_apply_pricelist_in_so_lines` |  |
 | SLS - Clear Free Items SO Lines | `base_automation_216_sls_clear_free_items_so_lines` | archived | When a watched field changes in the form on Sales Order Line and `[]`, runs nothing (no action linked). **Archived — does not run.** | `model sale.order.line` (sale) |  |
 | SLS - Validate Commission in SO Line | `base_automation_90_sls_validate_commission_in_so_line` |  | When a watched field changes in the form on Sales Order Line, runs _SLS - Validate Commission in SO Line_. | `model sale.order.line` (sale)<br>`sale.order.line.discount` (sale)<br>`sale.order.line.x_studio_commission`<br>`server action BugFix-Sales.server_action_1498_sls_validate_commission_in_so_line` |  |

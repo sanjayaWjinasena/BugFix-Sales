@@ -179,9 +179,9 @@ if pricelist:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.x_studio_customer_group.x_studio_group_type == 'Distributor':
-  record['x_studio_mandatory_bank_guarantee'] = True
+  record['mandatory_bank_guarantee'] = True
 else:
-  record['x_studio_mandatory_bank_guarantee'] = False
+  record['mandatory_bank_guarantee'] = False
 
 
 ]]></field>
@@ -272,8 +272,8 @@ else:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_customer_group.x_name:
-  records.message_post(body="Customer Group Modified. --> " + record.x_studio_customer_group.x_name)
+    <field name="code"><![CDATA[if record.x_studio_customer_group.name:
+  records.message_post(body="Customer Group Modified. --> " + record.x_studio_customer_group.name)
 
 
 ]]></field>
@@ -356,8 +356,8 @@ else:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_vat_registration_status:
-  records.message_post(body="Customer VAT Registration Status Modified. --> " + str(record.x_studio_vat_registration_status))
+    <field name="code"><![CDATA[if record.vat_registration_status:
+  records.message_post(body="Customer VAT Registration Status Modified. --> " + str(record.vat_registration_status))
 
 
 ]]></field>
@@ -368,8 +368,8 @@ else:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_vat_registration_number:
-  records.message_post(body="Customer VAT Registration No Modified. --> " + record.x_studio_vat_registration_number)
+    <field name="code"><![CDATA[if record.vat_registration_number:
+  records.message_post(body="Customer VAT Registration No Modified. --> " + record.vat_registration_number)
 
 
 ]]></field>
@@ -380,8 +380,8 @@ else:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_svat_registration_status:
-  records.message_post(body="Customer SVAT Registration Status Modified. --> " + str(record.x_studio_svat_registration_status))
+    <field name="code"><![CDATA[if record.svat_registration_status:
+  records.message_post(body="Customer SVAT Registration Status Modified. --> " + str(record.svat_registration_status))
 
 
 ]]></field>
@@ -392,8 +392,8 @@ else:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_svat_registration_number:
-  records.message_post(body="Customer SVAT Registration No Modified. --> " + record.x_studio_svat_registration_number)
+    <field name="code"><![CDATA[if record.svat_registration_number:
+  records.message_post(body="Customer SVAT Registration No Modified. --> " + record.svat_registration_number)
 
 
 ]]></field>
@@ -416,8 +416,8 @@ else:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[#if record.x_studio_mandatory_bank_guarantee:
-records.message_post(body="Customer Mandatory Bank Guarantee Modified. --> " + str(record.x_studio_mandatory_bank_guarantee))
+    <field name="code"><![CDATA[#if record.mandatory_bank_guarantee:
+records.message_post(body="Customer Mandatory Bank Guarantee Modified. --> " + str(record.mandatory_bank_guarantee))
 
 
 ]]></field>
@@ -428,8 +428,8 @@ records.message_post(body="Customer Mandatory Bank Guarantee Modified. --> " + s
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_vat_exempted_number:
-  records.message_post(body="Customer VAT Registration Status Modified. --> " + str(record.x_studio_vat_exempted_number))
+    <field name="code"><![CDATA[if record.vat_exempted_number:
+  records.message_post(body="Customer VAT Registration Status Modified. --> " + str(record.vat_exempted_number))
 
 
 ]]></field>

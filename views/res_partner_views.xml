@@ -234,15 +234,15 @@
           <page string="Tax Registration" name="studio_page_L0Ae5">
             <group name="studio_group_L0Ae5">
               <group name="studio_group_L0Ae5_left">
-                <!-- DROPPED (orphan: x_studio_vat_registration_status not on res.partner) --><!-- DROPPED (orphan: x_studio_vat_registration_number not on res.partner) --><!-- DROPPED (orphan: x_studio_vat_exempted_number not on res.partner) --></group>
+                <!-- DROPPED (orphan: vat_registration_status not on res.partner) --><!-- DROPPED (orphan: vat_registration_number not on res.partner) --><!-- DROPPED (orphan: vat_exempted_number not on res.partner) --></group>
               <group name="studio_group_L0Ae5_right">
-                <!-- DROPPED (orphan: x_studio_svat_registration_status not on res.partner) --><!-- DROPPED (orphan: x_studio_svat_registration_number not on res.partner) --></group>
+                <!-- DROPPED (orphan: svat_registration_status not on res.partner) --><!-- DROPPED (orphan: svat_registration_number not on res.partner) --></group>
             </group>
           </page>
           <page string="Customer Vendor Relation" name="studio_page_SuozI">
             <group name="studio_group_SuozI">
               <group name="studio_group_SuozI_right" string="Vendor relation">
-                <!-- DROPPED (orphan: x_studio_vendor_account not on res.partner) --><!-- DROPPED (orphan: x_studio_address not on res.partner) --><field name="contact_address_complete"/>
+                <!-- DROPPED (orphan: vendor_account not on res.partner) --><!-- DROPPED (orphan: address not on res.partner) --><field name="contact_address_complete"/>
               </group>
             </group>
           </page>
@@ -251,7 +251,7 @@
               <group name="studio_group_yhybZ_left" string="Bank Guarantee Details">
                 <field name="x_studio_bank_guarantee_amount" required="x_studio_group_type == 'Distributor'"/>
                 <field name="x_studio_expiry_date" string="Expiry Date" required="x_studio_group_type == 'Distributor'"/>
-                <!-- DROPPED (orphan: x_studio_mandatory_bank_guarantee not on res.partner) --><!-- DROPPED (orphan: x_studio_bank_guarantee_docs not on res.partner) --><!-- DROPPED (orphan: x_studio_bank_guarantee_docs_filename not on res.partner) --></group>
+                <!-- DROPPED (orphan: mandatory_bank_guarantee not on res.partner) --><!-- DROPPED (orphan: bank_guarantee_docs not on res.partner) --><!-- DROPPED (orphan: bank_guarantee_docs_filename not on res.partner) --></group>
               <group name="studio_group_yhybZ_right"/>
             </group>
           </page>
@@ -316,7 +316,7 @@
           <field name="bank_account_count"/>
           <field name="message_attachment_count"/>
           <field name="type"/>
-          <!-- DROPPED (orphan: x_studio_address not on res.partner) --><field name="additional_info"/>
+          <!-- DROPPED (orphan: address not on res.partner) --><field name="additional_info"/>
           <field name="message_needaction"/>
           <field name="active_lang_count"/>
           <field name="property_account_receivable_id"/>
@@ -328,7 +328,7 @@
           <field name="ref"/>
         </xpath>
         <xpath expr="//field[@name='state_id']" position="after">
-          <!-- DROPPED (orphan: x_studio_vat_registration_number not on res.partner) --><!-- DROPPED (orphan: x_studio_svat_registration_number not on res.partner) --><xpath expr="//field[@name='company_id']" position="move"/>
+          <!-- DROPPED (orphan: vat_registration_number not on res.partner) --><!-- DROPPED (orphan: svat_registration_number not on res.partner) --><xpath expr="//field[@name='company_id']" position="move"/>
           <field name="id"/>
         </xpath>
         <xpath expr="//field[@name='country_id']" position="attributes">

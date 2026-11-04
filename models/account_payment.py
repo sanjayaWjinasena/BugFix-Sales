@@ -9,18 +9,18 @@ class AccountPayment(models.Model):
     # Payment %), which reads the SO link + quotation type off the
     # payment record to gate its advance-threshold check.
     #
-    # x_studio_sales_order: stamped by the accounts team (or a future
+    # sales_order: stamped by the accounts team (or a future
     # automation) when creating an advance payment against a specific
     # SO. Left as a plain m2o -- no ondelete cascade because a payment
     # outliving its SO shouldn't be blindly deleted.
-    x_studio_sales_order = fields.Many2one(
+    sales_order = fields.Many2one(
         "sale.order",
         string="Sales Order",
     )
-    # Selection kept in sync with sale.order.x_studio_quotation_type
+    # Selection kept in sync with sale.order.quotation_type
     # (Sales / Project / Repair). Same three values so the payment's
     # type mirrors its parent SO's classification.
-    x_studio_quotation_type = fields.Selection(
+    quotation_type = fields.Selection(
         selection=[
             ("Sales", "Sales"),
             ("Project", "Project"),

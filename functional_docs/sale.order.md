@@ -6,7 +6,7 @@
 
 *Extends a model created by `sale`.* Python: `models/sale_order.py`.
 
-Other repos that use this model: `account.bank.statement.line.x_studio_many2one_field_re1H2` (BugFix-Accounting)<br>`account.bank.statement.line.x_studio_sale_id` (BugFix-Accounting)<br>`account.move._compute_is_rug_invoice()` (Fix-repair)<br>`account.move._compute_x_studio_rug_confirmed()` (Fix-repair)<br>`account.move.line._delegate_studio_computes_to_native()` (Fix-repair)<br>`account.move.write()` (Fix-repair)<br>`account.move.x_studio_sale_id` (BugFix-Accounting)<br>`account.payment.x_studio_many2one_field_re1H2` (BugFix-Accounting)<details><summary>+60 more</summary>`account.payment.x_studio_sale_id` (BugFix-Accounting)<br>`approval rule BugFix-Approvals.rule_21_sales_order_action_quotation_send_technical_a_warning_can_be` (BugFix-Approvals)<br>`approval rule BugFix-Approvals.rule_33_sales_order_action_cancel_user_types_internal_user_33` (BugFix-Approvals)<br>`approval rule BugFix-Approvals.rule_47_sales_order_action_unlock_sale_repair_sales_unlock_47` (BugFix-Approvals)<br>`approval rule BugFix-Approvals.rule_50_sales_order_action_unlock_user_types_internal_user_50` (BugFix-Approvals)<br>`approval rule BugFix-Approvals.rule_51_sales_order_action_unlock_inventory_administrator_51` (BugFix-Approvals)<br>`approval rule BugFix-Approvals.rule_60_sales_order_action_draft_user_types_internal_user_60` (BugFix-Approvals)<br>`approval rule BugFix-Approvals.rule_61_sales_order_action_quotation_send_user_types_internal_user_6` (BugFix-Approvals)<br>`crossovered.budget.x_studio_created_from_sales_order_1` (BugFix-Accounting)<br>`helpdesk.ticket._delegate_studio_server_actions_to_native()` (Fix-repair)<br>`helpdesk.ticket._get_so_from_serial()` (Fix-repair)<br>`helpdesk.ticket._repair_auto_select_product_for_rug()` (Fix-repair)<br>`helpdesk.ticket._repair_auto_select_product_for_rug_no_company()` (Fix-repair)<br>`helpdesk.ticket._repair_studio_change_repair_type_to_rug()` (Fix-repair)<br>`helpdesk.ticket.x_studio_sale_order` (Fix-repair)<br>`purchase.order.x_studio_subcontracting_so` (BugFix-Purchase)<br>`report BugFix-Studio-Misc.action_report_1440_test_report_kapila` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3445_jinasena_quotation_1` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3446_sales_order_report` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3449_jinasena_quotation` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3450_jinasena_sales_order` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3476_c06_1_sales_invoice_non_vat_product_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3477_template_c06_2_sales_invoice_non_vat_spares_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3478_template_c06_3_sales_invoice_vat_product_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3479_template_c06_4_sales_invoice_vat_spares_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3480_template_c06_5_sales_invoice_svat_product_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3481_template_c06_6_sales_invoice_svat_spares_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3482_c05_proforma_invoice` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3483_c04_sales_order_delivery_order_packing_slip` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3484_c03_customer_payment_receipt` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3485_c02_sales_order_confirmation` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3486_c01_sales_quotation` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3562_c06_2_sales_invoice_non_vat_spares_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3563_c06_3_sales_invoice_vat_product_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3564_c06_4_sales_invoice_vat_spares_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3565_c06_5_sales_invoice_svat_product_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3566_c06_6_sales_invoice_svat_spares_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3567_template_c06_1_sales_invoice_non_vat_product_sale` (BugFix-Studio-Misc)<br>`server action BugFix-Accounting.sa_f5_account_move_rr_validate_rug_in_customer_invoice` (BugFix-Accounting)<br>`server action BugFix-Accounting.sa_f5_account_move_sls_validate_payment_in_customer_invoice` (BugFix-Accounting)<br>`server action BugFix-Accounting.sa_f5_x_sales_report_model_srm_rpt_project_gross_margin` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1519_sls_payment_reconciliation_automate` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1733_srm_update_sales_order_customer_invoice` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1751_sls_validate_payment_in_customer_invoice` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_2102_srm_rpt_project_gross_margin` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_2331_rr_validate_rug_in_customer_invoice` (BugFix-Accounting)<br>`server action BugFix-Stock.sa_f5_stock_picking_sls_validate_payment_in_shipment` (BugFix-Stock)<br>`server action BugFix-Stock.server_action_1438_sls_validate_payment_in_shipment` (BugFix-Stock)<br>`server action BugFix-Stock.server_action_1774_sls_validate_payment_in_xxx` (BugFix-Stock)<br>`server action BugFix-Studio-Misc.server_action_1743_sample_server_action` (BugFix-Studio-Misc)<br>`server action BugFix-Studio-Misc.server_action_2268_sample_server_action_2` (BugFix-Studio-Misc)<br>`stock.picking._action_done()` (Fix-repair)<br>`stock.picking._delegate_studio_computes_to_native()` (Fix-repair)<br>`stock.picking.x_studio_sales_order` (BugFix-Stock)<br>`stock.picking.x_studio_ticket_sales_order` (BugFix-Stock)<br>`x_purchase.request.line.make.purchase.order.x_subcontracting_so` (BugFix-Purchase)<br>`x_purchase_request.x_studio_created_from_so` (BugFix-Purchase)<br>`x_rm_gross_margin_comp.x_studio_sales_order` (BugFix-Accounting)<br>`x_rm_sales_order_line.x_studio_sales_order` (BugFix-Accounting)<br>`x_temp_estimated.x_studio_sales_order` (BugFix-Accounting)</details>
+Other repos that use this model: `account.bank.statement.line.x_studio_many2one_field_re1H2` (BugFix-Accounting)<br>`account.bank.statement.line.x_studio_sale_id` (BugFix-Accounting)<br>`account.move._compute_is_rug_invoice()` (Fix-repair)<br>`account.move._compute_rug_confirmed()` (Fix-repair)<br>`account.move.line._delegate_studio_computes_to_native()` (Fix-repair)<br>`account.move.write()` (Fix-repair)<br>`account.move.x_studio_sale_id` (BugFix-Accounting)<br>`account.payment.x_studio_many2one_field_re1H2` (BugFix-Accounting)<details><summary>+60 more</summary>`account.payment.x_studio_sale_id` (BugFix-Accounting)<br>`approval rule BugFix-Approvals.rule_21_sales_order_action_quotation_send_technical_a_warning_can_be` (BugFix-Approvals)<br>`approval rule BugFix-Approvals.rule_33_sales_order_action_cancel_user_types_internal_user_33` (BugFix-Approvals)<br>`approval rule BugFix-Approvals.rule_47_sales_order_action_unlock_sale_repair_sales_unlock_47` (BugFix-Approvals)<br>`approval rule BugFix-Approvals.rule_50_sales_order_action_unlock_user_types_internal_user_50` (BugFix-Approvals)<br>`approval rule BugFix-Approvals.rule_51_sales_order_action_unlock_inventory_administrator_51` (BugFix-Approvals)<br>`approval rule BugFix-Approvals.rule_60_sales_order_action_draft_user_types_internal_user_60` (BugFix-Approvals)<br>`approval rule BugFix-Approvals.rule_61_sales_order_action_quotation_send_user_types_internal_user_6` (BugFix-Approvals)<br>`crossovered.budget.x_studio_created_from_sales_order_1` (BugFix-Accounting)<br>`helpdesk.ticket._delegate_studio_server_actions_to_native()` (Fix-repair)<br>`helpdesk.ticket._get_so_from_serial()` (Fix-repair)<br>`helpdesk.ticket._repair_auto_select_product_for_rug()` (Fix-repair)<br>`helpdesk.ticket._repair_auto_select_product_for_rug_no_company()` (Fix-repair)<br>`helpdesk.ticket._repair_studio_change_repair_type_to_rug()` (Fix-repair)<br>`helpdesk.ticket.sale_order` (Fix-repair)<br>`purchase.order.x_studio_subcontracting_so` (BugFix-Purchase)<br>`report BugFix-Studio-Misc.action_report_1440_test_report_kapila` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3445_jinasena_quotation_1` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3446_sales_order_report` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3449_jinasena_quotation` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3450_jinasena_sales_order` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3476_c06_1_sales_invoice_non_vat_product_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3477_template_c06_2_sales_invoice_non_vat_spares_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3478_template_c06_3_sales_invoice_vat_product_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3479_template_c06_4_sales_invoice_vat_spares_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3480_template_c06_5_sales_invoice_svat_product_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3481_template_c06_6_sales_invoice_svat_spares_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3482_c05_proforma_invoice` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3483_c04_sales_order_delivery_order_packing_slip` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3484_c03_customer_payment_receipt` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3485_c02_sales_order_confirmation` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3486_c01_sales_quotation` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3562_c06_2_sales_invoice_non_vat_spares_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3563_c06_3_sales_invoice_vat_product_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3564_c06_4_sales_invoice_vat_spares_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3565_c06_5_sales_invoice_svat_product_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3566_c06_6_sales_invoice_svat_spares_sale` (BugFix-Studio-Misc)<br>`report BugFix-Studio-Misc.action_report_3567_template_c06_1_sales_invoice_non_vat_product_sale` (BugFix-Studio-Misc)<br>`server action BugFix-Accounting.sa_f5_account_move_rr_validate_rug_in_customer_invoice` (BugFix-Accounting)<br>`server action BugFix-Accounting.sa_f5_account_move_sls_validate_payment_in_customer_invoice` (BugFix-Accounting)<br>`server action BugFix-Accounting.sa_f5_x_sales_report_model_srm_rpt_project_gross_margin` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1519_sls_payment_reconciliation_automate` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1733_srm_update_sales_order_customer_invoice` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1751_sls_validate_payment_in_customer_invoice` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_2102_srm_rpt_project_gross_margin` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_2331_rr_validate_rug_in_customer_invoice` (BugFix-Accounting)<br>`server action BugFix-Stock.sa_f5_stock_picking_sls_validate_payment_in_shipment` (BugFix-Stock)<br>`server action BugFix-Stock.server_action_1438_sls_validate_payment_in_shipment` (BugFix-Stock)<br>`server action BugFix-Stock.server_action_1774_sls_validate_payment_in_xxx` (BugFix-Stock)<br>`server action BugFix-Studio-Misc.server_action_1743_sample_server_action` (BugFix-Studio-Misc)<br>`server action BugFix-Studio-Misc.server_action_2268_sample_server_action_2` (BugFix-Studio-Misc)<br>`stock.picking._action_done()` (Fix-repair)<br>`stock.picking._delegate_studio_computes_to_native()` (Fix-repair)<br>`stock.picking.sales_order` (BugFix-Stock)<br>`stock.picking.ticket_sales_order` (BugFix-Stock)<br>`x_purchase.request.line.make.purchase.order.x_subcontracting_so` (BugFix-Purchase)<br>`x_purchase_request.x_studio_created_from_so` (BugFix-Purchase)<br>`x_rm_gross_margin_comp.sales_order` (BugFix-Accounting)<br>`x_rm_sales_order_line.sales_order` (BugFix-Accounting)<br>`x_temp_estimated.sales_order` (BugFix-Accounting)</details>
 
 **Summary:**
 
@@ -32,7 +32,7 @@ This repo adds over 100 fields to sales orders, centred on Quotation Type (Sales
 | `x_studio_bank_guarantee_validation` | BG Validation | boolean | Bank guarantee validation flag; shown on the Sales Order form (Studio customization). | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_bg_sent` | BG Sent | boolean | Marks that the bank guarantee notification was sent; set by the 'SLS Send Bank Guarantee Notification' action. | stored |  | `server action BugFix-Sales.server_action_2515_sls_send_bank_guarantee_notification`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_budget_created` | Budget Created | boolean | Marks that project budget entries were created; set by 'PROJ Create Budget Entries' and controls budget buttons. | stored |  | `server action BugFix-Sales.server_action_2178_proj_create_budget_entries`<br>`view BugFix-Accounting.ported_odoo_studio_sale_ord_acct` (BugFix-Accounting)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_cancelled` | Cancelled | boolean | Cancelled flag on the order; shown on the Sales Order form (Studio customization). | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `cancelled` | Cancelled | boolean | Cancelled flag on the order; shown on the Sales Order form (Studio customization). | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_clear_free_items` | Clear Free Items | boolean | Flags that free items should be cleared; used by the 'SLS Validate Sales' action and order form buttons. | stored |  | `server action BugFix-Sales.server_action_2337_sls_validate_sales`<br>`view BugFix-Accounting.ported_odoo_studio_sale_ord_acct` (BugFix-Accounting)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_confirm_validation` | Confirm Validation | text | Text holding confirm-time validation messages (default via a default record); shown on the Sales Order form (Studio customization). | stored |  | `default BugFix-Sales.default_415_sale_order_x_studio_confirm_validation`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_confirm_validation_1` | Confirm Validation (v2) | text | Second version of the confirm-validation text (default via a default record); shown on the Sales Order form (Studio customization). | stored |  | `default BugFix-Sales.default_417_sale_order_x_studio_confirm_validation_1`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
@@ -53,7 +53,7 @@ This repo adds over 100 fields to sales orders, centred on Quotation Type (Sales
 | `x_studio_fsm_done` | FSM Done | boolean | Marks field service work as done for the order; shown on the Sales Order form (Studio customization). | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_fully_paid` | Fully Paid | boolean | Marks the order as fully paid; shown on the Sales Order form (Studio customization). | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_grant_temporary_credit` | Grant Temporary Credit | boolean | Requests/grants a temporary credit for the customer; shown on the Sales Order form (Studio customization). | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_guarantee_status` | Guarantee Status | char | Text status of the customer's bank guarantee, set by `_fix_repair_compute_guarantee_status`; shown on the Sales Order form (Studio customization). | stored | `sale.order._jin_compute_guarantee_status()` (Fix-repair) | `sale.order._fix_repair_compute_guarantee_status()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `guarantee_status` | Guarantee Status | char | Text status of the customer's bank guarantee, set by `_fix_repair_compute_guarantee_status`; shown on the Sales Order form (Studio customization). | stored | `sale.order._jin_compute_guarantee_status()` (Fix-repair) | `sale.order._fix_repair_compute_guarantee_status()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_image_1` | Image 1 | binary | Uploaded image 1 on the order. | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_image_2` | Image 2 | binary | Uploaded image 2 on the order. | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_image_3` | Image 3 | binary | Uploaded image 3 on the order. | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
@@ -67,15 +67,15 @@ This repo adds over 100 fields to sales orders, centred on Quotation Type (Sales
 | `x_studio_margin_exceed` | Margin Exceed | boolean | True when order lines breach the margin rule; set by the 'SLS Item Over Margin Details' action and drives margin approval buttons. | stored |  | `server action BugFix-Sales.server_action_1517_sls_item_over_margin_details`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_new_item_from_project` | New Item from Project | boolean | Flags a project order containing new items; hides the Create PR / Update RFQ Cost buttons and is used on the order form. | stored |  | `view BugFix-Purchase.ported_odoo_studio_sale_ord_pur` (BugFix-Purchase)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_one2many_field_ERCBB` | New One2many | one2many → `sale.order.line` | Extra Studio one2many of sales order lines on the order, shown on the Sales Order form (Studio customization). | stored | `model sale.order.line` (sale) | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_order_payment_method` | Order Payment Type | selection: Cash=Cash; Credit=Credit | Payment type of this order (Cash or Credit), validated by an automation; drives credit, overdue and bank-guarantee computes and is copied to invoices. | stored |  | `account.move.x_studio_order_payment_method` (BugFix-Accounting)<br>`automation BugFix-Sales.base_automation_80_sls_validate_order_payment_type_in_so`<br>`project.task._compute_x_studio_valid_invoiced_so()` (Fix-repair)<br>`sale.order._fix_repair_compute_guarantee_status()` (Fix-repair)<br>`sale.order._fix_repair_compute_over_bank_guarantee()` (Fix-repair)<details><summary>+17 more</summary>`sale.order._fix_repair_compute_over_bank_guarantee_amount()` (Fix-repair)<br>`sale.order._fix_repair_compute_over_credit()` (Fix-repair)<br>`sale.order._fix_repair_compute_over_credit_amount()` (Fix-repair)<br>`sale.order._fix_repair_compute_overdue()` (Fix-repair)<br>`sale.order._jin_compute_guarantee_status()` (Fix-repair)<br>`sale.order._jin_compute_over_bank_guarantee()` (Fix-repair)<br>`sale.order._jin_compute_over_bank_guarantee_amount()` (Fix-repair)<br>`sale.order._jin_compute_over_credit()` (Fix-repair)<br>`sale.order._jin_compute_over_credit_amount()` (Fix-repair)<br>`sale.order._jin_compute_overdue()` (Fix-repair)<br>`server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_repair_sos`<br>`server action BugFix-Sales.server_action_1430_sls_pass_customer_pm_to_so`<br>`server action BugFix-Sales.server_action_1434_sls_validate_order_payment_type_in_so`<br>`server action BugFix-Sales.server_action_1853_sls_view_credit_limit_validation`<br>`server action BugFix-Sales.server_action_1995_rr_auto_generate_quotation_type_for_repair_sos`<br>`server action BugFix-Sales.server_action_2341_sls_create_customer_payment`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`</details> |
-| `x_studio_over_bank_guarantee` | Over Bank Guarantee | boolean | True when the order exceeds the customer's bank guarantee; set by the `_fix_repair_compute_over_bank_guarantee` compute and used for approval buttons and on invoices. | stored | `sale.order._jin_compute_over_bank_guarantee()` (Fix-repair) | `account.move.x_studio_over_bank_guarantee` (BugFix-Accounting)<br>`sale.order._fix_repair_compute_over_bank_guarantee()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_over_bank_guarantee_amount` | Over Bank Guarantee Amount | float | Amount by which the order exceeds the customer's bank guarantee; set by `_fix_repair_compute_over_bank_guarantee_amount` and shown on the Sales Order form (Studio customization). | stored | `sale.order._jin_compute_over_bank_guarantee_amount()` (Fix-repair) | `sale.order._fix_repair_compute_over_bank_guarantee_amount()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `x_studio_order_payment_method` | Order Payment Type | selection: Cash=Cash; Credit=Credit | Payment type of this order (Cash or Credit), validated by an automation; drives credit, overdue and bank-guarantee computes and is copied to invoices. | stored |  | `account.move.x_studio_order_payment_method` (BugFix-Accounting)<br>`automation BugFix-Sales.base_automation_80_sls_validate_order_payment_type_in_so`<br>`project.task._compute_valid_invoiced_so()` (Fix-repair)<br>`sale.order._fix_repair_compute_guarantee_status()` (Fix-repair)<br>`sale.order._fix_repair_compute_over_bank_guarantee()` (Fix-repair)<details><summary>+17 more</summary>`sale.order._fix_repair_compute_over_bank_guarantee_amount()` (Fix-repair)<br>`sale.order._fix_repair_compute_over_credit()` (Fix-repair)<br>`sale.order._fix_repair_compute_over_credit_amount()` (Fix-repair)<br>`sale.order._fix_repair_compute_overdue()` (Fix-repair)<br>`sale.order._jin_compute_guarantee_status()` (Fix-repair)<br>`sale.order._jin_compute_over_bank_guarantee()` (Fix-repair)<br>`sale.order._jin_compute_over_bank_guarantee_amount()` (Fix-repair)<br>`sale.order._jin_compute_over_credit()` (Fix-repair)<br>`sale.order._jin_compute_over_credit_amount()` (Fix-repair)<br>`sale.order._jin_compute_overdue()` (Fix-repair)<br>`server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_repair_sos`<br>`server action BugFix-Sales.server_action_1430_sls_pass_customer_pm_to_so`<br>`server action BugFix-Sales.server_action_1434_sls_validate_order_payment_type_in_so`<br>`server action BugFix-Sales.server_action_1853_sls_view_credit_limit_validation`<br>`server action BugFix-Sales.server_action_1995_rr_auto_generate_quotation_type_for_repair_sos`<br>`server action BugFix-Sales.server_action_2341_sls_create_customer_payment`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`</details> |
+| `over_bank_guarantee` | Over Bank Guarantee | boolean | True when the order exceeds the customer's bank guarantee; set by the `_fix_repair_compute_over_bank_guarantee` compute and used for approval buttons and on invoices. | stored | `sale.order._jin_compute_over_bank_guarantee()` (Fix-repair) | `account.move.over_bank_guarantee` (BugFix-Accounting)<br>`sale.order._fix_repair_compute_over_bank_guarantee()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `over_bank_guarantee_amount` | Over Bank Guarantee Amount | float | Amount by which the order exceeds the customer's bank guarantee; set by `_fix_repair_compute_over_bank_guarantee_amount` and shown on the Sales Order form (Studio customization). | stored | `sale.order._jin_compute_over_bank_guarantee_amount()` (Fix-repair) | `sale.order._fix_repair_compute_over_bank_guarantee_amount()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_over_comm_approval_request_sent` | Over Commission Approval Request Sent | boolean | Marks that an over-commission approval request was sent; set by the 'SLS Over Commission Approval Request Sent' action. | stored |  | `server action BugFix-Sales.server_action_1499_sls_over_commission_approval_request_sent`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_over_commission` | Over Commission | boolean | True when a line's commission exceeds the allowed level; set by `_fix_repair_compute_over_commission` and drives the over-commission approval buttons. | stored | `sale.order._jin_compute_over_commission()` (Fix-repair) | `sale.order._fix_repair_compute_over_commission()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `over_commission` | Over Commission | boolean | True when a line's commission exceeds the allowed level; set by `_fix_repair_compute_over_commission` and drives the over-commission approval buttons. | stored | `sale.order._jin_compute_over_commission()` (Fix-repair) | `sale.order._fix_repair_compute_over_commission()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_over_commission_approved` | Over Commission Approved | boolean | Marks over-commission as approved; set by the 'SLS Over Commission Approval' action and used in order views. | stored |  | `server action BugFix-Sales.server_action_2499_sls_over_commission_approval`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_over_credit` | Over Credit | boolean | True when the order exceeds the customer's credit limit; set by the `_fix_repair_compute_over_credit` compute (has a default record) and drives credit approval buttons. | stored | `sale.order._jin_compute_over_credit()` (Fix-repair) | `default BugFix-Sales.default_212_sale_order_x_studio_over_credit`<br>`sale.order._fix_repair_compute_over_credit()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_over_credit_amount` | Over Credit Amount | float | Amount by which the order exceeds the customer's credit limit; set by `_fix_repair_compute_over_credit_amount` and shown on the Sales Order form (Studio customization). | stored | `sale.order._jin_compute_over_credit_amount()` (Fix-repair) | `sale.order._fix_repair_compute_over_credit_amount()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_overdue` | Overdue | boolean | True when the customer has overdue balances; set by `_fix_repair_compute_overdue` and drives the overdue approval buttons. | stored | `sale.order._jin_compute_overdue()` (Fix-repair) | `sale.order._fix_repair_compute_overdue()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `over_credit` | Over Credit | boolean | True when the order exceeds the customer's credit limit; set by the `_fix_repair_compute_over_credit` compute (has a default record) and drives credit approval buttons. | stored | `sale.order._jin_compute_over_credit()` (Fix-repair) | `default BugFix-Sales.default_212_sale_order_over_credit`<br>`sale.order._fix_repair_compute_over_credit()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `over_credit_amount` | Over Credit Amount | float | Amount by which the order exceeds the customer's credit limit; set by `_fix_repair_compute_over_credit_amount` and shown on the Sales Order form (Studio customization). | stored | `sale.order._jin_compute_over_credit_amount()` (Fix-repair) | `sale.order._fix_repair_compute_over_credit_amount()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `overdue` | Overdue | boolean | True when the customer has overdue balances; set by `_fix_repair_compute_overdue` and drives the overdue approval buttons. | stored | `sale.order._jin_compute_overdue()` (Fix-repair) | `sale.order._fix_repair_compute_overdue()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_overdue_approved` | Overdue Approved | boolean | Marks the overdue exception as approved; set by the 'SLS Request Overdue Approval' action and used in order views. | stored |  | `server action BugFix-Sales.server_action_2458_sls_request_overdue_approval_final01`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_overdue_request_sent` | Overdue Request Sent | boolean | Marks that an overdue approval request was sent; set and validated by the 'SLS Overdue Approval Request Sent' actions. | stored |  | `server action BugFix-Sales.server_action_1472_sls_overdue_approval_request_sent`<br>`server action BugFix-Sales.server_action_1841_sls_overdue_approval_request_sent_validate`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_petty_cash_reimbursement` | Petty Cash Reimbursement | boolean | Flags the order as a petty cash reimbursement; shown on the Sales Order form (Studio customization). | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
@@ -90,21 +90,21 @@ This repo adds over 100 fields to sales orders, centred on Quotation Type (Sales
 | `x_studio_project_item_request_sent` | Project Item Request Sent | boolean | Marks that a project item approval request was sent; set by the 'PROJ Project Item Request Sent' action. | stored |  | `server action BugFix-Sales.server_action_2134_proj_project_item_request_sent`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_project_no` | Project No | many2one → `project.project` | Project of the order, copied (stored related) from the linked task's project; used by quotation-type, budget and customer payment server actions. | related `task_id.project_id`; stored | `model project.project` (project)<br>`project.task.project_id` (project)<br>`sale.order.task_id` (industry_fsm_sale) | `server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos_2`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_repair_sos`<br>`server action BugFix-Sales.server_action_1995_rr_auto_generate_quotation_type_for_repair_sos`<br>`server action BugFix-Sales.server_action_2114_rr_auto_generate_quotation_type_for_project_sos`<details><summary>+4 more</summary>`server action BugFix-Sales.server_action_2117_rr_auto_generate_quotation_type_for_project_sos_2`<br>`server action BugFix-Sales.server_action_2178_proj_create_budget_entries`<br>`server action BugFix-Sales.server_action_2341_sls_create_customer_payment`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`</details> |
 | `x_studio_project_start_date` | Project Start Date | date | Start date of the project order; validated against the end date by an automation and used when generating the quotation type and creating budgets. | stored |  | `automation BugFix-Sales.base_automation_260_proj_validate_start_date_and_end_date_for_project_sos`<br>`server action BugFix-Sales.sa_f5_sale_order_proj_validate_start_date_and_end_date_for_project_sos`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos_2`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos`<br>`server action BugFix-Sales.server_action_2114_rr_auto_generate_quotation_type_for_project_sos`<details><summary>+5 more</summary>`server action BugFix-Sales.server_action_2117_rr_auto_generate_quotation_type_for_project_sos_2`<br>`server action BugFix-Sales.server_action_2178_proj_create_budget_entries`<br>`server action BugFix-Sales.server_action_2572_proj_update_with_main_so`<br>`server action BugFix-Sales.server_action_2576_proj_validate_start_date_and_end_date_for_project_sos`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`</details> |
-| `x_studio_quotation_type` | Quotation Type | selection: Sales=Sales; Project=Project; Repair=Repair | Kind of quotation: Sales, Project or Repair. Central switch for many automations (lock tracking, project numbering, project price list, budgets, credit checks) and button visibility. | stored |  | `automation BugFix-Sales.base_automation_205_rr_track_lock_status_4`<br>`automation BugFix-Sales.base_automation_258_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro`<br>`automation BugFix-Sales.base_automation_341_proj_apply_project_price_list`<br>`automation BugFix-Stock.base_automation_199_proj_notify_transfer_completion` (BugFix-Stock)<br>`crossovered.budget._compute_x_studio_confirm_status()` (BugFix-Accounting)<details><summary>+31 more</summary>`project.task.x_studio_quotation_type` (BugFix-Project)<br>`sale.order._fix_repair_compute_over_credit()` (Fix-repair)<br>`server action BugFix-Sales.sa_f5_sale_order_proj_apply_project_price_list`<br>`server action BugFix-Sales.sa_f5_sale_order_proj_validate_start_date_and_end_date_for_project_sos`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos_2`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_repair_sos`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_track_lock_status_2`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_track_lock_status`<br>`server action BugFix-Sales.server_action_1995_rr_auto_generate_quotation_type_for_repair_sos`<br>`server action BugFix-Sales.server_action_2113_rr_auto_generate_quotation_type_for_projct_sos`<br>`server action BugFix-Sales.server_action_2114_rr_auto_generate_quotation_type_for_project_sos`<br>`server action BugFix-Sales.server_action_2117_rr_auto_generate_quotation_type_for_project_sos_2`<br>`server action BugFix-Sales.server_action_2250_rr_track_lock_status`<br>`server action BugFix-Sales.server_action_2251_rr_track_lock_status_2`<br>`server action BugFix-Sales.server_action_2253_rr_track_lock_status_4`<br>`server action BugFix-Sales.server_action_2341_sls_create_customer_payment`<br>`server action BugFix-Sales.server_action_2573_project_sales_order_seq_no`<br>`server action BugFix-Sales.server_action_2574_project_sales_order_seq_no_2`<br>`server action BugFix-Sales.server_action_2575_project_sales_order_seq_no_3`<br>`server action BugFix-Sales.server_action_2576_proj_validate_start_date_and_end_date_for_project_sos`<br>`server action BugFix-Sales.server_action_2896_proj_apply_project_price_list`<br>`view BugFix-Accounting.ported_odoo_studio_sale_ord_acct` (BugFix-Accounting)<br>`view BugFix-Purchase.ported_odoo_studio_sale_ord_pur` (BugFix-Purchase)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`<br>`view Fix-repair.view_sale_order_rug_direct_buttons` (Fix-repair)<br>`window action BugFix-Sales.act_window_2330_repair_sales_order_list`<br>`window action BugFix-Sales.act_window_2338_project_sales_orders`<br>`window action BugFix-Sales.aw_f4_sale_order_project_sales_orders`<br>`window action BugFix-Sales.aw_f4_sale_order_repair_sales_order_list`</details> |
-| `x_studio_re_estimate_count` | Re-estimate Count | integer | Counter incremented each time the repair is re-estimated (default set by a default record); reset by `_re_estimate_reset` and used by the RR lock-status tracking actions. | stored |  | `default BugFix-Sales.default_363_sale_order_x_studio_re_estimate_count`<br>`sale.order._re_estimate_reset()` (Fix-repair)<br>`server action BugFix-Sales.sa_f5_sale_order_rr_track_lock_status`<br>`server action BugFix-Sales.server_action_2250_rr_track_lock_status`<br>`server action BugFix-Sales.server_action_2253_rr_track_lock_status_4`<details><summary>+1 more</summary>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`</details> |
+| `quotation_type` | Quotation Type | selection: Sales=Sales; Project=Project; Repair=Repair | Kind of quotation: Sales, Project or Repair. Central switch for many automations (lock tracking, project numbering, project price list, budgets, credit checks) and button visibility. | stored |  | `automation BugFix-Sales.base_automation_205_rr_track_lock_status_4`<br>`automation BugFix-Sales.base_automation_258_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro`<br>`automation BugFix-Sales.base_automation_341_proj_apply_project_price_list`<br>`automation BugFix-Stock.base_automation_199_proj_notify_transfer_completion` (BugFix-Stock)<br>`crossovered.budget._compute_x_studio_confirm_status()` (BugFix-Accounting)<details><summary>+31 more</summary>`project.task.quotation_type` (BugFix-Project)<br>`sale.order._fix_repair_compute_over_credit()` (Fix-repair)<br>`server action BugFix-Sales.sa_f5_sale_order_proj_apply_project_price_list`<br>`server action BugFix-Sales.sa_f5_sale_order_proj_validate_start_date_and_end_date_for_project_sos`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos_2`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_auto_generate_quotation_type_for_repair_sos`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_track_lock_status_2`<br>`server action BugFix-Sales.sa_f5_sale_order_rr_track_lock_status`<br>`server action BugFix-Sales.server_action_1995_rr_auto_generate_quotation_type_for_repair_sos`<br>`server action BugFix-Sales.server_action_2113_rr_auto_generate_quotation_type_for_projct_sos`<br>`server action BugFix-Sales.server_action_2114_rr_auto_generate_quotation_type_for_project_sos`<br>`server action BugFix-Sales.server_action_2117_rr_auto_generate_quotation_type_for_project_sos_2`<br>`server action BugFix-Sales.server_action_2250_rr_track_lock_status`<br>`server action BugFix-Sales.server_action_2251_rr_track_lock_status_2`<br>`server action BugFix-Sales.server_action_2253_rr_track_lock_status_4`<br>`server action BugFix-Sales.server_action_2341_sls_create_customer_payment`<br>`server action BugFix-Sales.server_action_2573_project_sales_order_seq_no`<br>`server action BugFix-Sales.server_action_2574_project_sales_order_seq_no_2`<br>`server action BugFix-Sales.server_action_2575_project_sales_order_seq_no_3`<br>`server action BugFix-Sales.server_action_2576_proj_validate_start_date_and_end_date_for_project_sos`<br>`server action BugFix-Sales.server_action_2896_proj_apply_project_price_list`<br>`view BugFix-Accounting.ported_odoo_studio_sale_ord_acct` (BugFix-Accounting)<br>`view BugFix-Purchase.ported_odoo_studio_sale_ord_pur` (BugFix-Purchase)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`<br>`view Fix-repair.view_sale_order_rug_direct_buttons` (Fix-repair)<br>`window action BugFix-Sales.act_window_2330_repair_sales_order_list`<br>`window action BugFix-Sales.act_window_2338_project_sales_orders`<br>`window action BugFix-Sales.aw_f4_sale_order_project_sales_orders`<br>`window action BugFix-Sales.aw_f4_sale_order_repair_sales_order_list`</details> |
+| `re_estimate_count` | Re-estimate Count | integer | Counter incremented each time the repair is re-estimated (default set by a default record); reset by `_re_estimate_reset` and used by the RR lock-status tracking actions. | stored |  | `default BugFix-Sales.default_363_sale_order_re_estimate_count`<br>`sale.order._re_estimate_reset()` (Fix-repair)<br>`server action BugFix-Sales.sa_f5_sale_order_rr_track_lock_status`<br>`server action BugFix-Sales.server_action_2250_rr_track_lock_status`<br>`server action BugFix-Sales.server_action_2253_rr_track_lock_status_4`<details><summary>+1 more</summary>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`</details> |
 | `x_studio_re_estimate_request_count` | Re-estimate Request Count (bool) | boolean | Boolean variant of the re-estimate request counter on the order. Not used by any view or logic in this repo. | stored |  |  |
 | `x_studio_re_estimate_request_count_1` | Re-estimate Request Count | integer | Number of re-estimate requests on the order (default via a default record); checked by the 'RR Re-estimate Request Sent Validate' action. | stored |  | `default BugFix-Sales.default_364_sale_order_x_studio_re_estimate_request_count_1`<br>`server action BugFix-Sales.server_action_2246_rr_re_estimate_request_sent_validate`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_re_estimate_request_sent` | Re-estimate Request Sent | boolean | Marks that a re-estimate request was sent; set by the 'RR Re-estimate Request Sent' action and shown on the Sales Order form (Studio customization). | stored |  | `server action BugFix-Sales.server_action_2244_rr_re_estimate_request_sent`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_reject_reason` | Reject Reason | text | Reason entered when the order/approval is rejected; shown on the Sales Order form (Studio customization). | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_related_information` | Related Information | binary | Uploaded file with related information for the order. | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_repair_image_01` | Repair Image 01 | binary | First repair photo uploaded on the order. | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_repair_image_02` | Repair Image 02 | binary | Second repair photo uploaded on the order. | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_repair_reason` | Repair Reason | char | Free-text reason for the repair; shown on the Sales Order form (Studio customization). | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `related_information` | Related Information | binary | Uploaded file with related information for the order. | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `repair_image_01` | Repair Image 01 | binary | First repair photo uploaded on the order. | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `repair_image_02` | Repair Image 02 | binary | Second repair photo uploaded on the order. | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `repair_reason` | Repair Reason | char | Free-text reason for the repair; shown on the Sales Order form (Studio customization). | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_repair_validation` | Repair Validation | char | Text holding repair validation status/messages (default via a default record); shown on the Sales Order form (Studio customization). | stored |  | `default BugFix-Sales.default_374_sale_order_x_studio_repair_validation`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_rug_approved` | RUG Approved | boolean | Repair-Under-Guarantee approved on this order; set by the RR RUG Approval action, releases repair pickings and feeds the ticket's RUG approval status. | stored |  | `helpdesk.ticket._compute_x_studio_rug_approval_status()` (Fix-repair)<br>`project.task._compute_x_studio_valid_invoiced_so()` (Fix-repair)<br>`server action BugFix-Sales.server_action_1981_rr_rug_approval`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`<br>`view Fix-repair.view_sale_order_rug_direct_buttons` (Fix-repair) |
-| `x_studio_rug_confirmed` | RUG Confirmed | boolean | Repair-Under-Guarantee confirmed by the operator, one step before final approval; used in button visibility to distinguish 'in review' from decided, and mirrored on invoices. | stored |  | `account.move.x_studio_rug_confirmed` (BugFix-Accounting)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_rug_rejected` | RUG Rejected | boolean | Repair-Under-Guarantee rejected, so the repair becomes customer-paid; set by RUG Rejection and checked by repair invoicing, quotation sending, picking validation blocks and the ticket's RUG status. | stored |  | `account.move.x_studio_rug_rejected` (BugFix-Accounting)<br>`helpdesk.ticket._compute_x_studio_rug_approval_status()` (Fix-repair)<br>`sale.order._create_repair_full_invoice()` (Fix-repair)<br>`sale.order.action_quotation_send()` (Fix-Repair-Wizard-Nav, Fix-repair)<br>`sale.order.action_repair_create_invoice()` (Fix-Repair-Wizard-Nav, Fix-repair)<details><summary>+4 more</summary>`server action BugFix-Sales.server_action_2004_rr_rug_rejection`<br>`stock.picking._compute_nuw_block_validate()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`<br>`view Fix-repair.view_sale_order_rug_direct_buttons` (Fix-repair)</details> |
-| `x_studio_rug_request_sent` | RUG Request Sent | boolean | Marks that a Repair-Under-Guarantee approval request was sent; set by 'RR RUG Approval Request Sent' and used by the RUG buttons on the order. | stored |  | `server action BugFix-Sales.server_action_1983_rr_rug_approval_request_sent`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`<br>`view Fix-repair.view_sale_order_rug_direct_buttons` (Fix-repair) |
+| `rug_approved` | RUG Approved | boolean | Repair-Under-Guarantee approved on this order; set by the RR RUG Approval action, releases repair pickings and feeds the ticket's RUG approval status. | stored |  | `helpdesk.ticket._compute_rug_approval_status()` (Fix-repair)<br>`project.task._compute_valid_invoiced_so()` (Fix-repair)<br>`server action BugFix-Sales.server_action_1981_rr_rug_approval`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`<br>`view Fix-repair.view_sale_order_rug_direct_buttons` (Fix-repair) |
+| `rug_confirmed` | RUG Confirmed | boolean | Repair-Under-Guarantee confirmed by the operator, one step before final approval; used in button visibility to distinguish 'in review' from decided, and mirrored on invoices. | stored |  | `account.move.rug_confirmed` (BugFix-Accounting)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `x_studio_rug_rejected` | RUG Rejected | boolean | Repair-Under-Guarantee rejected, so the repair becomes customer-paid; set by RUG Rejection and checked by repair invoicing, quotation sending, picking validation blocks and the ticket's RUG status. | stored |  | `account.move.x_studio_rug_rejected` (BugFix-Accounting)<br>`helpdesk.ticket._compute_rug_approval_status()` (Fix-repair)<br>`sale.order._create_repair_full_invoice()` (Fix-repair)<br>`sale.order.action_quotation_send()` (Fix-Repair-Wizard-Nav, Fix-repair)<br>`sale.order.action_repair_create_invoice()` (Fix-Repair-Wizard-Nav, Fix-repair)<details><summary>+4 more</summary>`server action BugFix-Sales.server_action_2004_rr_rug_rejection`<br>`stock.picking._compute_nuw_block_validate()` (Fix-repair)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`<br>`view Fix-repair.view_sale_order_rug_direct_buttons` (Fix-repair)</details> |
+| `rug_request_sent` | RUG Request Sent | boolean | Marks that a Repair-Under-Guarantee approval request was sent; set by 'RR RUG Approval Request Sent' and used by the RUG buttons on the order. | stored |  | `server action BugFix-Sales.server_action_1983_rr_rug_approval_request_sent`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`<br>`view Fix-repair.view_sale_order_rug_direct_buttons` (Fix-repair) |
 | `x_studio_sales_order_validity` | Sales Order Validity | integer | Quotation validity in days, computed (not stored) from the company's Sales Order Validity setting; shown on the Sales Order form (Studio customization). | computed by `_compute_x_studio_sales_order_validity`; not stored | `sale.order._compute_x_studio_sales_order_validity()` | `default BugFix-Sales.default_384_sale_order_x_studio_sales_order_validity`<br>`sale.order._compute_x_studio_sales_order_validity()`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_sell_and_win` | Sell and Win | boolean | 'Sell and Win' flag on the order; shown on the Sales Order form (Studio customization). | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_service_item_available` | Service Item Available | boolean | Computed: True when the order has a service line whose product creates a project only (service tracking 'project_only'); shown on the Sales Order form (Studio customization). | computed by `_compute_x_studio_service_item_available`; not stored | `sale.order._compute_x_studio_service_item_available()` | `sale.order._compute_x_studio_service_item_available()`<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
@@ -120,7 +120,7 @@ This repo adds over 100 fields to sales orders, centred on Quotation Type (Sales
 | `x_studio_valid_order_lines_for_projects` | Valid Order Lines for Projects | boolean | Computed: True when the order has any lines; used to show the Create PR / Update RFQ Cost buttons on project quotations. | computed by `_compute_x_studio_valid_order_lines_for_projects`; not stored | `sale.order._compute_x_studio_valid_order_lines_for_projects()` | `sale.order._compute_x_studio_valid_order_lines_for_projects()`<br>`view BugFix-Purchase.ported_odoo_studio_sale_ord_pur` (BugFix-Purchase)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_valid_order_lines_for_update_rfq_cost` | Valid Order Lines for Update RFQ Cost | boolean | Computed: True when real order lines include a positive quantity and none has zero quantity; gates the Update RFQ Cost button. | computed by `_compute_x_studio_valid_order_lines_for_update_rfq_cost`; not stored | `sale.order._compute_x_studio_valid_order_lines_for_update_rfq_cost()` | `sale.order._compute_x_studio_valid_order_lines_for_update_rfq_cost()`<br>`view BugFix-Purchase.ported_odoo_studio_sale_ord_pur` (BugFix-Purchase)<br>`view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_studio_valid_transfer` | Valid Transfer | boolean | Valid transfer flag on the order; shown on the Sales Order form (Studio customization). | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
-| `x_studio_warranty_card` | Warranty Card | binary | Uploaded warranty card for the repaired item. | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
+| `warranty_card` | Warranty Card | binary | Uploaded warranty card for the repaired item. | stored |  | `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` |
 | `x_x_studio_created_from_sales_order_1_crossovered_budget_count` | Project Budget | integer | Number of budgets created from this sales order, shown on the Project Budget smart button. | not stored |  | `view BugFix-Accounting.ported_odoo_studio_sale_ord_acct` (BugFix-Accounting) |
 | `x_x_studio_created_from_so_x_purchase_request_count` | Created From SO count | integer | Number of purchase requests created from this sales order, shown on the Requisitions smart button. | not stored |  | `view BugFix-Purchase.ported_odoo_studio_sale_ord_pur` (BugFix-Purchase) |
 | `x_x_studio_sales_order_account_payment_count` | Sales Order count | integer | Number of payments linked to this sales order, shown on a smart button. | not stored |  | `view BugFix-Accounting.ported_odoo_studio_sale_ord_acct` (BugFix-Accounting) |
@@ -143,7 +143,7 @@ This repo adds over 100 fields to sales orders, centred on Quotation Type (Sales
 
 - **Execute Code** (`server_action_1995_rr_auto_generate_quotation_type_for_repair_sos`, type `code`)
   - Function: Run by its automation: sets quotation type to 'Repair' and copies the customer's payment method when the order is linked to a task in a repair project (or its project is a repair project).
-  - Depends on: `model project.task` (project), `model sale.order` (sale), `sale.order.partner_id` (sale), `sale.order.x_studio_order_payment_method`, `sale.order.x_studio_project_no`<details><summary>+1 more</summary>`sale.order.x_studio_quotation_type`</details>
+  - Depends on: `model project.task` (project), `model sale.order` (sale), `sale.order.partner_id` (sale), `sale.order.x_studio_order_payment_method`, `sale.order.x_studio_project_no`<details><summary>+1 more</summary>`sale.order.quotation_type`</details>
   - Used by: `automation BugFix-Sales.base_automation_176_rr_auto_generate_quotation_type_for_repair_sos`
   <details><summary>code (13 lines)</summary>
 
@@ -158,7 +158,7 @@ if record.id:
         limit=1,
     )
     if task:
-        record["x_studio_quotation_type"] = "Repair"
+        record["quotation_type"] = "Repair"
         record["x_studio_order_payment_method"] = (
             record.partner_id.x_studio_payment_method
         )
@@ -166,7 +166,7 @@ if record.id:
         record.x_studio_project_no
         and record.x_studio_project_no.x_studio_repair_project == True
     ):
-        record["x_studio_quotation_type"] = "Repair"
+        record["quotation_type"] = "Repair"
         record["x_studio_order_payment_method"] = (
             record.partner_id.x_studio_payment_method
         )
@@ -174,17 +174,17 @@ if record.id:
   </details>
 - **Execute Code** (`server_action_2114_rr_auto_generate_quotation_type_for_project_sos`, type `code`)
   - Function: Run by its automation: for task-linked orders sets quotation type (Repair or the project's type) and copies project group, analytic account and contract dates; the warehouse copy never runs (compares a record to True).
-  - Depends on: `model project.task` (project), `model sale.order` (sale), `sale.order.task_id` (industry_fsm_sale), `sale.order.x_studio_project_end_date`, `sale.order.x_studio_project_group`<details><summary>+3 more</summary>`sale.order.x_studio_project_no`, `sale.order.x_studio_project_start_date`, `sale.order.x_studio_quotation_type`</details>
+  - Depends on: `model project.task` (project), `model sale.order` (sale), `sale.order.task_id` (industry_fsm_sale), `sale.order.x_studio_project_end_date`, `sale.order.x_studio_project_group`<details><summary>+3 more</summary>`sale.order.x_studio_project_no`, `sale.order.x_studio_project_start_date`, `sale.order.quotation_type`</details>
   - Used by: `automation BugFix-Sales.base_automation_186_rr_auto_generate_quotation_type_for_project_sos`
   <details><summary>code (17 lines)</summary>
 
 ```python
 if record.task_id != False:
     if record.x_studio_project_no.x_studio_repair_project == True:
-        record["x_studio_quotation_type"] = "Repair"
+        record["quotation_type"] = "Repair"
     else:
-        record["x_studio_quotation_type"] = (
-            record.x_studio_project_no.x_studio_quotation_type
+        record["quotation_type"] = (
+            record.x_studio_project_no.quotation_type
         )
 
     record["x_studio_project_group"] = record.x_studio_project_no.x_studio_project_group
@@ -207,14 +207,14 @@ if record.task_id != False:
   </details>
 - **Execute Code** (`server_action_2117_rr_auto_generate_quotation_type_for_project_sos_2`, type `code`)
   - Function: Run by its automation: for task-linked orders copies the project's quotation type, project group, analytic account, contract start/end dates and warehouse from the project's original SO.
-  - Depends on: `model project.task` (project), `model sale.order` (sale), `sale.order.task_id` (industry_fsm_sale), `sale.order.x_studio_project_end_date`, `sale.order.x_studio_project_group`<details><summary>+3 more</summary>`sale.order.x_studio_project_no`, `sale.order.x_studio_project_start_date`, `sale.order.x_studio_quotation_type`</details>
+  - Depends on: `model project.task` (project), `model sale.order` (sale), `sale.order.task_id` (industry_fsm_sale), `sale.order.x_studio_project_end_date`, `sale.order.x_studio_project_group`<details><summary>+3 more</summary>`sale.order.x_studio_project_no`, `sale.order.x_studio_project_start_date`, `sale.order.quotation_type`</details>
   - Used by: `automation BugFix-Sales.base_automation_187_rr_auto_generate_quotation_type_for_project_sos_2`
   <details><summary>code (11 lines)</summary>
 
 ```python
 if record.task_id != False:
-    record["x_studio_quotation_type"] = (
-        record.x_studio_project_no.x_studio_quotation_type
+    record["quotation_type"] = (
+        record.x_studio_project_no.quotation_type
     )
     record["x_studio_project_group"] = record.x_studio_project_no.x_studio_project_group
     record["analytic_account_id"] = (
@@ -234,13 +234,13 @@ if record.task_id != False:
   </details>
 - **Execute Code** (`server_action_2250_rr_track_lock_status`, type `code`)
   - Function: Run by its automation: for Repair orders in Locked state, sets Locked, clears Unlocked and syncs the Re-estimate Count from the latest re-estimated line (writes only on change).
-  - Depends on: `model sale.order.line` (sale), `model sale.order` (sale), `sale.order.state` (sale), `sale.order.x_studio_locked`, `sale.order.x_studio_quotation_type`<details><summary>+2 more</summary>`sale.order.x_studio_re_estimate_count`, `sale.order.x_studio_unlocked`</details>
+  - Depends on: `model sale.order.line` (sale), `model sale.order` (sale), `sale.order.state` (sale), `sale.order.x_studio_locked`, `sale.order.quotation_type`<details><summary>+2 more</summary>`sale.order.re_estimate_count`, `sale.order.x_studio_unlocked`</details>
   - Used by: `automation BugFix-Sales.base_automation_202_rr_track_lock_status`
   <details><summary>code (15 lines)</summary>
 
 ```python
 # fix_repair:idempotent-v1
-if record.x_studio_quotation_type == "Repair" and record.state == "done":
+if record.quotation_type == "Repair" and record.state == "done":
     re_line = (
         env["sale.order.line"]
         .sudo()
@@ -254,27 +254,27 @@ if record.x_studio_quotation_type == "Repair" and record.state == "done":
     if (
         not record.x_studio_locked
         or record.x_studio_unlocked
-        or record.x_studio_re_estimate_count != target_count
+        or record.re_estimate_count != target_count
     ):
         record.write(
             {
                 "x_studio_locked": True,
                 "x_studio_unlocked": False,
-                "x_studio_re_estimate_count": target_count,
+                "re_estimate_count": target_count,
             }
         )
 ```
   </details>
 - **Execute Code** (`server_action_2251_rr_track_lock_status_2`, type `code`)
   - Function: Run by its automation: for Repair orders in Sales Order state still flagged Locked, clears Locked and sets Unlocked.
-  - Depends on: `model sale.order` (sale), `sale.order.state` (sale), `sale.order.x_studio_locked`, `sale.order.x_studio_quotation_type`, `sale.order.x_studio_unlocked`
+  - Depends on: `model sale.order` (sale), `sale.order.state` (sale), `sale.order.x_studio_locked`, `sale.order.quotation_type`, `sale.order.x_studio_unlocked`
   - Used by: `automation BugFix-Sales.base_automation_203_rr_track_lock_status_2`
   <details><summary>code (6 lines)</summary>
 
 ```python
 # fix_repair:idempotent-v1
 if (
-    record.x_studio_quotation_type == "Repair"
+    record.quotation_type == "Repair"
     and record.state == "sale"
     and record.x_studio_locked
 ):
@@ -283,12 +283,12 @@ if (
   </details>
 - **Execute Code** (`server_action_2576_proj_validate_start_date_and_end_date_for_project_sos`, type `code`)
   - Function: Run by its automation: for Project orders, raises an error if the Contract Start Date is later than the Contract End Date (compared as text).
-  - Depends on: `model sale.order` (sale), `sale.order.x_studio_project_end_date`, `sale.order.x_studio_project_start_date`, `sale.order.x_studio_quotation_type`
+  - Depends on: `model sale.order` (sale), `sale.order.x_studio_project_end_date`, `sale.order.x_studio_project_start_date`, `sale.order.quotation_type`
   - Used by: `automation BugFix-Sales.base_automation_260_proj_validate_start_date_and_end_date_for_project_sos`
   <details><summary>code (7 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == "Project":
+if record.quotation_type == "Project":
     start_date = str(record.x_studio_project_start_date)
     end_date = str(record.x_studio_project_end_date)
 
@@ -300,12 +300,12 @@ if record.x_studio_quotation_type == "Project":
   </details>
 - **Execute Code** (`server_action_2896_proj_apply_project_price_list`, type `code`)
   - Function: Run by its automation: Project orders get the Project Price List pricelist; other orders get the customer's default pricelist.
-  - Depends on: `model product.pricelist` (product), `model res.partner` (base), `model sale.order` (sale), `sale.order.partner_id` (sale), `sale.order.x_studio_quotation_type`
+  - Depends on: `model product.pricelist` (product), `model res.partner` (base), `model sale.order` (sale), `sale.order.partner_id` (sale), `sale.order.quotation_type`
   - Used by: `automation BugFix-Sales.base_automation_341_proj_apply_project_price_list`
   <details><summary>code (9 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == "Project":
+if record.quotation_type == "Project":
     pricelist = env["product.pricelist"].search(
         [("x_studio_project_price_list", "=", True)], limit=1
     )
@@ -321,12 +321,12 @@ else:
   </details>
 - **PROJ - Apply Project Price List** (`sa_f5_sale_order_proj_apply_project_price_list`, type `code`)
   - Function: For Project orders, sets the pricelist to the pricelist flagged as Project Price List; for other orders, resets it to the customer's default pricelist.
-  - Depends on: `model product.pricelist` (product), `model res.partner` (base), `model sale.order` (sale), `sale.order.partner_id` (sale), `sale.order.x_studio_quotation_type`
+  - Depends on: `model product.pricelist` (product), `model res.partner` (base), `model sale.order` (sale), `sale.order.partner_id` (sale), `sale.order.quotation_type`
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (8 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == "Project":
+if record.quotation_type == "Project":
     pricelist = env["product.pricelist"].search(
         [("x_studio_project_price_list", "=", True)], limit=1
     )
@@ -511,7 +511,7 @@ for line in record.order_line:
       sub_local_count += 1
       pr_lines3.append([0,0,{
           'x_studio_many2one_field_WAqP4':line.product_id.id,
-          'x_studio_quantity':line.product_uom_qty,
+          'quantity':line.product_uom_qty,
           'x_studio_requested_by':uid,
           'x_studio_sales_line_id':line.id}])
       
@@ -521,7 +521,7 @@ for line in record.order_line:
       sub_import_count += 1
       pr_lines4.append([0,0,{
           'x_studio_many2one_field_WAqP4':line.product_id.id,
-          'x_studio_quantity':line.product_uom_qty,
+          'quantity':line.product_uom_qty,
           'x_studio_requested_by':uid,
           'x_studio_sales_line_id':line.id}])
           
@@ -534,7 +534,7 @@ for line in record.order_line:
       local_count += 1
       pr_lines.append([0,0,{
           'x_studio_many2one_field_WAqP4':line.product_id.id,
-          'x_studio_quantity':line.x_studio_inventory_shortage,
+          'quantity':line.x_studio_inventory_shortage,
           'x_studio_requested_by':uid,
           'x_studio_sales_line_id':line.id}])
       
@@ -544,7 +544,7 @@ for line in record.order_line:
       import_count += 1
       pr_lines2.append([0,0,{
           'x_studio_many2one_field_WAqP4':line.product_id.id,
-          'x_studio_quantity':line.x_studio_inventory_shortage,
+          'quantity':line.x_studio_inventory_shortage,
           'x_studio_requested_by':uid,
           'x_studio_sales_line_id':line.id}])
           
@@ -736,12 +736,12 @@ if project:
   </details>
 - **PROJ - Validate Start date and End date for Project SOs** (`sa_f5_sale_order_proj_validate_start_date_and_end_date_for_project_sos`, type `code`)
   - Function: For Project orders, raises an error if the Contract Start Date is later than the Contract End Date (compared as strings).
-  - Depends on: `model sale.order` (sale), `sale.order.x_studio_project_end_date`, `sale.order.x_studio_project_start_date`, `sale.order.x_studio_quotation_type`
+  - Depends on: `model sale.order` (sale), `sale.order.x_studio_project_end_date`, `sale.order.x_studio_project_start_date`, `sale.order.quotation_type`
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (6 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == "Project":
+if record.quotation_type == "Project":
     start_date = str(record.x_studio_project_start_date)
     end_date = str(record.x_studio_project_end_date)
 
@@ -753,12 +753,12 @@ if record.x_studio_quotation_type == "Project":
   </details>
 - **Project Sales Order Seq.No** (`server_action_2573_project_sales_order_seq_no`, type `code`)
   - Function: For Project orders, appends '_PRJ' to the order number (no guard against repeated suffixes).
-  - Depends on: `model ir.sequence` (base), `model sale.order` (sale), `sale.order.name` (sale), `sale.order.x_studio_quotation_type`
+  - Depends on: `model ir.sequence` (base), `model sale.order` (sale), `sale.order.name` (sale), `sale.order.quotation_type`
   - Used by: `automation BugFix-Sales.base_automation_257_jin_project_sales_order_seq_no`
   <details><summary>code (4 lines)</summary>
 
 ```python
-if record.x_studio_quotation_type == "Project":
+if record.quotation_type == "Project":
     # seq = env['ir.sequence'].next_by_code('project.sale.order.seq')
     # record.write({'name': seq})
     record.write({"name": record.name + "_PRJ"})
@@ -766,7 +766,7 @@ if record.x_studio_quotation_type == "Project":
   </details>
 - **Project Sales Order Seq.No - 2** (`server_action_2574_project_sales_order_seq_no_2`, type `code`)
   - Function: Keeps the order number in sync with quotation type: adds a single '_PRJ' suffix for Project orders and removes it otherwise.
-  - Depends on: `model sale.order` (sale), `sale.order.name` (sale), `sale.order.x_studio_quotation_type`
+  - Depends on: `model sale.order` (sale), `sale.order.name` (sale), `sale.order.quotation_type`
   - Used by: `automation BugFix-Sales.base_automation_258_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro`
   <details><summary>code (8 lines)</summary>
 
@@ -776,7 +776,7 @@ if record.id:
     original_name = (record.name or "").replace("_PRJ", "")
     new_name = (
         original_name + "_PRJ"
-        if record.x_studio_quotation_type == "Project"
+        if record.quotation_type == "Project"
         else original_name
     )
     if record.name != new_name:
@@ -785,7 +785,7 @@ if record.id:
   </details>
 - **Project Sales Order Seq.No - 3** (`server_action_2575_project_sales_order_seq_no_3`, type `code`)
   - Function: Keeps the order number in sync with quotation type: adds one '_PRJ' suffix for Project orders and removes it otherwise. Not referenced by any automation in this repo.
-  - Depends on: `model sale.order` (sale), `sale.order.name` (sale), `sale.order.x_studio_quotation_type`
+  - Depends on: `model sale.order` (sale), `sale.order.name` (sale), `sale.order.quotation_type`
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (8 lines)</summary>
 
@@ -795,7 +795,7 @@ if record.id:
     original_name = (record.name or "").replace("_PRJ", "")
     new_name = (
         original_name + "_PRJ"
-        if record.x_studio_quotation_type == "Project"
+        if record.quotation_type == "Project"
         else original_name
     )
     if record.name != new_name:
@@ -804,28 +804,28 @@ if record.id:
   </details>
 - **RR - Auto Generate Quotation Type for Projct SOs** (`server_action_2113_rr_auto_generate_quotation_type_for_projct_sos`, type `code`)
   - Function: Unconditionally sets the order's quotation type to 'Project' (the task check is commented out). Not referenced by any automation in this repo.
-  - Depends on: `model sale.order` (sale), `sale.order.task_id` (industry_fsm_sale), `sale.order.x_studio_quotation_type`
+  - Depends on: `model sale.order` (sale), `sale.order.task_id` (industry_fsm_sale), `sale.order.quotation_type`
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (2 lines)</summary>
 
 ```python
 # if record.task_id == True:
-record["x_studio_quotation_type"] = "Project"
+record["quotation_type"] = "Project"
 ```
   </details>
 - **RR - Auto Generate Quotation Type for Project SOs** (`sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos`, type `code`)
   - Function: For orders linked to a project task, sets quotation type to 'Repair' (repair project) or the project's quotation type, and copies project group, analytic account and contract start/end dates from the project's original SO. The warehouse copy never runs (compares a record to True).
-  - Depends on: `model project.task` (project), `model sale.order` (sale), `sale.order.task_id` (industry_fsm_sale), `sale.order.x_studio_project_end_date`, `sale.order.x_studio_project_group`<details><summary>+3 more</summary>`sale.order.x_studio_project_no`, `sale.order.x_studio_project_start_date`, `sale.order.x_studio_quotation_type`</details>
+  - Depends on: `model project.task` (project), `model sale.order` (sale), `sale.order.task_id` (industry_fsm_sale), `sale.order.x_studio_project_end_date`, `sale.order.x_studio_project_group`<details><summary>+3 more</summary>`sale.order.x_studio_project_no`, `sale.order.x_studio_project_start_date`, `sale.order.quotation_type`</details>
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (16 lines)</summary>
 
 ```python
 if record.task_id != False:
     if record.x_studio_project_no.x_studio_repair_project == True:
-        record["x_studio_quotation_type"] = "Repair"
+        record["quotation_type"] = "Repair"
     else:
-        record["x_studio_quotation_type"] = (
-            record.x_studio_project_no.x_studio_quotation_type
+        record["quotation_type"] = (
+            record.x_studio_project_no.quotation_type
         )
 
     record["x_studio_project_group"] = record.x_studio_project_no.x_studio_project_group
@@ -848,14 +848,14 @@ if record.task_id != False:
   </details>
 - **RR - Auto Generate Quotation Type for Project SOs - 2** (`sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos_2`, type `code`)
   - Function: For orders linked to a project task, copies the project's quotation type, project group, analytic account, and the original SO's contract start/end dates and warehouse onto the order.
-  - Depends on: `model project.task` (project), `model sale.order` (sale), `sale.order.task_id` (industry_fsm_sale), `sale.order.x_studio_project_end_date`, `sale.order.x_studio_project_group`<details><summary>+3 more</summary>`sale.order.x_studio_project_no`, `sale.order.x_studio_project_start_date`, `sale.order.x_studio_quotation_type`</details>
+  - Depends on: `model project.task` (project), `model sale.order` (sale), `sale.order.task_id` (industry_fsm_sale), `sale.order.x_studio_project_end_date`, `sale.order.x_studio_project_group`<details><summary>+3 more</summary>`sale.order.x_studio_project_no`, `sale.order.x_studio_project_start_date`, `sale.order.quotation_type`</details>
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (10 lines)</summary>
 
 ```python
 if record.task_id != False:
-    record["x_studio_quotation_type"] = (
-        record.x_studio_project_no.x_studio_quotation_type
+    record["quotation_type"] = (
+        record.x_studio_project_no.quotation_type
     )
     record["x_studio_project_group"] = record.x_studio_project_no.x_studio_project_group
     record["analytic_account_id"] = (
@@ -875,7 +875,7 @@ if record.task_id != False:
   </details>
 - **RR - Auto Generate Quotation Type for Repair SOs** (`sa_f5_sale_order_rr_auto_generate_quotation_type_for_repair_sos`, type `code`)
   - Function: Sets quotation type to 'Repair' and copies the customer's payment method to the order when the order is linked to a task in a repair project (or its project is a repair project).
-  - Depends on: `model project.task` (project), `model sale.order` (sale), `sale.order.partner_id` (sale), `sale.order.x_studio_order_payment_method`, `sale.order.x_studio_project_no`<details><summary>+1 more</summary>`sale.order.x_studio_quotation_type`</details>
+  - Depends on: `model project.task` (project), `model sale.order` (sale), `sale.order.partner_id` (sale), `sale.order.x_studio_order_payment_method`, `sale.order.x_studio_project_no`<details><summary>+1 more</summary>`sale.order.quotation_type`</details>
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (12 lines)</summary>
 
@@ -890,7 +890,7 @@ if record.id:
         limit=1,
     )
     if task:
-        record["x_studio_quotation_type"] = "Repair"
+        record["quotation_type"] = "Repair"
         record["x_studio_order_payment_method"] = (
             record.partner_id.x_studio_payment_method
         )
@@ -898,7 +898,7 @@ if record.id:
         record.x_studio_project_no
         and record.x_studio_project_no.x_studio_repair_project == True
     ):
-        record["x_studio_quotation_type"] = "Repair"
+        record["quotation_type"] = "Repair"
         record["x_studio_order_payment_method"] = (
             record.partner_id.x_studio_payment_method
         )
@@ -1059,7 +1059,7 @@ raise UserError(desc)
   </details>
 - **RR - RUG Approval** (`server_action_1981_rr_rug_approval`, type `object_write`)
   - Function: Sets RUG Approved to 'Yes' on the (Repair) sales order. Not referenced by any parent action in this repo.
-  - Depends on: `model sale.order` (sale), `sale.order.x_studio_rug_approved`
+  - Depends on: `model sale.order` (sale), `sale.order.rug_approved`
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (12 lines)</summary>
 
@@ -1080,7 +1080,7 @@ raise UserError(desc)
   </details>
 - **RR - RUG Approval Request Sent** (`server_action_1983_rr_rug_approval_request_sent`, type `object_write`)
   - Function: Sets RUG Request Sent to 'Yes' on the sales order; step of 'RR - Request RUG Approval'.
-  - Depends on: `model sale.order` (sale), `sale.order.x_studio_rug_request_sent`
+  - Depends on: `model sale.order` (sale), `sale.order.rug_request_sent`
   - Used by: `server action BugFix-Sales.server_action_1980_rr_request_rug_approval`
   <details><summary>code (12 lines)</summary>
 
@@ -1232,13 +1232,13 @@ if record.id:
   </details>
 - **RR - Track Lock Status** (`sa_f5_sale_order_rr_track_lock_status`, type `code`)
   - Function: For Repair orders in Locked (done) state, marks the order Locked, clears Unlocked and syncs the Re-estimate Count from the latest re-estimated line; writes only when something differs.
-  - Depends on: `model sale.order.line` (sale), `model sale.order` (sale), `sale.order.state` (sale), `sale.order.x_studio_locked`, `sale.order.x_studio_quotation_type`<details><summary>+2 more</summary>`sale.order.x_studio_re_estimate_count`, `sale.order.x_studio_unlocked`</details>
+  - Depends on: `model sale.order.line` (sale), `model sale.order` (sale), `sale.order.state` (sale), `sale.order.x_studio_locked`, `sale.order.quotation_type`<details><summary>+2 more</summary>`sale.order.re_estimate_count`, `sale.order.x_studio_unlocked`</details>
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (14 lines)</summary>
 
 ```python
 # fix_repair:idempotent-v1
-if record.x_studio_quotation_type == "Repair" and record.state == "done":
+if record.quotation_type == "Repair" and record.state == "done":
     re_line = (
         env["sale.order.line"]
         .sudo()
@@ -1252,27 +1252,27 @@ if record.x_studio_quotation_type == "Repair" and record.state == "done":
     if (
         not record.x_studio_locked
         or record.x_studio_unlocked
-        or record.x_studio_re_estimate_count != target_count
+        or record.re_estimate_count != target_count
     ):
         record.write(
             {
                 "x_studio_locked": True,
                 "x_studio_unlocked": False,
-                "x_studio_re_estimate_count": target_count,
+                "re_estimate_count": target_count,
             }
         )
 ```
   </details>
 - **RR - Track Lock Status - 2** (`sa_f5_sale_order_rr_track_lock_status_2`, type `code`)
   - Function: For Repair orders back in Sales Order state that are flagged Locked, clears Locked and sets Unlocked (i.e. order was unlocked).
-  - Depends on: `model sale.order` (sale), `sale.order.state` (sale), `sale.order.x_studio_locked`, `sale.order.x_studio_quotation_type`, `sale.order.x_studio_unlocked`
+  - Depends on: `model sale.order` (sale), `sale.order.state` (sale), `sale.order.x_studio_locked`, `sale.order.quotation_type`, `sale.order.x_studio_unlocked`
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (5 lines)</summary>
 
 ```python
 # fix_repair:idempotent-v1
 if (
-    record.x_studio_quotation_type == "Repair"
+    record.quotation_type == "Repair"
     and record.state == "sale"
     and record.x_studio_locked
 ):
@@ -1281,13 +1281,13 @@ if (
   </details>
 - **RR - Track Lock Status - 4** (`server_action_2253_rr_track_lock_status_4`, type `code`)
   - Function: For Repair orders in Locked state, sets Locked, clears Unlocked and syncs the Re-estimate Count from the latest re-estimated line (writes only on change). Not referenced in this repo.
-  - Depends on: `model sale.order.line` (sale), `model sale.order` (sale), `sale.order.state` (sale), `sale.order.x_studio_locked`, `sale.order.x_studio_quotation_type`<details><summary>+2 more</summary>`sale.order.x_studio_re_estimate_count`, `sale.order.x_studio_unlocked`</details>
+  - Depends on: `model sale.order.line` (sale), `model sale.order` (sale), `sale.order.state` (sale), `sale.order.x_studio_locked`, `sale.order.quotation_type`<details><summary>+2 more</summary>`sale.order.re_estimate_count`, `sale.order.x_studio_unlocked`</details>
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (14 lines)</summary>
 
 ```python
 # fix_repair:idempotent-v1
-if record.x_studio_quotation_type == "Repair" and record.state == "done":
+if record.quotation_type == "Repair" and record.state == "done":
     re_line = (
         env["sale.order.line"]
         .sudo()
@@ -1301,13 +1301,13 @@ if record.x_studio_quotation_type == "Repair" and record.state == "done":
     if (
         not record.x_studio_locked
         or record.x_studio_unlocked
-        or record.x_studio_re_estimate_count != target_count
+        or record.re_estimate_count != target_count
     ):
         record.write(
             {
                 "x_studio_locked": True,
                 "x_studio_unlocked": False,
-                "x_studio_re_estimate_count": target_count,
+                "re_estimate_count": target_count,
             }
         )
 ```
@@ -1419,7 +1419,7 @@ if record.x_studio_quotation_type == "Repair" and record.state == "done":
   </details>
 - **SLS - Create Customer Payment** (`server_action_2341_sls_create_customer_payment`, type `code`)
   - Function: Button action creating a draft customer payment for the SO in the 'Advance Payment' (or 'Advance Payment - Repairs') journal: amount is the unpaid balance, or for a first Repair payment the company Advance Payment %; then opens it. Gated by an approval rule.
-  - Depends on: `model account.journal` (account), `model account.payment` (account), `model res.company` (base), `model sale.order` (sale), `sale.order.amount_total` (sale)<details><summary>+6 more</summary>`sale.order.company_id` (sale), `sale.order.partner_id` (sale), `sale.order.x_studio_customer_payment_method`, `sale.order.x_studio_order_payment_method`, `sale.order.x_studio_project_no`, `sale.order.x_studio_quotation_type`</details>
+  - Depends on: `model account.journal` (account), `model account.payment` (account), `model res.company` (base), `model sale.order` (sale), `sale.order.amount_total` (sale)<details><summary>+6 more</summary>`sale.order.company_id` (sale), `sale.order.partner_id` (sale), `sale.order.x_studio_customer_payment_method`, `sale.order.x_studio_order_payment_method`, `sale.order.x_studio_project_no`, `sale.order.quotation_type`</details>
   - Used by: `approval rule BugFix-Sales.ar_final_sales_order_sls_create_customer_payment_user_types_internal_`, `view BugFix-Sales.ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3`
   <details><summary>code (106 lines)</summary>
 
@@ -1436,7 +1436,7 @@ if record.id:
 
     company = env["res.company"].browse(company_id)
 
-    if record.x_studio_quotation_type == "Repair":
+    if record.quotation_type == "Repair":
         journal = env["account.journal"].search(
             [
                 ("name", "=", "Advance Payment - Repairs"),
@@ -1451,7 +1451,7 @@ if record.id:
             )
 
         payment = env["account.payment"].search(
-            [("x_studio_sales_order", "=", record.id), ("state", "!=", "cancel")]
+            [("sales_order", "=", record.id), ("state", "!=", "cancel")]
         )
 
         if payment:
@@ -1479,7 +1479,7 @@ if record.id:
             )
 
         payment = env["account.payment"].search(
-            [("x_studio_sales_order", "=", record.id), ("state", "!=", "cancel")]
+            [("sales_order", "=", record.id), ("state", "!=", "cancel")]
         )
 
         if payment:
@@ -1496,7 +1496,7 @@ if record.id:
 
     customer_payment = env["account.payment"].create(
         {
-            "x_studio_sales_order": record.id,
+            "sales_order": record.id,
             "x_studio_project_no_1": record.x_studio_project_no.id
             if record.x_studio_project_no
             else False,
@@ -2328,7 +2328,7 @@ if record.x_studio_bank_guarantee_request_sent == True:
 ```python
 if record.partner_id.customer_rank > 0:
     if record.partner_id.x_studio_customer_group.x_studio_group_type != "General":
-        if record.partner_id.x_studio_mandatory_bank_guarantee == False:
+        if record.partner_id.mandatory_bank_guarantee == False:
             if (
                 record.partner_id.x_studio_expiry_date
                 and record.partner_id.x_studio_expiry_date < datetime.date.today()
@@ -2522,7 +2522,7 @@ action = {
 if record.partner_id.customer_rank > 0:
     if record.state == "done":
         if record.partner_id.x_studio_customer_group.x_studio_group_type != "General":
-            if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+            if record.partner_id.mandatory_bank_guarantee == True:
                 if (
                     record.partner_id.x_studio_expiry_date
                     and record.partner_id.x_studio_expiry_date < datetime.date.today()
@@ -2537,12 +2537,12 @@ if record.partner_id.customer_rank > 0:
                     )
 
                 else:
-                    # if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
+                    # if record.partner_id.mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
 
                     if record.partner_id.x_studio_bank_guarantee_amount < (
                         record.partner_invoice_id.credit + record.amount_total
                     ):
-                        # raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+                        # raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
 
                         raise UserError(
                             "Customer's balance exceeds the bank guarantee amount."
@@ -2578,7 +2578,7 @@ if record.partner_id.customer_rank > 0:
                     if record.partner_id.x_studio_bank_guarantee_amount < (
                         record.partner_invoice_id.credit + record.amount_total
                     ):
-                        # records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+                        # records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
 
                         records.message_post(
                             body="Customer's balance exceeds the bank guarantee amount."
@@ -2608,11 +2608,11 @@ if record.partner_id.customer_rank > 0:
 ```python
 if record.state == "done":
     if record.partner_id.x_studio_customer_group.x_studio_group_type != "General":
-        if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+        if record.partner_id.mandatory_bank_guarantee == True:
             if record.partner_id.x_studio_expiry_date < datetime.date.today():
                 raise UserError("Customer's bank guarantee is expired.")
             else:
-                if record.partner_id.x_studio_mandatory_bank_guarantee < (
+                if record.partner_id.mandatory_bank_guarantee < (
                     record.partner_invoice_id.credit + record.amount_total
                 ):
                     raise UserError(
@@ -2620,7 +2620,7 @@ if record.state == "done":
                         + "\n"
                         + "Bank guarantee limit: "
                         + "\n"
-                        + str(record.partner_id.x_studio_mandatory_bank_guarantee)
+                        + str(record.partner_id.mandatory_bank_guarantee)
                         + "\n"
                         + "New balance: "
                         + "\n"
@@ -2635,7 +2635,7 @@ if record.state == "done":
                     + str(record.partner_id.x_studio_expiry_date)
                 )
             else:
-                if record.partner_id.x_studio_mandatory_bank_guarantee < (
+                if record.partner_id.mandatory_bank_guarantee < (
                     record.partner_invoice_id.credit + record.amount_total
                 ):
                     records.message_post(
@@ -2643,7 +2643,7 @@ if record.state == "done":
                         + "\n"
                         + "Bank guarantee limit: "
                         + "\n"
-                        + str(record.partner_id.x_studio_mandatory_bank_guarantee)
+                        + str(record.partner_id.mandatory_bank_guarantee)
                         + "\n"
                         + "New balance: "
                         + "\n"
@@ -2709,7 +2709,7 @@ if record.id:
 ```python
 if record.partner_id.customer_rank > 0:
     if record.partner_id.x_studio_customer_group.x_studio_group_type != "General":
-        if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+        if record.partner_id.mandatory_bank_guarantee == True:
             if (
                 record.partner_id.x_studio_expiry_date
                 and record.partner_id.x_studio_expiry_date < datetime.date.today()
@@ -2819,16 +2819,16 @@ if record.create_uid:
 | Name | Record name | State | Function | Depends on | Used by |
 |---|---|---|---|---|---|
 | JIN-Project Sales Order Seq.No | `base_automation_257_jin_project_sales_order_seq_no` |  | When a record is created or updated on Sales Order, runs _Project Sales Order Seq.No_. | `model sale.order` (sale)<br>`sale.order.create_date` (sale)<br>`server action BugFix-Sales.server_action_2573_project_sales_order_seq_no` |  |
-| JIN-Project Sales Order Seq.No (Maintain Separate Nos for Project SOs On Create) | `base_automation_258_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro` |  | When a watched field changes in the form on Sales Order, runs _Project Sales Order Seq.No - 2_. | `model sale.order` (sale)<br>`sale.order.x_studio_quotation_type`<br>`server action BugFix-Sales.server_action_2574_project_sales_order_seq_no_2` |  |
+| JIN-Project Sales Order Seq.No (Maintain Separate Nos for Project SOs On Create) | `base_automation_258_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro` |  | When a watched field changes in the form on Sales Order, runs _Project Sales Order Seq.No - 2_. | `model sale.order` (sale)<br>`sale.order.quotation_type`<br>`server action BugFix-Sales.server_action_2574_project_sales_order_seq_no_2` |  |
 | JIN-Project Sales Order Seq.No (Maintain Separate Nos for Project SOs On Update) | `base_automation_259_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro` | archived | When a record is created or updated on Sales Order, runs nothing (no action linked). **Archived — does not run.** | `model sale.order` (sale) |  |
-| PROJ - Apply Project Price List | `base_automation_341_proj_apply_project_price_list` |  | When a watched field changes in the form on Sales Order, runs _Execute Code_. | `model sale.order` (sale)<br>`sale.order.x_studio_quotation_type`<br>`server action BugFix-Sales.server_action_2896_proj_apply_project_price_list` |  |
+| PROJ - Apply Project Price List | `base_automation_341_proj_apply_project_price_list` |  | When a watched field changes in the form on Sales Order, runs _Execute Code_. | `model sale.order` (sale)<br>`sale.order.quotation_type`<br>`server action BugFix-Sales.server_action_2896_proj_apply_project_price_list` |  |
 | PROJ - Validate Start date and End date for Project SOs | `base_automation_260_proj_validate_start_date_and_end_date_for_project_sos` |  | When a watched field changes in the form on Sales Order and `[["task_id","!=",False]]`, runs _Execute Code_. | `model sale.order` (sale)<br>`sale.order.task_id` (industry_fsm_sale)<br>`sale.order.x_studio_project_end_date`<br>`sale.order.x_studio_project_start_date`<br>`server action BugFix-Sales.server_action_2576_proj_validate_start_date_and_end_date_for_project_sos` |  |
 | RR - Auto Generate Quotation Type for Project SOs | `base_automation_186_rr_auto_generate_quotation_type_for_project_sos` |  | When a record is created or updated on Sales Order and `[["task_id","!=",False]]`, runs _Execute Code_. | `model sale.order` (sale)<br>`sale.order.task_id` (industry_fsm_sale)<br>`server action BugFix-Sales.server_action_2114_rr_auto_generate_quotation_type_for_project_sos` |  |
 | RR - Auto Generate Quotation Type for Project SOs - 2 | `base_automation_187_rr_auto_generate_quotation_type_for_project_sos_2` |  | When a watched field changes in the form on Sales Order and `[["task_id","!=",False]]`, runs _Execute Code_. | `model sale.order` (sale)<br>`sale.order.task_id` (industry_fsm_sale)<br>`server action BugFix-Sales.server_action_2117_rr_auto_generate_quotation_type_for_project_sos_2` |  |
 | RR - Auto Generate Quotation Type for Repair SOs | `base_automation_176_rr_auto_generate_quotation_type_for_repair_sos` |  | When a record is created or updated on Sales Order, runs _Execute Code_. | `model sale.order` (sale)<br>`sale.order.create_date` (sale)<br>`server action BugFix-Sales.server_action_1995_rr_auto_generate_quotation_type_for_repair_sos` |  |
 | RR - Track Lock Status | `base_automation_202_rr_track_lock_status` |  | When a record is created or updated on Sales Order, runs _Execute Code_. | `model sale.order` (sale)<br>`server action BugFix-Sales.server_action_2250_rr_track_lock_status` |  |
 | RR - Track Lock Status - 2 | `base_automation_203_rr_track_lock_status_2` |  | When a record is created or updated on Sales Order, runs _Execute Code_. | `model sale.order` (sale)<br>`server action BugFix-Sales.server_action_2251_rr_track_lock_status_2` |  |
-| RR - Track Lock Status - 4 | `base_automation_205_rr_track_lock_status_4` | archived | When a record is updated on Sales Order and `['&', '&', '&', ('state', '=', 'sale'), ('x_studio_locked', '=', True), ('x_studio_quotation_type', '=', 'Repair'), ('x_studio_unlocked', '=', True)]`, runs nothing (no action linked). **Archived — does not run.** | `model sale.order` (sale)<br>`sale.order.state` (sale)<br>`sale.order.x_studio_locked`<br>`sale.order.x_studio_quotation_type`<br>`sale.order.x_studio_unlocked` |  |
+| RR - Track Lock Status - 4 | `base_automation_205_rr_track_lock_status_4` | archived | When a record is updated on Sales Order and `['&', '&', '&', ('state', '=', 'sale'), ('x_studio_locked', '=', True), ('quotation_type', '=', 'Repair'), ('x_studio_unlocked', '=', True)]`, runs nothing (no action linked). **Archived — does not run.** | `model sale.order` (sale)<br>`sale.order.state` (sale)<br>`sale.order.x_studio_locked`<br>`sale.order.quotation_type`<br>`sale.order.x_studio_unlocked` |  |
 | SLS - Pass Customer PM to SO | `base_automation_79_sls_pass_customer_pm_to_so` |  | When a watched field changes in the form on Sales Order and `[]`, runs _SLS - Pass Customer PM to SO_. | `model sale.order` (sale)<br>`sale.order.partner_id` (sale)<br>`server action BugFix-Sales.server_action_1430_sls_pass_customer_pm_to_so` |  |
 | SLS - Validate Bank Guarantee in SO Confirm | `base_automation_147_sls_validate_bank_guarantee_in_so_confirm` | archived | When a record is updated on Sales Order, runs _SLS - Validate Bank Guarantee in SO Confirm_. **Archived — does not run.** | `model sale.order` (sale)<br>`server action BugFix-Sales.server_action_1783_sls_validate_bank_guarantee_in_so_confirm` |  |
 | SLS - Validate Order Payment Type in SO | `base_automation_80_sls_validate_order_payment_type_in_so` |  | When a watched field changes in the form on Sales Order, runs _SLS - Validate Order Payment Type in SO_. | `model sale.order` (sale)<br>`sale.order.x_studio_order_payment_method`<br>`server action BugFix-Sales.server_action_1434_sls_validate_order_payment_type_in_so` |  |
@@ -2852,10 +2852,10 @@ if record.create_uid:
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Project Sales Orders | `aw_f4_sale_order_project_sales_orders` | Opens **Sales Order** records (kanban,tree,form,calendar,pivot,graph,activity), filtered to `[('x_studio_quotation_type', '=', 'Project')]`. | `model sale.order` (sale)<br>`sale.order.x_studio_quotation_type` | `menu BugFix-Sales.menu_f6_project_sales_orders` |
-| Project Sales Orders | `act_window_2338_project_sales_orders` | Opens **Sales Order** records (kanban,tree,form,calendar,pivot,graph,activity), filtered to `[('x_studio_quotation_type', '=', 'Project')]`. | `model sale.order` (sale)<br>`sale.order.x_studio_quotation_type` | `menu BugFix-Sales.menu_1089_project_sales_orders` |
-| Repair Sales Order List | `aw_f4_sale_order_repair_sales_order_list` | Opens **Sales Order** records (kanban,tree,form,calendar,pivot,graph,activity), filtered to `[('x_studio_quotation_type', '=', 'Repair')]`. | `model sale.order` (sale)<br>`sale.order.x_studio_quotation_type` | `menu BugFix-Sales.menu_f6_repair_sales_order_list` |
-| Repair Sales Order List | `act_window_2330_repair_sales_order_list` | Opens **Sales Order** records (kanban,tree,form,calendar,pivot,graph,activity), filtered to `[('x_studio_quotation_type', '=', 'Repair')]`. | `model sale.order` (sale)<br>`sale.order.x_studio_quotation_type` | `menu BugFix-Sales.menu_1088_repair_sales_order_list` |
+| Project Sales Orders | `aw_f4_sale_order_project_sales_orders` | Opens **Sales Order** records (kanban,tree,form,calendar,pivot,graph,activity), filtered to `[('quotation_type', '=', 'Project')]`. | `model sale.order` (sale)<br>`sale.order.quotation_type` | `menu BugFix-Sales.menu_f6_project_sales_orders` |
+| Project Sales Orders | `act_window_2338_project_sales_orders` | Opens **Sales Order** records (kanban,tree,form,calendar,pivot,graph,activity), filtered to `[('quotation_type', '=', 'Project')]`. | `model sale.order` (sale)<br>`sale.order.quotation_type` | `menu BugFix-Sales.menu_1089_project_sales_orders` |
+| Repair Sales Order List | `aw_f4_sale_order_repair_sales_order_list` | Opens **Sales Order** records (kanban,tree,form,calendar,pivot,graph,activity), filtered to `[('quotation_type', '=', 'Repair')]`. | `model sale.order` (sale)<br>`sale.order.quotation_type` | `menu BugFix-Sales.menu_f6_repair_sales_order_list` |
+| Repair Sales Order List | `act_window_2330_repair_sales_order_list` | Opens **Sales Order** records (kanban,tree,form,calendar,pivot,graph,activity), filtered to `[('quotation_type', '=', 'Repair')]`. | `model sale.order` (sale)<br>`sale.order.quotation_type` | `menu BugFix-Sales.menu_1088_repair_sales_order_list` |
 | SS | `aw_f4_sale_order_ss` | Opens **Sales Order** records (kanban,tree,form,calendar,pivot,graph,activity). | `model sale.order` (sale) |  |
 | SS | `act_window_2439_ss` | Opens **Sales Order** records (kanban,tree,form,calendar,pivot,graph,activity). | `model sale.order` (sale) | `menu BugFix-Studio-Misc.menu_f6r2_test_app_05_ss` (BugFix-Studio-Misc) |
 | Sales Orders | `aw_f4_sale_order_sales_orders` | Opens **Sales Order** records (tree,form), filtered to `[('task_id', '=', active_id)]`. | `model sale.order` (sale)<br>`sale.order.task_id` (industry_fsm_sale) |  |
@@ -2869,12 +2869,12 @@ if record.create_uid:
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Odoo Studio: sale.order.form customization | `ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` | form | set create=false on `//form[1]`; inside `//sheet`: add field x_studio_overdue, field x_studio_overdue_approved, field x_studio_overdue_request_sent, field x_studio_valid_order_lines, field x_studio_clear_free_items, field x_studio_expired; inside `//header`: add button 'Request Overdue Approval', button 'Approve Overdue'; inside `//sheet`: add field x_studio_over_commission, field x_studio_over_commission_approved, field x_studio_over_comm_approval_request_sent; inside `//header`: add button 'Request Over Commission Approval', button 'Approve Over Commission'; inside `//sheet`: add field x_studio_margin_exceed, field x_studio_margin_approved, field x_studio_margin_approval_request_sent; inside `//header`: add button 'Request Insufficient Marginn Approval', button 'Approve Insufficient Margin', button 'Insufficient Margin Details'; inside `//sheet`: add field x_studio_over_credit, field x_studio_credit_limit_approved, field x_studio_approval_request_sent, field x_studio_credit_limit_validation, field x_studio_order_payment_method, field x_studio_grant_temporary_credit, field x_studio_temporary_credit_approved, field x_studio_tem_credit_approval_request_sent … | Sales order form: disables Create and adds the approval-control buttons (request/approve Overdue, Over Commission, Insufficient Margin, Credit Limit, Temporary Credit, Bank Guarantee, Project Item status) plus detail/notification buttons, each shown only when its hidden control flags apply. | `group stock.group_adv_location` (stock)<br>`group uom.group_uom` (uom)<br>`sale.order.is_expired` (sale)<br>`sale.order.line.currency_id` (sale)<br>`sale.order.line.discount` (sale)<details><summary>+141 more</summary>`sale.order.line.invoice_status` (sale)<br>`sale.order.line.name` (sale)<br>`sale.order.line.order_id` (sale)<br>`sale.order.line.price_subtotal` (sale)<br>`sale.order.line.product_id` (sale)<br>`sale.order.line.product_uom_qty` (sale)<br>`sale.order.line.product_uom` (sale)<br>`sale.order.line.qty_delivered` (sale)<br>`sale.order.line.qty_invoiced` (sale)<br>`sale.order.line.qty_to_deliver` (sale_stock)<br>`sale.order.line.qty_to_invoice` (sale)<br>`sale.order.line.route_id` (sale_stock)<br>`sale.order.line.salesman_id` (sale)<br>`sale.order.line.warehouse_id` (sale_stock)<br>`sale.order.line.x_studio_category`<br>`sale.order.line.x_studio_cost_amount_inventory_shortage`<br>`sale.order.line.x_studio_cost_amount_req_qty`<br>`sale.order.line.x_studio_cost_value`<br>`sale.order.line.x_studio_current_onhand`<br>`sale.order.line.x_studio_inventory_shortage`<br>`sale.order.line.x_studio_invt_status`<br>`sale.order.line.x_studio_project_no`<br>`sale.order.line.x_studio_warehouse_id`<br>`sale.order.state` (sale)<br>`sale.order.task_id` (industry_fsm_sale)<br>`sale.order.x_studio_account_mandatory`<br>`sale.order.x_studio_approval_request_sent`<br>`sale.order.x_studio_authorized_repair_user`<br>`sale.order.x_studio_bank_guarantee_approved`<br>`sale.order.x_studio_bank_guarantee_notification`<br>`sale.order.x_studio_bank_guarantee_request_sent`<br>`sale.order.x_studio_bank_guarantee_validation`<br>`sale.order.x_studio_bg_sent`<br>`sale.order.x_studio_budget_created`<br>`sale.order.x_studio_cancelled`<br>`sale.order.x_studio_clear_free_items`<br>`sale.order.x_studio_confirm_validation_1`<br>`sale.order.x_studio_confirm_validation`<br>`sale.order.x_studio_credit_limit_approved`<br>`sale.order.x_studio_credit_limit_validation`<br>`sale.order.x_studio_current_tot_amount_1`<br>`sale.order.x_studio_current_tot_amount`<br>`sale.order.x_studio_cust_total_receivable_1`<br>`sale.order.x_studio_cust_total_receivable`<br>`sale.order.x_studio_customer_bank_guarantee`<br>`sale.order.x_studio_customer_credit_limit`<br>`sale.order.x_studio_customer_payment_method`<br>`sale.order.x_studio_document_1`<br>`sale.order.x_studio_document_2`<br>`sale.order.x_studio_document_3`<br>`sale.order.x_studio_expired`<br>`sale.order.x_studio_expiry_date`<br>`sale.order.x_studio_fsm_done`<br>`sale.order.x_studio_fully_paid`<br>`sale.order.x_studio_grant_temporary_credit`<br>`sale.order.x_studio_guarantee_status`<br>`sale.order.x_studio_image_1`<br>`sale.order.x_studio_image_2`<br>`sale.order.x_studio_image_3`<br>`sale.order.x_studio_inventory_short`<br>`sale.order.x_studio_locked`<br>`sale.order.x_studio_main_project_2`<br>`sale.order.x_studio_main_project_no`<br>`sale.order.x_studio_many2one_field_KjdJ3`<br>`sale.order.x_studio_margin_approval_request_sent`<br>`sale.order.x_studio_margin_approved`<br>`sale.order.x_studio_margin_exceed`<br>`sale.order.x_studio_new_item_from_project`<br>`sale.order.x_studio_one2many_field_ERCBB`<br>`sale.order.x_studio_order_payment_method`<br>`sale.order.x_studio_over_bank_guarantee_amount`<br>`sale.order.x_studio_over_bank_guarantee`<br>`sale.order.x_studio_over_comm_approval_request_sent`<br>`sale.order.x_studio_over_commission_approved`<br>`sale.order.x_studio_over_commission`<br>`sale.order.x_studio_over_credit_amount`<br>`sale.order.x_studio_over_credit`<br>`sale.order.x_studio_overdue_approved`<br>`sale.order.x_studio_overdue_request_sent`<br>`sale.order.x_studio_overdue`<br>`sale.order.x_studio_petty_cash_reimbursement`<br>`sale.order.x_studio_pr_cost_updated`<br>`sale.order.x_studio_pr_created`<br>`sale.order.x_studio_price_not_confirmed`<br>`sale.order.x_studio_proj_budget_status`<br>`sale.order.x_studio_project_budget`<br>`sale.order.x_studio_project_end_date`<br>`sale.order.x_studio_project_group`<br>`sale.order.x_studio_project_item_approved`<br>`sale.order.x_studio_project_item_request_sent`<br>`sale.order.x_studio_project_no`<br>`sale.order.x_studio_project_start_date`<br>`sale.order.x_studio_quotation_type`<br>`sale.order.x_studio_re_estimate_count`<br>`sale.order.x_studio_re_estimate_request_count_1`<br>`sale.order.x_studio_re_estimate_request_sent`<br>`sale.order.x_studio_reject_reason`<br>`sale.order.x_studio_related_information`<br>`sale.order.x_studio_repair_image_01`<br>`sale.order.x_studio_repair_image_02`<br>`sale.order.x_studio_repair_reason`<br>`sale.order.x_studio_repair_validation`<br>`sale.order.x_studio_rug_approved`<br>`sale.order.x_studio_rug_confirmed`<br>`sale.order.x_studio_rug_rejected`<br>`sale.order.x_studio_rug_request_sent`<br>`sale.order.x_studio_sales_order_validity`<br>`sale.order.x_studio_sell_and_win`<br>`sale.order.x_studio_service_item_available`<br>`sale.order.x_studio_sub_contract`<br>`sale.order.x_studio_tem_credit_approval_request_sent`<br>`sale.order.x_studio_temporary_credit_approved`<br>`sale.order.x_studio_total_overdue`<br>`sale.order.x_studio_transfer_inventory_ok`<br>`sale.order.x_studio_unlocked`<br>`sale.order.x_studio_valid_bank_guarantee`<br>`sale.order.x_studio_valid_order_lines_for_projects`<br>`sale.order.x_studio_valid_order_lines_for_update_rfq_cost`<br>`sale.order.x_studio_valid_order_lines`<br>`sale.order.x_studio_valid_transfer`<br>`sale.order.x_studio_warranty_card`<br>`server action BugFix-Sales.server_action_1435_sls_credit_limit_approval_main`<br>`server action BugFix-Sales.server_action_1458_sls_request_credit_limit_approval`<br>`server action BugFix-Sales.server_action_1468_sls_request_temporary_credit_approval`<br>`server action BugFix-Sales.server_action_1470_sls_temporary_credit_approval_main`<br>`server action BugFix-Sales.server_action_1476_sls_request_overdue_approval`<br>`server action BugFix-Sales.server_action_1478_sls_overdue_approval`<br>`server action BugFix-Sales.server_action_1485_sls_request_bank_guarantee_approval`<br>`server action BugFix-Sales.server_action_1487_sls_bank_guarantee_approval_main`<br>`server action BugFix-Sales.server_action_1503_sls_request_over_commission_approval`<br>`server action BugFix-Sales.server_action_1505_sls_over_commission_approval_main`<br>`server action BugFix-Sales.server_action_1513_sls_request_margin_approval`<br>`server action BugFix-Sales.server_action_1515_sls_margin_approval_main`<br>`server action BugFix-Sales.server_action_1517_sls_item_over_margin_details`<br>`server action BugFix-Sales.server_action_1849_sls_view_bank_guarantee_validation`<br>`server action BugFix-Sales.server_action_1850_sls_send_bank_guarantee_notification_main`<br>`server action BugFix-Sales.server_action_1853_sls_view_credit_limit_validation`<br>`server action BugFix-Sales.server_action_2096_rr_insufficient_transfer_inventory_details`<br>`server action BugFix-Sales.server_action_2138_proj_project_item_approval_request_sent_validate`<br>`server action BugFix-Sales.server_action_2341_sls_create_customer_payment`<br>`view sale.view_order_form` (sale)</details> |  |
-| Odoo Studio: sale.order.form customization_button | `ported_odoo_studio_sale_ord_2b440c7b_edb5_4cd8_827e_19fbb95a85a9` | form | set invisible=((x_studio_rug_rejected == False) and ((x_studio_rug_approved == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or (((x_studio_margin_approved == False) and (x_studio_margin_exceed == True)) or (((x_studio_over_commission_approved == False) and (x_studio_over_commission == True)) or (((x_studio_overdue_approved == False) and (x_studio_overdue == True)) or (((x_studio_bank_guarantee_approved != True) and (x_studio_over_bank_guarantee != False)) or (((x_studio_temporary_credit_approved != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_tem_credit_approval_request_sent != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_credit_limit_approved != True) and (x_studio_over_credit != False)) or ((x_studio_new_item_from_project != False) or ((state not in ['sent']) or ((x_studio_valid_order_lines == False) or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((x_studio_transfer_inventory_ok == True) or ((x_studio_expired == True) or ((x_studio_cancelled == True) or (x_studio_clear_free_items == True))))))))))))))))) on `//header/button[@name='action_confirm' and @id='action_confirm']` | Inactive view (archived). Would hide the Confirm button on sales orders unless all approval, validity, credit, bank-guarantee and inventory conditions are met; has no effect while inactive. | `view sale.view_order_form` (sale) |  |
+| Odoo Studio: sale.order.form customization | `ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3` | form | set create=false on `//form[1]`; inside `//sheet`: add field overdue, field x_studio_overdue_approved, field x_studio_overdue_request_sent, field x_studio_valid_order_lines, field x_studio_clear_free_items, field x_studio_expired; inside `//header`: add button 'Request Overdue Approval', button 'Approve Overdue'; inside `//sheet`: add field over_commission, field x_studio_over_commission_approved, field x_studio_over_comm_approval_request_sent; inside `//header`: add button 'Request Over Commission Approval', button 'Approve Over Commission'; inside `//sheet`: add field x_studio_margin_exceed, field x_studio_margin_approved, field x_studio_margin_approval_request_sent; inside `//header`: add button 'Request Insufficient Marginn Approval', button 'Approve Insufficient Margin', button 'Insufficient Margin Details'; inside `//sheet`: add field over_credit, field x_studio_credit_limit_approved, field x_studio_approval_request_sent, field x_studio_credit_limit_validation, field x_studio_order_payment_method, field x_studio_grant_temporary_credit, field x_studio_temporary_credit_approved, field x_studio_tem_credit_approval_request_sent … | Sales order form: disables Create and adds the approval-control buttons (request/approve Overdue, Over Commission, Insufficient Margin, Credit Limit, Temporary Credit, Bank Guarantee, Project Item status) plus detail/notification buttons, each shown only when its hidden control flags apply. | `group stock.group_adv_location` (stock)<br>`group uom.group_uom` (uom)<br>`sale.order.is_expired` (sale)<br>`sale.order.line.currency_id` (sale)<br>`sale.order.line.discount` (sale)<details><summary>+141 more</summary>`sale.order.line.invoice_status` (sale)<br>`sale.order.line.name` (sale)<br>`sale.order.line.order_id` (sale)<br>`sale.order.line.price_subtotal` (sale)<br>`sale.order.line.product_id` (sale)<br>`sale.order.line.product_uom_qty` (sale)<br>`sale.order.line.product_uom` (sale)<br>`sale.order.line.qty_delivered` (sale)<br>`sale.order.line.qty_invoiced` (sale)<br>`sale.order.line.qty_to_deliver` (sale_stock)<br>`sale.order.line.qty_to_invoice` (sale)<br>`sale.order.line.route_id` (sale_stock)<br>`sale.order.line.salesman_id` (sale)<br>`sale.order.line.warehouse_id` (sale_stock)<br>`sale.order.line.x_studio_category`<br>`sale.order.line.x_studio_cost_amount_inventory_shortage`<br>`sale.order.line.x_studio_cost_amount_req_qty`<br>`sale.order.line.x_studio_cost_value`<br>`sale.order.line.x_studio_current_onhand`<br>`sale.order.line.x_studio_inventory_shortage`<br>`sale.order.line.x_studio_invt_status`<br>`sale.order.line.x_studio_project_no`<br>`sale.order.line.x_studio_warehouse_id`<br>`sale.order.state` (sale)<br>`sale.order.task_id` (industry_fsm_sale)<br>`sale.order.x_studio_account_mandatory`<br>`sale.order.x_studio_approval_request_sent`<br>`sale.order.x_studio_authorized_repair_user`<br>`sale.order.x_studio_bank_guarantee_approved`<br>`sale.order.x_studio_bank_guarantee_notification`<br>`sale.order.x_studio_bank_guarantee_request_sent`<br>`sale.order.x_studio_bank_guarantee_validation`<br>`sale.order.x_studio_bg_sent`<br>`sale.order.x_studio_budget_created`<br>`sale.order.cancelled`<br>`sale.order.x_studio_clear_free_items`<br>`sale.order.x_studio_confirm_validation_1`<br>`sale.order.x_studio_confirm_validation`<br>`sale.order.x_studio_credit_limit_approved`<br>`sale.order.x_studio_credit_limit_validation`<br>`sale.order.x_studio_current_tot_amount_1`<br>`sale.order.x_studio_current_tot_amount`<br>`sale.order.x_studio_cust_total_receivable_1`<br>`sale.order.x_studio_cust_total_receivable`<br>`sale.order.x_studio_customer_bank_guarantee`<br>`sale.order.x_studio_customer_credit_limit`<br>`sale.order.x_studio_customer_payment_method`<br>`sale.order.x_studio_document_1`<br>`sale.order.x_studio_document_2`<br>`sale.order.x_studio_document_3`<br>`sale.order.x_studio_expired`<br>`sale.order.x_studio_expiry_date`<br>`sale.order.x_studio_fsm_done`<br>`sale.order.x_studio_fully_paid`<br>`sale.order.x_studio_grant_temporary_credit`<br>`sale.order.guarantee_status`<br>`sale.order.x_studio_image_1`<br>`sale.order.x_studio_image_2`<br>`sale.order.x_studio_image_3`<br>`sale.order.x_studio_inventory_short`<br>`sale.order.x_studio_locked`<br>`sale.order.x_studio_main_project_2`<br>`sale.order.x_studio_main_project_no`<br>`sale.order.x_studio_many2one_field_KjdJ3`<br>`sale.order.x_studio_margin_approval_request_sent`<br>`sale.order.x_studio_margin_approved`<br>`sale.order.x_studio_margin_exceed`<br>`sale.order.x_studio_new_item_from_project`<br>`sale.order.x_studio_one2many_field_ERCBB`<br>`sale.order.x_studio_order_payment_method`<br>`sale.order.over_bank_guarantee_amount`<br>`sale.order.over_bank_guarantee`<br>`sale.order.x_studio_over_comm_approval_request_sent`<br>`sale.order.x_studio_over_commission_approved`<br>`sale.order.over_commission`<br>`sale.order.over_credit_amount`<br>`sale.order.over_credit`<br>`sale.order.x_studio_overdue_approved`<br>`sale.order.x_studio_overdue_request_sent`<br>`sale.order.overdue`<br>`sale.order.x_studio_petty_cash_reimbursement`<br>`sale.order.x_studio_pr_cost_updated`<br>`sale.order.x_studio_pr_created`<br>`sale.order.x_studio_price_not_confirmed`<br>`sale.order.x_studio_proj_budget_status`<br>`sale.order.x_studio_project_budget`<br>`sale.order.x_studio_project_end_date`<br>`sale.order.x_studio_project_group`<br>`sale.order.x_studio_project_item_approved`<br>`sale.order.x_studio_project_item_request_sent`<br>`sale.order.x_studio_project_no`<br>`sale.order.x_studio_project_start_date`<br>`sale.order.quotation_type`<br>`sale.order.re_estimate_count`<br>`sale.order.x_studio_re_estimate_request_count_1`<br>`sale.order.x_studio_re_estimate_request_sent`<br>`sale.order.x_studio_reject_reason`<br>`sale.order.related_information`<br>`sale.order.repair_image_01`<br>`sale.order.repair_image_02`<br>`sale.order.repair_reason`<br>`sale.order.x_studio_repair_validation`<br>`sale.order.rug_approved`<br>`sale.order.rug_confirmed`<br>`sale.order.x_studio_rug_rejected`<br>`sale.order.rug_request_sent`<br>`sale.order.x_studio_sales_order_validity`<br>`sale.order.x_studio_sell_and_win`<br>`sale.order.x_studio_service_item_available`<br>`sale.order.x_studio_sub_contract`<br>`sale.order.x_studio_tem_credit_approval_request_sent`<br>`sale.order.x_studio_temporary_credit_approved`<br>`sale.order.x_studio_total_overdue`<br>`sale.order.x_studio_transfer_inventory_ok`<br>`sale.order.x_studio_unlocked`<br>`sale.order.x_studio_valid_bank_guarantee`<br>`sale.order.x_studio_valid_order_lines_for_projects`<br>`sale.order.x_studio_valid_order_lines_for_update_rfq_cost`<br>`sale.order.x_studio_valid_order_lines`<br>`sale.order.x_studio_valid_transfer`<br>`sale.order.warranty_card`<br>`server action BugFix-Sales.server_action_1435_sls_credit_limit_approval_main`<br>`server action BugFix-Sales.server_action_1458_sls_request_credit_limit_approval`<br>`server action BugFix-Sales.server_action_1468_sls_request_temporary_credit_approval`<br>`server action BugFix-Sales.server_action_1470_sls_temporary_credit_approval_main`<br>`server action BugFix-Sales.server_action_1476_sls_request_overdue_approval`<br>`server action BugFix-Sales.server_action_1478_sls_overdue_approval`<br>`server action BugFix-Sales.server_action_1485_sls_request_bank_guarantee_approval`<br>`server action BugFix-Sales.server_action_1487_sls_bank_guarantee_approval_main`<br>`server action BugFix-Sales.server_action_1503_sls_request_over_commission_approval`<br>`server action BugFix-Sales.server_action_1505_sls_over_commission_approval_main`<br>`server action BugFix-Sales.server_action_1513_sls_request_margin_approval`<br>`server action BugFix-Sales.server_action_1515_sls_margin_approval_main`<br>`server action BugFix-Sales.server_action_1517_sls_item_over_margin_details`<br>`server action BugFix-Sales.server_action_1849_sls_view_bank_guarantee_validation`<br>`server action BugFix-Sales.server_action_1850_sls_send_bank_guarantee_notification_main`<br>`server action BugFix-Sales.server_action_1853_sls_view_credit_limit_validation`<br>`server action BugFix-Sales.server_action_2096_rr_insufficient_transfer_inventory_details`<br>`server action BugFix-Sales.server_action_2138_proj_project_item_approval_request_sent_validate`<br>`server action BugFix-Sales.server_action_2341_sls_create_customer_payment`<br>`view sale.view_order_form` (sale)</details> |  |
+| Odoo Studio: sale.order.form customization_button | `ported_odoo_studio_sale_ord_2b440c7b_edb5_4cd8_827e_19fbb95a85a9` | form | set invisible=((x_studio_rug_rejected == False) and ((rug_approved == False) and (rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or (((x_studio_margin_approved == False) and (x_studio_margin_exceed == True)) or (((x_studio_over_commission_approved == False) and (over_commission == True)) or (((x_studio_overdue_approved == False) and (overdue == True)) or (((x_studio_bank_guarantee_approved != True) and (over_bank_guarantee != False)) or (((x_studio_temporary_credit_approved != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_tem_credit_approval_request_sent != True) and (x_studio_grant_temporary_credit != False)) or (((x_studio_credit_limit_approved != True) and (over_credit != False)) or ((x_studio_new_item_from_project != False) or ((state not in ['sent']) or ((x_studio_valid_order_lines == False) or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or ((x_studio_transfer_inventory_ok == True) or ((x_studio_expired == True) or ((cancelled == True) or (x_studio_clear_free_items == True))))))))))))))))) on `//header/button[@name='action_confirm' and @id='action_confirm']` | Inactive view (archived). Would hide the Confirm button on sales orders unless all approval, validity, credit, bank-guarantee and inventory conditions are met; has no effect while inactive. | `view sale.view_order_form` (sale) |  |
 | Odoo Studio: sale.order.form customization_button_2 | `view_3922_odoo_studio_sale_order_form_customization_button_2_e` | form |  | Inactive, empty view: all its button changes were stripped during migration, so it has no effect. | `view sale.view_order_form` (sale) |  |
 | Odoo Studio: sale.order.pivot customization | `ported_odoo_studio_sale_ord_71749d4c_8fb8_46b0_a187_bfa8977a25fd` | pivot | set display_quantity=true on `//pivot[1]` | Sales order pivot view: turns on display of the record count/quantity measure. | `view sale.view_sale_order_pivot` (sale) |  |
 | Odoo Studio: sale.order.tree (orders) customization | `ported_odoo_studio_sale_ord_42b65c93_ce32_435b_8978_554c017d8d4c` | tree | set create=true on `//tree[1]` | Sales Orders list: explicitly allows the Create button. | `view sale.view_order_tree` (sale) |  |
-| Odoo Studio: sale.order.tree customization | `ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5` | tree | set create=false on `//tree[1]`; after `//tree[1]/field[@name='name']`: add field x_studio_quotation_type; after `//field[@name='date_order']`: add field create_date; set sum=Sum of Total on `//field[@name='amount_total']`; after `//field[@name='invoice_status']`: add field id, xpath, field x_studio_credit_limit_approved, field x_studio_overdue_approved, field x_studio_bank_guarantee_approved, field x_studio_temporary_credit_approved, field x_studio_over_commission_approved, field x_studio_margin_approved, field x_studio_overdue, field x_studio_over_credit, field x_studio_over_bank_guarantee, field x_studio_margin_exceed …; set optional=hide, invisible= on `//field[@name='state']` | Sales order list: disables Create, adds Quotation Type and Creation Date columns, a Total sum, and optional (hidden) columns for each approval and exceed flag (credit, overdue, bank guarantee, temporary credit, commission, margin); Status becomes optional. | `sale.order.x_studio_bank_guarantee_approved`<br>`sale.order.x_studio_credit_limit_approved`<br>`sale.order.x_studio_margin_approved`<br>`sale.order.x_studio_margin_exceed`<br>`sale.order.x_studio_over_bank_guarantee`<details><summary>+8 more</summary>`sale.order.x_studio_over_commission_approved`<br>`sale.order.x_studio_over_commission`<br>`sale.order.x_studio_over_credit`<br>`sale.order.x_studio_overdue_approved`<br>`sale.order.x_studio_overdue`<br>`sale.order.x_studio_quotation_type`<br>`sale.order.x_studio_temporary_credit_approved`<br>`view sale.sale_order_tree` (sale)</details> |  |
+| Odoo Studio: sale.order.tree customization | `ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5` | tree | set create=false on `//tree[1]`; after `//tree[1]/field[@name='name']`: add field quotation_type; after `//field[@name='date_order']`: add field create_date; set sum=Sum of Total on `//field[@name='amount_total']`; after `//field[@name='invoice_status']`: add field id, xpath, field x_studio_credit_limit_approved, field x_studio_overdue_approved, field x_studio_bank_guarantee_approved, field x_studio_temporary_credit_approved, field x_studio_over_commission_approved, field x_studio_margin_approved, field overdue, field over_credit, field over_bank_guarantee, field x_studio_margin_exceed …; set optional=hide, invisible= on `//field[@name='state']` | Sales order list: disables Create, adds Quotation Type and Creation Date columns, a Total sum, and optional (hidden) columns for each approval and exceed flag (credit, overdue, bank guarantee, temporary credit, commission, margin); Status becomes optional. | `sale.order.x_studio_bank_guarantee_approved`<br>`sale.order.x_studio_credit_limit_approved`<br>`sale.order.x_studio_margin_approved`<br>`sale.order.x_studio_margin_exceed`<br>`sale.order.over_bank_guarantee`<details><summary>+8 more</summary>`sale.order.x_studio_over_commission_approved`<br>`sale.order.over_commission`<br>`sale.order.over_credit`<br>`sale.order.x_studio_overdue_approved`<br>`sale.order.overdue`<br>`sale.order.quotation_type`<br>`sale.order.x_studio_temporary_credit_approved`<br>`view sale.sale_order_tree` (sale)</details> |  |
 | Odoo Studio: sale.order.tree customization | `ported_odoo_studio_sale_ord_b4d2d01a_3a8c_4827_885c_7390c53f2113` | tree | set create=true on `//tree[1]` | Quotations list: explicitly allows the Create button. | `view sale.view_quotation_tree_with_onboarding` (sale) |  |
 | sale.order.form.bugfix_sales | `view_order_form_bugfix_sales` | form | after `//field[@name='validity_date']`: add field bugfix_sales_intro_id, field bugfix_sales_conclusion_id; inside `//notebook`: add page 'Document Text' | Sales order form: adds Document Introduction and Document Conclusion selectors after the expiration date, and a 'Document Text' tab where the introduction and conclusion texts can be edited per quotation. | `sale.order.bugfix_sales_conclusion_id`<br>`sale.order.bugfix_sales_conclusion_text`<br>`sale.order.bugfix_sales_intro_id`<br>`sale.order.bugfix_sales_intro_text`<br>`view sale.view_order_form` (sale) |  |
 

@@ -73,9 +73,9 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             return
 
         self.env.cr.execute(
-            "SELECT DISTINCT x_studio_company_id "
+            "SELECT DISTINCT accounting_company_id "
             "FROM x_minimum_sales_margin "
-            "WHERE x_studio_company_id IS NOT NULL"
+            "WHERE accounting_company_id IS NOT NULL"
         )
         already = {row[0] for row in self.env.cr.fetchall()}
         missing = companies.filtered(lambda c: c.id not in already)
@@ -87,13 +87,13 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             self.env.cr.execute(
                 """
                 INSERT INTO x_minimum_sales_margin (
-                    x_name,
+                    name,
                     x_studio_advance_payment_,
                     x_studio_minimum_sales_margin_,
                     x_studio_sales_order_validity,
                     x_studio_last_purchase_price_validity_days,
-                    x_studio_company_id,
-                    x_active,
+                    accounting_company_id,
+                    active,
                     x_studio_active,
                     create_uid,
                     create_date,
@@ -173,7 +173,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         "# bugfix_sales:margin-exceed-computed-v23\n"
         "for record in self:\n"
         "  exceeded = False\n"
-        "  if record.product_id and record.x_studio_quotation_type != 'Project':\n"
+        "  if record.product_id and record.quotation_type != 'Project':\n"
         "    if record.product_uom_qty and record.product_uom_qty > 0:\n"
         "      value_1 = ((record.price_subtotal/record.product_uom_qty) - "
         "(record.price_subtotal*(record.x_studio_commission/100)) - "
@@ -194,7 +194,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         "product_uom_qty,"
         "price_subtotal,"
         "x_studio_commission,"
-        "x_studio_quotation_type"
+        "quotation_type"
     )
 
     _HEADER_MARGIN_EXCEED_DEPENDS = "order_line.x_studio_margin_exceed"
@@ -439,12 +439,12 @@ class MinimumSalesMarginSeed(models.AbstractModel):
                 "Read advance payment % from the current payment company.",
             ),
             # 2897 — PROJ - Update Project Pricelist (product.pricelist);
-            # already had explicit company scoping via x_studio_company_id
+            # already had explicit company scoping via accounting_company_id
             (
                 2897,
                 (
                     "sales_configuration = env['x_minimum_sales_margin'].search("
-                    "[('x_studio_company_id', '=', company.id)],limit=1)"
+                    "[('accounting_company_id', '=', company.id)],limit=1)"
                 ),
                 "sales_configuration = company",
                 "Read last-purchase-price validity from the resolved company.",
@@ -548,7 +548,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         # is safe here.
         keymap = self.env["res.company"]._BUGFIX_SALES_CONFIG
         for row in rows:
-            company = row.x_studio_company_id
+            company = row.accounting_company_id
             if not company:
                 continue
             for fname, (key_base, _ttype, _default) in keymap.items():

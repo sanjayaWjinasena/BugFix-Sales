@@ -11,7 +11,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
       - Down payment (fixed amount)
 
     User doesn't want Down-payment paths available on
-    x_studio_quotation_type == 'Sales' SOs — Project and Repair SOs
+    quotation_type == 'Sales' SOs — Project and Repair SOs
     each have their own invoicing paths and this restriction is
     Sales-only.
 
@@ -38,7 +38,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
         for wizard in self:
             orders = wizard.sale_order_ids
             wizard.bugfix_sales_only_regular = bool(orders) and all(
-                (o.x_studio_quotation_type or "") == "Sales" for o in orders
+                (o.quotation_type or "") == "Sales" for o in orders
             )
 
     @api.model
@@ -54,7 +54,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
         orders = self.env["sale.order"].sudo().browse(active_ids).exists()
         if not orders:
             return res
-        if all((o.x_studio_quotation_type or "") == "Sales" for o in orders):
+        if all((o.quotation_type or "") == "Sales" for o in orders):
             # Force Regular invoice — overrides
             # default_advance_payment_method='percentage' that the grey
             # create_invoice_percentage button passes in context, and

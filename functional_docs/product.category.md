@@ -17,8 +17,8 @@ This repo adds one automation, JIN - Company Id in Product Category, which runs 
 **Server actions (1):**
 
 - **Execute Code** (`server_action_2623_jin_company_id_in_product_category`, type `code`)
-  - Function: Run by an automation on product categories: when the category is still unsaved, sets its Company (`x_studio_company_id`) to the user's currently active company.
-  - Depends on: `model product.category` (product), `model res.company` (base), `product.category.x_studio_company_id` (BugFix-Studio-Misc)
+  - Function: Run by an automation on product categories: when the category is still unsaved, sets its Company (`accounting_company_id`) to the user's currently active company.
+  - Depends on: `model product.category` (product), `model res.company` (base), `product.category.accounting_company_id` (BugFix-Studio-Misc)
   - Used by: `automation BugFix-Sales.base_automation_291_jin_company_id_in_product_category`
   <details><summary>code (5 lines)</summary>
 
@@ -27,7 +27,7 @@ if record.id == False:
     company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
     company = env["res.company"].browse(company_id)
 
-    record["x_studio_company_id"] = company.id
+    record["accounting_company_id"] = company.id
 ```
   </details>
 **Automations (1):**

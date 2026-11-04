@@ -21,14 +21,14 @@ _logger = logging.getLogger(__name__)
 _PORTED_SALE_FIELDS = (
     "x_studio_credit_limit_approved",
     "x_studio_bank_guarantee_approved",
-    "x_studio_over_bank_guarantee",
-    "x_studio_over_bank_guarantee_amount",
+    "over_bank_guarantee",
+    "over_bank_guarantee_amount",
     "x_studio_valid_bank_guarantee",
-    "x_studio_over_credit",
-    "x_studio_over_credit_amount",
-    "x_studio_over_commission",
+    "over_credit",
+    "over_credit_amount",
+    "over_commission",
     "x_studio_over_commission_approved",
-    "x_studio_overdue",
+    "overdue",
     "x_studio_overdue_approved",
     "x_studio_margin_approved",
     "x_studio_margin_exceed",
@@ -45,7 +45,7 @@ _PORTED_SALE_FIELDS = (
     "x_studio_re_estimate_request_sent",
     "x_studio_account_mandatory",
     "x_studio_new_item_from_project",
-    "x_studio_guarantee_status",
+    "guarantee_status",
     "x_studio_inventory_short",
     "x_studio_project_no",
     "x_studio_main_project_no",
@@ -54,11 +54,11 @@ _PORTED_SALE_FIELDS = (
     "x_studio_approval_request_sent",
     "x_studio_authorized_repair_user",
     # v37 — needed by Fix-repair's related= chain on project.task
-    "x_studio_quotation_type",
+    "quotation_type",
     # v38 — RUG-flow gates + re-estimate counter read by Fix-repair
-    "x_studio_rug_approved",
+    "rug_approved",
     "x_studio_rug_rejected",
-    "x_studio_re_estimate_count",
+    "re_estimate_count",
 )
 # Kept in sync with models/res_partner.py (v30 port).
 _PORTED_PARTNER_FIELDS = (
@@ -196,13 +196,13 @@ def patch_sls_validate_mobile_action(env):
 # framework query_insert / query_update — no cr.execute in our code.
 # (model, field, value, label, sequence)
 _FIELD_SELECTIONS = [
-    ("sale.order.line", "x_studio_quotation_type", "Sales", "Sales", 10),
+    ("sale.order.line", "quotation_type", "Sales", "Sales", 10),
     ("sale.order.line", "x_studio_product_status", "Blank", "Blank", 10),
     ("sale.order.line", "x_studio_purch_type", "Local", "Local", 10),
-    ("sale.order.line", "x_studio_quotation_type", "Project", "Project", 1),
+    ("sale.order.line", "quotation_type", "Project", "Project", 1),
     ("sale.order.line", "x_studio_product_status", "New Item", "New Item", 1),
     ("sale.order.line", "x_studio_purch_type", "Import", "Import", 1),
-    ("sale.order.line", "x_studio_quotation_type", "Repair", "Repair", 2),
+    ("sale.order.line", "quotation_type", "Repair", "Repair", 2),
     ("sale.order.line", "x_studio_product_status", "Existing Item", "Existing Item", 2),
 ]
 

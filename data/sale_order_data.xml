@@ -6,9 +6,9 @@
     <field name="state">code</field>
     <field name="code"><![CDATA[if record.task_id != False:
   if record.x_studio_project_no.x_studio_repair_project == True:
-    record['x_studio_quotation_type'] = 'Repair'
+    record['quotation_type'] = 'Repair'
   else:
-    record['x_studio_quotation_type'] = record.x_studio_project_no.x_studio_quotation_type
+    record['quotation_type'] = record.x_studio_project_no.quotation_type
   
   record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
   record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
@@ -33,7 +33,7 @@
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
     <field name="code"><![CDATA[if record.task_id != False:
-  record['x_studio_quotation_type'] = record.x_studio_project_no.x_studio_quotation_type
+  record['quotation_type'] = record.x_studio_project_no.quotation_type
   record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
   record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
   
@@ -63,10 +63,10 @@
         ('project_id.x_studio_repair_project', '=', True)
     ], limit=1)
     if task:
-        record['x_studio_quotation_type'] = 'Repair'
+        record['quotation_type'] = 'Repair'
         record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
     elif record.x_studio_project_no and record.x_studio_project_no.x_studio_repair_project == True:
-        record['x_studio_quotation_type'] = 'Repair'
+        record['quotation_type'] = 'Repair'
         record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
 ]]></field>
     <field name="usage">base_automation</field>
@@ -77,18 +77,18 @@
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
     <field name="code"><![CDATA[# fix_repair:idempotent-v1
-if record.x_studio_quotation_type == 'Repair' and record.state == 'done':
+if record.quotation_type == 'Repair' and record.state == 'done':
   re_line = env['sale.order.line'].sudo().search(
     [('order_id', '=', record.id), ('x_studio_re_estimated', '=', True)],
     limit=1, order='id desc')
   target_count = re_line.x_studio_count_1 if re_line else 0
   if (not record.x_studio_locked
       or record.x_studio_unlocked
-      or record.x_studio_re_estimate_count != target_count):
+      or record.re_estimate_count != target_count):
     record.write({
       'x_studio_locked': True,
       'x_studio_unlocked': False,
-      'x_studio_re_estimate_count': target_count,
+      're_estimate_count': target_count,
     })
 ]]></field>
     <field name="usage">base_automation</field>
@@ -99,7 +99,7 @@ if record.x_studio_quotation_type == 'Repair' and record.state == 'done':
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
     <field name="code"><![CDATA[# fix_repair:idempotent-v1
-if (record.x_studio_quotation_type == 'Repair'
+if (record.quotation_type == 'Repair'
     and record.state == 'sale'
     and record.x_studio_locked):
   record.write({'x_studio_locked': False, 'x_studio_unlocked': True})
@@ -111,7 +111,7 @@ if (record.x_studio_quotation_type == 'Repair'
     <field name="name">PROJ - Apply Project Price List</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
+    <field name="code"><![CDATA[if record.quotation_type == 'Project':
   pricelist = env['product.pricelist'].search([('x_studio_project_price_list', '=', True)], limit=1)
   if pricelist:
     record['pricelist_id'] = pricelist.id
@@ -126,7 +126,7 @@ else:
     <field name="name">PROJ - Validate Start date and End date for Project SOs</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
+    <field name="code"><![CDATA[if record.quotation_type == 'Project':
   start_date = str(record.x_studio_project_start_date) 
   end_date = str(record.x_studio_project_end_date) 
   
@@ -193,10 +193,10 @@ record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_met
         ('project_id.x_studio_repair_project', '=', True)
     ], limit=1)
     if task:
-        record['x_studio_quotation_type'] = 'Repair'
+        record['quotation_type'] = 'Repair'
         record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
     elif record.x_studio_project_no and record.x_studio_project_no.x_studio_repair_project == True:
-        record['x_studio_quotation_type'] = 'Repair'
+        record['quotation_type'] = 'Repair'
         record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
 ]]></field>
   </record>
@@ -208,9 +208,9 @@ record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_met
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.task_id != False:
   if record.x_studio_project_no.x_studio_repair_project == True:
-    record['x_studio_quotation_type'] = 'Repair'
+    record['quotation_type'] = 'Repair'
   else:
-    record['x_studio_quotation_type'] = record.x_studio_project_no.x_studio_quotation_type
+    record['quotation_type'] = record.x_studio_project_no.quotation_type
   
   record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
   record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
@@ -235,7 +235,7 @@ record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_met
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.task_id != False:
-  record['x_studio_quotation_type'] = record.x_studio_project_no.x_studio_quotation_type
+  record['quotation_type'] = record.x_studio_project_no.quotation_type
   record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
   record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
   
@@ -259,18 +259,18 @@ record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_met
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[# fix_repair:idempotent-v1
-if record.x_studio_quotation_type == 'Repair' and record.state == 'done':
+if record.quotation_type == 'Repair' and record.state == 'done':
   re_line = env['sale.order.line'].sudo().search(
     [('order_id', '=', record.id), ('x_studio_re_estimated', '=', True)],
     limit=1, order='id desc')
   target_count = re_line.x_studio_count_1 if re_line else 0
   if (not record.x_studio_locked
       or record.x_studio_unlocked
-      or record.x_studio_re_estimate_count != target_count):
+      or record.re_estimate_count != target_count):
     record.write({
       'x_studio_locked': True,
       'x_studio_unlocked': False,
-      'x_studio_re_estimate_count': target_count,
+      're_estimate_count': target_count,
     })
 ]]></field>
   </record>
@@ -281,7 +281,7 @@ if record.x_studio_quotation_type == 'Repair' and record.state == 'done':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[# fix_repair:idempotent-v1
-if (record.x_studio_quotation_type == 'Repair'
+if (record.quotation_type == 'Repair'
     and record.state == 'sale'
     and record.x_studio_locked):
   record.write({'x_studio_locked': False, 'x_studio_unlocked': True})
@@ -330,7 +330,7 @@ if record.create_uid:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
+    <field name="code"><![CDATA[if record.quotation_type == 'Project':
  #seq = env['ir.sequence'].next_by_code('project.sale.order.seq')
  #record.write({'name': seq})
  record.write({'name': record.name + '_PRJ'})
@@ -349,7 +349,7 @@ if record.create_uid:
 if record.id:
   original_name = (record.name or '').replace('_PRJ', '')
   new_name = (original_name + '_PRJ'
-              if record.x_studio_quotation_type == 'Project'
+              if record.quotation_type == 'Project'
               else original_name)
   if record.name != new_name:
     record.write({'name': new_name})
@@ -361,7 +361,7 @@ if record.id:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
+    <field name="code"><![CDATA[if record.quotation_type == 'Project':
   start_date = str(record.x_studio_project_start_date) 
   end_date = str(record.x_studio_project_end_date) 
   
@@ -384,7 +384,7 @@ if record.id:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_quotation_type == 'Project':
+    <field name="code"><![CDATA[if record.quotation_type == 'Project':
   pricelist = env['product.pricelist'].search([('x_studio_project_price_list', '=', True)], limit=1)
   if pricelist:
     record['pricelist_id'] = pricelist.id
@@ -615,7 +615,7 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_rug_approved"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__rug_approved"/>
     <field name="value">Yes</field>
   </record>
   <record id="server_action_1983_rr_rug_approval_request_sent" model="ir.actions.server">
@@ -624,7 +624,7 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_rug_request_sent"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__rug_request_sent"/>
     <field name="value">Yes</field>
   </record>
   <record id="server_action_2244_rr_re_estimate_request_sent" model="ir.actions.server">
@@ -887,7 +887,7 @@ for line in record.order_line:
       sub_local_count += 1
       pr_lines3.append([0,0,{
           'x_studio_many2one_field_WAqP4':line.product_id.id,
-          'x_studio_quantity':line.product_uom_qty,
+          'quantity':line.product_uom_qty,
           'x_studio_requested_by':uid,
           'x_studio_sales_line_id':line.id}])
       
@@ -897,7 +897,7 @@ for line in record.order_line:
       sub_import_count += 1
       pr_lines4.append([0,0,{
           'x_studio_many2one_field_WAqP4':line.product_id.id,
-          'x_studio_quantity':line.product_uom_qty,
+          'quantity':line.product_uom_qty,
           'x_studio_requested_by':uid,
           'x_studio_sales_line_id':line.id}])
           
@@ -910,7 +910,7 @@ for line in record.order_line:
       local_count += 1
       pr_lines.append([0,0,{
           'x_studio_many2one_field_WAqP4':line.product_id.id,
-          'x_studio_quantity':line.x_studio_inventory_shortage,
+          'quantity':line.x_studio_inventory_shortage,
           'x_studio_requested_by':uid,
           'x_studio_sales_line_id':line.id}])
       
@@ -920,7 +920,7 @@ for line in record.order_line:
       import_count += 1
       pr_lines2.append([0,0,{
           'x_studio_many2one_field_WAqP4':line.product_id.id,
-          'x_studio_quantity':line.x_studio_inventory_shortage,
+          'quantity':line.x_studio_inventory_shortage,
           'x_studio_requested_by':uid,
           'x_studio_sales_line_id':line.id}])
           
@@ -1185,7 +1185,7 @@ if project:
 if record.id:
   original_name = (record.name or '').replace('_PRJ', '')
   new_name = (original_name + '_PRJ'
-              if record.x_studio_quotation_type == 'Project'
+              if record.quotation_type == 'Project'
               else original_name)
   if record.name != new_name:
     record.write({'name': new_name})
@@ -1198,7 +1198,7 @@ if record.id:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[#if record.task_id == True:
-record['x_studio_quotation_type'] = 'Project'
+record['quotation_type'] = 'Project'
 
     
 
@@ -1301,18 +1301,18 @@ raise UserError(desc)
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[# fix_repair:idempotent-v1
-if record.x_studio_quotation_type == 'Repair' and record.state == 'done':
+if record.quotation_type == 'Repair' and record.state == 'done':
   re_line = env['sale.order.line'].sudo().search(
     [('order_id', '=', record.id), ('x_studio_re_estimated', '=', True)],
     limit=1, order='id desc')
   target_count = re_line.x_studio_count_1 if re_line else 0
   if (not record.x_studio_locked
       or record.x_studio_unlocked
-      or record.x_studio_re_estimate_count != target_count):
+      or record.re_estimate_count != target_count):
     record.write({
       'x_studio_locked': True,
       'x_studio_unlocked': False,
-      'x_studio_re_estimate_count': target_count,
+      're_estimate_count': target_count,
     })
 ]]></field>
   </record>
@@ -1339,7 +1339,7 @@ if record.id:
 
   
 
-  if record.x_studio_quotation_type == 'Repair':
+  if record.quotation_type == 'Repair':
 
     journal = env['account.journal'].search([('name', '=', 'Advance Payment - Repairs'),('company_id', '=', company.id)], limit=1) 
 
@@ -1349,7 +1349,7 @@ if record.id:
 
     
 
-    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.id),('state', '!=', 'cancel')])
+    payment = env['account.payment'].search([('sales_order', '=', record.id),('state', '!=', 'cancel')])
 
     if payment:
 
@@ -1381,7 +1381,7 @@ if record.id:
 
     
 
-    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.id),('state', '!=', 'cancel')])
+    payment = env['account.payment'].search([('sales_order', '=', record.id),('state', '!=', 'cancel')])
 
     if payment:
 
@@ -1405,7 +1405,7 @@ if record.id:
 
   
 
-  customer_payment = env['account.payment'].create({'x_studio_sales_order':record.id,'x_studio_project_no_1': record.x_studio_project_no.id if record.x_studio_project_no else False,'partner_id':record.partner_id.id,'amount':so_value,'date':datetime.date.today(),'x_studio_order_payment_method':record.x_studio_customer_payment_method,'journal_id':journal.id,'payment_method_line_id':journal.inbound_payment_method_line_ids[:1].id if journal.inbound_payment_method_line_ids else False})
+  customer_payment = env['account.payment'].create({'sales_order':record.id,'x_studio_project_no_1': record.x_studio_project_no.id if record.x_studio_project_no else False,'partner_id':record.partner_id.id,'amount':so_value,'date':datetime.date.today(),'x_studio_order_payment_method':record.x_studio_customer_payment_method,'journal_id':journal.id,'payment_method_line_id':journal.inbound_payment_method_line_ids[:1].id if journal.inbound_payment_method_line_ids else False})
 
   
 
@@ -1596,7 +1596,7 @@ if record.x_studio_margin_exceed == True:
 
   if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
 
-    if record.partner_id.x_studio_mandatory_bank_guarantee == False:
+    if record.partner_id.mandatory_bank_guarantee == False:
 
       if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
 
@@ -1651,7 +1651,7 @@ action = {
 
     if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
 
-      if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+      if record.partner_id.mandatory_bank_guarantee == True:
 
         if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
 
@@ -1663,11 +1663,11 @@ action = {
 
         else:
 
-          #if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
+          #if record.partner_id.mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
 
           if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
 
-            #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+            #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
 
             raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
 
@@ -1681,7 +1681,7 @@ action = {
 
           if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
 
-            #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+            #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
 
             records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
 
@@ -1705,18 +1705,18 @@ action = {
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.state == 'done':
   if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-    if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+    if record.partner_id.mandatory_bank_guarantee == True:
       if record.partner_id.x_studio_expiry_date < datetime.date.today():
         raise UserError("Customer's bank guarantee is expired.")
       else:
-        if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
-          raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+        if record.partner_id.mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
+          raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
     else:
       if record.partner_id.x_studio_expiry_date < datetime.date.today():
         records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
       else:
-        if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
-          records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+        if record.partner_id.mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
+          records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
       
   
   
@@ -1765,7 +1765,7 @@ action = {
 
   if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
 
-    if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+    if record.partner_id.mandatory_bank_guarantee == True:
 
       if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
 
@@ -2081,7 +2081,7 @@ action = {
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_change</field>
-    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__x_studio_quotation_type')])]"/>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__quotation_type')])]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2574_project_sales_order_seq_no_2')])]"/>
   </record>
   <record id="base_automation_260_proj_validate_start_date_and_end_date_for_project_sos" model="base.automation">
@@ -2098,7 +2098,7 @@ action = {
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_change</field>
-    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__x_studio_quotation_type')])]"/>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__quotation_type')])]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2896_proj_apply_project_price_list')])]"/>
   </record>
   <record id="server_action_1783_sls_validate_bank_guarantee_in_so_confirm" model="ir.actions.server">
@@ -2113,7 +2113,7 @@ if record.partner_id.customer_rank > 0:
 
     if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
 
-      if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+      if record.partner_id.mandatory_bank_guarantee == True:
 
         if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
 
@@ -2125,11 +2125,11 @@ if record.partner_id.customer_rank > 0:
 
         else:
 
-          #if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
+          #if record.partner_id.mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
 
           if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
 
-            #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+            #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
 
             raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
 
@@ -2143,7 +2143,7 @@ if record.partner_id.customer_rank > 0:
 
           if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
 
-            #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+            #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
 
             records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
 
@@ -2173,10 +2173,10 @@ if record.id:
         ('project_id.x_studio_repair_project', '=', True)
     ], limit=1)
     if task:
-        record['x_studio_quotation_type'] = 'Repair'
+        record['quotation_type'] = 'Repair'
         record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
     elif record.x_studio_project_no and record.x_studio_project_no.x_studio_repair_project == True:
-        record['x_studio_quotation_type'] = 'Repair'
+        record['quotation_type'] = 'Repair'
         record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
 
     ]]></field>
@@ -2189,9 +2189,9 @@ if record.id:
     <field name="code"><![CDATA[
 if record.task_id != False:
   if record.x_studio_project_no.x_studio_repair_project == True:
-    record['x_studio_quotation_type'] = 'Repair'
+    record['quotation_type'] = 'Repair'
   else:
-    record['x_studio_quotation_type'] = record.x_studio_project_no.x_studio_quotation_type
+    record['quotation_type'] = record.x_studio_project_no.quotation_type
   
   record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
   record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
@@ -2217,7 +2217,7 @@ if record.task_id != False:
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
 if record.task_id != False:
-  record['x_studio_quotation_type'] = record.x_studio_project_no.x_studio_quotation_type
+  record['quotation_type'] = record.x_studio_project_no.quotation_type
   record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
   record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
   
@@ -2242,18 +2242,18 @@ if record.task_id != False:
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
 # fix_repair:idempotent-v1
-if record.x_studio_quotation_type == 'Repair' and record.state == 'done':
+if record.quotation_type == 'Repair' and record.state == 'done':
   re_line = env['sale.order.line'].sudo().search(
     [('order_id', '=', record.id), ('x_studio_re_estimated', '=', True)],
     limit=1, order='id desc')
   target_count = re_line.x_studio_count_1 if re_line else 0
   if (not record.x_studio_locked
       or record.x_studio_unlocked
-      or record.x_studio_re_estimate_count != target_count):
+      or record.re_estimate_count != target_count):
     record.write({
       'x_studio_locked': True,
       'x_studio_unlocked': False,
-      'x_studio_re_estimate_count': target_count,
+      're_estimate_count': target_count,
     })
 
     ]]></field>
@@ -2265,7 +2265,7 @@ if record.x_studio_quotation_type == 'Repair' and record.state == 'done':
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
 # fix_repair:idempotent-v1
-if (record.x_studio_quotation_type == 'Repair'
+if (record.quotation_type == 'Repair'
     and record.state == 'sale'
     and record.x_studio_locked):
   record.write({'x_studio_locked': False, 'x_studio_unlocked': True})
@@ -2278,7 +2278,7 @@ if (record.x_studio_quotation_type == 'Repair'
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-if record.x_studio_quotation_type == 'Project':
+if record.quotation_type == 'Project':
   start_date = str(record.x_studio_project_start_date) 
   end_date = str(record.x_studio_project_end_date) 
   
@@ -2302,7 +2302,7 @@ if record.x_studio_quotation_type == 'Project':
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-if record.x_studio_quotation_type == 'Project':
+if record.quotation_type == 'Project':
   pricelist = env['product.pricelist'].search([('x_studio_project_price_list', '=', True)], limit=1)
   if pricelist:
     record['pricelist_id'] = pricelist.id
@@ -2330,7 +2330,7 @@ else:
     <field name="active" eval="False"/>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="trigger">on_write</field>
-    <field name="filter_domain">['&amp;', '&amp;', '&amp;', ('state', '=', 'sale'), ('x_studio_locked', '=', True), ('x_studio_quotation_type', '=', 'Repair'), ('x_studio_unlocked', '=', True)]</field>
+    <field name="filter_domain">['&amp;', '&amp;', '&amp;', ('state', '=', 'sale'), ('x_studio_locked', '=', True), ('quotation_type', '=', 'Repair'), ('x_studio_unlocked', '=', True)]</field>
   </record>
   <record id="base_automation_259_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro" model="base.automation">
     <field name="name">JIN-Project Sales Order Seq.No (Maintain Separate Nos for Project SOs On Update)</field>
@@ -2339,13 +2339,13 @@ else:
     <field name="trigger">on_create_or_write</field>
   </record>
     <data noupdate="1">
-    <record id="default_212_sale_order_x_studio_over_credit" model="ir.default">
-      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_over_credit"/>
+    <record id="default_212_sale_order_over_credit" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__over_credit"/>
       <field name="json_value">"0"</field>
     </record>
     <!-- DROPPED default_325_sale_order_line_x_studio_product_status: selection value 'Blank' not in field allowed set -->
-<record id="default_363_sale_order_x_studio_re_estimate_count" model="ir.default">
-      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_re_estimate_count"/>
+<record id="default_363_sale_order_re_estimate_count" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__re_estimate_count"/>
       <field name="json_value">"0"</field>
     </record>
     <record id="default_364_sale_order_x_studio_re_estimate_request_count_1" model="ir.default">

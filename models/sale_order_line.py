@@ -30,7 +30,7 @@ class SaleOrderLine(models.Model):
     x_studio_margin_exceed = fields.Boolean(
         string="Margin Exceed", readonly=True, store=False
     )
-    x_studio_over_commission = fields.Boolean(string="Over Commission")
+    over_commission = fields.Boolean(string="Over Commission")
     x_studio_pr_created = fields.Boolean(string="PR Created")
     x_studio_price_confirmed = fields.Boolean(string="Price Confirmed")
     x_studio_pricelist_id = fields.Many2one(
@@ -56,20 +56,18 @@ class SaleOrderLine(models.Model):
     x_studio_purch_type = fields.Selection(
         [("Local", "Local"), ("Import", "Import")], string="Purch. Type"
     )
-    x_studio_quotation_type = fields.Selection(
+    quotation_type = fields.Selection(
         [("Sales", "Sales"), ("Project", "Project"), ("Repair", "Repair")],
         string="Quotation Type",
         readonly=True,
     )
-    x_studio_re_estimate_count = fields.Integer(
-        string="Re-estimate Count", readonly=True
-    )
+    re_estimate_count = fields.Integer(string="Re-estimate Count", readonly=True)
     x_studio_re_estimate_request_sent = fields.Boolean(
         string="Re-estimate Request Sent", readonly=True
     )
     x_studio_req_for_production = fields.Boolean(string="Req. for Production")
     x_studio_req_qty = fields.Integer(string="Req. Qty")
-    x_studio_rug_confirmed = fields.Boolean(string="RUG Confirmed", readonly=True)
+    rug_confirmed = fields.Boolean(string="RUG Confirmed", readonly=True)
     x_studio_sales_report_type = fields.Many2one(
         "x_sales_report_type", string="Sales Report Type"
     )
@@ -101,7 +99,7 @@ class SaleOrderLine(models.Model):
     # (RR - Track Lock Status - 3): when a Repair SO is currently
     # unlocked (parent x_studio_unlocked=True) and the user edits a
     # line in the form, x_studio_re_estimated flips to True and
-    # x_studio_count_1 is set to (parent.x_studio_re_estimate_count + 1).
+    # x_studio_count_1 is set to (parent.re_estimate_count + 1).
     # sale.order-side automations 202/203 read the max x_studio_count_1
     # of re-estimated lines to know the target re-estimate count for
     # the header. Declared here (BugFix-Sales owns line-level Studio

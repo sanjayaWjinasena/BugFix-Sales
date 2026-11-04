@@ -48,12 +48,12 @@ A Delivery Term is a named shipping or delivery condition, with a description, s
 | `website_message_ids` | Website Messages | one2many → `mail.message` | Standard chatter field: messages shown on the website/portal for this record. | stored | `model mail.message` (mail) |  |
 | `write_date` | Last Updated on | datetime | Date and time the record was last changed (automatic). | stored |  |  |
 | `write_uid` | Last Updated by | many2one → `res.users` | User who last changed the record (automatic). | stored | `model res.users` (base) |  |
-| `x_active` | Active | boolean | Archive flag of a delivery term (default active); archived terms are hidden. | default `True`; stored |  | `default BugFix-Purchase.default_127_x_delivery_terms_x_active` (BugFix-Purchase)<br>`view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase)<br>`view BugFix-Sales.ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885`<br>`view BugFix-Sales.ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe` |
-| `x_name` | Delivery Term | char | Name of the delivery term (e.g. shipping term), shown in its views and used by the 'IMP Copy Charges to Delivery Terms' action. | stored; required |  | `server action BugFix-Sales.server_action_1207_imp_copy_charges_to_delivery_terms`<br>`view BugFix-Sales.ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885`<br>`view BugFix-Sales.ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e`<br>`view BugFix-Sales.ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe` |
-| `x_studio_company_id` | Company | many2one → `res.company` | Company owning the delivery term; set by the 'JIN company id in delivery terms' actions and used by multi-company record rules. | stored | `model res.company` (base) | `record rule BugFix-Purchase.rule_568_jin_multi_company_delivery_terms` (BugFix-Purchase)<br>`record rule BugFix-Purchase.rule_f7_x_delivery_terms_jin_multi_company_delivery_terms` (BugFix-Purchase)<br>`server action BugFix-Purchase.server_action_2682_jin_company_id_in_delivery_terms` (BugFix-Purchase)<br>`server action BugFix-Sales.server_action_2682_jin_company_id_in_delivery_terms`<br>`view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase)<details><summary>+1 more</summary>`view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase)</details> |
+| `active` | Active | boolean | Archive flag of a delivery term (default active); archived terms are hidden. | default `True`; stored |  | `default BugFix-Purchase.default_127_x_delivery_terms_active` (BugFix-Purchase)<br>`view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase)<br>`view BugFix-Sales.ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885`<br>`view BugFix-Sales.ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe` |
+| `name` | Delivery Term | char | Name of the delivery term (e.g. shipping term), shown in its views and used by the 'IMP Copy Charges to Delivery Terms' action. | stored; required |  | `server action BugFix-Sales.server_action_1207_imp_copy_charges_to_delivery_terms`<br>`view BugFix-Sales.ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885`<br>`view BugFix-Sales.ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e`<br>`view BugFix-Sales.ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe` |
+| `accounting_company_id` | Company | many2one → `res.company` | Company owning the delivery term; set by the 'JIN company id in delivery terms' actions and used by multi-company record rules. | stored | `model res.company` (base) | `record rule BugFix-Purchase.rule_568_jin_multi_company_delivery_terms` (BugFix-Purchase)<br>`record rule BugFix-Purchase.rule_f7_x_delivery_terms_jin_multi_company_delivery_terms` (BugFix-Purchase)<br>`server action BugFix-Purchase.server_action_2682_jin_company_id_in_delivery_terms` (BugFix-Purchase)<br>`server action BugFix-Sales.server_action_2682_jin_company_id_in_delivery_terms`<br>`view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase)<details><summary>+1 more</summary>`view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase)</details> |
 | `x_studio_copied` | Copied | boolean | Marks that charges have been copied to the delivery term; set and cleared by the IMP Copy/Clear Charges actions. | stored |  | `server action BugFix-Sales.server_action_1207_imp_copy_charges_to_delivery_terms`<br>`server action BugFix-Sales.server_action_1208_imp_clear_charges_from_delivery_terms`<br>`view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase) |
-| `x_studio_description` | Description | char | Description of the delivery term; shown in its form and list and used by 'IMP Copy Charges to Delivery Terms'. | stored |  | `server action BugFix-Sales.server_action_1207_imp_copy_charges_to_delivery_terms`<br>`view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase)<br>`view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase) |
-| `x_studio_sequence` | Sequence | integer | Integer sort order for Delivery Terms records (has a default value); shown in the Delivery Terms form and the default list view used to order entries. | stored |  | `default BugFix-Purchase.default_128_x_delivery_terms_x_studio_sequence` (BugFix-Purchase)<br>`view BugFix-Sales.ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e` |
+| `description` | Description | char | Description of the delivery term; shown in its form and list and used by 'IMP Copy Charges to Delivery Terms'. | stored |  | `server action BugFix-Sales.server_action_1207_imp_copy_charges_to_delivery_terms`<br>`view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase)<br>`view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase) |
+| `sequence` | Sequence | integer | Integer sort order for Delivery Terms records (has a default value); shown in the Delivery Terms form and the default list view used to order entries. | stored |  | `default BugFix-Purchase.default_128_x_delivery_terms_sequence` (BugFix-Purchase)<br>`view BugFix-Sales.ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e` |
 | `x_studio_vendor_despatch` | Vendor Despatch | boolean | Checkbox on a Delivery Terms record marking it as a vendor-despatch term; entered by the user and shown on the Delivery Terms form and list views. | stored |  | `view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase)<br>`view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase) |
 
 **Server actions (3):**
@@ -78,7 +78,7 @@ if record.id:
   </details>
 - **IMP - Copy Charges to Delivery Terms** (`server_action_1207_imp_copy_charges_to_delivery_terms`, type `code`)
   - Function: Creates a delivery-term charge line on the Delivery Terms record for every Misc Charge Code in group 'Charges', then sets Copied. Can create duplicates if run twice.
-  - Depends on: `model x_delivery_term_charge` (BugFix-Purchase), `model x_delivery_terms`, `model x_misc_charge_codes` (BugFix-Stock), `x_delivery_terms.x_name`, `x_delivery_terms.x_studio_copied`<details><summary>+2 more</summary>`x_delivery_terms.x_studio_delivery_terms_id` (BugFix-Purchase), `x_delivery_terms.x_studio_description`</details>
+  - Depends on: `model x_delivery_term_charge` (BugFix-Purchase), `model x_delivery_terms`, `model x_misc_charge_codes` (BugFix-Stock), `x_delivery_terms.name`, `x_delivery_terms.x_studio_copied`<details><summary>+2 more</summary>`x_delivery_terms.x_studio_delivery_terms_id` (BugFix-Purchase), `x_delivery_terms.description`</details>
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (6 lines)</summary>
 
@@ -91,8 +91,8 @@ if loop_misc_charge_codes_c:
         create_delivery_charges = env["x_delivery_term_charge"].create(
             {
                 "x_studio_delivery_terms_id": record.id,
-                "x_name": find_charges.x_name,
-                "x_studio_description": find_charges.x_studio_description,
+                "name": find_charges.name,
+                "description": find_charges.description,
             }
         )
 
@@ -101,7 +101,7 @@ if loop_misc_charge_codes_c:
   </details>
 - **JIN - Company Id in Delivery Terms** (`server_action_2682_jin_company_id_in_delivery_terms`, type `code`)
   - Function: Sets the Delivery Terms record's Company to the user's currently selected company.
-  - Depends on: `model res.company` (base), `model x_delivery_terms`, `x_delivery_terms.x_studio_company_id`
+  - Depends on: `model res.company` (base), `model x_delivery_terms`, `x_delivery_terms.accounting_company_id`
   - Used by: `automation BugFix-Sales.base_automation_316_jin_company_id_in_delivery_terms`
   <details><summary>code (4 lines)</summary>
 
@@ -109,7 +109,7 @@ if loop_misc_charge_codes_c:
 company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
 company = env["res.company"].browse(company_id)
 
-record["x_studio_company_id"] = company.id
+record["accounting_company_id"] = company.id
 ```
   </details>
 **Automations (1):**
@@ -129,9 +129,9 @@ record["x_studio_company_id"] = company.id
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Default form view for x_delivery_terms | `ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885` | form | full form layout with 2 fields | Form view for Delivery Terms records: name and an Archived ribbon when the record is inactive. | `x_delivery_terms.x_active`<br>`x_delivery_terms.x_name` | `view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase) |
-| Default list view for x_delivery_terms | `ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e` | tree | full tree layout with 2 fields | List view for Delivery Terms with a drag handle for ordering and the name. | `x_delivery_terms.x_name`<br>`x_delivery_terms.x_studio_sequence` | `view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase) |
-| Default search view for x_delivery_terms | `ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe` | search | full search layout with 1 fields | Search view for Delivery Terms: search by name and an Archived filter. | `x_delivery_terms.x_active`<br>`x_delivery_terms.x_name` |  |
+| Default form view for x_delivery_terms | `ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885` | form | full form layout with 2 fields | Form view for Delivery Terms records: name and an Archived ribbon when the record is inactive. | `x_delivery_terms.active`<br>`x_delivery_terms.name` | `view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase) |
+| Default list view for x_delivery_terms | `ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e` | tree | full tree layout with 2 fields | List view for Delivery Terms with a drag handle for ordering and the name. | `x_delivery_terms.name`<br>`x_delivery_terms.sequence` | `view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase) |
+| Default search view for x_delivery_terms | `ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe` | search | full search layout with 1 fields | Search view for Delivery Terms: search by name and an Archived filter. | `x_delivery_terms.active`<br>`x_delivery_terms.name` |  |
 
 **Access rights (1):**
 

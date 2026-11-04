@@ -9,7 +9,7 @@
  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
  company = env['res.company'].browse(company_id)
     
- record['x_studio_company_id'] = company.id
+ record['accounting_company_id'] = company.id
 
 
 </field>
