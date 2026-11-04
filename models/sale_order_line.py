@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -20,7 +20,8 @@ class SaleOrderLine(models.Model):
     x_studio_main_project_2 = fields.Many2one('project.project', string='Main Project 2', readonly=True)
     x_studio_main_project_no = fields.Many2one('project.project', string='Main Project No', readonly=True, store=False)
     x_studio_many2one_field_btM1W = fields.Many2one('mrp.production', string='Production Order')
-    x_studio_margin_exceed = fields.Boolean(string='Margin Exceed', readonly=True, store=False)
+    x_studio_margin_exceed = fields.Boolean(
+        string='Margin Exceed', compute='_compute_x_studio_margin_exceed')
     x_studio_over_commission = fields.Boolean(string='Over Commission')
     x_studio_pr_created = fields.Boolean(string='PR Created')
     x_studio_price_confirmed = fields.Boolean(string='Price Confirmed')
@@ -74,3 +75,25 @@ class SaleOrderLine(models.Model):
     x_studio_count_1 = fields.Integer(
         string='Re-estimate Instance',
     )
+
+    # Bug sheet Sales row 9 (4/Nov): a low-margin line never asked for margin
+    # approval, because the field was declared here without the compute Clear-DB
+    # has (minimum_sales_margin_seed skips Python-declared fields). Clear-DB's
+    # formula, unchanged, value_1 / value_2 quirk included.
+    @api.depends('product_id', 'product_id.standard_price', 'product_uom_qty',
+                 'price_subtotal', 'x_studio_commission', 'x_studio_quotation_type')
+    def _compute_x_studio_margin_exceed(self):
+        for record in self:
+            exceeded = False
+            if (record.product_id and record.x_studio_quotation_type != 'Project'
+                    and record.product_uom_qty and record.product_uom_qty > 0):
+                commission = record.price_subtotal * (record.x_studio_commission / 100)
+                value_1 = (record.price_subtotal / record.product_uom_qty
+                           - commission - record.product_id.standard_price)
+                value_2 = record.price_subtotal / record.product_uom_qty - commission
+                if value_2 > 0:
+                    net_margin = (value_1 / value_2) * 100
+                    if net_margin and net_margin < (
+                            record.company_id.x_studio_minimum_sales_margin_ or 0.0):
+                        exceeded = True
+            record.x_studio_margin_exceed = exceeded

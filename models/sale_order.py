@@ -175,8 +175,11 @@ class SaleOrder(models.Model):
     x_studio_margin_approved = fields.Boolean(
         string='Margin Approved',
     )
+    # Clear-DB: non-stored rollup of the lines' margin check, so Confirm hides and
+    # "Request Insufficient Margin Approval" shows (bug sheet Sales row 9).
     x_studio_margin_exceed = fields.Boolean(
         string='Margin Exceed',
+        compute='_compute_x_studio_margin_exceed',
     )
     # --- Order-payment / lock / expiry --------------------------------------
     x_studio_order_payment_method = fields.Selection(
@@ -227,6 +230,11 @@ class SaleOrder(models.Model):
         compute='_compute_x_studio_sales_order_validity',
         store=False,
     )
+
+    @api.depends('order_line.x_studio_margin_exceed')
+    def _compute_x_studio_margin_exceed(self):
+        for rec in self:
+            rec.x_studio_margin_exceed = any(rec.order_line.mapped('x_studio_margin_exceed'))
 
     @api.depends('company_id')
     def _compute_x_studio_sales_order_validity(self):
