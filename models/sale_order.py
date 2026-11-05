@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import datetime
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -325,6 +327,38 @@ class SaleOrder(models.Model):
         store=False,
     )
 
+    @api.depends('partner_id', 'partner_invoice_id', 'amount_total',
+                 'x_studio_bank_guarantee_approved')
+    def _compute_x_studio_bank_guarantee_gates(self):
+        """Port of Clear-DB Studio computes for
+        x_studio_bank_guarantee_notification / _validation (sale.order).
+
+        Only when BG not approved, partner is a customer and its customer
+        group type is not 'General': if the BG is expired or the BG amount
+        is below (invoice partner credit + order total), raise validation
+        for mandatory-BG partners, otherwise raise notification.
+        """
+        today = datetime.date.today()
+        for record in self:
+            notification = validation = False
+            p = record.partner_id
+            if not record.x_studio_bank_guarantee_approved and p \
+                    and (p.customer_rank or 0) > 0:
+                cg = getattr(p, 'x_studio_customer_group', False)
+                group_type = getattr(cg, 'x_studio_group_type', False) if cg else False
+                if group_type != 'General':
+                    expiry = getattr(p, 'x_studio_expiry_date', False)
+                    bg_amount = getattr(p, 'x_studio_bank_guarantee_amount', 0) or 0
+                    exposure = (record.partner_invoice_id.credit or 0) + \
+                        (record.amount_total or 0)
+                    if (expiry and expiry < today) or bg_amount < exposure:
+                        if getattr(p, 'x_studio_mandatory_bank_guarantee', False):
+                            validation = True
+                        else:
+                            notification = True
+            record.x_studio_bank_guarantee_notification = notification
+            record.x_studio_bank_guarantee_validation = validation
+
     @api.depends('order_line.product_id.service_tracking',
                  'order_line.product_type')
     def _compute_x_studio_service_item_available(self):
@@ -366,9 +400,16 @@ class SaleOrder(models.Model):
     #   - x_x_studio_subcontracting_so_purchase_order_count (int, depends on above)
     #
     # Booleans (27) --------------------------------------------------------
-    x_studio_bank_guarantee_notification = fields.Boolean(string='BG Notification')
+    # BG gates: non-stored computes, as on Clear-DB (Studio fields with
+    # depends 'partner_id,partner_invoice_id,amount_total'). Partner credit
+    # and today's date are not trackable, so keep them store=False.
+    x_studio_bank_guarantee_notification = fields.Boolean(
+        string='BG Notification', store=False, readonly=True,
+        compute='_compute_x_studio_bank_guarantee_gates')
     x_studio_bank_guarantee_request_sent = fields.Boolean(string='BG Request Sent')
-    x_studio_bank_guarantee_validation = fields.Boolean(string='BG Validation')
+    x_studio_bank_guarantee_validation = fields.Boolean(
+        string='BG Validation', store=False, readonly=True,
+        compute='_compute_x_studio_bank_guarantee_gates')
     x_studio_bg_sent = fields.Boolean(string='BG Sent')
     x_studio_cancelled = fields.Boolean(string='Cancelled')
     x_studio_clear_free_items = fields.Boolean(string='Clear Free Items')
