@@ -107,6 +107,7 @@ record['company_id'] = company.id
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Approve Customer Overdue</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'kapila.h@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_2291_plm_item_approval_request_notify_user" model="ir.actions.server">
     <field name="name">PLM - Item Approval Request - Notify User</field>
@@ -118,6 +119,7 @@ record['company_id'] = company.id
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Approve Customer Overdue</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'kapila.h@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_808_avoid_product_duplicate" model="ir.actions.server">
     <field name="name">Avoid Product Duplicate</field>

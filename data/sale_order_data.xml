@@ -403,6 +403,7 @@ else:
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Approve Customer Overdue</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'kapila.h@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_1985_rr_rug_request_approval_notify_user" model="ir.actions.server">
     <field name="name">RR - RUG Request Approval - Notify User</field>
@@ -425,6 +426,7 @@ else:
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Approve RUG Repair</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'kapila.h@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_1769_sls_bank_guarantee_notify_user" model="ir.actions.server">
     <field name="name">SLS - Bank Guarantee - Notify User</field>
@@ -458,6 +460,7 @@ else:
     <field name="activity_user_type">generic</field>
     <field name="activity_summary">Bank Guarantee Approval - Confirm</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_field_name">user_id</field>
   </record>
   <record id="server_action_2505_sls_credit_limit_approval_confirm" model="ir.actions.server">
     <field name="name">SLS - Credit Limit Approval - Confirm</field>
@@ -469,6 +472,7 @@ else:
     <field name="activity_user_type">generic</field>
     <field name="activity_summary">Credit Limit Approval - Confirm</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_field_name">user_id</field>
   </record>
   <record id="server_action_2497_sls_margin_approval_confirm" model="ir.actions.server">
     <field name="name">SLS - Margin Approval - Confirm</field>
@@ -480,6 +484,7 @@ else:
     <field name="activity_user_type">generic</field>
     <field name="activity_summary">Margin Approval - Confirm</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_field_name">user_id</field>
   </record>
   <record id="server_action_1511_sls_margin_request_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Margin Request Approval - Notify User</field>
@@ -491,6 +496,7 @@ else:
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Approve Item Over Margin</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_2501_sls_over_commission_approval_confirm" model="ir.actions.server">
     <field name="name">SLS - Over Commission Approval - Confirm</field>
@@ -502,6 +508,7 @@ else:
     <field name="activity_user_type">generic</field>
     <field name="activity_summary">Over Commission Approval - Confirm</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_field_name">user_id</field>
   </record>
   <record id="server_action_1501_sls_over_commission_request_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Over Commission Request Approval - Notify User</field>
@@ -513,6 +520,7 @@ else:
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Approve Over Commission</field>
     <field name="activity_note">&lt;p&gt;Please approve the Over-Commission for this sales order.&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_1474_sls_overdue_request_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Overdue Request Approval - Notify User</field>
@@ -524,6 +532,7 @@ else:
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Approve Customer Overdue</field>
     <field name="activity_note">&lt;p&gt;Please approve this sales order of the overdue customer.&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'milinda.bakmiwewa@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_2460_sls_overdue_request_approval_notify_user_01" model="ir.actions.server">
     <field name="name">SLS - Overdue Request Approval - Notify User - 01</field>
@@ -535,6 +544,7 @@ else:
     <field name="activity_user_type">generic</field>
     <field name="activity_summary">Approve Customer Overdue</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_field_name">user_id</field>
   </record>
   <record id="server_action_1462_sls_request_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Request Approval - Notify User</field>
@@ -546,6 +556,7 @@ else:
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Approve Credit Limit</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_1483_sls_request_bank_guarantee_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Request Bank Guarantee Approval - Notify User</field>
@@ -557,6 +568,7 @@ else:
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Approve Bank Guarantee</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_1466_sls_request_temporary_credit_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Request Temporary Credit Approval - Notify User</field>
@@ -568,6 +580,7 @@ else:
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Approve Temporary Credit Limit</field>
     <field name="activity_note">&lt;p&gt;Please approve the sales order with the cash customer, to proceed as Temporary-Credit.&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_2516_sls_send_bank_guarantee_notification_confirm" model="ir.actions.server">
     <field name="name">SLS - Send Bank Guarantee Notification - Confirm</field>
@@ -579,6 +592,7 @@ else:
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Send Bank Guarantee Notification</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_2513_sls_temporary_credit_approval_confirm" model="ir.actions.server">
     <field name="name">SLS - Temporary Credit Approval - Confirm</field>
@@ -590,6 +604,7 @@ else:
     <field name="activity_user_type">generic</field>
     <field name="activity_summary">Temporary Credit Approval - Confirm</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_field_name">user_id</field>
   </record>
   <record id="server_action_2142_proj_project_item_approval" model="ir.actions.server">
     <field name="name">PROJ - Project Item Approval</field>
@@ -599,6 +614,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_project_item_approved"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_project_item_approved</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_2134_proj_project_item_request_sent" model="ir.actions.server">
     <field name="name">PROJ - Project Item Request  Sent</field>
@@ -608,6 +626,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_project_item_request_sent"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_project_item_request_sent</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_1981_rr_rug_approval" model="ir.actions.server">
     <field name="name">RR - RUG Approval</field>
@@ -617,6 +638,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__rug_approved"/>
     <field name="value">Yes</field>
+    <field name="update_path">rug_approved</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_1983_rr_rug_approval_request_sent" model="ir.actions.server">
     <field name="name">RR - RUG Approval Request Sent</field>
@@ -626,6 +650,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__rug_request_sent"/>
     <field name="value">Yes</field>
+    <field name="update_path">rug_request_sent</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_2244_rr_re_estimate_request_sent" model="ir.actions.server">
     <field name="name">RR - Re-estimate Request  Sent</field>
@@ -635,6 +662,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_re_estimate_request_sent"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_re_estimate_request_sent</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_2507_sls_bank_guarantee_approval" model="ir.actions.server">
     <field name="name">SLS - Bank Guarantee Approval</field>
@@ -644,6 +674,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_bank_guarantee_approved"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_bank_guarantee_approved</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_2503_sls_credit_limit_approval" model="ir.actions.server">
     <field name="name">SLS - Credit Limit Approval</field>
@@ -653,6 +686,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_credit_limit_approved"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_credit_limit_approved</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_2495_sls_margin_approval" model="ir.actions.server">
     <field name="name">SLS - Margin Approval</field>
@@ -662,6 +698,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_margin_approved"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_margin_approved</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_1509_sls_margin_approval_request_sent" model="ir.actions.server">
     <field name="name">SLS - Margin Approval Request  Sent</field>
@@ -671,6 +710,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_margin_approval_request_sent"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_margin_approval_request_sent</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_2499_sls_over_commission_approval" model="ir.actions.server">
     <field name="name">SLS - Over Commission Approval</field>
@@ -680,6 +722,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_over_commission_approved"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_over_commission_approved</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_1499_sls_over_commission_approval_request_sent" model="ir.actions.server">
     <field name="name">SLS - Over Commission Approval Request  Sent</field>
@@ -689,6 +734,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_over_comm_approval_request_sent"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_over_comm_approval_request_sent</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_1472_sls_overdue_approval_request_sent" model="ir.actions.server">
     <field name="name">SLS - Overdue Approval Request  Sent</field>
@@ -698,6 +746,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_overdue_request_sent"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_overdue_request_sent</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_1460_sls_request_approval_sent" model="ir.actions.server">
     <field name="name">SLS - Request Approval Sent</field>
@@ -707,6 +758,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_approval_request_sent"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_approval_request_sent</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_1481_sls_request_bank_guarantee_approval_sent" model="ir.actions.server">
     <field name="name">SLS - Request Bank Guarantee Approval Sent</field>
@@ -716,6 +770,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_bank_guarantee_request_sent"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_bank_guarantee_request_sent</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_2458_sls_request_overdue_approval_final01" model="ir.actions.server">
     <field name="name">SLS - Request Overdue Approval - Final01</field>
@@ -725,6 +782,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_overdue_approved"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_overdue_approved</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_2511_sls_temporary_credit_approval" model="ir.actions.server">
     <field name="name">SLS - Temporary Credit Approval</field>
@@ -734,6 +794,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_temporary_credit_approved"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_temporary_credit_approved</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_1464_sls_temporary_credit_approval_sent" model="ir.actions.server">
     <field name="name">SLS - Temporary Credit Approval Sent</field>
@@ -743,6 +806,9 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_tem_credit_approval_request_sent"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_tem_credit_approval_request_sent</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_2178_proj_create_budget_entries" model="ir.actions.server">
     <field name="name">PROJ - Create Budget Entries</field>

@@ -10,6 +10,7 @@
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Approve Customer Overdue</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'kapila.h@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_2165_proj_item_approval_request_notify_user" model="ir.actions.server">
     <field name="name">PROJ - Item Approval Request - Notify User</field>
@@ -21,6 +22,7 @@
     <field name="activity_user_type">specific</field>
     <field name="activity_summary">Approve Customer Overdue</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="activity_user_id" search="[('login', '=', 'kapila.h@jinasena.com.lk')]"/>
   </record>
   <record id="server_action_2169_proj_item_approval" model="ir.actions.server">
     <field name="name">PROJ - Item Approval</field>
@@ -30,6 +32,9 @@
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_product_product__x_studio_item_approved"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_item_approved</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_2163_proj_item_approval_request_sent" model="ir.actions.server">
     <field name="name">PROJ - Item Approval Request  Sent</field>
@@ -39,6 +44,9 @@
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Sales.field_product_product__x_studio_item_approval_request_sent"/>
     <field name="value">Yes</field>
+    <field name="update_path">x_studio_item_approval_request_sent</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
   </record>
   <record id="server_action_2171_proj_item_approval_validate" model="ir.actions.server">
     <field name="name">PROJ - Item Approval - Validate</field>
