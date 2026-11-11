@@ -4,12 +4,12 @@ from odoo import fields, models
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    # ---- Studio-ported x_studio_* fields (v0.1.0.58) ----
-    # v17.0.1.0.171: template fields (Tariff Code, Internal Product Type, Maximum Discount %,
-    # Sub-Contract, Melt Item, Clean, ...) are no longer redeclared here. On Clear-DB the variant
-    # reads them from its template (_inherits); a separate stored copy left them empty on variants
-    # (Imports row 14: 'No Valid Date Range for the Tariff Codes'). The fields below are not
-    # template fields on Clear-DB.
+    # ---- Studio-ported x_studio_* fields (v0.1.0.58) ---- v17.0.1.0.171: template
+    # fields (Tariff Code, Internal Product Type, Maximum Discount %, Sub-Contract, Melt
+    # Item, Clean, ...) are no longer redeclared here. On Clear-DB the variant reads
+    # them from its template (_inherits); a separate stored copy left them empty on
+    # variants (Imports row 14: 'No Valid Date Range for the Tariff Codes'). The fields
+    # below are not template fields on Clear-DB.
     boolean_field_FFbpV = fields.Boolean(string="New Checkbox")
     boolean_field_FxQqp = fields.Boolean(string="New Checkbox")
     boolean_field_IsrsH = fields.Boolean(string="New Checkbox")

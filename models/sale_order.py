@@ -503,7 +503,8 @@ class SaleOrder(models.Model):
             if missing:
                 raise UserError(
                     _(
-                        "Quotation %(name)s cannot be confirmed. Please fill in: %(fields)s.",
+                        "Quotation %(name)s cannot be confirmed. "
+                        "Please fill in: %(fields)s.",
                         name=order.name,
                         fields=", ".join(missing),
                     )

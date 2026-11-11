@@ -127,7 +127,9 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         "bugfix_sales.minimum_sales_margin": _DEFAULT_MARGIN_PCT,
         "bugfix_sales.sales_order_validity": _DEFAULT_SO_VALIDITY_DAYS,
         "bugfix_sales.advance_payment_pct": _DEFAULT_ADVANCE_PCT,
-        "bugfix_sales.last_purchase_price_validity_days": _DEFAULT_PURCHASE_VALIDITY_DAYS,
+        "bugfix_sales.last_purchase_price_validity_days": (
+            _DEFAULT_PURCHASE_VALIDITY_DAYS
+        ),
     }
 
     @api.model
