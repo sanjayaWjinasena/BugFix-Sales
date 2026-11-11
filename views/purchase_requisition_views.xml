@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <!-- upgrade-testing: local copy of Clear-DB action 1696 "Purchase Agreements" (BugFix-Purchase.action_1696_purchase_agreements loads after this module).
+  <!-- upgrade-testing: local copy of Clear-DB action 1696 "Purchase Agreements" (BugFix-Purchase.action_purchase_agreements loads after this module).
        The button used the numeric id 1696, which does not exist on upgrade-testing. -->
-  <record id="action_1696_purchase_agreements" model="ir.actions.act_window">
+  <record id="action_purchase_agreements" model="ir.actions.act_window">
     <field name="name">Purchase Agreements</field>
     <field name="res_model">purchase.requisition</field>
     <field name="view_mode">tree,form</field>

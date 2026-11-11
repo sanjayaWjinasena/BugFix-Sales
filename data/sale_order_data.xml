@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos" model="ir.actions.server">
+  <record id="action_sale_order_rr_auto_generate_quotation_type_for_project_sos" model="ir.actions.server">
     <field name="name">RR - Auto Generate Quotation Type for Project SOs</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -28,7 +28,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_sale_order_rr_auto_generate_quotation_type_for_project_sos_2" model="ir.actions.server">
+  <record id="action_sale_order_rr_auto_generate_quotation_type_for_project_sos_2" model="ir.actions.server">
     <field name="name">RR - Auto Generate Quotation Type for Project SOs - 2</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -52,7 +52,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_sale_order_rr_auto_generate_quotation_type_for_repair_sos" model="ir.actions.server">
+  <record id="action_sale_order_rr_auto_generate_quotation_type_for_repair_sos" model="ir.actions.server">
     <field name="name">RR - Auto Generate Quotation Type for Repair SOs</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -72,7 +72,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_sale_order_rr_track_lock_status" model="ir.actions.server">
+  <record id="action_sale_order_rr_track_lock_status" model="ir.actions.server">
     <field name="name">RR - Track Lock Status</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -94,7 +94,7 @@ if record.quotation_type == 'Repair' and record.state == 'done':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_sale_order_rr_track_lock_status_2" model="ir.actions.server">
+  <record id="action_sale_order_rr_track_lock_status_2" model="ir.actions.server">
     <field name="name">RR - Track Lock Status - 2</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -107,7 +107,7 @@ if (record.quotation_type == 'Repair'
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_sale_order_proj_apply_project_price_list" model="ir.actions.server">
+  <record id="action_sale_order_proj_apply_project_price_list" model="ir.actions.server">
     <field name="name">PROJ - Apply Project Price List</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -122,7 +122,7 @@ else:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_sale_order_proj_validate_start_date_and_end_date_for_project_sos" model="ir.actions.server">
+  <record id="action_sale_order_proj_validate_start_date_and_end_date_for_project_sos" model="ir.actions.server">
     <field name="name">PROJ - Validate Start date and End date for Project SOs</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -145,7 +145,7 @@ else:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="server_action_1430_sls_pass_customer_pm_to_so" model="ir.actions.server">
+  <record id="action_sls_pass_customer_pm_to_so" model="ir.actions.server">
     <field name="name">SLS - Pass Customer PM to SO</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -167,7 +167,7 @@ record['order_payment_method'] = record.partner_id.payment_method
 
 ]]></field>
   </record>
-  <record id="server_action_1434_sls_validate_order_payment_type_in_so" model="ir.actions.server">
+  <record id="action_sls_validate_order_payment_type_in_so" model="ir.actions.server">
     <field name="name">SLS - Validate Order Payment Type in SO</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -180,7 +180,7 @@ record['order_payment_method'] = record.partner_id.payment_method
 
 ]]></field>
   </record>
-  <record id="server_action_1995_rr_auto_generate_quotation_type_for_repair_sos" model="ir.actions.server">
+  <record id="action_rr_auto_generate_quotation_type_for_repair_sos" model="ir.actions.server">
     <field name="name">RR - Auto Generate Quotation Type for Repair SOs</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -200,7 +200,7 @@ record['order_payment_method'] = record.partner_id.payment_method
         record['order_payment_method'] = record.partner_id.payment_method
 ]]></field>
   </record>
-  <record id="server_action_2114_rr_auto_generate_quotation_type_for_project_sos" model="ir.actions.server">
+  <record id="action_rr_auto_generate_quotation_type_for_project_sos" model="ir.actions.server">
     <field name="name">RR - Auto Generate Quotation Type for Project SOs</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -228,7 +228,7 @@ record['order_payment_method'] = record.partner_id.payment_method
 
 ]]></field>
   </record>
-  <record id="server_action_2117_rr_auto_generate_quotation_type_for_project_sos_2" model="ir.actions.server">
+  <record id="action_rr_auto_generate_quotation_type_for_project_sos_2" model="ir.actions.server">
     <field name="name">RR - Auto Generate Quotation Type for Project SOs - 2</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -252,7 +252,7 @@ record['order_payment_method'] = record.partner_id.payment_method
 
 ]]></field>
   </record>
-  <record id="server_action_2250_rr_track_lock_status" model="ir.actions.server">
+  <record id="action_rr_track_lock_status" model="ir.actions.server">
     <field name="name">RR - Track Lock Status</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -274,7 +274,7 @@ if record.quotation_type == 'Repair' and record.state == 'done':
     })
 ]]></field>
   </record>
-  <record id="server_action_2251_rr_track_lock_status_2" model="ir.actions.server">
+  <record id="action_rr_track_lock_status_2" model="ir.actions.server">
     <field name="name">RR - Track Lock Status - 2</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -287,7 +287,7 @@ if (record.quotation_type == 'Repair'
   record.write({'sales_locked': False, 'unlocked': True})
 ]]></field>
   </record>
-  <record id="server_action_2414_update_analytic_tag_parameters_sales_order_customer" model="ir.actions.server">
+  <record id="action_update_analytic_tag_parameters_sales_order_customer" model="ir.actions.server">
     <field name="name">Update Analytic Tag Parameters - Sales Order - Customer</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -309,7 +309,7 @@ if (record.quotation_type == 'Repair'
 
 ]]></field>
   </record>
-  <record id="server_action_2415_update_analytic_tag_parameters_sales_order_user" model="ir.actions.server">
+  <record id="action_update_analytic_tag_parameters_sales_order_user" model="ir.actions.server">
     <field name="name">Update Analytic Tag Parameters - Sales Order - User</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -324,7 +324,7 @@ if record.create_uid:
     record.write({'account_mandatory': target})
 ]]></field>
   </record>
-  <record id="server_action_2573_project_sales_order_seq_no" model="ir.actions.server">
+  <record id="action_project_sales_order_seq_no" model="ir.actions.server">
     <field name="name">Project Sales Order Seq.No</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -339,7 +339,7 @@ if record.create_uid:
 
 ]]></field>
   </record>
-  <record id="server_action_2574_project_sales_order_seq_no_2" model="ir.actions.server">
+  <record id="action_project_sales_order_seq_no_2" model="ir.actions.server">
     <field name="name">Project Sales Order Seq.No - 2</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -355,7 +355,7 @@ if record.id:
     record.write({'name': new_name})
 ]]></field>
   </record>
-  <record id="server_action_2576_proj_validate_start_date_and_end_date_for_project_sos" model="ir.actions.server">
+  <record id="action_proj_validate_start_date_and_end_date_for_project_sos" model="ir.actions.server">
     <field name="name">PROJ - Validate Start date and End date for Project SOs</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -378,7 +378,7 @@ if record.id:
 
 ]]></field>
   </record>
-  <record id="server_action_2896_proj_apply_project_price_list" model="ir.actions.server">
+  <record id="action_proj_apply_project_price_list" model="ir.actions.server">
     <field name="name">PROJ - Apply Project Price List</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -393,7 +393,7 @@ else:
   if customer_pricelist.property_product_pricelist.id: 
     record['pricelist_id'] = customer_pricelist.property_product_pricelist.id]]></field>
   </record>
-  <record id="server_action_2136_proj_project_item_request_approval_notify_user" model="ir.actions.server">
+  <record id="action_proj_project_item_request_approval_notify_user" model="ir.actions.server">
     <field name="name">PROJ - Project Item Request Approval - Notify User</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -405,7 +405,7 @@ else:
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_id" search="[('login', '=', 'kapila.h@jinasena.com.lk')]"/>
   </record>
-  <record id="server_action_1985_rr_rug_request_approval_notify_user" model="ir.actions.server">
+  <record id="action_rr_rug_request_approval_notify_user" model="ir.actions.server">
     <field name="name">RR - RUG Request Approval - Notify User</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -416,7 +416,7 @@ else:
     <field name="activity_summary">Approve RUG Repair</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
   </record>
-  <record id="server_action_2243_rr_re_estimate_request_notify_user" model="ir.actions.server">
+  <record id="action_rr_re_estimate_request_notify_user" model="ir.actions.server">
     <field name="name">RR - Re-estimate Request - Notify User</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -428,7 +428,7 @@ else:
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_id" search="[('login', '=', 'kapila.h@jinasena.com.lk')]"/>
   </record>
-  <record id="server_action_1769_sls_bank_guarantee_notify_user" model="ir.actions.server">
+  <record id="action_sls_bank_guarantee_notify_user" model="ir.actions.server">
     <field name="name">SLS - Bank Guarantee - Notify User</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -439,7 +439,7 @@ else:
     <field name="activity_summary">Approve Bank Guarantee</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
   </record>
-  <record id="server_action_2260_sls_bank_guarantee_notify_user" model="ir.actions.server">
+  <record id="action_sls_bank_guarantee_notify_user_2" model="ir.actions.server">
     <field name="name">SLS - Bank Guarantee - Notify User</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -450,7 +450,7 @@ else:
     <field name="activity_summary">Approve Bank Guarantee</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
   </record>
-  <record id="server_action_2509_sls_bank_guarantee_approval_confirm" model="ir.actions.server">
+  <record id="action_sls_bank_guarantee_approval_confirm" model="ir.actions.server">
     <field name="name">SLS - Bank Guarantee Approval - Confirm</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -462,7 +462,7 @@ else:
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_field_name">user_id</field>
   </record>
-  <record id="server_action_2505_sls_credit_limit_approval_confirm" model="ir.actions.server">
+  <record id="action_sls_credit_limit_approval_confirm" model="ir.actions.server">
     <field name="name">SLS - Credit Limit Approval - Confirm</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -474,7 +474,7 @@ else:
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_field_name">user_id</field>
   </record>
-  <record id="server_action_2497_sls_margin_approval_confirm" model="ir.actions.server">
+  <record id="action_sls_margin_approval_confirm" model="ir.actions.server">
     <field name="name">SLS - Margin Approval - Confirm</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -486,7 +486,7 @@ else:
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_field_name">user_id</field>
   </record>
-  <record id="server_action_1511_sls_margin_request_approval_notify_user" model="ir.actions.server">
+  <record id="action_sls_margin_request_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Margin Request Approval - Notify User</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -498,7 +498,7 @@ else:
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
   </record>
-  <record id="server_action_2501_sls_over_commission_approval_confirm" model="ir.actions.server">
+  <record id="action_sls_over_commission_approval_confirm" model="ir.actions.server">
     <field name="name">SLS - Over Commission Approval - Confirm</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -510,7 +510,7 @@ else:
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_field_name">user_id</field>
   </record>
-  <record id="server_action_1501_sls_over_commission_request_approval_notify_user" model="ir.actions.server">
+  <record id="action_sls_over_commission_request_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Over Commission Request Approval - Notify User</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -522,7 +522,7 @@ else:
     <field name="activity_note">&lt;p&gt;Please approve the Over-Commission for this sales order.&lt;/p&gt;</field>
     <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
   </record>
-  <record id="server_action_1474_sls_overdue_request_approval_notify_user" model="ir.actions.server">
+  <record id="action_sls_overdue_request_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Overdue Request Approval - Notify User</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -534,7 +534,7 @@ else:
     <field name="activity_note">&lt;p&gt;Please approve this sales order of the overdue customer.&lt;/p&gt;</field>
     <field name="activity_user_id" search="[('login', '=', 'milinda.bakmiwewa@jinasena.com.lk')]"/>
   </record>
-  <record id="server_action_2460_sls_overdue_request_approval_notify_user_01" model="ir.actions.server">
+  <record id="action_sls_overdue_request_approval_notify_user_01" model="ir.actions.server">
     <field name="name">SLS - Overdue Request Approval - Notify User - 01</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -546,7 +546,7 @@ else:
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_field_name">user_id</field>
   </record>
-  <record id="server_action_1462_sls_request_approval_notify_user" model="ir.actions.server">
+  <record id="action_sls_request_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Request Approval - Notify User</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -558,7 +558,7 @@ else:
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
   </record>
-  <record id="server_action_1483_sls_request_bank_guarantee_approval_notify_user" model="ir.actions.server">
+  <record id="action_sls_request_bank_guarantee_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Request Bank Guarantee Approval - Notify User</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -570,7 +570,7 @@ else:
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
   </record>
-  <record id="server_action_1466_sls_request_temporary_credit_approval_notify_user" model="ir.actions.server">
+  <record id="action_sls_request_temporary_credit_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Request Temporary Credit Approval - Notify User</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -582,7 +582,7 @@ else:
     <field name="activity_note">&lt;p&gt;Please approve the sales order with the cash customer, to proceed as Temporary-Credit.&lt;/p&gt;</field>
     <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
   </record>
-  <record id="server_action_2516_sls_send_bank_guarantee_notification_confirm" model="ir.actions.server">
+  <record id="action_sls_send_bank_guarantee_notification_confirm" model="ir.actions.server">
     <field name="name">SLS - Send Bank Guarantee Notification - Confirm</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -594,7 +594,7 @@ else:
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
   </record>
-  <record id="server_action_2513_sls_temporary_credit_approval_confirm" model="ir.actions.server">
+  <record id="action_sls_temporary_credit_approval_confirm" model="ir.actions.server">
     <field name="name">SLS - Temporary Credit Approval - Confirm</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">next_activity</field>
@@ -606,7 +606,7 @@ else:
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_field_name">user_id</field>
   </record>
-  <record id="server_action_2142_proj_project_item_approval" model="ir.actions.server">
+  <record id="action_proj_project_item_approval" model="ir.actions.server">
     <field name="name">PROJ - Project Item Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -618,7 +618,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_2134_proj_project_item_request_sent" model="ir.actions.server">
+  <record id="action_proj_project_item_request_sent" model="ir.actions.server">
     <field name="name">PROJ - Project Item Request  Sent</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -630,7 +630,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_1981_rr_rug_approval" model="ir.actions.server">
+  <record id="action_rr_rug_approval" model="ir.actions.server">
     <field name="name">RR - RUG Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -642,7 +642,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_1983_rr_rug_approval_request_sent" model="ir.actions.server">
+  <record id="action_rr_rug_approval_request_sent" model="ir.actions.server">
     <field name="name">RR - RUG Approval Request Sent</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -654,7 +654,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_2244_rr_re_estimate_request_sent" model="ir.actions.server">
+  <record id="action_rr_re_estimate_request_sent" model="ir.actions.server">
     <field name="name">RR - Re-estimate Request  Sent</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -666,7 +666,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_2507_sls_bank_guarantee_approval" model="ir.actions.server">
+  <record id="action_sls_bank_guarantee_approval" model="ir.actions.server">
     <field name="name">SLS - Bank Guarantee Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -678,7 +678,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_2503_sls_credit_limit_approval" model="ir.actions.server">
+  <record id="action_sls_credit_limit_approval" model="ir.actions.server">
     <field name="name">SLS - Credit Limit Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -690,7 +690,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_2495_sls_margin_approval" model="ir.actions.server">
+  <record id="action_sls_margin_approval" model="ir.actions.server">
     <field name="name">SLS - Margin Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -702,7 +702,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_1509_sls_margin_approval_request_sent" model="ir.actions.server">
+  <record id="action_sls_margin_approval_request_sent" model="ir.actions.server">
     <field name="name">SLS - Margin Approval Request  Sent</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -714,7 +714,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_2499_sls_over_commission_approval" model="ir.actions.server">
+  <record id="action_sls_over_commission_approval" model="ir.actions.server">
     <field name="name">SLS - Over Commission Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -726,7 +726,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_1499_sls_over_commission_approval_request_sent" model="ir.actions.server">
+  <record id="action_sls_over_commission_approval_request_sent" model="ir.actions.server">
     <field name="name">SLS - Over Commission Approval Request  Sent</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -738,7 +738,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_1472_sls_overdue_approval_request_sent" model="ir.actions.server">
+  <record id="action_sls_overdue_approval_request_sent" model="ir.actions.server">
     <field name="name">SLS - Overdue Approval Request  Sent</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -750,7 +750,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_1460_sls_request_approval_sent" model="ir.actions.server">
+  <record id="action_sls_request_approval_sent" model="ir.actions.server">
     <field name="name">SLS - Request Approval Sent</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -762,7 +762,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_1481_sls_request_bank_guarantee_approval_sent" model="ir.actions.server">
+  <record id="action_sls_request_bank_guarantee_approval_sent" model="ir.actions.server">
     <field name="name">SLS - Request Bank Guarantee Approval Sent</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -774,7 +774,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_2458_sls_request_overdue_approval_final01" model="ir.actions.server">
+  <record id="action_sls_request_overdue_approval_final01" model="ir.actions.server">
     <field name="name">SLS - Request Overdue Approval - Final01</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -786,7 +786,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_2511_sls_temporary_credit_approval" model="ir.actions.server">
+  <record id="action_sls_temporary_credit_approval" model="ir.actions.server">
     <field name="name">SLS - Temporary Credit Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -798,7 +798,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_1464_sls_temporary_credit_approval_sent" model="ir.actions.server">
+  <record id="action_sls_temporary_credit_approval_sent" model="ir.actions.server">
     <field name="name">SLS - Temporary Credit Approval Sent</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">object_write</field>
@@ -810,7 +810,7 @@ else:
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_2178_proj_create_budget_entries" model="ir.actions.server">
+  <record id="action_proj_create_budget_entries" model="ir.actions.server">
     <field name="name">PROJ - Create Budget Entries</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -900,7 +900,7 @@ else:
 
   record.write({'budget_created': True, 'project_budget': budget.id, 'analytic_account_id': analytic_acc.id})]]></field>
   </record>
-  <record id="server_action_2188_proj_create_pr_from_sales_quotation" model="ir.actions.server">
+  <record id="action_proj_create_pr_from_sales_quotation" model="ir.actions.server">
     <field name="name">PROJ - Create PR from Sales Quotation</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1182,7 +1182,7 @@ elif import_count > 0:
 
 ]]></field>
   </record>
-  <record id="server_action_2138_proj_project_item_approval_request_sent_validate" model="ir.actions.server">
+  <record id="action_proj_project_item_approval_request_sent_validate" model="ir.actions.server">
     <field name="name">PROJ - Project Item Approval Request  Sent - Validate</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1202,7 +1202,7 @@ for items in record.order_line:
 
 raise UserError("Pending Approval for Bellow Item/s." + "\n" + "\n" + desc)]]></field>
   </record>
-  <record id="server_action_2192_proj_update_rfq_cost_to_sales_quotation" model="ir.actions.server">
+  <record id="action_proj_update_rfq_cost_to_sales_quotation" model="ir.actions.server">
     <field name="name">PROJ - Update RFQ Cost to Sales Quotation</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1224,7 +1224,7 @@ record.write({'pr_cost_updated':True})
 
 ]]></field>
   </record>
-  <record id="server_action_2572_proj_update_with_main_so" model="ir.actions.server">
+  <record id="action_proj_update_with_main_so" model="ir.actions.server">
     <field name="name">PROJ - Update with Main SO</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1241,7 +1241,7 @@ if project:
 
 ]]></field>
   </record>
-  <record id="server_action_2575_project_sales_order_seq_no_3" model="ir.actions.server">
+  <record id="action_project_sales_order_seq_no_3" model="ir.actions.server">
     <field name="name">Project Sales Order Seq.No - 3</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1257,7 +1257,7 @@ if record.id:
     record.write({'name': new_name})
 ]]></field>
   </record>
-  <record id="server_action_2113_rr_auto_generate_quotation_type_for_projct_sos" model="ir.actions.server">
+  <record id="action_rr_auto_generate_quotation_type_for_projct_sos" model="ir.actions.server">
     <field name="name">RR - Auto Generate Quotation Type for Projct SOs</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1272,7 +1272,7 @@ record['quotation_type'] = 'Project'
 
 ]]></field>
   </record>
-  <record id="server_action_2096_rr_insufficient_transfer_inventory_details" model="ir.actions.server">
+  <record id="action_rr_insufficient_transfer_inventory_details" model="ir.actions.server">
     <field name="name">RR - Insufficient Transfer Inventory Details</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1334,7 +1334,7 @@ raise UserError(desc)
 
 ]]></field>
   </record>
-  <record id="server_action_2004_rr_rug_rejection" model="ir.actions.server">
+  <record id="action_rr_rug_rejection" model="ir.actions.server">
     <field name="name">RR - RUG Rejection</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1351,7 +1351,7 @@ raise UserError(desc)
 
 ]]></field>
   </record>
-  <record id="server_action_2246_rr_re_estimate_request_sent_validate" model="ir.actions.server">
+  <record id="action_rr_re_estimate_request_sent_validate" model="ir.actions.server">
     <field name="name">RR - Re-estimate Request  Sent - Validate</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1360,7 +1360,7 @@ raise UserError(desc)
     <field name="code"><![CDATA[if record.id:
   record['re_estimate_request_count_1'] += 1]]></field>
   </record>
-  <record id="server_action_2253_rr_track_lock_status_4" model="ir.actions.server">
+  <record id="action_rr_track_lock_status_4" model="ir.actions.server">
     <field name="name">RR - Track Lock Status - 4</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1382,7 +1382,7 @@ if record.quotation_type == 'Repair' and record.state == 'done':
     })
 ]]></field>
   </record>
-  <record id="server_action_2341_sls_create_customer_payment" model="ir.actions.server">
+  <record id="action_sls_create_customer_payment" model="ir.actions.server">
     <field name="name">SLS - Create Customer Payment</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1499,7 +1499,7 @@ if record.id:
 
 ]]></field>
   </record>
-  <record id="server_action_1517_sls_item_over_margin_details" model="ir.actions.server">
+  <record id="action_sls_item_over_margin_details" model="ir.actions.server">
     <field name="name">SLS - Item Over Margin Details</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1610,7 +1610,7 @@ if record.margin_exceed == True:
 
   ]]></field>
   </record>
-  <record id="server_action_1841_sls_overdue_approval_request_sent_validate" model="ir.actions.server">
+  <record id="action_sls_overdue_approval_request_sent_validate" model="ir.actions.server">
     <field name="name">SLS - Overdue Approval Request  Sent - Validate</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1624,7 +1624,7 @@ if record.margin_exceed == True:
 
    raise UserError("Valid SO lines should be existed to proceed!")]]></field>
   </record>
-  <record id="server_action_1843_sls_request_approval_sent_validate" model="ir.actions.server">
+  <record id="action_sls_request_approval_sent_validate" model="ir.actions.server">
     <field name="name">SLS - Request Approval Sent - Validate</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1638,7 +1638,7 @@ if record.margin_exceed == True:
 
    raise UserError("Valid SO lines should be existed to proceed!")]]></field>
   </record>
-  <record id="server_action_1845_sls_request_bank_guarantee_approval_sent_validate" model="ir.actions.server">
+  <record id="action_sls_request_bank_guarantee_approval_sent_validate" model="ir.actions.server">
     <field name="name">SLS - Request Bank Guarantee Approval Sent - Validate</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1652,7 +1652,7 @@ if record.margin_exceed == True:
 
    raise UserError("Valid SO lines should be existed to proceed!")]]></field>
   </record>
-  <record id="server_action_2515_sls_send_bank_guarantee_notification" model="ir.actions.server">
+  <record id="action_sls_send_bank_guarantee_notification" model="ir.actions.server">
     <field name="name">SLS - Send Bank Guarantee Notification</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1705,7 +1705,7 @@ action = {
 
 ]]></field>
   </record>
-  <record id="server_action_1783_sls_validate_bank_guarantee_in_so_confirm" model="ir.actions.server">
+  <record id="action_sls_validate_bank_guarantee_in_so_confirm_2" model="ir.actions.server">
     <field name="name">SLS - Validate Bank Guarantee in SO Confirm</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1763,7 +1763,7 @@ action = {
 
 ]]></field>
   </record>
-  <record id="server_action_1773_sls_validate_bank_guarantee_in_so_confirm" model="ir.actions.server">
+  <record id="action_sls_validate_bank_guarantee_in_so_confirm" model="ir.actions.server">
     <field name="name">SLS - Validate Bank Guarantee in SO Confirm</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1790,7 +1790,7 @@ action = {
 
 ]]></field>
   </record>
-  <record id="server_action_1840_sls_validate_sos_without_lines" model="ir.actions.server">
+  <record id="action_sls_validate_sos_without_lines" model="ir.actions.server">
     <field name="name">SLS - Validate SOs without Lines</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1805,7 +1805,7 @@ action = {
 
 ]]></field>
   </record>
-  <record id="server_action_2337_sls_validate_sales" model="ir.actions.server">
+  <record id="action_sls_validate_sales" model="ir.actions.server">
     <field name="name">SLS - Validate Sales</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1821,7 +1821,7 @@ action = {
       
 ]]></field>
   </record>
-  <record id="server_action_1849_sls_view_bank_guarantee_validation" model="ir.actions.server">
+  <record id="action_sls_view_bank_guarantee_validation" model="ir.actions.server">
     <field name="name">SLS - View Bank Guarantee Validation</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1851,7 +1851,7 @@ action = {
 
 ]]></field>
   </record>
-  <record id="server_action_1853_sls_view_credit_limit_validation" model="ir.actions.server">
+  <record id="action_sls_view_credit_limit_validation" model="ir.actions.server">
     <field name="name">SLS - View Credit Limit Validation</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
@@ -1887,178 +1887,178 @@ action = {
 
 ]]></field>
   </record>
-  <record id="server_action_2140_proj_request_project_item_approval" model="ir.actions.server">
+  <record id="action_proj_request_project_item_approval" model="ir.actions.server">
     <field name="name">PROJ - Request Project Item Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2138_proj_project_item_approval_request_sent_validate'), ref('BugFix-Sales.server_action_2134_proj_project_item_request_sent'), ref('BugFix-Sales.server_action_2136_proj_project_item_request_approval_notify_user')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_proj_project_item_approval_request_sent_validate'), ref('BugFix-Sales.action_proj_project_item_request_sent'), ref('BugFix-Sales.action_proj_project_item_request_approval_notify_user')])]"/>
   </record>
-  <record id="server_action_1980_rr_request_rug_approval" model="ir.actions.server">
+  <record id="action_rr_request_rug_approval" model="ir.actions.server">
     <field name="name">RR - Request RUG Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1983_rr_rug_approval_request_sent'), ref('BugFix-Sales.server_action_1985_rr_rug_request_approval_notify_user')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_rr_rug_approval_request_sent'), ref('BugFix-Sales.action_rr_rug_request_approval_notify_user')])]"/>
   </record>
-  <record id="server_action_2248_rr_request_re_estimate_permission" model="ir.actions.server">
+  <record id="action_rr_request_re_estimate_permission" model="ir.actions.server">
     <field name="name">RR - Request Re-estimate Permission</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2244_rr_re_estimate_request_sent'), ref('BugFix-Sales.server_action_2246_rr_re_estimate_request_sent_validate'), ref('BugFix-Sales.server_action_2243_rr_re_estimate_request_notify_user')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_rr_re_estimate_request_sent'), ref('BugFix-Sales.action_rr_re_estimate_request_sent_validate'), ref('BugFix-Sales.action_rr_re_estimate_request_notify_user')])]"/>
   </record>
-  <record id="server_action_1487_sls_bank_guarantee_approval_main" model="ir.actions.server">
+  <record id="action_sls_bank_guarantee_approval_main" model="ir.actions.server">
     <field name="name">SLS - Bank Guarantee Approval - Main</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2507_sls_bank_guarantee_approval'), ref('BugFix-Sales.server_action_2509_sls_bank_guarantee_approval_confirm')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_bank_guarantee_approval'), ref('BugFix-Sales.action_sls_bank_guarantee_approval_confirm')])]"/>
   </record>
-  <record id="server_action_1435_sls_credit_limit_approval_main" model="ir.actions.server">
+  <record id="action_sls_credit_limit_approval_main" model="ir.actions.server">
     <field name="name">SLS - Credit Limit Approval - Main</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2503_sls_credit_limit_approval'), ref('BugFix-Sales.server_action_2505_sls_credit_limit_approval_confirm')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_credit_limit_approval'), ref('BugFix-Sales.action_sls_credit_limit_approval_confirm')])]"/>
   </record>
-  <record id="server_action_1515_sls_margin_approval_main" model="ir.actions.server">
+  <record id="action_sls_margin_approval_main" model="ir.actions.server">
     <field name="name">SLS - Margin Approval - Main</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2495_sls_margin_approval'), ref('BugFix-Sales.server_action_2497_sls_margin_approval_confirm')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_margin_approval'), ref('BugFix-Sales.action_sls_margin_approval_confirm')])]"/>
   </record>
-  <record id="server_action_1505_sls_over_commission_approval_main" model="ir.actions.server">
+  <record id="action_sls_over_commission_approval_main" model="ir.actions.server">
     <field name="name">SLS - Over Commission Approval - Main</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2499_sls_over_commission_approval'), ref('BugFix-Sales.server_action_2501_sls_over_commission_approval_confirm')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_over_commission_approval'), ref('BugFix-Sales.action_sls_over_commission_approval_confirm')])]"/>
   </record>
-  <record id="server_action_1478_sls_overdue_approval" model="ir.actions.server">
+  <record id="action_sls_overdue_approval" model="ir.actions.server">
     <field name="name">SLS - Overdue Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2460_sls_overdue_request_approval_notify_user_01'), ref('BugFix-Sales.server_action_2458_sls_request_overdue_approval_final01')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_overdue_request_approval_notify_user_01'), ref('BugFix-Sales.action_sls_request_overdue_approval_final01')])]"/>
   </record>
-  <record id="server_action_1485_sls_request_bank_guarantee_approval" model="ir.actions.server">
+  <record id="action_sls_request_bank_guarantee_approval" model="ir.actions.server">
     <field name="name">SLS - Request Bank Guarantee Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1483_sls_request_bank_guarantee_approval_notify_user'), ref('BugFix-Sales.server_action_1481_sls_request_bank_guarantee_approval_sent'), ref('BugFix-Sales.server_action_1845_sls_request_bank_guarantee_approval_sent_validate')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_request_bank_guarantee_approval_notify_user'), ref('BugFix-Sales.action_sls_request_bank_guarantee_approval_sent'), ref('BugFix-Sales.action_sls_request_bank_guarantee_approval_sent_validate')])]"/>
   </record>
-  <record id="server_action_1458_sls_request_credit_limit_approval" model="ir.actions.server">
+  <record id="action_sls_request_credit_limit_approval" model="ir.actions.server">
     <field name="name">SLS - Request Credit Limit Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1462_sls_request_approval_notify_user'), ref('BugFix-Sales.server_action_1460_sls_request_approval_sent'), ref('BugFix-Sales.server_action_1843_sls_request_approval_sent_validate')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_request_approval_notify_user'), ref('BugFix-Sales.action_sls_request_approval_sent'), ref('BugFix-Sales.action_sls_request_approval_sent_validate')])]"/>
   </record>
-  <record id="server_action_1513_sls_request_margin_approval" model="ir.actions.server">
+  <record id="action_sls_request_margin_approval" model="ir.actions.server">
     <field name="name">SLS - Request Margin Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1509_sls_margin_approval_request_sent'), ref('BugFix-Sales.server_action_1511_sls_margin_request_approval_notify_user')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_margin_approval_request_sent'), ref('BugFix-Sales.action_sls_margin_request_approval_notify_user')])]"/>
   </record>
-  <record id="server_action_1503_sls_request_over_commission_approval" model="ir.actions.server">
+  <record id="action_sls_request_over_commission_approval" model="ir.actions.server">
     <field name="name">SLS - Request Over Commission Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1499_sls_over_commission_approval_request_sent'), ref('BugFix-Sales.server_action_1501_sls_over_commission_request_approval_notify_user')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_over_commission_approval_request_sent'), ref('BugFix-Sales.action_sls_over_commission_request_approval_notify_user')])]"/>
   </record>
-  <record id="server_action_1476_sls_request_overdue_approval" model="ir.actions.server">
+  <record id="action_sls_request_overdue_approval" model="ir.actions.server">
     <field name="name">SLS - Request Overdue Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1472_sls_overdue_approval_request_sent'), ref('BugFix-Sales.server_action_1841_sls_overdue_approval_request_sent_validate'), ref('BugFix-Sales.server_action_1474_sls_overdue_request_approval_notify_user')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_overdue_approval_request_sent'), ref('BugFix-Sales.action_sls_overdue_approval_request_sent_validate'), ref('BugFix-Sales.action_sls_overdue_request_approval_notify_user')])]"/>
   </record>
-  <record id="server_action_1468_sls_request_temporary_credit_approval" model="ir.actions.server">
+  <record id="action_sls_request_temporary_credit_approval" model="ir.actions.server">
     <field name="name">SLS - Request Temporary Credit Approval</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1466_sls_request_temporary_credit_approval_notify_user'), ref('BugFix-Sales.server_action_1464_sls_temporary_credit_approval_sent')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_request_temporary_credit_approval_notify_user'), ref('BugFix-Sales.action_sls_temporary_credit_approval_sent')])]"/>
   </record>
-  <record id="server_action_1850_sls_send_bank_guarantee_notification_main" model="ir.actions.server">
+  <record id="action_sls_send_bank_guarantee_notification_main" model="ir.actions.server">
     <field name="name">SLS - Send Bank Guarantee Notification - Main</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2515_sls_send_bank_guarantee_notification'), ref('BugFix-Sales.server_action_2516_sls_send_bank_guarantee_notification_confirm')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_send_bank_guarantee_notification'), ref('BugFix-Sales.action_sls_send_bank_guarantee_notification_confirm')])]"/>
   </record>
-  <record id="server_action_1470_sls_temporary_credit_approval_main" model="ir.actions.server">
+  <record id="action_sls_temporary_credit_approval_main" model="ir.actions.server">
     <field name="name">SLS - Temporary Credit Approval - Main</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2511_sls_temporary_credit_approval'), ref('BugFix-Sales.server_action_2513_sls_temporary_credit_approval_confirm')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_temporary_credit_approval'), ref('BugFix-Sales.action_sls_temporary_credit_approval_confirm')])]"/>
   </record>
     <data noupdate="1">
-  <record id="ar_final_sales_order_sls_credit_limit_approval_sales_credit_limit_app" model="studio.approval.rule">
+  <record id="approval_rule_ar_final_sales_order_sls_credit_limit_approval_sales_credit_limit" model="studio.approval.rule">
     <field name="name">Sales Order/SLS - Credit Limit Approval (Sales / Credit Limit Approver) (18)</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="action_id" ref="BugFix-Sales.server_action_1435_sls_credit_limit_approval_main"/>
-    <field name="group_id" ref="BugFix-Approvals.group_125_jin_sales_credit_limit_approvers"/>
+    <field name="action_id" ref="BugFix-Sales.action_sls_credit_limit_approval_main"/>
+    <field name="group_id" ref="BugFix-Approvals.group_jin_sales_credit_limit_approvers"/>
     <field name="message">Credit Limit Should be Approved</field>
   </record>
-  <record id="ar_final_sales_order_sls_temporary_credit_approval_sales_temporary_cr" model="studio.approval.rule">
+  <record id="approval_rule_ar_final_sales_order_sls_temporary_credit_approval_sales_temporary" model="studio.approval.rule">
     <field name="name">Sales Order/SLS - Temporary Credit Approval (Sales / Temporary Credit Approver) (19)</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="action_id" ref="BugFix-Sales.server_action_1470_sls_temporary_credit_approval_main"/>
-    <field name="group_id" ref="BugFix-Approvals.group_126_jin_sales_temporary_credit_approvers"/>
+    <field name="action_id" ref="BugFix-Sales.action_sls_temporary_credit_approval_main"/>
+    <field name="group_id" ref="BugFix-Approvals.group_jin_sales_temporary_credit_approvers"/>
   </record>
-  <record id="ar_final_sales_order_sls_overdue_approval_sales_overdue_approver_22" model="studio.approval.rule">
+  <record id="approval_rule_ar_final_sales_order_sls_overdue_approval_sales_overdue_approver_2" model="studio.approval.rule">
     <field name="name">Sales Order/SLS - Overdue Approval (Sales / Overdue Approver) (22)</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="action_id" ref="BugFix-Sales.server_action_1478_sls_overdue_approval"/>
-    <field name="group_id" ref="BugFix-Approvals.group_127_jin_sales_overdue_approvers"/>
+    <field name="action_id" ref="BugFix-Sales.action_sls_overdue_approval"/>
+    <field name="group_id" ref="BugFix-Approvals.group_jin_sales_overdue_approvers"/>
     <field name="message">You don't have permission to approve sales for overdue customers</field>
   </record>
-  <record id="ar_final_sales_order_sls_bank_guarantee_approval_sales_bank_guarantee" model="studio.approval.rule">
+  <record id="approval_rule_ar_final_sales_order_sls_bank_guarantee_approval_sales_bank_guaran" model="studio.approval.rule">
     <field name="name">Sales Order/SLS - Bank Guarantee Approval (Sales / Bank Guarantee Approver) (23)</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="action_id" ref="BugFix-Sales.server_action_1487_sls_bank_guarantee_approval_main"/>
-    <field name="group_id" ref="BugFix-Approvals.group_128_jin_sales_bank_guarantee_approvers"/>
+    <field name="action_id" ref="BugFix-Sales.action_sls_bank_guarantee_approval_main"/>
+    <field name="group_id" ref="BugFix-Approvals.group_jin_sales_bank_guarantee_approvers"/>
   </record>
-  <record id="ar_final_sales_order_sls_over_commission_approval_sales_over_commissi" model="studio.approval.rule">
+  <record id="approval_rule_ar_final_sales_order_sls_over_commission_approval_sales_over_commi" model="studio.approval.rule">
     <field name="name">Sales Order/SLS - Over Commission Approval (Sales / Over Commission Approver) (26)</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="action_id" ref="BugFix-Sales.server_action_1505_sls_over_commission_approval_main"/>
-    <field name="group_id" ref="BugFix-Approvals.group_130_jin_sales_over_commission_approvers"/>
+    <field name="action_id" ref="BugFix-Sales.action_sls_over_commission_approval_main"/>
+    <field name="group_id" ref="BugFix-Approvals.group_jin_sales_over_commission_approvers"/>
   </record>
-  <record id="ar_final_sales_order_sls_margin_approval_sales_margin_approver_27" model="studio.approval.rule">
+  <record id="approval_rule_ar_final_sales_order_sls_margin_approval_sales_margin_approver_27" model="studio.approval.rule">
     <field name="name">Sales Order/SLS - Margin Approval (Sales / Margin Approver) (27)</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="action_id" ref="BugFix-Sales.server_action_1515_sls_margin_approval_main"/>
-    <field name="group_id" ref="BugFix-Approvals.group_131_jin_sales_sales_margin_approvers"/>
+    <field name="action_id" ref="BugFix-Sales.action_sls_margin_approval_main"/>
+    <field name="group_id" ref="BugFix-Approvals.group_jin_sales_sales_margin_approvers"/>
     <field name="exclusive_user" eval="True"/>
   </record>
-  <record id="ar_final_sales_order_sls_create_customer_payment_user_types_internal_" model="studio.approval.rule">
+  <record id="approval_rule_ar_final_sales_order_sls_create_customer_payment_user_types_intern" model="studio.approval.rule">
     <field name="name">Sales Order/SLS - Create Customer Payment (User types / Internal User) (99)</field>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
-    <field name="action_id" ref="BugFix-Sales.server_action_2341_sls_create_customer_payment"/>
+    <field name="action_id" ref="BugFix-Sales.action_sls_create_customer_payment"/>
     <field name="group_id" ref="base.group_user"/>
   </record>
     </data>
@@ -2069,7 +2069,7 @@ action = {
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order__partner_id')])]"/>
     <field name="filter_domain">[]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1430_sls_pass_customer_pm_to_so')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_pass_customer_pm_to_so')])]"/>
   </record>
   <record id="base_automation_80_sls_validate_order_payment_type_in_so" model="base.automation">
     <field name="name">SLS - Validate Order Payment Type in SO</field>
@@ -2077,97 +2077,97 @@ action = {
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__order_payment_method')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1434_sls_validate_order_payment_type_in_so')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_validate_order_payment_type_in_so')])]"/>
   </record>
-  <record id="base_automation_176_rr_auto_generate_quotation_type_for_repair_sos" model="base.automation">
+  <record id="automation_rr_auto_generate_quotation_type_for_repair_sos" model="base.automation">
     <field name="name">RR - Auto Generate Quotation Type for Repair SOs</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1995_rr_auto_generate_quotation_type_for_repair_sos')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_rr_auto_generate_quotation_type_for_repair_sos')])]"/>
   </record>
-  <record id="base_automation_186_rr_auto_generate_quotation_type_for_project_sos" model="base.automation">
+  <record id="automation_rr_auto_generate_quotation_type_for_project_sos" model="base.automation">
     <field name="name">RR - Auto Generate Quotation Type for Project SOs</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="filter_pre_domain">[["task_id","!=",False]]</field>
     <field name="filter_domain">[["task_id","!=",False]]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2114_rr_auto_generate_quotation_type_for_project_sos')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_rr_auto_generate_quotation_type_for_project_sos')])]"/>
   </record>
-  <record id="base_automation_187_rr_auto_generate_quotation_type_for_project_sos_2" model="base.automation">
+  <record id="automation_rr_auto_generate_quotation_type_for_project_sos_2" model="base.automation">
     <field name="name">RR - Auto Generate Quotation Type for Project SOs - 2</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('industry_fsm_sale.field_sale_order__task_id')])]"/>
     <field name="filter_domain">[["task_id","!=",False]]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2117_rr_auto_generate_quotation_type_for_project_sos_2')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_rr_auto_generate_quotation_type_for_project_sos_2')])]"/>
   </record>
-  <record id="base_automation_202_rr_track_lock_status" model="base.automation">
+  <record id="automation_rr_track_lock_status" model="base.automation">
     <field name="name">RR - Track Lock Status</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2250_rr_track_lock_status')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_rr_track_lock_status')])]"/>
   </record>
-  <record id="base_automation_203_rr_track_lock_status_2" model="base.automation">
+  <record id="automation_rr_track_lock_status_2" model="base.automation">
     <field name="name">RR - Track Lock Status - 2</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2251_rr_track_lock_status_2')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_rr_track_lock_status_2')])]"/>
   </record>
-  <record id="base_automation_234_update_analytic_tag_parameters_sales_order_customer" model="base.automation">
+  <record id="automation_update_analytic_tag_parameters_sales_order_customer" model="base.automation">
     <field name="name">Update Analytic Tag Parameters - Sales Order - Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('sale.field_sale_order__partner_id')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2414_update_analytic_tag_parameters_sales_order_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_update_analytic_tag_parameters_sales_order_customer')])]"/>
   </record>
-  <record id="base_automation_235_update_analytic_tag_parameters_sales_order_user" model="base.automation">
+  <record id="automation_update_analytic_tag_parameters_sales_order_user" model="base.automation">
     <field name="name">Update Analytic Tag Parameters - Sales Order - User</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2415_update_analytic_tag_parameters_sales_order_user')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_update_analytic_tag_parameters_sales_order_user')])]"/>
   </record>
-  <record id="base_automation_257_jin_project_sales_order_seq_no" model="base.automation">
+  <record id="automation_jin_project_sales_order_seq_no" model="base.automation">
     <field name="name">JIN-Project Sales Order Seq.No</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2573_project_sales_order_seq_no')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_project_sales_order_seq_no')])]"/>
   </record>
-  <record id="base_automation_258_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro" model="base.automation">
+  <record id="automation_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro" model="base.automation">
     <field name="name">JIN-Project Sales Order Seq.No (Maintain Separate Nos for Project SOs On Create)</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__quotation_type')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2574_project_sales_order_seq_no_2')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_project_sales_order_seq_no_2')])]"/>
   </record>
-  <record id="base_automation_260_proj_validate_start_date_and_end_date_for_project_sos" model="base.automation">
+  <record id="automation_proj_validate_start_date_and_end_date_for_project_sos" model="base.automation">
     <field name="name">PROJ - Validate Start date and End date for Project SOs</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__project_end_date'), ref('BugFix-Sales.field_sale_order__project_start_date')])]"/>
     <field name="filter_domain">[["task_id","!=",False]]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2576_proj_validate_start_date_and_end_date_for_project_sos')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_proj_validate_start_date_and_end_date_for_project_sos')])]"/>
   </record>
-  <record id="base_automation_341_proj_apply_project_price_list" model="base.automation">
+  <record id="automation_proj_apply_project_price_list" model="base.automation">
     <field name="name">PROJ - Apply Project Price List</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__quotation_type')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2896_proj_apply_project_price_list')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_proj_apply_project_price_list')])]"/>
   </record>
-  <record id="server_action_1783_sls_validate_bank_guarantee_in_so_confirm" model="ir.actions.server">
+  <record id="action_sls_validate_bank_guarantee_in_so_confirm_2" model="ir.actions.server">
     <field name="name">SLS - Validate Bank Guarantee in SO Confirm</field>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="state">code</field>
@@ -2226,7 +2226,7 @@ if record.partner_id.customer_rank > 0:
 
     ]]></field>
   </record>
-  <record id="server_action_1995_rr_auto_generate_quotation_type_for_repair_sos" model="ir.actions.server">
+  <record id="action_rr_auto_generate_quotation_type_for_repair_sos" model="ir.actions.server">
     <field name="name">RR - Auto Generate Quotation Type for Repair SOs</field>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="state">code</field>
@@ -2247,7 +2247,7 @@ if record.id:
 
     ]]></field>
   </record>
-  <record id="server_action_2114_rr_auto_generate_quotation_type_for_project_sos" model="ir.actions.server">
+  <record id="action_rr_auto_generate_quotation_type_for_project_sos" model="ir.actions.server">
     <field name="name">RR - Auto Generate Quotation Type for Project SOs</field>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="state">code</field>
@@ -2276,7 +2276,7 @@ if record.task_id != False:
 
     ]]></field>
   </record>
-  <record id="server_action_2117_rr_auto_generate_quotation_type_for_project_sos_2" model="ir.actions.server">
+  <record id="action_rr_auto_generate_quotation_type_for_project_sos_2" model="ir.actions.server">
     <field name="name">RR - Auto Generate Quotation Type for Project SOs - 2</field>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="state">code</field>
@@ -2301,7 +2301,7 @@ if record.task_id != False:
 
     ]]></field>
   </record>
-  <record id="server_action_2250_rr_track_lock_status" model="ir.actions.server">
+  <record id="action_rr_track_lock_status" model="ir.actions.server">
     <field name="name">RR - Track Lock Status</field>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="state">code</field>
@@ -2324,7 +2324,7 @@ if record.quotation_type == 'Repair' and record.state == 'done':
 
     ]]></field>
   </record>
-  <record id="server_action_2251_rr_track_lock_status_2" model="ir.actions.server">
+  <record id="action_rr_track_lock_status_2" model="ir.actions.server">
     <field name="name">RR - Track Lock Status - 2</field>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="state">code</field>
@@ -2338,7 +2338,7 @@ if (record.quotation_type == 'Repair'
 
     ]]></field>
   </record>
-  <record id="server_action_2576_proj_validate_start_date_and_end_date_for_project_sos" model="ir.actions.server">
+  <record id="action_proj_validate_start_date_and_end_date_for_project_sos" model="ir.actions.server">
     <field name="name">PROJ - Validate Start date and End date for Project SOs</field>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="state">code</field>
@@ -2362,7 +2362,7 @@ if record.quotation_type == 'Project':
 
     ]]></field>
   </record>
-  <record id="server_action_2896_proj_apply_project_price_list" model="ir.actions.server">
+  <record id="action_proj_apply_project_price_list" model="ir.actions.server">
     <field name="name">PROJ - Apply Project Price List</field>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="state">code</field>
@@ -2378,59 +2378,59 @@ else:
     record['pricelist_id'] = customer_pricelist.property_product_pricelist.id
     ]]></field>
   </record>
-  <record id="base_automation_147_sls_validate_bank_guarantee_in_so_confirm" model="base.automation">
+  <record id="automation_sls_validate_bank_guarantee_in_so_confirm" model="base.automation">
     <field name="name">SLS - Validate Bank Guarantee in SO Confirm</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="trigger">on_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1783_sls_validate_bank_guarantee_in_so_confirm')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_validate_bank_guarantee_in_so_confirm_2')])]"/>
   </record>
-  <record id="base_automation_169_sls_validate_sos_without_lines" model="base.automation">
+  <record id="automation_sls_validate_sos_without_lines" model="base.automation">
     <field name="name">SLS - Validate SOs without Lines</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="trigger">on_create_or_write</field>
   </record>
-  <record id="base_automation_205_rr_track_lock_status_4" model="base.automation">
+  <record id="automation_rr_track_lock_status_4" model="base.automation">
     <field name="name">RR - Track Lock Status - 4</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="trigger">on_write</field>
     <field name="filter_domain">['&amp;', '&amp;', '&amp;', ('state', '=', 'sale'), ('sales_locked', '=', True), ('quotation_type', '=', 'Repair'), ('unlocked', '=', True)]</field>
   </record>
-  <record id="base_automation_259_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro" model="base.automation">
+  <record id="automation_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro_2" model="base.automation">
     <field name="name">JIN-Project Sales Order Seq.No (Maintain Separate Nos for Project SOs On Update)</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="trigger">on_create_or_write</field>
   </record>
     <data noupdate="1">
-    <record id="default_212_sale_order_over_credit" model="ir.default">
+    <record id="default_sale_order_over_credit" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_sale_order__over_credit"/>
       <field name="json_value">"0"</field>
     </record>
-    <!-- DROPPED default_325_sale_order_line_product_status: selection value 'Blank' not in field allowed set -->
-<record id="default_363_sale_order_re_estimate_count" model="ir.default">
+    <!-- DROPPED default_sale_order_line_product_status: selection value 'Blank' not in field allowed set -->
+<record id="default_sale_order_re_estimate_count" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_sale_order__re_estimate_count"/>
       <field name="json_value">"0"</field>
     </record>
-    <record id="default_364_sale_order_re_estimate_request_count_1" model="ir.default">
+    <record id="default_sale_order_re_estimate_request_count_1" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_sale_order__re_estimate_request_count_1"/>
       <field name="json_value">"0"</field>
     </record>
-    <record id="default_374_sale_order_repair_validation" model="ir.default">
+    <record id="default_sale_order_repair_validation" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_sale_order__repair_validation"/>
       <field name="json_value">"The current user doesn't have permission to create the invoice."</field>
     </record>
-    <record id="default_384_sale_order_sales_order_validity" model="ir.default">
+    <record id="default_sale_order_sales_order_validity" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_sale_order__sales_order_validity"/>
       <field name="json_value">"0"</field>
     </record>
-    <record id="default_415_sale_order_confirm_validation" model="ir.default">
+    <record id="default_sale_order_confirm_validation" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_sale_order__confirm_validation"/>
       <field name="json_value">"The related project budget must be confirmed to proceed with SO confirmation."</field>
     </record>
-    <record id="default_417_sale_order_confirm_validation_1" model="ir.default">
+    <record id="default_sale_order_confirm_validation_1" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_sale_order__confirm_validation_1"/>
       <field name="json_value">"Profit Margin %\" item is not added in sales lines. Add the margin % line."</field>
     </record>
@@ -2441,6 +2441,6 @@ else:
       <field name="company_id" ref="seed_master_data_and_settings.company_jinasena_pvt_ltd"/>
     </record>
     -->
-    <!-- DROPPED default_586_product_template_product_type: selection value 'None' not in field allowed set -->
+    <!-- DROPPED default_product_template_product_type: selection value 'None' not in field allowed set -->
     </data>
 </odoo>

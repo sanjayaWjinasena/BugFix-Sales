@@ -40,28 +40,28 @@
     <field name="domain">[('vendor_group', '=', active_id)]</field>
     <field name="context">{'search_default_vendor_group': active_id,'default_vendor_group': active_id}</field>
   </record>
-  <record id="act_window_781_new_button" model="ir.actions.act_window">
+  <record id="action_new_button" model="ir.actions.act_window">
     <field name="name">New Button</field>
     <field name="res_model">res.partner</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('many2one_field_3LBKs', '=', active_id)]</field>
     <field name="context">{'search_default_many2one_field_3LBKs': active_id,'default_many2one_field_3LBKs': active_id}</field>
   </record>
-  <record id="act_window_782_customers_of_this_group" model="ir.actions.act_window">
+  <record id="action_customers_of_this_group" model="ir.actions.act_window">
     <field name="name">Customers of this group</field>
     <field name="res_model">res.partner</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('many2one_field_3LBKs', '=', active_id)]</field>
     <field name="context">{'search_default_many2one_field_3LBKs': active_id,'default_many2one_field_3LBKs': active_id}</field>
   </record>
-  <record id="act_window_783_customers_of_this_group" model="ir.actions.act_window">
+  <record id="action_customers_of_this_group_2" model="ir.actions.act_window">
     <field name="name">Customers of this group:</field>
     <field name="res_model">res.partner</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('many2one_field_3LBKs', '=', active_id)]</field>
     <field name="context">{'search_default_many2one_field_3LBKs': active_id,'default_many2one_field_3LBKs': active_id}</field>
   </record>
-  <record id="act_window_1425_res_partner" model="ir.actions.act_window">
+  <record id="action_res_partner" model="ir.actions.act_window">
     <field name="name">res.partner</field>
     <field name="res_model">res.partner</field>
     <field name="view_mode">kanban,tree,form,map,activity</field>
@@ -78,14 +78,14 @@
                 </p>
             </field>
   </record>
-  <record id="act_window_1447_customers" model="ir.actions.act_window">
+  <record id="action_customers" model="ir.actions.act_window">
     <field name="name">Customers</field>
     <field name="res_model">res.partner</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('customer_group', '=', active_id)]</field>
     <field name="context">{'search_default_customer_group': active_id,'default_customer_group': active_id}</field>
   </record>
-  <record id="act_window_1448_vendors" model="ir.actions.act_window">
+  <record id="action_vendors" model="ir.actions.act_window">
     <field name="name">Vendors</field>
     <field name="res_model">res.partner</field>
     <field name="view_mode">tree,form</field>
@@ -114,7 +114,7 @@
 
         </field>
     </record>
-  <record id="ported_view_2299_odoo_studio_res_partner_form_customizati" model="ir.ui.view">
+  <record id="view_res_partner_form_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: res.partner.form customization</field>
     <field name="model">res.partner</field>
     <field name="inherit_id" ref="base.view_partner_form"/>
@@ -128,7 +128,7 @@
           </xpath>
 
         <xpath expr="//button[@name='action_see_documents']" position="after">
-          <button class="oe_stat_button" icon="fa-briefcase" type="action" name="%(BugFix-Sales.action_1696_purchase_agreements)d" studio-view-group-names="User" studio-view-group-ids="87">
+          <button class="oe_stat_button" icon="fa-briefcase" type="action" name="%(BugFix-Sales.action_purchase_agreements)d" studio-view-group-names="User" studio-view-group-ids="87">
             <field widget="statinfo" name="vendor_id__purchase_requisition_count" string="Purchase Agreements" studio-view-group-names="User" studio-view-group-ids="87"/>
           </button>
         </xpath>
@@ -259,7 +259,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_view_2300_odoo_studio_res_partner_tree_customizati" model="ir.ui.view">
+  <record id="view_res_partner_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: res.partner.tree customization</field>
     <field name="model">res.partner</field>
     <field name="inherit_id" ref="base.view_partner_tree"/>
@@ -338,40 +338,40 @@
       </data>
     </field>
   </record>
-  <record id="act_window_1447_customers" model="ir.actions.act_window">
+  <record id="action_customers" model="ir.actions.act_window">
     <field name="name">Customers</field>
     <field name="res_model">res.partner</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('customer_group', '=', active_id)]</field>
     <field name="context">{'search_default_customer_group': active_id,'default_customer_group': active_id}</field>
   </record>
-  <record id="act_window_782_customers_of_this_group" model="ir.actions.act_window">
+  <record id="action_customers_of_this_group" model="ir.actions.act_window">
     <field name="name">Customers of this group</field>
     <field name="res_model">res.partner</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('many2one_field_3LBKs', '=', active_id)]</field>
     <field name="context">{'search_default_many2one_field_3LBKs': active_id,'default_many2one_field_3LBKs': active_id}</field>
   </record>
-  <record id="act_window_783_customers_of_this_group" model="ir.actions.act_window">
+  <record id="action_customers_of_this_group_2" model="ir.actions.act_window">
     <field name="name">Customers of this group:</field>
     <field name="res_model">res.partner</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('many2one_field_3LBKs', '=', active_id)]</field>
     <field name="context">{'search_default_many2one_field_3LBKs': active_id,'default_many2one_field_3LBKs': active_id}</field>
   </record>
-  <record id="act_window_781_new_button" model="ir.actions.act_window">
+  <record id="action_new_button" model="ir.actions.act_window">
     <field name="name">New Button</field>
     <field name="res_model">res.partner</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('many2one_field_3LBKs', '=', active_id)]</field>
     <field name="context">{'search_default_many2one_field_3LBKs': active_id,'default_many2one_field_3LBKs': active_id}</field>
   </record>
-  <record id="act_window_1425_res_partner" model="ir.actions.act_window">
+  <record id="action_res_partner" model="ir.actions.act_window">
     <field name="name">res.partner</field>
     <field name="res_model">res.partner</field>
     <field name="view_mode">kanban,tree,form,map,activity</field>
   </record>
-  <record id="act_window_1448_vendors" model="ir.actions.act_window">
+  <record id="action_vendors" model="ir.actions.act_window">
     <field name="name">Vendors</field>
     <field name="res_model">res.partner</field>
     <field name="view_mode">tree,form</field>

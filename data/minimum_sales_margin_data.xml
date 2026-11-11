@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="sa_f5_x_minimum_sales_margin_sls_minimum_sales_margin_in_setup_page" model="ir.actions.server">
+  <record id="action_minimum_sales_margin_sls_minimum_sales_margin_in_setup_page" model="ir.actions.server">
     <field name="name">SLS - Minimum Sales Margin % - in Setup Page</field>
     <field name="model_id" search="[('model', '=', 'minimum_sales_margin')]"/>
     <field name="state">code</field>
@@ -17,7 +17,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-    <record id="server_action_1776_sls_minimum_sales_margin_in_setup_page" model="ir.actions.server">
+    <record id="action_sls_minimum_sales_margin_in_setup_page" model="ir.actions.server">
       <field name="name">SLS - Minimum Sales Margin % - in Setup Page</field>
       <field name="model_id" search="[('model', '=', 'minimum_sales_margin')]"/>
       <field name="state">code</field>
@@ -35,14 +35,14 @@ if record.id:
 
       ]]></field>
     </record>
-    <record id="base_automation_146_sls_minimum_sales_margin_in_setup_page" model="base.automation">
+    <record id="automation_sls_minimum_sales_margin_in_setup_page" model="base.automation">
       <field name="name">SLS - Minimum Sales Margin % - in Setup Page</field>
       <field name="active" eval="True"/>
       <field name="model_id" search="[('model', '=', 'minimum_sales_margin')]"/>
       <field name="trigger">on_create_or_write</field>
-      <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1776_sls_minimum_sales_margin_in_setup_page')])]"/>
+      <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_minimum_sales_margin_in_setup_page')])]"/>
     </record>
-  <record id="server_action_1776_sls_minimum_sales_margin_in_setup_page" model="ir.actions.server">
+  <record id="action_sls_minimum_sales_margin_in_setup_page" model="ir.actions.server">
     <field name="name">SLS - Minimum Sales Margin % - in Setup Page</field>
     <field name="model_id" ref="BugFix-Sales.model_minimum_sales_margin"/>
     <field name="state">code</field>
@@ -61,15 +61,15 @@ if record.id:
     ]]></field>
   </record>
     <data noupdate="1">
-    <record id="default_285_x_minimum_sales_margin_active" model="ir.default">
+    <record id="default_minimum_sales_margin_active" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_minimum_sales_margin__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_286_x_minimum_sales_margin_sequence" model="ir.default">
+    <record id="default_minimum_sales_margin_sequence" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_minimum_sales_margin__sequence"/>
       <field name="json_value">10</field>
     </record>
-    <record id="default_373_x_minimum_sales_margin_x_studio_sales_order_vali" model="ir.default">
+    <record id="default_minimum_sales_margin_sales_order_vali" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_minimum_sales_margin__sales_order_validity"/>
       <field name="json_value">"0"</field>
     </record>

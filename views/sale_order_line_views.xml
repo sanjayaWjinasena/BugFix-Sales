@@ -17,7 +17,7 @@
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,kanban,form,pivot</field>
   </record>
-  <record id="act_window_1568_sales_order_lines" model="ir.actions.act_window">
+  <record id="action_sales_order_lines" model="ir.actions.act_window">
     <field name="name">Sales Order Lines</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,form,pivot</field>
@@ -34,28 +34,28 @@
                 </p>
             </field>
   </record>
-  <record id="act_window_2193_line_items" model="ir.actions.act_window">
+  <record id="action_line_items" model="ir.actions.act_window">
     <field name="name">Line Items</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_id', '=', active_id)]</field>
     <field name="context">{'search_default_project_id': active_id,'default_project_id': active_id}</field>
   </record>
-  <record id="act_window_2194_line_items" model="ir.actions.act_window">
+  <record id="action_line_items_2" model="ir.actions.act_window">
     <field name="name">Line Items</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_no', '=', active_id)]</field>
     <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
-  <record id="act_window_2195_line_items" model="ir.actions.act_window">
+  <record id="action_line_items_3" model="ir.actions.act_window">
     <field name="name">Line Items</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('main_project_2', '=', active_id)]</field>
     <field name="context">{'search_default_main_project_2': active_id,'default_main_project_2': active_id}</field>
   </record>
-  <record id="act_window_2200_sales_production_request_status" model="ir.actions.act_window">
+  <record id="action_sales_production_request_status" model="ir.actions.act_window">
     <field name="name">Sales - Production Request Status</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,kanban,form,pivot</field>
@@ -72,7 +72,7 @@
                 </p>
             </field>
   </record>
-  <record id="ported_default_pivot_view_f_b434dca2_4958_4f97_b58e_a253d775c63c" model="ir.ui.view">
+  <record id="view_sale_order_line_pivot_2" model="ir.ui.view">
     <field name="name">Default pivot view for ir.model(599,)</field>
     <field name="model">sale.order.line</field>
     <field name="key">studio_customization.default_pivot_view_f_b434dca2-4958-4f97-b58e-a253d775c63c</field>
@@ -83,7 +83,7 @@
       <pivot string="Sales Order Line"/>
     </field>
   </record>
-  <record id="ported_view_3259_odoo_studio_sale_order_line_tree_customi" model="ir.ui.view">
+  <record id="view_sale_order_line_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: sale.order.line.tree customization</field>
     <field name="model">sale.order.line</field>
     <field name="inherit_id" ref="sale.view_order_line_tree"/>
@@ -139,38 +139,38 @@
       </data>
     </field>
   </record>
-  <record id="act_window_2195_line_items" model="ir.actions.act_window">
+  <record id="action_line_items_3" model="ir.actions.act_window">
     <field name="name">Line Items</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('main_project_2', '=', active_id)]</field>
     <field name="context">{'search_default_main_project_2': active_id,'default_main_project_2': active_id}</field>
   </record>
-  <record id="act_window_2194_line_items" model="ir.actions.act_window">
+  <record id="action_line_items_2" model="ir.actions.act_window">
     <field name="name">Line Items</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_no', '=', active_id)]</field>
     <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
-  <record id="act_window_2193_line_items" model="ir.actions.act_window">
+  <record id="action_line_items" model="ir.actions.act_window">
     <field name="name">Line Items</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_id', '=', active_id)]</field>
     <field name="context">{'search_default_project_id': active_id,'default_project_id': active_id}</field>
   </record>
-  <record id="act_window_1568_sales_order_lines" model="ir.actions.act_window">
+  <record id="action_sales_order_lines" model="ir.actions.act_window">
     <field name="name">Sales Order Lines</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,form,pivot</field>
   </record>
-  <record id="act_window_2200_sales_production_request_status" model="ir.actions.act_window">
+  <record id="action_sales_production_request_status" model="ir.actions.act_window">
     <field name="name">Sales - Production Request Status</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,kanban,form,pivot</field>
   </record>
-    <record id="view_3260_default_pivot_view_for_ir_model_599_e" model="ir.ui.view">
+    <record id="view_sale_order_line_pivot" model="ir.ui.view">
       <field name="name">Default pivot view for ir.model(599,)</field>
       <field name="model">sale.order.line</field>
       <field name="type">pivot</field>

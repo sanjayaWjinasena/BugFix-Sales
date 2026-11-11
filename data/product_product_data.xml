@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="server_action_2196_proj_item_approval_notify_project_user" model="ir.actions.server">
+  <record id="action_proj_item_approval_notify_project_user" model="ir.actions.server">
     <field name="name">PROJ - Item Approval - Notify  Project User</field>
     <field name="model_id" search="[('model', '=', 'product.product')]"/>
     <field name="state">next_activity</field>
@@ -12,7 +12,7 @@
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_id" search="[('login', '=', 'kapila.h@jinasena.com.lk')]"/>
   </record>
-  <record id="server_action_2165_proj_item_approval_request_notify_user" model="ir.actions.server">
+  <record id="action_proj_item_approval_request_notify_user" model="ir.actions.server">
     <field name="name">PROJ - Item Approval Request - Notify User</field>
     <field name="model_id" search="[('model', '=', 'product.product')]"/>
     <field name="state">next_activity</field>
@@ -24,7 +24,7 @@
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
     <field name="activity_user_id" search="[('login', '=', 'kapila.h@jinasena.com.lk')]"/>
   </record>
-  <record id="server_action_2169_proj_item_approval" model="ir.actions.server">
+  <record id="action_proj_item_approval" model="ir.actions.server">
     <field name="name">PROJ - Item Approval</field>
     <field name="model_id" search="[('model', '=', 'product.product')]"/>
     <field name="state">object_write</field>
@@ -36,7 +36,7 @@
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_2163_proj_item_approval_request_sent" model="ir.actions.server">
+  <record id="action_proj_item_approval_request_sent" model="ir.actions.server">
     <field name="name">PROJ - Item Approval Request  Sent</field>
     <field name="model_id" search="[('model', '=', 'product.product')]"/>
     <field name="state">object_write</field>
@@ -48,7 +48,7 @@
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
-  <record id="server_action_2171_proj_item_approval_validate" model="ir.actions.server">
+  <record id="action_proj_item_approval_validate" model="ir.actions.server">
     <field name="name">PROJ - Item Approval - Validate</field>
     <field name="model_id" search="[('model', '=', 'product.product')]"/>
     <field name="state">code</field>
@@ -58,20 +58,20 @@
 
   raise UserError("Internal Reference should be filled in to proceed!")]]></field>
   </record>
-  <record id="server_action_2173_proj_item_approval_final" model="ir.actions.server">
+  <record id="action_proj_item_approval_final" model="ir.actions.server">
     <field name="name">PROJ - Item Approval - Final</field>
     <field name="model_id" search="[('model', '=', 'product.product')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2169_proj_item_approval'), ref('BugFix-Sales.server_action_2196_proj_item_approval_notify_project_user'), ref('BugFix-Sales.server_action_2171_proj_item_approval_validate')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_proj_item_approval'), ref('BugFix-Sales.action_proj_item_approval_notify_project_user'), ref('BugFix-Sales.action_proj_item_approval_validate')])]"/>
   </record>
-  <record id="server_action_2167_proj_request_item_approval" model="ir.actions.server">
+  <record id="action_proj_request_item_approval" model="ir.actions.server">
     <field name="name">PROJ - Request Item Approval</field>
     <field name="model_id" search="[('model', '=', 'product.product')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2163_proj_item_approval_request_sent'), ref('BugFix-Sales.server_action_2165_proj_item_approval_request_notify_user')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Sales.action_proj_item_approval_request_sent'), ref('BugFix-Sales.action_proj_item_approval_request_notify_user')])]"/>
   </record>
 </odoo>

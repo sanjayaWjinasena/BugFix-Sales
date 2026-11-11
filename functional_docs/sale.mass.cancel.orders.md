@@ -16,4 +16,4 @@ This repo only ships a record rule that limits each user to their own Cancel mul
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Sales Mass Cancel Orders: access only your own wizard | `rule_779_sales_mass_cancel_orders_access_only_your_own_wizard` | For everyone (global rule): read/write/create/delete on Cancel multiple quotations only where `[('create_uid', '=', user.id)]`. | `model sale.mass.cancel.orders` (sale) |  |
+| Sales Mass Cancel Orders: access only your own wizard | `rule_sales_mass_cancel_orders_access_only_your_own_wizard` | For everyone (global rule): read/write/create/delete on Cancel multiple quotations only where `[('create_uid', '=', user.id)]`. | `model sale.mass.cancel.orders` (sale) |  |

@@ -16,4 +16,4 @@ This repo only ships a record rule for the Sales Order Cancel wizard. It adds no
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Sales Order Cancel Rule | `rule_180_sales_order_cancel_rule` | For everyone (global rule): read/write/create/delete on Sales Order Cancel only where `[('create_uid', '=', user.id)]`. | `model sale.order.cancel` (sale) |  |
+| Sales Order Cancel Rule | `rule_sales_order_cancel_rule` | For everyone (global rule): read/write/create/delete on Sales Order Cancel only where `[('create_uid', '=', user.id)]`. | `model sale.order.cancel` (sale) |  |

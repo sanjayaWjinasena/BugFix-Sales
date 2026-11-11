@@ -31,8 +31,8 @@ A Document Conclusion is a reusable closing text for printed quotations, with a 
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Document Conclusions | `action_doc_conclusion` | Opens **Quotation Document Conclusion** records (tree,form). | `model bugfix_sales.doc_conclusion` | `menu BugFix-Sales.menu_doc_conclusion`<br>`menu BugFix-Sales.menu_f6_document_conclusions` |
-| Document Conclusions | `act_window_3636_document_conclusions` | Opens **Quotation Document Conclusion** records (tree,form). | `model bugfix_sales.doc_conclusion` |  |
+| Document Conclusions | `action_doc_conclusion` | Opens **Quotation Document Conclusion** records (tree,form). | `model bugfix_sales.doc_conclusion` | `menu BugFix-Sales.menu_doc_conclusion`<br>`menu BugFix-Sales.menu_document_conclusions` |
+| Document Conclusions | `action_document_conclusions` | Opens **Quotation Document Conclusion** records (tree,form). | `model bugfix_sales.doc_conclusion` |  |
 
 **Views (2):**
 
@@ -45,5 +45,5 @@ A Document Conclusion is a reusable closing text for printed quotations, with a 
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| bugfix_sales.doc_conclusion manager | `access_8713_bugfix_sales_doc_conclusion_manager` | Gives **Sales / Administrator** read/write/create/delete access to Quotation Document Conclusion records. | `group sales_team.group_sale_manager` (sales_team)<br>`model bugfix_sales.doc_conclusion` |  |
-| bugfix_sales.doc_conclusion user | `access_8712_bugfix_sales_doc_conclusion_user` | Gives **Sales / User: Own Documents Only** read access to Quotation Document Conclusion records. | `group sales_team.group_sale_salesman` (sales_team)<br>`model bugfix_sales.doc_conclusion` |  |
+| bugfix_sales.doc_conclusion manager | `access_bugfix_sales_doc_conclusion_manager` | Gives **Sales / Administrator** read/write/create/delete access to Quotation Document Conclusion records. | `group sales_team.group_sale_manager` (sales_team)<br>`model bugfix_sales.doc_conclusion` |  |
+| bugfix_sales.doc_conclusion user | `access_bugfix_sales_doc_conclusion_user` | Gives **Sales / User: Own Documents Only** read access to Quotation Document Conclusion records. | `group sales_team.group_sale_salesman` (sales_team)<br>`model bugfix_sales.doc_conclusion` |  |

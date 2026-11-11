@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="ported_view_5065_odoo_studio_product_pricelist_tree_custo" model="ir.ui.view">
+  <record id="view_product_pricelist_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: product.pricelist.tree customization</field>
     <field name="model">product.pricelist</field>
     <field name="inherit_id" ref="product.product_pricelist_view_tree"/>
@@ -18,7 +18,7 @@
       </data>
     </field>
   </record>
-    <record id="view_5064_odoo_studio_product_pricelist_form_customization_e" model="ir.ui.view">
+    <record id="view_product_pricelist_form_inherit" model="ir.ui.view">
       <field name="name">Odoo Studio: product.pricelist.form customization</field>
       <field name="model">product.pricelist</field>
       <field name="type">form</field>

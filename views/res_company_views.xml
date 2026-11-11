@@ -5,7 +5,7 @@
     <field name="res_model">res.company</field>
     <field name="view_mode">kanban,tree,form</field>
   </record>
-  <record id="act_window_2840_companies_res_company" model="ir.actions.act_window">
+  <record id="action_companies_res_company" model="ir.actions.act_window">
     <field name="name">Companies (res.company)</field>
     <field name="res_model">res.company</field>
     <field name="view_mode">kanban,tree,form</field>
@@ -22,7 +22,7 @@
                 </p>
             </field>
   </record>
-  <record id="ported_view_5547_odoo_studio_res_company_tree_customizati" model="ir.ui.view">
+  <record id="view_res_company_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: res.company.tree customization</field>
     <field name="model">res.company</field>
     <field name="inherit_id" ref="base.view_company_tree"/>
@@ -35,7 +35,7 @@
       </data>
     </field>
   </record>
-  <record id="act_window_2840_companies_res_company" model="ir.actions.act_window">
+  <record id="action_companies_res_company" model="ir.actions.act_window">
     <field name="name">Companies (res.company)</field>
     <field name="res_model">res.company</field>
     <field name="view_mode">kanban,tree,form</field>

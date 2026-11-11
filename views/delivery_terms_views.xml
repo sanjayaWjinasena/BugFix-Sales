@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="act_window_1205_delivery_terms" model="ir.actions.act_window">
+  <record id="action_delivery_terms" model="ir.actions.act_window">
     <field name="name">Delivery Terms</field>
     <field name="res_model">delivery_terms</field>
     <field name="view_mode">tree,form</field>
@@ -17,7 +17,7 @@
                 </p>
             </field>
   </record>
-  <record id="act_window_2060_delivery_terms" model="ir.actions.act_window">
+  <record id="action_delivery_terms_2" model="ir.actions.act_window">
     <field name="name">Delivery Terms</field>
     <field name="res_model">delivery_terms</field>
     <field name="view_mode">tree,form</field>
@@ -34,7 +34,7 @@
                 </p>
             </field>
   </record>
-  <record id="ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885" model="ir.ui.view">
+  <record id="view_delivery_terms_form" model="ir.ui.view">
     <field name="name">Default form view for delivery_terms</field>
     <field name="model">delivery_terms</field>
     <field name="key">studio_customization.default_form_view_fo_ccd4306a-1ac9-43c7-847f-965bdab82885</field>
@@ -66,7 +66,7 @@
       </form>
     </field>
   </record>
-  <record id="ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e" model="ir.ui.view">
+  <record id="view_delivery_terms_list" model="ir.ui.view">
     <field name="name">Default list view for delivery_terms</field>
     <field name="model">delivery_terms</field>
     <field name="key">studio_customization.default_list_view_fo_35abcb0b-2581-4156-9e23-d75bfb8d6b5e</field>
@@ -80,7 +80,7 @@
       </tree>
     </field>
   </record>
-  <record id="ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe" model="ir.ui.view">
+  <record id="view_delivery_terms_search" model="ir.ui.view">
     <field name="name">Default search view for delivery_terms</field>
     <field name="model">delivery_terms</field>
     <field name="key">studio_customization.default_search_view__f98a2314-f551-4142-ba32-a74bde2e40fe</field>

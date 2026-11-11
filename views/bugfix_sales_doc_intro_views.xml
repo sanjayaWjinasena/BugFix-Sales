@@ -45,7 +45,7 @@
             </p>
         </field>
     </record>
-  <record id="act_window_3635_document_introductions" model="ir.actions.act_window">
+  <record id="action_document_introductions" model="ir.actions.act_window">
     <field name="name">Document Introductions</field>
     <field name="res_model">bugfix_sales.doc_intro</field>
     <field name="view_mode">tree,form</field>
@@ -60,6 +60,6 @@
             </p>
         </field>
   </record>
-  <!-- STRIPPED act_window_1750_sales_configurations: model minimum_sales_margin not on target -->
+  <!-- STRIPPED action_sales_configurations: model minimum_sales_margin not on target -->
 <!-- STRIPPED act_window_1749_config_settings: model misc_res_config_settings not on target -->
 </odoo>

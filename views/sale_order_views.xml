@@ -38,14 +38,14 @@
     <field name="res_model">sale.order</field>
     <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
   </record>
-  <record id="act_window_785_sales_orders" model="ir.actions.act_window">
+  <record id="action_sales_orders" model="ir.actions.act_window">
     <field name="name">Sales orders</field>
     <field name="res_model">sale.order</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('x_studio_related_field_f6P0a', '=', active_id)]</field>
     <field name="context">{'search_default_x_studio_related_field_f6P0a': active_id,'default_x_studio_related_field_f6P0a': active_id}</field>
   </record>
-  <record id="act_window_2283_sale_order" model="ir.actions.act_window">
+  <record id="action_sale_order" model="ir.actions.act_window">
     <field name="name">sale.order</field>
     <field name="res_model">sale.order</field>
     <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
@@ -62,7 +62,7 @@
                 </p>
             </field>
   </record>
-  <record id="act_window_2330_repair_sales_order_list" model="ir.actions.act_window">
+  <record id="action_repair_sales_order_list" model="ir.actions.act_window">
     <field name="name">Repair Sales Order List</field>
     <field name="res_model">sale.order</field>
     <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
@@ -80,7 +80,7 @@
                 </p>
             </field>
   </record>
-  <record id="act_window_2338_project_sales_orders" model="ir.actions.act_window">
+  <record id="action_project_sales_orders" model="ir.actions.act_window">
     <field name="name">Project Sales Orders</field>
     <field name="res_model">sale.order</field>
     <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
@@ -98,7 +98,7 @@
                 </p>
             </field>
   </record>
-  <record id="act_window_2439_ss" model="ir.actions.act_window">
+  <record id="action_ss" model="ir.actions.act_window">
     <field name="name">SS</field>
     <field name="res_model">sale.order</field>
     <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
@@ -115,7 +115,7 @@
                 </p>
             </field>
   </record>
-  <record id="act_window_2571_sales_orders" model="ir.actions.act_window">
+  <record id="action_sales_orders_2" model="ir.actions.act_window">
     <field name="name">Sales Orders</field>
     <field name="res_model">sale.order</field>
     <field name="view_mode">tree,form</field>
@@ -155,7 +155,7 @@
 
         </field>
     </record>
-  <record id="ported_odoo_studio_sale_ord_ec04cc0c_2274_4a3f_8a1d_c240a65d1ca3" model="ir.ui.view">
+  <record id="view_sale_order_form_inherit_3" model="ir.ui.view">
     <field name="name">Odoo Studio: sale.order.form customization</field>
     <field name="model">sale.order</field>
     <field name="key">studio_customization.odoo_studio_sale_ord_ec04cc0c-2274-4a3f-8a1d-c240a65d1ca3</field>
@@ -183,8 +183,8 @@
           <field name="expired" invisible="1"/>
         </xpath>
         <xpath expr="//header" position="inside">
-          <button type="action" name="%(BugFix-Sales.server_action_1476_sls_request_overdue_approval)d" string="Request Overdue Approval" class="btn-primary" invisible="(state == 'cancel') or ((overdue_request_sent == True) or ((overdue_approved == True) or ((overdue != True) or ((valid_order_lines == False) or ((state == 'done') or ((clear_free_items == True) or (expired == True)))))))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_1478_sls_overdue_approval)d" string="Approve Overdue" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((overdue_request_sent == False) or ((overdue_approved == True) or ((overdue != True) or ((clear_free_items == True) or (expired == True)))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_request_overdue_approval)d" string="Request Overdue Approval" class="btn-primary" invisible="(state == 'cancel') or ((overdue_request_sent == True) or ((overdue_approved == True) or ((overdue != True) or ((valid_order_lines == False) or ((state == 'done') or ((clear_free_items == True) or (expired == True)))))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_overdue_approval)d" string="Approve Overdue" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((overdue_request_sent == False) or ((overdue_approved == True) or ((overdue != True) or ((clear_free_items == True) or (expired == True)))))"/>
         </xpath>
 
         <!--1.2.9 Commission Control in Sales Orders (Slice F, v0.1.0.123).
@@ -195,8 +195,8 @@
           <field name="over_comm_approval_request_sent" invisible="1"/>
         </xpath>
         <xpath expr="//header" position="inside">
-          <button type="action" name="%(BugFix-Sales.server_action_1503_sls_request_over_commission_approval)d" string="Request Over Commission Approval" class="btn-primary" invisible="(state == 'cancel') or ((over_comm_approval_request_sent == True) or ((over_commission_approved == True) or ((over_commission != True) or ((valid_order_lines == False) or ((state == 'done') or ((clear_free_items == True) or (expired == True)))))))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_1505_sls_over_commission_approval_main)d" string="Approve Over Commission" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((over_comm_approval_request_sent == False) or ((over_commission_approved == True) or ((over_commission != True) or (expired == True))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_request_over_commission_approval)d" string="Request Over Commission Approval" class="btn-primary" invisible="(state == 'cancel') or ((over_comm_approval_request_sent == True) or ((over_commission_approved == True) or ((over_commission != True) or ((valid_order_lines == False) or ((state == 'done') or ((clear_free_items == True) or (expired == True)))))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_over_commission_approval_main)d" string="Approve Over Commission" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((over_comm_approval_request_sent == False) or ((over_commission_approved == True) or ((over_commission != True) or (expired == True))))"/>
         </xpath>
 
         <!--1.2.10 Margin Control in Sales Orders (Slice G, v0.1.0.124).
@@ -212,9 +212,9 @@
           <field name="margin_approval_request_sent" invisible="1"/>
         </xpath>
         <xpath expr="//header" position="inside">
-          <button type="action" name="%(BugFix-Sales.server_action_1513_sls_request_margin_approval)d" string="Request Insufficient Marginn Approval" class="btn-primary" invisible="(state == 'cancel') or ((margin_approval_request_sent == True) or ((margin_approved == True) or ((margin_exceed != True) or ((valid_order_lines == False) or ((state == 'done') or ((clear_free_items == True) or (expired == True)))))))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_1515_sls_margin_approval_main)d" string="Approve Insufficient Margin" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((margin_approval_request_sent == False) or ((margin_approved == True) or ((margin_exceed != True) or (expired == True))))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_1517_sls_item_over_margin_details)d" string="Insufficient Margin Details" class="btn-secondary" invisible="(state == 'cancel') or ((margin_approval_request_sent == True) or ((margin_approved == True) or ((margin_exceed != True) or ((clear_free_items == True) or (expired == True)))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_request_margin_approval)d" string="Request Insufficient Marginn Approval" class="btn-primary" invisible="(state == 'cancel') or ((margin_approval_request_sent == True) or ((margin_approved == True) or ((margin_exceed != True) or ((valid_order_lines == False) or ((state == 'done') or ((clear_free_items == True) or (expired == True)))))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_margin_approval_main)d" string="Approve Insufficient Margin" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((margin_approval_request_sent == False) or ((margin_approved == True) or ((margin_exceed != True) or (expired == True))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_item_over_margin_details)d" string="Insufficient Margin Details" class="btn-secondary" invisible="(state == 'cancel') or ((margin_approval_request_sent == True) or ((margin_approved == True) or ((margin_exceed != True) or ((clear_free_items == True) or (expired == True)))))"/>
         </xpath>
 
         <!--1.2.11 Credit Limit + Temp Credit Control in Sales Orders
@@ -236,11 +236,11 @@
           <field name="tem_credit_approval_request_sent" invisible="1"/>
         </xpath>
         <xpath expr="//header" position="inside">
-          <button type="action" name="%(BugFix-Sales.server_action_1458_sls_request_credit_limit_approval)d" string="Request Credit Limit Approval" class="btn-primary" invisible="((over_commission_approved == False) and (over_commission == True)) or (((overdue_approved == False) and (overdue == True)) or ((state == 'cancel') or ((approval_request_sent == True) or ((credit_limit_approved == True) or ((over_credit != True) or ((valid_order_lines == False) or ((state in ['done', 'cancel']) or ((clear_free_items == True) or (expired == True)))))))))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_1435_sls_credit_limit_approval_main)d" string="Approve Credit Limit" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((approval_request_sent == False) or ((credit_limit_approved == True) or ((over_credit != True) or ((order_payment_method != 'Credit') or (expired == True)))))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_1853_sls_view_credit_limit_validation)d" string="View Credit Limit Overdue Details" class="btn-secondary" invisible="(valid_order_lines == False) or ((state == 'cancel') or ((credit_limit_validation != True) or ((state == 'done') or ((clear_free_items == True) or (expired == True)))))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_1468_sls_request_temporary_credit_approval)d" string="Request Temporary Credit Approval" class="btn-primary" invisible="(state == 'cancel') or ((tem_credit_approval_request_sent == True) or ((temporary_credit_approved == True) or ((grant_temporary_credit != True) or ((order_payment_method != 'Credit') or ((valid_order_lines == False) or ((state == 'done') or ((clear_free_items == True) or (expired == True))))))))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_1470_sls_temporary_credit_approval_main)d" string="Approve Temporary Credit" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((tem_credit_approval_request_sent == False) or ((temporary_credit_approved == True) or ((grant_temporary_credit != True) or ((order_payment_method != 'Credit') or (expired == True)))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_request_credit_limit_approval)d" string="Request Credit Limit Approval" class="btn-primary" invisible="((over_commission_approved == False) and (over_commission == True)) or (((overdue_approved == False) and (overdue == True)) or ((state == 'cancel') or ((approval_request_sent == True) or ((credit_limit_approved == True) or ((over_credit != True) or ((valid_order_lines == False) or ((state in ['done', 'cancel']) or ((clear_free_items == True) or (expired == True)))))))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_credit_limit_approval_main)d" string="Approve Credit Limit" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((approval_request_sent == False) or ((credit_limit_approved == True) or ((over_credit != True) or ((order_payment_method != 'Credit') or (expired == True)))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_view_credit_limit_validation)d" string="View Credit Limit Overdue Details" class="btn-secondary" invisible="(valid_order_lines == False) or ((state == 'cancel') or ((credit_limit_validation != True) or ((state == 'done') or ((clear_free_items == True) or (expired == True)))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_request_temporary_credit_approval)d" string="Request Temporary Credit Approval" class="btn-primary" invisible="(state == 'cancel') or ((tem_credit_approval_request_sent == True) or ((temporary_credit_approved == True) or ((grant_temporary_credit != True) or ((order_payment_method != 'Credit') or ((valid_order_lines == False) or ((state == 'done') or ((clear_free_items == True) or (expired == True))))))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_temporary_credit_approval_main)d" string="Approve Temporary Credit" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((tem_credit_approval_request_sent == False) or ((temporary_credit_approved == True) or ((grant_temporary_credit != True) or ((order_payment_method != 'Credit') or (expired == True)))))"/>
         </xpath>
 
         <!--1.2.12 Bank Guarantee + BG Notification in Sales Orders
@@ -262,10 +262,10 @@
           <field name="bg_sent" invisible="1"/>
         </xpath>
         <xpath expr="//header" position="inside">
-          <button type="action" name="%(BugFix-Sales.server_action_1485_sls_request_bank_guarantee_approval)d" string="Request Bank Guarantee Approval" class="btn-primary" invisible="((credit_limit_approved == False) and (over_credit == True)) or ((state == 'cancel') or ((bank_guarantee_request_sent == True) or ((bank_guarantee_approved == True) or ((over_bank_guarantee != True) or ((valid_order_lines == False) or ((state in ['done', 'cancel']) or ((clear_free_items == True) or (expired == True))))))))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_1487_sls_bank_guarantee_approval_main)d" string="Approve Bank Guarantee" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((bank_guarantee_request_sent == False) or ((bank_guarantee_approved == True) or ((over_bank_guarantee != True) or (expired == True))))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_1849_sls_view_bank_guarantee_validation)d" string="View Bank Guarantee Validity" class="btn-secondary" invisible="(valid_order_lines == False) or ((state == 'cancel') or ((bank_guarantee_validation != True) or ((state == 'done') or ((clear_free_items == True) or (expired == True)))))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_1850_sls_send_bank_guarantee_notification_main)d" string="Send Bank Guarantee Validity Notification" class="btn-secondary" invisible="((bg_sent == True) and (bank_guarantee_notification == True)) or ((state == 'cancel') or ((bank_guarantee_notification != True) or ((valid_order_lines == False) or ((state == 'done') or ((clear_free_items == True) or (expired == True))))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_request_bank_guarantee_approval)d" string="Request Bank Guarantee Approval" class="btn-primary" invisible="((credit_limit_approved == False) and (over_credit == True)) or ((state == 'cancel') or ((bank_guarantee_request_sent == True) or ((bank_guarantee_approved == True) or ((over_bank_guarantee != True) or ((valid_order_lines == False) or ((state in ['done', 'cancel']) or ((clear_free_items == True) or (expired == True))))))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_bank_guarantee_approval_main)d" string="Approve Bank Guarantee" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((bank_guarantee_request_sent == False) or ((bank_guarantee_approved == True) or ((over_bank_guarantee != True) or (expired == True))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_view_bank_guarantee_validation)d" string="View Bank Guarantee Validity" class="btn-secondary" invisible="(valid_order_lines == False) or ((state == 'cancel') or ((bank_guarantee_validation != True) or ((state == 'done') or ((clear_free_items == True) or (expired == True)))))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_send_bank_guarantee_notification_main)d" string="Send Bank Guarantee Validity Notification" class="btn-secondary" invisible="((bg_sent == True) and (bank_guarantee_notification == True)) or ((state == 'cancel') or ((bank_guarantee_notification != True) or ((valid_order_lines == False) or ((state == 'done') or ((clear_free_items == True) or (expired == True))))))"/>
         </xpath>
 
         <!--1.2.13 Transfer Inventory + Customer Payment (Slice H, v0.1.0.127).
@@ -280,8 +280,8 @@
           <field name="customer_payment_method" invisible="1"/>
         </xpath>
         <xpath expr="//header" position="inside">
-          <button type="action" name="%(BugFix-Sales.server_action_2096_rr_insufficient_transfer_inventory_details)d" string="Insufficient Transfer Inventory Details" class="btn-secondary" invisible="((state in ['sale', 'done', 'cancel']) and (transfer_inventory_ok == True)) or ((transfer_inventory_ok == False) or (clear_free_items == True))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_2341_sls_create_customer_payment)d" string="Create Advance Payment" class="btn-primary" invisible="quotation_type != 'Sales' or state not in ('sale', 'done')"/>
+          <button type="action" name="%(BugFix-Sales.action_rr_insufficient_transfer_inventory_details)d" string="Insufficient Transfer Inventory Details" class="btn-secondary" invisible="((state in ['sale', 'done', 'cancel']) and (transfer_inventory_ok == True)) or ((transfer_inventory_ok == False) or (clear_free_items == True))"/>
+          <button type="action" name="%(BugFix-Sales.action_sls_create_customer_payment)d" string="Create Advance Payment" class="btn-primary" invisible="quotation_type != 'Sales' or state not in ('sale', 'done')"/>
         </xpath>
 
         <!--1.2.14 Project Item Approval (Slice B-Proj, v0.1.0.128).
@@ -295,7 +295,7 @@
           <field name="project_item_approved" invisible="1"/>
         </xpath>
         <xpath expr="//header" position="inside">
-          <button type="action" name="%(BugFix-Sales.server_action_2138_proj_project_item_approval_request_sent_validate)d" string="Project Item Approval Status" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((new_item_from_project != True) or ((valid_order_lines_for_projects == False) or (state == 'done')))"/>
+          <button type="action" name="%(BugFix-Sales.action_proj_project_item_approval_request_sent_validate)d" string="Project Item Approval Status" class="btn-primary" studio_approval="True" invisible="(state == 'cancel') or ((new_item_from_project != True) or ((valid_order_lines_for_projects == False) or (state == 'done')))"/>
         </xpath>
 
         <!-- Sentinel required by Slice A9 pages Repair Image + Warranty
@@ -817,7 +817,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_odoo_studio_sale_ord_71749d4c_8fb8_46b0_a187_bfa8977a25fd" model="ir.ui.view">
+  <record id="view_sale_order_pivot_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: sale.order.pivot customization</field>
     <field name="model">sale.order</field>
     <field name="key">studio_customization.odoo_studio_sale_ord_71749d4c-8fb8-46b0-a187-bfa8977a25fd</field>
@@ -833,7 +833,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_odoo_studio_sale_ord_d30b53b2_bf08_42d7_a477_18497e66a5f5" model="ir.ui.view">
+  <record id="view_sale_order_tree_inherit_2" model="ir.ui.view">
     <field name="name">Odoo Studio: sale.order.tree customization</field>
     <field name="model">sale.order</field>
     <field name="key">studio_customization.odoo_studio_sale_ord_d30b53b2-bf08-42d7-a477-18497e66a5f5</field>
@@ -877,7 +877,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_odoo_studio_sale_ord_b4d2d01a_3a8c_4827_885c_7390c53f2113" model="ir.ui.view">
+  <record id="view_sale_order_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: sale.order.tree customization</field>
     <field name="model">sale.order</field>
     <field name="key">studio_customization.odoo_studio_sale_ord_b4d2d01a-3a8c-4827-885c-7390c53f2113</field>
@@ -896,7 +896,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_odoo_studio_sale_ord_42b65c93_ce32_435b_8978_554c017d8d4c" model="ir.ui.view">
+  <record id="view_sale_order_tree_orders_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: sale.order.tree (orders) customization</field>
     <field name="model">sale.order</field>
     <field name="key">studio_customization.odoo_studio_sale_ord_42b65c93-ce32-435b-8978-554c017d8d4c</field>
@@ -912,7 +912,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_odoo_studio_sale_ord_2b440c7b_edb5_4cd8_827e_19fbb95a85a9" model="ir.ui.view">
+  <record id="view_sale_order_form_inherit_2" model="ir.ui.view">
     <field name="name">Odoo Studio: sale.order.form customization_button</field>
     <field name="model">sale.order</field>
     <field name="key">studio_customization.odoo_studio_sale_ord_2b440c7b-edb5-4cd8-827e-19fbb95a85a9</field>
@@ -1061,45 +1061,45 @@
         </data>
     </field>
   </record>
-  <record id="act_window_2338_project_sales_orders" model="ir.actions.act_window">
+  <record id="action_project_sales_orders" model="ir.actions.act_window">
     <field name="name">Project Sales Orders</field>
     <field name="res_model">sale.order</field>
     <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
     <field name="domain">[('quotation_type', '=', 'Project')]</field>
     <field name="context">{'search_default_my_quotation': 1}</field>
   </record>
-  <record id="act_window_2330_repair_sales_order_list" model="ir.actions.act_window">
+  <record id="action_repair_sales_order_list" model="ir.actions.act_window">
     <field name="name">Repair Sales Order List</field>
     <field name="res_model">sale.order</field>
     <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
     <field name="domain">[('quotation_type', '=', 'Repair')]</field>
     <field name="context">{'search_default_my_quotation': 1}</field>
   </record>
-  <record id="act_window_2283_sale_order" model="ir.actions.act_window">
+  <record id="action_sale_order" model="ir.actions.act_window">
     <field name="name">sale.order</field>
     <field name="res_model">sale.order</field>
     <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
   </record>
-  <record id="act_window_2571_sales_orders" model="ir.actions.act_window">
+  <record id="action_sales_orders_2" model="ir.actions.act_window">
     <field name="name">Sales Orders</field>
     <field name="res_model">sale.order</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('task_id', '=', active_id)]</field>
     <field name="context">{'search_default_task_id': active_id,'default_task_id': active_id}</field>
   </record>
-  <record id="act_window_785_sales_orders" model="ir.actions.act_window">
+  <record id="action_sales_orders" model="ir.actions.act_window">
     <field name="name">Sales orders</field>
     <field name="res_model">sale.order</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('x_studio_related_field_f6P0a', '=', active_id)]</field>
     <field name="context">{'search_default_x_studio_related_field_f6P0a': active_id,'default_x_studio_related_field_f6P0a': active_id}</field>
   </record>
-  <record id="act_window_2439_ss" model="ir.actions.act_window">
+  <record id="action_ss" model="ir.actions.act_window">
     <field name="name">SS</field>
     <field name="res_model">sale.order</field>
     <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
   </record>
-    <record id="view_3922_odoo_studio_sale_order_form_customization_button_2_e" model="ir.ui.view">
+    <record id="view_sale_order_form_inherit" model="ir.ui.view">
       <field name="name">Odoo Studio: sale.order.form customization_button_2</field>
       <field name="model">sale.order</field>
       <field name="type">form</field>

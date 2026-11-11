@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="sa_f5_res_partner_jin_company_id_in_respartner_inherit_model" model="ir.actions.server">
+  <record id="action_res_partner_jin_company_id_in_respartner_inherit_model" model="ir.actions.server">
     <field name="name">JIN - Company Id in ResPartner Inherit Model</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -12,7 +12,7 @@ record['company_id'] = company.id
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_res_partner_jin_pricelist_in_respartner_inherit_model" model="ir.actions.server">
+  <record id="action_res_partner_jin_pricelist_in_respartner_inherit_model" model="ir.actions.server">
     <field name="name">JIN - Pricelist in ResPartner Inherit Model</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -29,7 +29,7 @@ if pricelist:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_res_partner_sls_track_credit_limit_in_customer" model="ir.actions.server">
+  <record id="action_res_partner_sls_track_credit_limit_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track Credit Limit in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -42,7 +42,7 @@ if pricelist:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_res_partner_sls_validate_credit_limit" model="ir.actions.server">
+  <record id="action_res_partner_sls_validate_credit_limit" model="ir.actions.server">
     <field name="name">SLS - Validate Credit Limit</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -62,7 +62,7 @@ if pricelist:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_res_partner_sls_validate_credit_limit_bank_guarantee_amount_1" model="ir.actions.server">
+  <record id="action_res_partner_sls_validate_credit_limit_bank_guarantee_amount_1" model="ir.actions.server">
     <field name="name">SLS - Validate Credit Limit &amp; Bank Guarantee Amount - 1</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -84,7 +84,7 @@ if pricelist:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_res_partner_sls_update_payment_term_customer" model="ir.actions.server">
+  <record id="action_res_partner_sls_update_payment_term_customer" model="ir.actions.server">
     <field name="name">SLS - Update Payment Term - Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -98,7 +98,7 @@ if pricelist:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="server_action_810_sls_update_payment_term_customer" model="ir.actions.server">
+  <record id="action_sls_update_payment_term_customer" model="ir.actions.server">
     <field name="name">SLS - Update Payment Term - Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -112,7 +112,7 @@ if pricelist:
 
 ]]></field>
   </record>
-  <record id="server_action_1427_sls_validate_credit_limit" model="ir.actions.server">
+  <record id="action_sls_validate_credit_limit" model="ir.actions.server">
     <field name="name">SLS - Validate Credit Limit</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -132,7 +132,7 @@ if pricelist:
 
 ]]></field>
   </record>
-  <record id="server_action_1428_sls_validate_payment_method" model="ir.actions.server">
+  <record id="action_sls_validate_payment_method" model="ir.actions.server">
     <field name="name">SLS - Validate Payment Method</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -145,7 +145,7 @@ if pricelist:
 
 ]]></field>
   </record>
-  <record id="server_action_1445_sls_update_payment_term_vendor" model="ir.actions.server">
+  <record id="action_sls_update_payment_term_vendor" model="ir.actions.server">
     <field name="name">SLS - Update Payment Term - Vendor</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -159,7 +159,7 @@ if pricelist:
 
 ]]></field>
   </record>
-  <record id="server_action_1518_sls_track_credit_limit_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_credit_limit_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track Credit Limit in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -172,7 +172,7 @@ if pricelist:
 
 ]]></field>
   </record>
-  <record id="server_action_1767_sls_customer_group_distributor_mandatory_bank_guarantee" model="ir.actions.server">
+  <record id="action_sls_customer_group_distributor_mandatory_bank_guarantee" model="ir.actions.server">
     <field name="name">SLS - Customer Group - Distributor - Mandatory Bank Guarantee</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -186,7 +186,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1768_sls_customer_group_not_in_general_validation" model="ir.actions.server">
+  <record id="action_sls_customer_group_not_in_general_validation" model="ir.actions.server">
     <field name="name">SLS - Customer Group - not in General - Validation</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -206,7 +206,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1821_sls_track_name_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_name_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track Name in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -218,7 +218,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1822_sls_track_address1_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_address1_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Address1 in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -230,7 +230,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1823_sls_track_address2_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_address2_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Address2 in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -242,7 +242,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1824_sls_track_address3_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_address3_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Address3 in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -254,7 +254,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1825_sls_track_tax_id_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_tax_id_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Tax ID in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -266,7 +266,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1826_sls_track_customer_group_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_customer_group_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Customer Group in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -278,7 +278,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1828_sls_track_payment_term_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_payment_term_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Payment Term in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -290,7 +290,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1829_sls_track_payment_type_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_payment_type_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Payment Type in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -302,7 +302,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1830_sls_track_address4_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_address4_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Address4 in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -314,7 +314,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1831_sls_track_address5_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_address5_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Address5 in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -326,7 +326,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1832_sls_track_mobile_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_mobile_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Mobile in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -338,7 +338,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1833_sls_track_price_list_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_price_list_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Price List in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -350,7 +350,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1834_sls_track_vat_registration_status_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_vat_registration_status_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  VAT Registration Status in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -362,7 +362,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1835_sls_track_vat_registration_no_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_vat_registration_no_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  VAT Registration No in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -374,7 +374,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1836_sls_track_svat_registration_status_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_svat_registration_status_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  SVAT Registration Status in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -386,7 +386,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1837_sls_track_svat_registration_no_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_svat_registration_no_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  SVAT Registration No in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -398,7 +398,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1838_sls_track_bank_guarantee_expiration_date_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_bank_guarantee_expiration_date_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Bank Guarantee Expiration Date in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -410,7 +410,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1839_sls_track_mandatory_bank_guarantee_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_mandatory_bank_guarantee_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Mandatory Bank Guarantee in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -422,7 +422,7 @@ records.message_post(body="Customer Mandatory Bank Guarantee Modified. --> " + s
 
 ]]></field>
   </record>
-  <record id="server_action_2037_sls_track_vat_exempted_number_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_vat_exempted_number_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  VAT Exempted Number in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -434,7 +434,7 @@ records.message_post(body="Customer Mandatory Bank Guarantee Modified. --> " + s
 
 ]]></field>
   </record>
-  <record id="server_action_2336_sls_validate_mobile" model="ir.actions.server">
+  <record id="action_sls_validate_mobile" model="ir.actions.server">
     <field name="name">SLS - Validate Mobile</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -454,7 +454,7 @@ records.message_post(body="Customer Mandatory Bank Guarantee Modified. --> " + s
 
 ]]></field>
   </record>
-  <record id="server_action_2828_jin_company_id_in_respartner_inherit_model" model="ir.actions.server">
+  <record id="action_jin_company_id_in_respartner_inherit_model" model="ir.actions.server">
     <field name="name">JIN - Company Id in ResPartner Inherit Model</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -466,7 +466,7 @@ company = env['res.company'].browse(company_id)
 record['company_id'] = company.id
 ]]></field>
   </record>
-  <record id="server_action_2891_jin_pricelist_in_respartner_inherit_model" model="ir.actions.server">
+  <record id="action_jin_pricelist_in_respartner_inherit_model" model="ir.actions.server">
     <field name="name">JIN - Pricelist in ResPartner Inherit Model</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -483,7 +483,7 @@ if pricelist:
 
 ]]></field>
   </record>
-  <record id="server_action_1772_sls_111111111" model="ir.actions.server">
+  <record id="action_sls" model="ir.actions.server">
     <field name="name">SLS - 111111111</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -505,7 +505,7 @@ if pricelist:
 
 ]]></field>
   </record>
-  <record id="server_action_1827_sls_track_phone_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_phone_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track  Phone in Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -517,7 +517,7 @@ if pricelist:
 
 ]]></field>
   </record>
-  <record id="server_action_1771_sls_validate_credit_limit_bank_guarantee_amount_1" model="ir.actions.server">
+  <record id="action_sls_validate_credit_limit_bank_guarantee_amount_1" model="ir.actions.server">
     <field name="name">SLS - Validate Credit Limit &amp; Bank Guarantee Amount - 1</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -539,7 +539,7 @@ if pricelist:
 
 ]]></field>
   </record>
-  <record id="server_action_1480_sls_validate_customer_group" model="ir.actions.server">
+  <record id="action_sls_validate_customer_group" model="ir.actions.server">
     <field name="name">SLS - Validate Customer Group</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -551,7 +551,7 @@ if pricelist:
 
 ]]></field>
   </record>
-  <record id="server_action_2335_sls_validate_phone" model="ir.actions.server">
+  <record id="action_sls_validate_phone" model="ir.actions.server">
     <field name="name">SLS - Validate Phone</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
@@ -580,14 +580,14 @@ if pricelist:
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__customer_group')])]"/>
     <field name="filter_domain">[["customer_group","!=",False]]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_810_sls_update_payment_term_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_update_payment_term_customer')])]"/>
   </record>
   <record id="base_automation_77_sls_validate_credit_limit" model="base.automation">
     <field name="name">SLS - Validate Credit Limit</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1427_sls_validate_credit_limit')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_validate_credit_limit')])]"/>
   </record>
   <record id="base_automation_78_sls_validate_payment_method" model="base.automation">
     <field name="name">SLS - Validate Payment Method</field>
@@ -595,7 +595,7 @@ if pricelist:
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_res_partner__payment_method')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1428_sls_validate_payment_method')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_validate_payment_method')])]"/>
   </record>
   <record id="base_automation_82_sls_update_payment_term_vendor" model="base.automation">
     <field name="name">SLS - Update Payment Term - Vendor</field>
@@ -604,7 +604,7 @@ if pricelist:
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__vendor_group')])]"/>
     <field name="filter_domain">[["customer_group","!=",False]]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1445_sls_update_payment_term_vendor')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_update_payment_term_vendor')])]"/>
   </record>
   <record id="base_automation_92_sls_track_credit_limit_in_customer" model="base.automation">
     <field name="name">SLS - Track Credit Limit in Customer</field>
@@ -612,201 +612,201 @@ if pricelist:
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_res_partner__credit_limit')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1518_sls_track_credit_limit_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_credit_limit_in_customer')])]"/>
   </record>
-  <record id="base_automation_139_sls_customer_group_distributor_mandatory_bank_guarantee" model="base.automation">
+  <record id="automation_sls_customer_group_distributor_mandatory_bank_guarantee" model="base.automation">
     <field name="name">SLS - Customer Group - Distributor - Mandatory Bank Guarantee</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__customer_group')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1767_sls_customer_group_distributor_mandatory_bank_guarantee')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_customer_group_distributor_mandatory_bank_guarantee')])]"/>
   </record>
-  <record id="base_automation_140_sls_customer_group_not_in_general_validation" model="base.automation">
+  <record id="automation_sls_customer_group_not_in_general_validation" model="base.automation">
     <field name="name">SLS - Customer Group - not in General - Validation</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__customer_group')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1768_sls_customer_group_not_in_general_validation')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_customer_group_not_in_general_validation')])]"/>
   </record>
-  <record id="base_automation_150_sls_track_name_in_customer" model="base.automation">
+  <record id="automation_sls_track_name_in_customer" model="base.automation">
     <field name="name">SLS - Track Name in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_res_partner__name')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1821_sls_track_name_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_name_in_customer')])]"/>
   </record>
-  <record id="base_automation_151_sls_track_address1_in_customer" model="base.automation">
+  <record id="automation_sls_track_address1_in_customer" model="base.automation">
     <field name="name">SLS - Track  Address1 in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__street')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1822_sls_track_address1_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_address1_in_customer')])]"/>
   </record>
-  <record id="base_automation_152_sls_track_address2_in_customer" model="base.automation">
+  <record id="automation_sls_track_address2_in_customer" model="base.automation">
     <field name="name">SLS - Track  Address2 in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__city')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1823_sls_track_address2_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_address2_in_customer')])]"/>
   </record>
-  <record id="base_automation_153_sls_track_address3_in_customer" model="base.automation">
+  <record id="automation_sls_track_address3_in_customer" model="base.automation">
     <field name="name">SLS - Track  Address3 in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__zip')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1824_sls_track_address3_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_address3_in_customer')])]"/>
   </record>
-  <record id="base_automation_154_sls_track_tax_id_in_customer" model="base.automation">
+  <record id="automation_sls_track_tax_id_in_customer" model="base.automation">
     <field name="name">SLS - Track  Tax ID in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__vat')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1825_sls_track_tax_id_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_tax_id_in_customer')])]"/>
   </record>
-  <record id="base_automation_155_sls_track_customer_group_in_customer" model="base.automation">
+  <record id="automation_sls_track_customer_group_in_customer" model="base.automation">
     <field name="name">SLS - Track  Customer Group in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__customer_group')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1826_sls_track_customer_group_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_customer_group_in_customer')])]"/>
   </record>
-  <record id="base_automation_157_sls_track_payment_term_in_customer" model="base.automation">
+  <record id="automation_sls_track_payment_term_in_customer" model="base.automation">
     <field name="name">SLS - Track  Payment Term in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_res_partner__property_payment_term_id')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1828_sls_track_payment_term_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_payment_term_in_customer')])]"/>
   </record>
-  <record id="base_automation_158_sls_track_payment_type_in_customer" model="base.automation">
+  <record id="automation_sls_track_payment_type_in_customer" model="base.automation">
     <field name="name">SLS - Track  Payment Type in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_res_partner__payment_method')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1829_sls_track_payment_type_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_payment_type_in_customer')])]"/>
   </record>
-  <record id="base_automation_159_sls_track_address4_in_customer" model="base.automation">
+  <record id="automation_sls_track_address4_in_customer" model="base.automation">
     <field name="name">SLS - Track  Address4 in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__street2')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1830_sls_track_address4_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_address4_in_customer')])]"/>
   </record>
-  <record id="base_automation_160_sls_track_address5_in_customer" model="base.automation">
+  <record id="automation_sls_track_address5_in_customer" model="base.automation">
     <field name="name">SLS - Track  Address5 in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__country_id')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1831_sls_track_address5_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_address5_in_customer')])]"/>
   </record>
-  <record id="base_automation_161_sls_track_mobile_in_customer" model="base.automation">
+  <record id="automation_sls_track_mobile_in_customer" model="base.automation">
     <field name="name">SLS - Track  Mobile in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__mobile')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1832_sls_track_mobile_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_mobile_in_customer')])]"/>
   </record>
-  <record id="base_automation_162_sls_track_price_list_in_customer" model="base.automation">
+  <record id="automation_sls_track_price_list_in_customer" model="base.automation">
     <field name="name">SLS - Track  Price List in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('product.field_res_partner__property_product_pricelist')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1833_sls_track_price_list_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_price_list_in_customer')])]"/>
   </record>
-  <record id="base_automation_163_sls_track_vat_registration_status_in_customer" model="base.automation">
+  <record id="automation_sls_track_vat_registration_status_in_customer" model="base.automation">
     <field name="name">SLS - Track  VAT Registration Status in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1834_sls_track_vat_registration_status_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_vat_registration_status_in_customer')])]"/>
   </record>
-  <record id="base_automation_164_sls_track_vat_registration_no_in_customer" model="base.automation">
+  <record id="automation_sls_track_vat_registration_no_in_customer" model="base.automation">
     <field name="name">SLS - Track  VAT Registration No in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1835_sls_track_vat_registration_no_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_vat_registration_no_in_customer')])]"/>
   </record>
-  <record id="base_automation_165_sls_track_svat_registration_status_in_customer" model="base.automation">
+  <record id="automation_sls_track_svat_registration_status_in_customer" model="base.automation">
     <field name="name">SLS - Track  SVAT Registration Status in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1836_sls_track_svat_registration_status_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_svat_registration_status_in_customer')])]"/>
   </record>
-  <record id="base_automation_166_sls_track_svat_registration_no_in_customer" model="base.automation">
+  <record id="automation_sls_track_svat_registration_no_in_customer" model="base.automation">
     <field name="name">SLS - Track  SVAT Registration No in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1837_sls_track_svat_registration_no_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_svat_registration_no_in_customer')])]"/>
   </record>
-  <record id="base_automation_167_sls_track_bank_guarantee_expiration_date_in_customer" model="base.automation">
+  <record id="automation_sls_track_bank_guarantee_expiration_date_in_customer" model="base.automation">
     <field name="name">SLS - Track  Bank Guarantee Expiration Date in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_res_partner__expiry_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1838_sls_track_bank_guarantee_expiration_date_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_bank_guarantee_expiration_date_in_customer')])]"/>
   </record>
-  <record id="base_automation_168_sls_track_mandatory_bank_guarantee_in_customer" model="base.automation">
+  <record id="automation_sls_track_mandatory_bank_guarantee_in_customer" model="base.automation">
     <field name="name">SLS - Track  Mandatory Bank Guarantee in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1839_sls_track_mandatory_bank_guarantee_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_mandatory_bank_guarantee_in_customer')])]"/>
   </record>
-  <record id="base_automation_180_sls_track_vat_exempted_number_in_customer" model="base.automation">
+  <record id="automation_sls_track_vat_exempted_number_in_customer" model="base.automation">
     <field name="name">SLS - Track  VAT Exempted Number in Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(5, 0, 0)]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2037_sls_track_vat_exempted_number_in_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_track_vat_exempted_number_in_customer')])]"/>
   </record>
-  <record id="base_automation_218_sls_validate_mobile" model="base.automation">
+  <record id="automation_sls_validate_mobile" model="base.automation">
     <field name="name">SLS - Validate Mobile</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('base.field_res_partner__mobile')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2336_sls_validate_mobile')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_validate_mobile')])]"/>
   </record>
-  <record id="base_automation_336_jin_company_id_in_respartner_inherit_model" model="base.automation">
+  <record id="automation_jin_company_id_in_respartner_inherit_model" model="base.automation">
     <field name="name">JIN - Company Id in ResPartner Inherit Model</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('base.field_res_partner__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2828_jin_company_id_in_respartner_inherit_model')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_jin_company_id_in_respartner_inherit_model')])]"/>
   </record>
-  <record id="base_automation_340_jin_pricelist_in_respartner_inherit_model" model="base.automation">
+  <record id="automation_jin_pricelist_in_respartner_inherit_model" model="base.automation">
     <field name="name">JIN - Pricelist in ResPartner Inherit Model</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__customer_group')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2891_jin_pricelist_in_respartner_inherit_model')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_jin_pricelist_in_respartner_inherit_model')])]"/>
   </record>
-  <record id="server_action_810_sls_update_payment_term_customer" model="ir.actions.server">
+  <record id="action_sls_update_payment_term_customer" model="ir.actions.server">
     <field name="name">SLS - Update Payment Term - Customer</field>
     <field name="model_id" ref="hr.model_res_partner"/>
     <field name="state">code</field>
@@ -821,7 +821,7 @@ if record.customer_group.id:
 
     ]]></field>
   </record>
-  <record id="server_action_1427_sls_validate_credit_limit" model="ir.actions.server">
+  <record id="action_sls_validate_credit_limit" model="ir.actions.server">
     <field name="name">SLS - Validate Credit Limit</field>
     <field name="model_id" ref="hr.model_res_partner"/>
     <field name="state">code</field>
@@ -842,7 +842,7 @@ if record.id:
 
     ]]></field>
   </record>
-  <record id="server_action_1518_sls_track_credit_limit_in_customer" model="ir.actions.server">
+  <record id="action_sls_track_credit_limit_in_customer" model="ir.actions.server">
     <field name="name">SLS - Track Credit Limit in Customer</field>
     <field name="model_id" ref="hr.model_res_partner"/>
     <field name="state">code</field>
@@ -856,7 +856,7 @@ if record.credit_limit:
 
     ]]></field>
   </record>
-  <record id="server_action_1771_sls_validate_credit_limit_bank_guarantee_amount_1" model="ir.actions.server">
+  <record id="action_sls_validate_credit_limit_bank_guarantee_amount_1" model="ir.actions.server">
     <field name="name">SLS - Validate Credit Limit &amp; Bank Guarantee Amount - 1</field>
     <field name="model_id" ref="hr.model_res_partner"/>
     <field name="state">code</field>
@@ -879,7 +879,7 @@ if record.credit_limit > record.bank_guarantee_amount:
 
     ]]></field>
   </record>
-  <record id="server_action_2828_jin_company_id_in_respartner_inherit_model" model="ir.actions.server">
+  <record id="action_jin_company_id_in_respartner_inherit_model" model="ir.actions.server">
     <field name="name">JIN - Company Id in ResPartner Inherit Model</field>
     <field name="model_id" ref="hr.model_res_partner"/>
     <field name="state">code</field>
@@ -892,7 +892,7 @@ record['company_id'] = company.id
 
     ]]></field>
   </record>
-  <record id="server_action_2891_jin_pricelist_in_respartner_inherit_model" model="ir.actions.server">
+  <record id="action_jin_pricelist_in_respartner_inherit_model" model="ir.actions.server">
     <field name="name">JIN - Pricelist in ResPartner Inherit Model</field>
     <field name="model_id" ref="hr.model_res_partner"/>
     <field name="state">code</field>
@@ -916,20 +916,20 @@ if pricelist:
     <field name="model_id" ref="hr.model_res_partner"/>
     <field name="trigger">on_change</field>
   </record>
-  <record id="base_automation_141_sls_validate_credit_limit_bank_guarantee_amount_1" model="base.automation">
+  <record id="automation_sls_validate_credit_limit_bank_guarantee_amount_1" model="base.automation">
     <field name="name">SLS - Validate Credit Limit &amp; Bank Guarantee Amount - 1</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="hr.model_res_partner"/>
     <field name="trigger">on_change</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1771_sls_validate_credit_limit_bank_guarantee_amount_1')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.action_sls_validate_credit_limit_bank_guarantee_amount_1')])]"/>
   </record>
-  <record id="base_automation_156_sls_track_phone_in_customer" model="base.automation">
+  <record id="automation_sls_track_phone_in_customer" model="base.automation">
     <field name="name">SLS - Track  Phone in Customer</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="hr.model_res_partner"/>
     <field name="trigger">on_create_or_write</field>
   </record>
-  <record id="base_automation_217_sls_validate_phone" model="base.automation">
+  <record id="automation_sls_validate_phone" model="base.automation">
     <field name="name">SLS - Validate Phone</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="hr.model_res_partner"/>

@@ -46,7 +46,7 @@
             </p>
         </field>
     </record>
-  <record id="act_window_3636_document_conclusions" model="ir.actions.act_window">
+  <record id="action_document_conclusions" model="ir.actions.act_window">
     <field name="name">Document Conclusions</field>
     <field name="res_model">bugfix_sales.doc_conclusion</field>
     <field name="view_mode">tree,form</field>

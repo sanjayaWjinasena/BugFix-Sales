@@ -10,7 +10,7 @@
     <field name="res_model">product.product</field>
     <field name="view_mode">kanban,tree,form,graph,activity</field>
   </record>
-  <record id="act_window_1273_expense_products" model="ir.actions.act_window">
+  <record id="action_expense_products" model="ir.actions.act_window">
     <field name="name">Expense Products</field>
     <field name="res_model">product.product</field>
     <field name="view_mode">tree,kanban,form</field>
@@ -24,7 +24,7 @@
               </p>
             </field>
   </record>
-  <record id="act_window_1373_product_product" model="ir.actions.act_window">
+  <record id="action_product_product" model="ir.actions.act_window">
     <field name="name">Product.product</field>
     <field name="res_model">product.product</field>
     <field name="view_mode">kanban,tree,form,graph,activity</field>
@@ -41,7 +41,7 @@
                 </p>
             </field>
   </record>
-  <record id="act_window_2588_product_product" model="ir.actions.act_window">
+  <record id="action_product_product_2" model="ir.actions.act_window">
     <field name="name">product.product</field>
     <field name="res_model">product.product</field>
     <field name="view_mode">kanban,tree,form,graph,activity</field>
@@ -58,7 +58,7 @@
                 </p>
             </field>
   </record>
-  <record id="act_window_2881_product_product" model="ir.actions.act_window">
+  <record id="action_product_product_3" model="ir.actions.act_window">
     <field name="name">product.product</field>
     <field name="res_model">product.product</field>
     <field name="view_mode">kanban,tree,form,graph,activity</field>
@@ -75,7 +75,7 @@
                 </p>
             </field>
   </record>
-  <record id="ported_view_3030_odoo_studio_product_product_tree_customi" model="ir.ui.view">
+  <record id="view_product_product_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: product.product.tree customization</field>
     <field name="model">product.product</field>
     <field name="inherit_id" ref="product.product_product_tree_view"/>
@@ -91,22 +91,22 @@
       </data>
     </field>
   </record>
-  <record id="act_window_2588_product_product" model="ir.actions.act_window">
+  <record id="action_product_product_2" model="ir.actions.act_window">
     <field name="name">product.product</field>
     <field name="res_model">product.product</field>
     <field name="view_mode">kanban,tree,form,graph,activity</field>
   </record>
-  <record id="act_window_2881_product_product" model="ir.actions.act_window">
+  <record id="action_product_product_3" model="ir.actions.act_window">
     <field name="name">product.product</field>
     <field name="res_model">product.product</field>
     <field name="view_mode">kanban,tree,form,graph,activity</field>
   </record>
-  <record id="act_window_1373_product_product" model="ir.actions.act_window">
+  <record id="action_product_product" model="ir.actions.act_window">
     <field name="name">Product.product</field>
     <field name="res_model">product.product</field>
     <field name="view_mode">kanban,tree,form,graph,activity</field>
   </record>
-    <record id="view_4936_odoo_studio_product_product_form_customization_e" model="ir.ui.view">
+    <record id="view_product_product_form_inherit" model="ir.ui.view">
       <field name="name">Odoo Studio: product.product.form customization</field>
       <field name="model">product.product</field>
       <field name="type">form</field>
@@ -120,7 +120,7 @@
 </data>
       </field>
     </record>
-    <record id="view_4935_odoo_studio_product_product_product_form_button_e" model="ir.ui.view">
+    <record id="view_product_product_product_form_button" model="ir.ui.view">
       <field name="name">Odoo Studio: product.product.product.form_button</field>
       <field name="model">product.product</field>
       <field name="type">form</field>
@@ -138,7 +138,7 @@
   </data>
       </field>
     </record>
-    <record id="view_8329_odoo_studio_product_product_stock_tree_customization_e" model="ir.ui.view">
+    <record id="view_product_product_stock_tree_inherit" model="ir.ui.view">
       <field name="name">Odoo Studio: product.product.stock.tree customization</field>
       <field name="model">product.product</field>
       <field name="type">tree</field>

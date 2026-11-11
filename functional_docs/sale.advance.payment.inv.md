@@ -35,10 +35,10 @@ This repo adds a computed flag to the Create Invoice wizard that is true when ev
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| sale.advance.payment.inv | `access_6864_sale_advance_payment_inv` | Gives **Sales / Jin - Sales - POS Users** read/write/create access to Sales Advance Payment Invoice records. | `group BugFix-Approvals.group_132_jin_sales_pos_users` (BugFix-Approvals)<br>`model sale.advance.payment.inv` (sale) |  |
+| sale.advance.payment.inv | `access_sale_advance_payment_inv` | Gives **Sales / Jin - Sales - POS Users** read/write/create access to Sales Advance Payment Invoice records. | `group BugFix-Approvals.group_jin_sales_pos_users` (BugFix-Approvals)<br>`model sale.advance.payment.inv` (sale) |  |
 
 **Record rules (1):**
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Sales Advance Payment Invoice Rule | `rule_179_sales_advance_payment_invoice_rule` | For everyone (global rule): read/write/create/delete on Sales Advance Payment Invoice only where `[('create_uid', '=', user.id)]`. | `model sale.advance.payment.inv` (sale) |  |
+| Sales Advance Payment Invoice Rule | `rule_sales_advance_payment_invoice_rule` | For everyone (global rule): read/write/create/delete on Sales Advance Payment Invoice only where `[('create_uid', '=', user.id)]`. | `model sale.advance.payment.inv` (sale) |  |

@@ -6,7 +6,7 @@
 
 *Extends a model created by `product`.* Python: `models/product_pricelist.py`.
 
-Other repos that use this model: `server action BugFix-Accounting.sa_f5_x_sales_report_model_srm_rpt_costing_work_sheet` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_2490_srm_rpt_costing_work_sheet` (BugFix-Accounting)
+Other repos that use this model: `server action BugFix-Accounting.action_sales_report_model_srm_rpt_costing_work_sheet` (BugFix-Accounting)<br>`server action BugFix-Accounting.action_srm_rpt_costing_work_sheet` (BugFix-Accounting)
 
 **Summary:**
 

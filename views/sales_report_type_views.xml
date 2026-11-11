@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="act_window_1668_sales_report_type" model="ir.actions.act_window">
+  <record id="action_sales_report_type" model="ir.actions.act_window">
     <field name="name">Sales Report Type</field>
     <field name="res_model">sales_report_type</field>
     <field name="view_mode">tree,form</field>

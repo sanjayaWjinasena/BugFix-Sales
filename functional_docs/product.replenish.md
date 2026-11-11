@@ -16,4 +16,4 @@ This repo only ships one access right on the replenish wizard (Jin - Administrat
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Jin - Administrator | `access_7277_jin___administrator` | Gives **Inventory / Administrator** read/write/create/delete access to Product Replenish records. | `group stock.group_stock_manager` (stock)<br>`model product.replenish` (stock) |  |
+| Jin - Administrator | `access_jin_administrator` | Gives **Inventory / Administrator** read/write/create/delete access to Product Replenish records. | `group stock.group_stock_manager` (stock)<br>`model product.replenish` (stock) |  |

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="act_window_204_products" model="ir.actions.act_window">
+  <record id="action_products" model="ir.actions.act_window">
     <field name="name">Products</field>
     <field name="res_model">product.template</field>
     <field name="view_mode">tree,kanban,form</field>
@@ -12,7 +12,7 @@
             </p>
         </field>
   </record>
-  <record id="act_window_2288_product_template" model="ir.actions.act_window">
+  <record id="action_product_template" model="ir.actions.act_window">
     <field name="name">Product.Template</field>
     <field name="res_model">product.template</field>
     <field name="view_mode">kanban,tree,form,activity</field>
@@ -29,7 +29,7 @@
                 </p>
             </field>
   </record>
-  <record id="act_window_2622_product_template" model="ir.actions.act_window">
+  <record id="action_product_template_2" model="ir.actions.act_window">
     <field name="name">product.template</field>
     <field name="res_model">product.template</field>
     <field name="view_mode">kanban,tree,form,activity</field>
@@ -46,7 +46,7 @@
                 </p>
             </field>
   </record>
-  <record id="ported_view_2551_odoo_studio_product_template_product_for" model="ir.ui.view">
+  <record id="view_product_template_product_form_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: product.template.product.form customization</field>
     <field name="model">product.template</field>
     <field name="inherit_id" ref="product.product_template_only_form_view"/>
@@ -133,7 +133,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_view_3029_odoo_studio_product_template_product_tre" model="ir.ui.view">
+  <record id="view_product_template_product_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: product.template.product.tree customization</field>
     <field name="model">product.template</field>
     <field name="inherit_id" ref="product.product_template_tree_view"/>
@@ -175,7 +175,7 @@
        - charge_type, non_billable (pinned to BugFix-Accounting,
          reverse-dep of Sales - not load-safe)
        - re-added id field (target has no id column) -->
-  <record id="ported_view_5445_odoo_studio_product_template_view_tree" model="ir.ui.view">
+  <record id="view_product_template_view_tree_website_sale_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: product.template.view.tree.website_sale customization</field>
     <field name="model">product.template</field>
     <field name="inherit_id" ref="website_sale.product_template_view_tree_website_sale"/>
@@ -191,7 +191,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_product_template_studio_2551" model="ir.ui.view">
+  <record id="view_product_template_form_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: product.template.form customization</field>
     <field name="model">product.template</field>
     <field name="inherit_id" ref="product.product_template_form_view"/>
@@ -211,8 +211,8 @@
 
         <!-- Header buttons: Request Item Approval + Approve Item. -->
         <xpath expr="//header" position="inside">
-          <button type="action" name="%(BugFix-Sales.server_action_2293_plm_request_item_approval)d" string="Request Item Approval" class="btn-primary" invisible="(item_approval_request_sent_prod == True) or ((item_approved == True) or (item_approval_request_sent == True))"/>
-          <button type="action" name="%(BugFix-Sales.server_action_2301_plm_item_approval_final)d" string="Approve Item" class="btn-primary" studio_approval="True" invisible="(item_approved_prod == True) or ((item_approval_request_sent == False) or (item_approved == True))"/>
+          <button type="action" name="%(BugFix-Sales.action_plm_request_item_approval)d" string="Request Item Approval" class="btn-primary" invisible="(item_approval_request_sent_prod == True) or ((item_approved == True) or (item_approval_request_sent == True))"/>
+          <button type="action" name="%(BugFix-Sales.action_plm_item_approval_final)d" string="Approve Item" class="btn-primary" studio_approval="True" invisible="(item_approved_prod == True) or ((item_approval_request_sent == False) or (item_approved == True))"/>
         </xpath>
 
         <!-- Sri Lanka Localization tab. Only the tariff_code field lives

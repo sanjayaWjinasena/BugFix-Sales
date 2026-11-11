@@ -6,7 +6,7 @@
 
 *Extends a model created by `product`.* Python: `models/product_product.py`.
 
-Other repos that use this model: `access right BugFix-Studio-Misc.access_product_product_group_system` (BugFix-Studio-Misc)<br>`account.move.line.related_field_CQ41C` (BugFix-Accounting)<br>`helpdesk.ticket.items` (Fix-repair)<br>`helpdesk.ticket.materials_used` (Fix-repair)<br>`server action BugFix-Accounting.sa_f5_x_sales_report_model_srm_rpt_sales_production_purchase_report` (BugFix-Accounting)<br>`server action BugFix-Accounting.sa_f5_x_sales_report_model_srm_rpt_slow_moving_items` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1370_imp_update_consignment_pi` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1374_imp_testing` (BugFix-Accounting)<details><summary>+39 more</summary>`server action BugFix-Accounting.server_action_1726_srm_auto_populate_data` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1762_srm_rpt_slow_moving_items` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_1763_srm_rpt_sales_production_purchase_report` (BugFix-Accounting)<br>`server action BugFix-Accounting.srv_imp_update_consignment_pi` (BugFix-Accounting)<br>`server action BugFix-Purchase.server_action_991_update_pr_status_in_po` (BugFix-Purchase)<br>`server action BugFix-Stock.server_action_1365_imp_confirm_purchase_invoice` (BugFix-Stock)<br>`bve.salesreport.bve_t2_product_id` (BugFix-Studio-Misc)<br>`consignment_charge_l.product` (BugFix-Stock)<br>`consignment_line.product_id` (BugFix-Stock)<br>`customer_posting_pro.many2one_field_eYVbe` (BugFix-Accounting)<br>`import_rfq_charge_li.product` (BugFix-Purchase)<br>`mass_produce_serial.product_id` (BugFix-MRP)<br>`mass_produce_serial_.product_id` (BugFix-MRP)<br>`mr_config.many2one_field_02S0w` (BugFix-Stock)<br>`mr_config.many2one_field_2LV9q` (BugFix-Stock)<br>`mr_config.product` (BugFix-Stock)<br>`mrp_bom_material_cos.product_id` (BugFix-MRP)<br>`pr_line_cash.many2one_field_2Xthk` (BugFix-Purchase)<br>`x_product_test.x_studio_many2many_field_R1u9s` (BugFix-Studio-Misc)<br>`x_product_test.x_studio_many2one_field_cmfRx` (BugFix-Studio-Misc)<br>`pump_price_costing.product_id` (BugFix-Accounting)<br>`purchase.request.line.make.purchase.order.item.cp_product_id` (BugFix-Purchase)<br>`purchase.request.line.make.purchase.order.item.product_id` (BugFix-Purchase)<br>`purchase_request_lin.many2one_field_WAqP4` (BugFix-Purchase)<br>`rm_cust_invoice_s1.product_id` (BugFix-Accounting)<br>`rm_daily_s1.product_id` (BugFix-Accounting)<br>`rm_daily_s2.product_id` (BugFix-Accounting)<br>`rm_daily_s3.product_id` (BugFix-Accounting)<br>`rm_gross_margin_comp.many2one_field_7fcuw` (BugFix-Accounting)<br>`rm_none_moving.description` (BugFix-Accounting)<br>`rm_prod_summary_spli.description` (BugFix-Accounting)<br>`rm_production_orders.product_code` (BugFix-Accounting)<br>`rm_production_varian.description_1` (BugFix-Accounting)<br>`rm_production_varian.description` (BugFix-Accounting)<br>`rm_sales_order_line.product_1` (BugFix-Accounting)<br>`rm_sales_prod_purch.description` (BugFix-Accounting)<br>`temp_consignment_lin.product_id` (BugFix-Stock)<br>`temp_estimated.product_id` (BugFix-Accounting)<br>`x_test_layout.product_id` (BugFix-Studio-Misc)</details>
+Other repos that use this model: `access right BugFix-Studio-Misc.access_product_product_group_system` (BugFix-Studio-Misc)<br>`account.move.line.related_field_CQ41C` (BugFix-Accounting)<br>`helpdesk.ticket.items` (Fix-repair)<br>`helpdesk.ticket.materials_used` (Fix-repair)<br>`server action BugFix-Accounting.action_sales_report_model_srm_rpt_sales_production_purchase_report` (BugFix-Accounting)<br>`server action BugFix-Accounting.action_sales_report_model_srm_rpt_slow_moving_items` (BugFix-Accounting)<br>`server action BugFix-Accounting.action_imp_update_consignment_pi` (BugFix-Accounting)<br>`server action BugFix-Accounting.action_imp_testing` (BugFix-Accounting)<details><summary>+39 more</summary>`server action BugFix-Accounting.action_srm_auto_populate_data_2` (BugFix-Accounting)<br>`server action BugFix-Accounting.action_srm_rpt_slow_moving_items` (BugFix-Accounting)<br>`server action BugFix-Accounting.action_srm_rpt_sales_production_purchase_report` (BugFix-Accounting)<br>`server action BugFix-Accounting.srv_imp_update_consignment_pi` (BugFix-Accounting)<br>`server action BugFix-Purchase.action_update_pr_status_in_po` (BugFix-Purchase)<br>`server action BugFix-Stock.action_imp_confirm_purchase_invoice` (BugFix-Stock)<br>`bve.salesreport.bve_t2_product_id` (BugFix-Studio-Misc)<br>`consignment_charge_l.product` (BugFix-Stock)<br>`consignment_line.product_id` (BugFix-Stock)<br>`customer_posting_pro.many2one_field_eYVbe` (BugFix-Accounting)<br>`import_rfq_charge_li.product` (BugFix-Purchase)<br>`mass_produce_serial.product_id` (BugFix-MRP)<br>`mass_produce_serial_.product_id` (BugFix-MRP)<br>`mr_config.many2one_field_02S0w` (BugFix-Stock)<br>`mr_config.many2one_field_2LV9q` (BugFix-Stock)<br>`mr_config.product` (BugFix-Stock)<br>`mrp_bom_material_cos.product_id` (BugFix-MRP)<br>`pr_line_cash.many2one_field_2Xthk` (BugFix-Purchase)<br>`x_product_test.x_studio_many2many_field_R1u9s` (BugFix-Studio-Misc)<br>`x_product_test.x_studio_many2one_field_cmfRx` (BugFix-Studio-Misc)<br>`pump_price_costing.product_id` (BugFix-Accounting)<br>`purchase.request.line.make.purchase.order.item.cp_product_id` (BugFix-Purchase)<br>`purchase.request.line.make.purchase.order.item.product_id` (BugFix-Purchase)<br>`purchase_request_lin.many2one_field_WAqP4` (BugFix-Purchase)<br>`rm_cust_invoice_s1.product_id` (BugFix-Accounting)<br>`rm_daily_s1.product_id` (BugFix-Accounting)<br>`rm_daily_s2.product_id` (BugFix-Accounting)<br>`rm_daily_s3.product_id` (BugFix-Accounting)<br>`rm_gross_margin_comp.many2one_field_7fcuw` (BugFix-Accounting)<br>`rm_none_moving.description` (BugFix-Accounting)<br>`rm_prod_summary_spli.description` (BugFix-Accounting)<br>`rm_production_orders.product_code` (BugFix-Accounting)<br>`rm_production_varian.description_1` (BugFix-Accounting)<br>`rm_production_varian.description` (BugFix-Accounting)<br>`rm_sales_order_line.product_1` (BugFix-Accounting)<br>`rm_sales_prod_purch.description` (BugFix-Accounting)<br>`temp_consignment_lin.product_id` (BugFix-Stock)<br>`temp_estimated.product_id` (BugFix-Accounting)<br>`x_test_layout.product_id` (BugFix-Studio-Misc)</details>
 
 **Summary:**
 
@@ -38,11 +38,11 @@ This repo adds 43 Studio fields to product variants, most of them unused placeho
 | `clean` | Clean | boolean | 'Clean' checkbox on the product variant. Not used by any view or logic in this repo. | stored |  |  |
 | `duty` | Duty | boolean | Flags the product variant as a Duty item. Not used by any view or logic in this repo. | stored |  |  |
 | `float_field_KIV5v` | New Decimal | float | Unnamed Studio decimal field on the product variant ('New Decimal'). Not used by any view or logic in this repo. | stored |  |  |
-| `item_approval_request_sent` | Item Approval Request Sent | boolean | Marks that an item approval request was sent for this product variant; set by the 'PROJ Item Approval Request Sent' server action. | stored |  | `server action BugFix-Sales.server_action_2163_proj_item_approval_request_sent` |
+| `item_approval_request_sent` | Item Approval Request Sent | boolean | Marks that an item approval request was sent for this product variant; set by the 'PROJ Item Approval Request Sent' server action. | stored |  | `server action BugFix-Sales.action_proj_item_approval_request_sent` |
 | `item_approval_request_sent_2` | Item Approval Request Sent 2 | boolean | Secondary 'item approval request sent' flag on the product variant. Not used by any view or logic in this repo. | stored |  |  |
 | `item_approval_request_sent_prod` | Item Approval Request Sent Prod | boolean | Production-variant 'item approval request sent' flag on the product variant. Not used by any view or logic in this repo. | stored |  |  |
 | `item_approval_request_sent_temp` | Item Approval Request Sent Temp | boolean | Temporary 'item approval request sent' flag on the product variant. Not used by any view or logic in this repo. | stored |  |  |
-| `item_approved` | Item Approved | boolean | Marks the product variant as approved as a project item; set by the 'PROJ Item Approval' server action. | stored |  | `server action BugFix-Sales.server_action_2169_proj_item_approval` |
+| `item_approved` | Item Approved | boolean | Marks the product variant as approved as a project item; set by the 'PROJ Item Approval' server action. | stored |  | `server action BugFix-Sales.action_proj_item_approval` |
 | `item_approved_prod` | Item Approved Prod | boolean | Production-variant 'item approved' flag on the product variant. Not used by any view or logic in this repo. | stored |  |  |
 | `item_approved_temp` | Item Approved Temp | boolean | Temporary 'item approved' flag on the product variant. Not used by any view or logic in this repo. | stored |  |  |
 | `many2one_field_8eWzY` | Pricelist | many2one → `product.pricelist` | Pricelist linked to the product variant; read by three related fields on journal items (account.move.line). | stored | `model product.pricelist` (product) | `account.move.line.related_field_CvPMn` (BugFix-Accounting)<br>`account.move.line.related_field_X2pdt` (BugFix-Accounting)<br>`account.move.line.related_field_aD9tj` (BugFix-Accounting) |
@@ -64,10 +64,10 @@ This repo adds 43 Studio fields to product variants, most of them unused placeho
 
 **Server actions (7):**
 
-- **PROJ - Item Approval** (`server_action_2169_proj_item_approval`, type `object_write`)
+- **PROJ - Item Approval** (`action_proj_item_approval`, type `object_write`)
   - Function: Sets Item Approved to 'Yes' on the product variant; step of 'PROJ - Item Approval - Final'.
   - Depends on: `model product.product` (product), `product.product.item_approved`
-  - Used by: `server action BugFix-Sales.server_action_2173_proj_item_approval_final`
+  - Used by: `server action BugFix-Sales.action_proj_item_approval_final`
   <details><summary>code (12 lines)</summary>
 
 ```python
@@ -85,9 +85,9 @@ This repo adds 43 Studio fields to product variants, most of them unused placeho
 # To return an action, assign: action = {...}
 ```
   </details>
-- **PROJ - Item Approval - Final** (`server_action_2173_proj_item_approval_final`, type `multi`)
+- **PROJ - Item Approval - Final** (`action_proj_item_approval_final`, type `multi`)
   - Function: Multi-step action on product variants that approves a project item, notifies the project user and validates the approval via three child actions. Not referenced by any active view or rule in this repo.
-  - Depends on: `model product.product` (product), `server action BugFix-Sales.server_action_2169_proj_item_approval`, `server action BugFix-Sales.server_action_2171_proj_item_approval_validate`, `server action BugFix-Sales.server_action_2196_proj_item_approval_notify_project_user`
+  - Depends on: `model product.product` (product), `server action BugFix-Sales.action_proj_item_approval`, `server action BugFix-Sales.action_proj_item_approval_validate`, `server action BugFix-Sales.action_proj_item_approval_notify_project_user`
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (12 lines)</summary>
 
@@ -106,10 +106,10 @@ This repo adds 43 Studio fields to product variants, most of them unused placeho
 # To return an action, assign: action = {...}
 ```
   </details>
-- **PROJ - Item Approval - Notify  Project User** (`server_action_2196_proj_item_approval_notify_project_user`, type `next_activity`)
+- **PROJ - Item Approval - Notify  Project User** (`action_proj_item_approval_notify_project_user`, type `next_activity`)
   - Function: Schedules a follow-up activity on the product variant to notify the project user that the item was approved; step of 'PROJ - Item Approval - Final'.
   - Depends on: `model product.product` (product)
-  - Used by: `server action BugFix-Sales.server_action_2173_proj_item_approval_final`
+  - Used by: `server action BugFix-Sales.action_proj_item_approval_final`
   <details><summary>code (12 lines)</summary>
 
 ```python
@@ -127,10 +127,10 @@ This repo adds 43 Studio fields to product variants, most of them unused placeho
 # To return an action, assign: action = {...}
 ```
   </details>
-- **PROJ - Item Approval - Validate** (`server_action_2171_proj_item_approval_validate`, type `code`)
+- **PROJ - Item Approval - Validate** (`action_proj_item_approval_validate`, type `code`)
   - Function: Raises an error if the product variant has no Internal Reference; step of 'PROJ - Item Approval - Final'.
   - Depends on: `model product.product` (product), `product.product.default_code` (product)
-  - Used by: `server action BugFix-Sales.server_action_2173_proj_item_approval_final`
+  - Used by: `server action BugFix-Sales.action_proj_item_approval_final`
   <details><summary>code (3 lines)</summary>
 
 ```python
@@ -138,10 +138,10 @@ if record.default_code == False:
     raise UserError("Internal Reference should be filled in to proceed!")
 ```
   </details>
-- **PROJ - Item Approval Request  Sent** (`server_action_2163_proj_item_approval_request_sent`, type `object_write`)
+- **PROJ - Item Approval Request  Sent** (`action_proj_item_approval_request_sent`, type `object_write`)
   - Function: Sets Item Approval Request Sent to 'Yes' on the product variant; step of 'PROJ - Request Item Approval'.
   - Depends on: `model product.product` (product), `product.product.item_approval_request_sent`
-  - Used by: `server action BugFix-Sales.server_action_2167_proj_request_item_approval`
+  - Used by: `server action BugFix-Sales.action_proj_request_item_approval`
   <details><summary>code (12 lines)</summary>
 
 ```python
@@ -159,10 +159,10 @@ if record.default_code == False:
 # To return an action, assign: action = {...}
 ```
   </details>
-- **PROJ - Item Approval Request - Notify User** (`server_action_2165_proj_item_approval_request_notify_user`, type `next_activity`)
+- **PROJ - Item Approval Request - Notify User** (`action_proj_item_approval_request_notify_user`, type `next_activity`)
   - Function: Schedules an activity on the product variant to notify the approver of an item approval request; step of 'PROJ - Request Item Approval'.
   - Depends on: `model product.product` (product)
-  - Used by: `server action BugFix-Sales.server_action_2167_proj_request_item_approval`
+  - Used by: `server action BugFix-Sales.action_proj_request_item_approval`
   <details><summary>code (12 lines)</summary>
 
 ```python
@@ -180,9 +180,9 @@ if record.default_code == False:
 # To return an action, assign: action = {...}
 ```
   </details>
-- **PROJ - Request Item Approval** (`server_action_2167_proj_request_item_approval`, type `multi`)
+- **PROJ - Request Item Approval** (`action_proj_request_item_approval`, type `multi`)
   - Function: Multi-step action on product variants that marks a project item approval request as sent and notifies the approver via two child actions. Not referenced by any active view in this repo (its product form button was stripped).
-  - Depends on: `model product.product` (product), `server action BugFix-Sales.server_action_2163_proj_item_approval_request_sent`, `server action BugFix-Sales.server_action_2165_proj_item_approval_request_notify_user`
+  - Depends on: `model product.product` (product), `server action BugFix-Sales.action_proj_item_approval_request_sent`, `server action BugFix-Sales.action_proj_item_approval_request_notify_user`
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (12 lines)</summary>
 
@@ -205,25 +205,25 @@ if record.default_code == False:
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Expense Products | `act_window_1273_expense_products` | Opens **Product Variant** records (tree,kanban,form), filtered to `[('can_be_expensed', '=', True)]`. | `model product.product` (product)<br>`product.product.can_be_expensed` (hr_expense) |  |
+| Expense Products | `action_expense_products` | Opens **Product Variant** records (tree,kanban,form), filtered to `[('can_be_expensed', '=', True)]`. | `model product.product` (product)<br>`product.product.can_be_expensed` (hr_expense) |  |
 | Product.product | `aw_f4_product_product_product_product_1` | Opens **Product Variant** records (kanban,tree,form,graph,activity). | `model product.product` (product) | `menu BugFix-Studio-Misc.menu_f6r2_test_app_05_product_product` (BugFix-Studio-Misc) |
-| Product.product | `act_window_1373_product_product` | Opens **Product Variant** records (kanban,tree,form,graph,activity). | `model product.product` (product) |  |
+| Product.product | `action_product_product` | Opens **Product Variant** records (kanban,tree,form,graph,activity). | `model product.product` (product) |  |
 | product.product | `aw_f4_product_product_product_product` | Opens **Product Variant** records (kanban,tree,form,graph,activity). | `model product.product` (product) |  |
-| product.product | `act_window_2588_product_product` | Opens **Product Variant** records (kanban,tree,form,graph,activity). | `model product.product` (product) | `menu BugFix-Studio-Misc.menu_f6f_product_product` (BugFix-Studio-Misc) |
-| product.product | `act_window_2881_product_product` | Opens **Product Variant** records (kanban,tree,form,graph,activity). | `model product.product` (product) |  |
+| product.product | `action_product_product_2` | Opens **Product Variant** records (kanban,tree,form,graph,activity). | `model product.product` (product) | `menu BugFix-Studio-Misc.menu_product_product` (BugFix-Studio-Misc) |
+| product.product | `action_product_product_3` | Opens **Product Variant** records (kanban,tree,form,graph,activity). | `model product.product` (product) |  |
 
 **Views (4):**
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Odoo Studio: product.product.form customization | `view_4936_odoo_studio_product_product_form_customization_e` | form |  | Inactive, empty view: its only change was stripped during migration, so it has no effect. | `view product.product_normal_form_view` (product) |  |
-| Odoo Studio: product.product.product.form_button | `view_4935_odoo_studio_product_product_product_form_button_e` | form | before `//button[@name='action_open_label_layout']`: add | Inactive view with no effect: the project item approval buttons it added to the product variant form were stripped as unresolvable. | `view product.product_normal_form_view` (product) |  |
-| Odoo Studio: product.product.stock.tree customization | `view_8329_odoo_studio_product_product_stock_tree_customization_e` | tree | after `//field[@name='id']`: add field default_code; after `//field[@name='incoming_qty']`: add | Product stock list: adds an optional Internal Reference column after ID (other Studio changes were stripped). | `product.product.default_code` (product)<br>`view stock.product_product_stock_tree` (stock) |  |
-| Odoo Studio: product.product.tree customization | `ported_view_3030_odoo_studio_product_product_tree_customi` | tree | after `//field[@name='virtual_available']`: add field property_account_expense_id; after `//field[@name='uom_id']`: add field id | Product variant list: adds an Expense Account column and the ID. | `product.product.property_account_expense_id` (account)<br>`view product.product_product_tree_view` (product) |  |
+| Odoo Studio: product.product.form customization | `view_product_product_form_inherit` | form |  | Inactive, empty view: its only change was stripped during migration, so it has no effect. | `view product.product_normal_form_view` (product) |  |
+| Odoo Studio: product.product.product.form_button | `view_product_product_product_form_button` | form | before `//button[@name='action_open_label_layout']`: add | Inactive view with no effect: the project item approval buttons it added to the product variant form were stripped as unresolvable. | `view product.product_normal_form_view` (product) |  |
+| Odoo Studio: product.product.stock.tree customization | `view_product_product_stock_tree_inherit` | tree | after `//field[@name='id']`: add field default_code; after `//field[@name='incoming_qty']`: add | Product stock list: adds an optional Internal Reference column after ID (other Studio changes were stripped). | `product.product.default_code` (product)<br>`view stock.product_product_stock_tree` (stock) |  |
+| Odoo Studio: product.product.tree customization | `view_product_product_tree_inherit` | tree | after `//field[@name='virtual_available']`: add field property_account_expense_id; after `//field[@name='uom_id']`: add field id | Product variant list: adds an Expense Account column and the ID. | `product.product.property_account_expense_id` (account)<br>`view product.product_product_tree_view` (product) |  |
 
 **Access rights (2):**
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| product.product group_system | `access_1218_product_product_group_system` | Gives **Administration / Settings** read/write/create/delete access to Product Variant records. | `group base.group_system` (base)<br>`model product.product` (product) |  |
-| product.product group_user | `access_1219_product_product_group_user` | Gives **User types / Internal User** read access to Product Variant records. | `group base.group_user` (base)<br>`model product.product` (product) |  |
+| product.product group_system | `access_product_product_group_system` | Gives **Administration / Settings** read/write/create/delete access to Product Variant records. | `group base.group_system` (base)<br>`model product.product` (product) |  |
+| product.product group_user | `access_product_product_group_user` | Gives **User types / Internal User** read access to Product Variant records. | `group base.group_user` (base)<br>`model product.product` (product) |  |

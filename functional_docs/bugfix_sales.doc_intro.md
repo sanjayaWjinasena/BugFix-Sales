@@ -32,7 +32,7 @@ A Document Introduction is a reusable opening text for printed quotations, with 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
 | Document Introductions | `action_doc_intro` | Opens **Quotation Document Introduction** records (tree,form). | `model bugfix_sales.doc_intro` | `menu BugFix-Sales.menu_doc_intro` |
-| Document Introductions | `act_window_3635_document_introductions` | Opens **Quotation Document Introduction** records (tree,form). | `model bugfix_sales.doc_intro` | `menu BugFix-Sales.menu_f6_document_introductions` |
+| Document Introductions | `action_document_introductions` | Opens **Quotation Document Introduction** records (tree,form). | `model bugfix_sales.doc_intro` | `menu BugFix-Sales.menu_document_introductions` |
 
 **Views (2):**
 
@@ -45,5 +45,5 @@ A Document Introduction is a reusable opening text for printed quotations, with 
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| bugfix_sales.doc_intro manager | `access_8711_bugfix_sales_doc_intro_manager` | Gives **Sales / Administrator** read/write/create/delete access to Quotation Document Introduction records. | `group sales_team.group_sale_manager` (sales_team)<br>`model bugfix_sales.doc_intro` |  |
-| bugfix_sales.doc_intro user | `access_8710_bugfix_sales_doc_intro_user` | Gives **Sales / User: Own Documents Only** read access to Quotation Document Introduction records. | `group sales_team.group_sale_salesman` (sales_team)<br>`model bugfix_sales.doc_intro` |  |
+| bugfix_sales.doc_intro manager | `access_bugfix_sales_doc_intro_manager` | Gives **Sales / Administrator** read/write/create/delete access to Quotation Document Introduction records. | `group sales_team.group_sale_manager` (sales_team)<br>`model bugfix_sales.doc_intro` |  |
+| bugfix_sales.doc_intro user | `access_bugfix_sales_doc_intro_user` | Gives **Sales / User: Own Documents Only** read access to Quotation Document Introduction records. | `group sales_team.group_sale_salesman` (sales_team)<br>`model bugfix_sales.doc_intro` |  |

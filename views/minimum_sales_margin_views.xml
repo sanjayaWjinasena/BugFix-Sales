@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="act_window_1750_sales_configurations" model="ir.actions.act_window">
+  <record id="action_sales_configurations" model="ir.actions.act_window">
     <field name="name">Sales Configurations</field>
     <field name="res_model">minimum_sales_margin</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <record id="view_3928_default_form_view_for_x_minimum_sales_margin_e" model="ir.ui.view">
+    <record id="view_minimum_sales_margin_form" model="ir.ui.view">
       <field name="name">Default form view for minimum_sales_margin</field>
       <field name="model">minimum_sales_margin</field>
       <field name="type">form</field>
@@ -33,7 +33,7 @@
 </form>
       </field>
     </record>
-    <record id="view_3927_default_list_view_for_x_minimum_sales_margin_e" model="ir.ui.view">
+    <record id="view_minimum_sales_margin_list" model="ir.ui.view">
       <field name="name">Default list view for minimum_sales_margin</field>
       <field name="model">minimum_sales_margin</field>
       <field name="type">tree</field>
@@ -44,7 +44,7 @@
 </tree>
       </field>
     </record>
-    <record id="view_3929_default_search_view_for_x_minimum_sales_margin_e" model="ir.ui.view">
+    <record id="view_minimum_sales_margin_search" model="ir.ui.view">
       <field name="name">Default search view for minimum_sales_margin</field>
       <field name="model">minimum_sales_margin</field>
       <field name="type">search</field>
@@ -57,12 +57,12 @@
 </search>
       </field>
     </record>
-    <record id="view_final_x_minimum_sales_margin_odoo_studio_default_form_view_for_minimum_sales_margin" model="ir.ui.view">
+    <record id="view_default_form_view_for_minimum_sales_margin_inherit" model="ir.ui.view">
       <field name="name">Odoo Studio: Default form view for minimum_sales_margin customization</field>
       <field name="model">minimum_sales_margin</field>
       <field name="type">form</field>
       <field name="priority">99</field>
-      <field name="inherit_id" ref="BugFix-Sales.view_3928_default_form_view_for_x_minimum_sales_margin_e"/>
+      <field name="inherit_id" ref="BugFix-Sales.view_minimum_sales_margin_form"/>
       <field name="mode">extension</field>
       <field name="arch" type="xml">
         <data>
@@ -78,12 +78,12 @@
 </data>
       </field>
     </record>
-    <record id="view_final_x_minimum_sales_margin_odoo_studio_default_list_view_for_minimum_sales_margin" model="ir.ui.view">
+    <record id="view_default_list_view_for_minimum_sales_margin_inherit" model="ir.ui.view">
       <field name="name">Odoo Studio: Default list view for minimum_sales_margin customization</field>
       <field name="model">minimum_sales_margin</field>
       <field name="type">tree</field>
       <field name="priority">99</field>
-      <field name="inherit_id" ref="BugFix-Sales.view_3927_default_list_view_for_x_minimum_sales_margin_e"/>
+      <field name="inherit_id" ref="BugFix-Sales.view_minimum_sales_margin_list"/>
       <field name="mode">extension</field>
       <field name="arch" type="xml">
         <data>

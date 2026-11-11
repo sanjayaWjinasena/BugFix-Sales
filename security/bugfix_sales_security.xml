@@ -20,7 +20,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_446_product_pricelist_company_rule" model="ir.rule">
+  <record id="rule_product_pricelist_company_rule" model="ir.rule">
     <field name="name">product pricelist company rule</field>
     <field name="model_id" ref="BugFix-Sales.model_product_pricelist"/>
     <field name="domain_force">['|', ('company_id', 'in', [False,website.company_id.id]), ('company_id', 'in', company_ids)]</field>
@@ -95,7 +95,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('base.group_portal'), ref('base.group_public')])]"/>
   </record>
-  <record id="rule_498_jin_sales_add_edit_del_ca_customers" model="ir.rule">
+  <record id="rule_jin_sales_add_edit_del_ca_customers" model="ir.rule">
     <field name="name">Jin - Sales - Add/Edit/Del Ca Customers</field>
     <field name="model_id" ref="BugFix-Sales.model_res_partner"/>
     <field name="domain_force">[("customer_group", "=", "Cash")]</field>
@@ -106,7 +106,7 @@
     <field name="active" eval="True"/>
     <!-- groups are set in BugFix-Studio-Misc data/record_rules.xml, which owns the Jin groups -->
   </record>
-  <record id="rule_499_jin_sales_add_edit_del_non_ca_customers" model="ir.rule">
+  <record id="rule_jin_sales_add_edit_del_non_ca_customers" model="ir.rule">
     <field name="name">Jin - Sales - Add/Edit/Del Non Ca Customers</field>
     <field name="model_id" ref="BugFix-Sales.model_res_partner"/>
     <field name="domain_force">[("customer_group", "!=", "Cash")]</field>
@@ -117,7 +117,7 @@
     <field name="active" eval="True"/>
     <!-- groups are set in BugFix-Studio-Misc data/record_rules.xml, which owns the Jin groups -->
   </record>
-  <record id="rule_179_sales_advance_payment_invoice_rule" model="ir.rule">
+  <record id="rule_sales_advance_payment_invoice_rule" model="ir.rule">
     <field name="name">Sales Advance Payment Invoice Rule</field>
     <field name="model_id" ref="BugFix-Sales.model_sale_advance_payment_inv"/>
     <field name="domain_force">[('create_uid', '=', user.id)]</field>
@@ -127,7 +127,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_779_sales_mass_cancel_orders_access_only_your_own_wizard" model="ir.rule">
+  <record id="rule_sales_mass_cancel_orders_access_only_your_own_wizard" model="ir.rule">
     <field name="name">Sales Mass Cancel Orders: access only your own wizard</field>
     <field name="model_id" ref="sale.model_sale_mass_cancel_orders"/>
     <field name="domain_force">[('create_uid', '=', user.id)]</field>
@@ -137,7 +137,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_157_sales_order_multi_company" model="ir.rule">
+  <record id="rule_sales_order_multi_company" model="ir.rule">
     <field name="name">Sales Order multi-company</field>
     <field name="model_id" ref="BugFix-Sales.model_sale_order"/>
     <field name="domain_force">[('company_id', 'in', company_ids)]</field>
@@ -147,7 +147,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_162_portal_personal_quotations_sales_orders" model="ir.rule">
+  <record id="rule_portal_personal_quotations_sales_orders" model="ir.rule">
     <field name="name">Portal Personal Quotations/Sales Orders</field>
     <field name="model_id" ref="BugFix-Sales.model_sale_order"/>
     <field name="domain_force">[('message_partner_ids','child_of',[user.commercial_partner_id.id])]</field>
@@ -158,7 +158,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('base.group_portal')])]"/>
   </record>
-  <record id="rule_164_personal_orders" model="ir.rule">
+  <record id="rule_personal_orders" model="ir.rule">
     <field name="name">Personal Orders</field>
     <field name="model_id" ref="BugFix-Sales.model_sale_order"/>
     <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
@@ -169,7 +169,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"/>
   </record>
-  <record id="rule_165_all_orders" model="ir.rule">
+  <record id="rule_all_orders" model="ir.rule">
     <field name="name">All Orders</field>
     <field name="model_id" ref="BugFix-Sales.model_sale_order"/>
     <field name="domain_force">[(1,'=',1)]</field>
@@ -180,7 +180,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('sales_team.group_sale_salesman_all_leads')])]"/>
   </record>
-  <record id="rule_191_subscription_multi_company" model="ir.rule">
+  <record id="rule_subscription_multi_company" model="ir.rule">
     <field name="name">Subscription multi-company</field>
     <field name="model_id" ref="BugFix-Sales.model_sale_order"/>
     <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
@@ -190,7 +190,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_198_subscription_portal_access" model="ir.rule">
+  <record id="rule_subscription_portal_access" model="ir.rule">
     <field name="name">Subscription portal access</field>
     <field name="model_id" ref="BugFix-Sales.model_sale_order"/>
     <field name="domain_force">[('partner_id','in',[user.partner_id.id,user.commercial_partner_id.id])]</field>
@@ -201,7 +201,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('base.group_portal')])]"/>
   </record>
-  <record id="rule_337_sales_orders_for_sales_centers" model="ir.rule">
+  <record id="rule_sales_orders_for_sales_centers" model="ir.rule">
     <field name="name">Sales Orders for Sales Centers</field>
     <field name="model_id" ref="BugFix-Sales.model_sale_order"/>
     <field name="perm_read" eval="True"/>
@@ -210,7 +210,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_500_sales_order_view_only" model="ir.rule">
+  <record id="rule_sales_order_view_only" model="ir.rule">
     <field name="name">Sales Order - View Only</field>
     <field name="model_id" ref="BugFix-Sales.model_sale_order"/>
     <field name="domain_force">[(1,'=',1)]</field>
@@ -220,7 +220,7 @@
     <field name="perm_unlink" eval="False"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_180_sales_order_cancel_rule" model="ir.rule">
+  <record id="rule_sales_order_cancel_rule" model="ir.rule">
     <field name="name">Sales Order Cancel Rule</field>
     <field name="model_id" ref="sale.model_sale_order_cancel"/>
     <field name="domain_force">[('create_uid', '=', user.id)]</field>
@@ -230,7 +230,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_185_quotation_template_multi_company" model="ir.rule">
+  <record id="rule_quotation_template_multi_company" model="ir.rule">
     <field name="name">Quotation Template multi-company</field>
     <field name="model_id" ref="sale_management.model_sale_order_template"/>
     <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
@@ -240,7 +240,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_190_project_manager_sales_orders_line" model="ir.rule">
+  <record id="rule_project_manager_sales_orders_line" model="ir.rule">
     <field name="name">Project Manager Sales Orders Line</field>
     <field name="model_id" ref="sale.model_sale_order_line"/>
     <field name="domain_force">['&amp;', '&amp;', ('state', 'in', ['sale', 'sale']), ('is_service', '=', True), '|', ('project_id', '!=', False), ('task_id', '!=', False)]</field>
@@ -251,7 +251,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('project.group_project_manager')])]"/>
   </record>
-    <record id="rule_638_jin_multi_company_minimum_sales_margin" model="ir.rule">
+    <record id="rule_jin_multi_company_minimum_sales_margin" model="ir.rule">
       <field name="name">JIN - Multi-Company - Minimum Sales Margin %</field>
       <field name="model_id" ref="BugFix-Sales.model_minimum_sales_margin"/>
       <field name="domain_force"> ['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]</field>
