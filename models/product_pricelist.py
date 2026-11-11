@@ -16,18 +16,14 @@ class ProductPricelist(models.Model):
             ("Distributor", "Distributor"),
             ("Dealer", "Dealer"),
         ],
-        string="Group Type",
     )
     order_payment_method = fields.Selection(
         selection=[
             ("Cash", "Cash"),
             ("Credit", "Credit"),
         ],
-        string="Order Payment Method",
     )
-    project_price_list = fields.Boolean(
-        string="Project Price List",
-    )
+    project_price_list = fields.Boolean()
     # zzzz: legacy Studio field, kept for schema parity so
     # seeded pricelist rows from Clear-DB write cleanly.
     zzzz = fields.Selection(
@@ -45,6 +41,5 @@ class ProductPricelistItem(models.Model):
     _inherit = "product.pricelist.item"
 
     price_confirmed = fields.Boolean(
-        string="Price Confirmed",
         copy=True,
     )

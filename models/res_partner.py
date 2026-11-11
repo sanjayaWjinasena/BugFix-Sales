@@ -54,9 +54,7 @@ class ResPartner(models.Model):
         for r in self:
             r.vendor_id__purchase_requisition_count = dic.get(r.id, 0)
 
-    bank_guarantee_amount = fields.Float(
-        string="Bank Guarantee Amount",
-    )
+    bank_guarantee_amount = fields.Float()
     expiry_date = fields.Date(
         string="Bank Guarantee Expiration Date",
     )
@@ -65,7 +63,6 @@ class ResPartner(models.Model):
         string="Payment Type",
     )
     valid_bank_guarantee = fields.Boolean(
-        string="Valid Bank Guarantee",
         help=(
             "True when the partner has an active bank guarantee "
             "(expiry_date in the future). Used by sale.order "

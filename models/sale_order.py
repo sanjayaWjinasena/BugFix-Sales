@@ -36,10 +36,8 @@ class SaleOrder(models.Model):
     one2many_field_ERCBB = fields.One2many(
         "sale.order.line", "order_id", string="New One2many"
     )
-    project_budget = fields.Many2one(
-        "crossovered.budget", string="Project Budget"
-    )
-    project_group = fields.Many2one("project_groups", string="Project Group")
+    project_budget = fields.Many2one("crossovered.budget")
+    project_group = fields.Many2one("project_groups")
     created_from_sales_order_1_crossovered_budget_count = fields.Integer(
         string="Project Budget", store=False
     )
@@ -105,7 +103,6 @@ class SaleOrder(models.Model):
             ("Project", "Project"),
             ("Repair", "Repair"),
         ],
-        string="Quotation Type",
     )
     # --- Repair-flow gate flags read by Fix-repair ------------------------
     # These three fields live on sale.order (Sales-owned by definition)
@@ -143,71 +140,44 @@ class SaleOrder(models.Model):
         "rolls up from this.",
     )
     # --- Credit-limit gate --------------------------------------------------
-    credit_limit_approved = fields.Boolean(
-        string="Credit Limit Approved",
-    )
+    credit_limit_approved = fields.Boolean()
     # --- Bank guarantee -----------------------------------------------------
-    bank_guarantee_approved = fields.Boolean(
-        string="Bank Guarantee Approved",
-    )
-    over_bank_guarantee = fields.Boolean(
-        string="Over Bank Guarantee",
-    )
-    over_bank_guarantee_amount = fields.Float(
-        string="Over Bank Guarantee Amount",
-    )
+    bank_guarantee_approved = fields.Boolean()
+    over_bank_guarantee = fields.Boolean()
+    over_bank_guarantee_amount = fields.Float()
     valid_bank_guarantee = fields.Boolean(
         string="Valid Bank Guarantee",
         related="partner_id.valid_bank_guarantee",
         store=True,
     )
     # --- Over-credit --------------------------------------------------------
-    over_credit = fields.Boolean(
-        string="Over Credit",
-    )
-    over_credit_amount = fields.Float(
-        string="Over Credit Amount",
-    )
+    over_credit = fields.Boolean()
+    over_credit_amount = fields.Float()
     # --- Over-commission ----------------------------------------------------
-    over_commission = fields.Boolean(
-        string="Over Commission",
-    )
-    over_commission_approved = fields.Boolean(
-        string="Over Commission Approved",
-    )
+    over_commission = fields.Boolean()
+    over_commission_approved = fields.Boolean()
     # --- Overdue ------------------------------------------------------------
-    overdue = fields.Boolean(
-        string="Overdue",
-    )
-    overdue_approved = fields.Boolean(
-        string="Overdue Approved",
-    )
+    overdue = fields.Boolean()
+    overdue_approved = fields.Boolean()
     # --- Margin -------------------------------------------------------------
-    margin_approved = fields.Boolean(
-        string="Margin Approved",
-    )
-    margin_exceed = fields.Boolean(
-        string="Margin Exceed",
-    )
+    margin_approved = fields.Boolean()
+    margin_exceed = fields.Boolean()
     # --- Order-payment / lock / expiry --------------------------------------
     order_payment_method = fields.Selection(
         [("Cash", "Cash"), ("Credit", "Credit")],
         string="Order Payment Type",
     )
     sales_locked = fields.Boolean(string="Locked")
-    unlocked = fields.Boolean(string="Unlocked")
-    expired = fields.Boolean(string="Expired")
+    unlocked = fields.Boolean()
+    expired = fields.Boolean()
     expiry_date = fields.Date(
         string="Bank Guarantee Expiration Date",
         related="partner_id.expiry_date",
         store=True,
     )
     # --- Confirm-time gates -------------------------------------------------
-    price_not_confirmed = fields.Boolean(
-        string="Price Not Confirmed",
-    )
+    price_not_confirmed = fields.Boolean()
     valid_order_lines = fields.Boolean(
-        string="Valid Order Lines",
         compute="_compute_valid_order_lines",
         store=True,
     )
@@ -239,7 +209,6 @@ class SaleOrder(models.Model):
     # Compute-only (unstored) — reads days-of-validity from the SO's company.
     # Matches CDB compute: rec.company_id.sales_order_validity.
     sales_order_validity = fields.Integer(
-        string="Sales Order Validity",
         compute="_compute_sales_order_validity",
         store=False,
     )
@@ -248,9 +217,7 @@ class SaleOrder(models.Model):
     def _compute_sales_order_validity(self):
         for rec in self:
             rec.sales_order_validity = (
-                rec.company_id.sales_order_validity or 0
-                if rec.company_id
-                else 0
+                rec.company_id.sales_order_validity or 0 if rec.company_id else 0
             )
 
     # --- Re-estimate request tracker ---------------------------------------
@@ -264,18 +231,12 @@ class SaleOrder(models.Model):
         string="Re-estimate Request Sent",
     )
     # --- Misc SO gates ------------------------------------------------------
-    account_mandatory = fields.Boolean(
-        string="Account Mandatory",
-    )
+    account_mandatory = fields.Boolean()
     new_item_from_project = fields.Boolean(
         string="New Item from Project",
     )
-    guarantee_status = fields.Char(
-        string="Guarantee Status",
-    )
-    inventory_short = fields.Boolean(
-        string="Inventory Short",
-    )
+    guarantee_status = fields.Char()
+    inventory_short = fields.Boolean()
     # --- Project link -------------------------------------------------------
     project_no = fields.Many2one(
         "project.project",
@@ -285,7 +246,6 @@ class SaleOrder(models.Model):
     )
     main_project_no = fields.Many2one(
         "project.project",
-        string="Main Project No",
     )
     # --- v33 additions ------------------------------------------------------
     # Junk-named Studio artefact — a boolean literally named "x_studio_"
@@ -294,11 +254,8 @@ class SaleOrder(models.Model):
     x_studio_ = fields.Boolean(
         string="Test Field",
     )
-    approval_request_sent = fields.Boolean(
-        string="Approval Request Sent",
-    )
+    approval_request_sent = fields.Boolean()
     authorized_repair_user = fields.Boolean(
-        string="Authorized Repair User",
         readonly=True,
     )
 
@@ -310,9 +267,7 @@ class SaleOrder(models.Model):
     # `"sale.order"."budget_created" field is undefined`.
     # Types + selection values verified verbatim vs Clear-DB
     # ir.model.fields (2026-08-12).
-    budget_created = fields.Boolean(
-        string="Budget Created",
-    )
+    budget_created = fields.Boolean()
     current_tot_amount = fields.Float(
         string="Current Total Amount",
     )
@@ -330,7 +285,6 @@ class SaleOrder(models.Model):
         string="Project Budget Status",
     )
     service_item_available = fields.Boolean(
-        string="Service Item Available",
         compute="_compute_service_item_available",
         store=False,
     )
@@ -383,37 +337,29 @@ class SaleOrder(models.Model):
     bank_guarantee_request_sent = fields.Boolean(string="BG Request Sent")
     bank_guarantee_validation = fields.Boolean(string="BG Validation")
     bg_sent = fields.Boolean(string="BG Sent")
-    cancelled = fields.Boolean(string="Cancelled")
-    clear_free_items = fields.Boolean(string="Clear Free Items")
-    credit_limit_validation = fields.Boolean(string="Credit Limit Validation")
+    cancelled = fields.Boolean()
+    clear_free_items = fields.Boolean()
+    credit_limit_validation = fields.Boolean()
     fsm_done = fields.Boolean(string="FSM Done")
-    fully_paid = fields.Boolean(string="Fully Paid")
-    grant_temporary_credit = fields.Boolean(string="Grant Temporary Credit")
-    margin_approval_request_sent = fields.Boolean(
-        string="Margin Approval Request Sent"
-    )
+    fully_paid = fields.Boolean()
+    grant_temporary_credit = fields.Boolean()
+    margin_approval_request_sent = fields.Boolean()
     over_comm_approval_request_sent = fields.Boolean(
         string="Over Commission Approval Request Sent"
     )
-    overdue_request_sent = fields.Boolean(string="Overdue Request Sent")
-    petty_cash_reimbursement = fields.Boolean(
-        string="Petty Cash Reimbursement"
-    )
+    overdue_request_sent = fields.Boolean()
+    petty_cash_reimbursement = fields.Boolean()
     pr_cost_updated = fields.Boolean(string="PR Cost Updated")
     pr_created = fields.Boolean(string="PR Created")
-    project_item_approved = fields.Boolean(string="Project Item Approved")
-    project_item_request_sent = fields.Boolean(
-        string="Project Item Request Sent"
-    )
+    project_item_approved = fields.Boolean()
+    project_item_request_sent = fields.Boolean()
     rug_request_sent = fields.Boolean(string="RUG Request Sent")
     sell_and_win = fields.Boolean(string="Sell and Win")
-    sub_contract = fields.Boolean(string="Sub Contract")
+    sub_contract = fields.Boolean()
     tem_credit_approval_request_sent = fields.Boolean(
         string="Temporary Credit Approval Request Sent"
     )
-    temporary_credit_approved = fields.Boolean(
-        string="Temporary Credit Approved"
-    )
+    temporary_credit_approved = fields.Boolean()
     transfer_inventory_ok = fields.Boolean(string="Transfer Inventory OK")
     # Compute (unstored) — True if the SO has at least one order line.
     # Matches CDB compute: iterate rec.order_line, val=True if any.
@@ -442,26 +388,24 @@ class SaleOrder(models.Model):
             real_lines = rec.order_line.filtered(lambda line: not line.display_type)
             has_positive = any(line.product_uom_qty > 0 for line in real_lines)
             has_zero = any(line.product_uom_qty == 0 for line in real_lines)
-            rec.valid_order_lines_for_update_rfq_cost = (
-                has_positive and not has_zero
-            )
+            rec.valid_order_lines_for_update_rfq_cost = has_positive and not has_zero
 
-    valid_transfer = fields.Boolean(string="Valid Transfer")
+    valid_transfer = fields.Boolean()
 
     # Texts / Chars (5) ----------------------------------------------------
-    confirm_validation = fields.Text(string="Confirm Validation")
+    confirm_validation = fields.Text()
     confirm_validation_1 = fields.Text(string="Confirm Validation (v2)")
-    reject_reason = fields.Text(string="Reject Reason")
-    repair_validation = fields.Char(string="Repair Validation")
-    total = fields.Char(string="Total")
+    reject_reason = fields.Text()
+    repair_validation = fields.Char()
+    total = fields.Char()
 
     # Dates (2) ------------------------------------------------------------
-    project_end_date = fields.Date(string="Project End Date")
-    project_start_date = fields.Date(string="Project Start Date")
+    project_end_date = fields.Date()
+    project_start_date = fields.Date()
 
     # Floats (2) -----------------------------------------------------------
     customer_bank_guarantee = fields.Float(string="Customer BG Amount")
-    customer_credit_limit = fields.Float(string="Customer Credit Limit")
+    customer_credit_limit = fields.Float()
 
     # Monetary (3) — related to partner receivables. Match CDB:
     # cust_total_receivable / _1 both point at partner_id.credit (account),
@@ -486,16 +430,16 @@ class SaleOrder(models.Model):
     )
 
     # Binary (9) — documents + images + warranty + related info -----------
-    document_1 = fields.Binary(string="Document 1")
-    document_2 = fields.Binary(string="Document 2")
-    document_3 = fields.Binary(string="Document 3")
-    image_1 = fields.Binary(string="Image 1")
-    image_2 = fields.Binary(string="Image 2")
-    image_3 = fields.Binary(string="Image 3")
-    related_information = fields.Binary(string="Related Information")
-    repair_image_01 = fields.Binary(string="Repair Image 01")
-    repair_image_02 = fields.Binary(string="Repair Image 02")
-    warranty_card = fields.Binary(string="Warranty Card")
+    document_1 = fields.Binary()
+    document_2 = fields.Binary()
+    document_3 = fields.Binary()
+    image_1 = fields.Binary()
+    image_2 = fields.Binary()
+    image_3 = fields.Binary()
+    related_information = fields.Binary()
+    repair_image_01 = fields.Binary()
+    repair_image_02 = fields.Binary()
+    warranty_card = fields.Binary()
 
     # Selection (1) — related to res.partner.payment_method.
     # CDB stores this related; keeping stored here so search/filter on the
@@ -509,7 +453,6 @@ class SaleOrder(models.Model):
     # Many2one to safe (already-existing) target (1) ----------------------
     main_project_2 = fields.Many2one(
         "project.project",
-        string="Main Project 2",
         ondelete="set null",
     )
 
@@ -529,9 +472,7 @@ class SaleOrder(models.Model):
     # Permanent fix: move the repair_reason model declaration to BugFix-Sales
     # (or an upstream shared module) so it exists before the m2m needs to
     # resolve. Ticket left in memory as an open follow-up.
-    repair_reason = fields.Char(
-        string="Repair Reason",
-    )
+    repair_reason = fields.Char()
 
     @api.onchange("bugfix_sales_intro_id")
     def _onchange_bugfix_sales_intro_id(self):

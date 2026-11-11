@@ -20,10 +20,10 @@ class XDeliveryTerms(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Delivery Terms"
 
-    active = fields.Boolean(string="Active", default=True)
+    active = fields.Boolean(default=True)
     name = fields.Char(string="Delivery Term")
     accounting_company_id = fields.Many2one("res.company", string="Company")
-    copied = fields.Boolean(string="Copied")
-    description = fields.Char(string="Description")
-    sequence = fields.Integer(string="Sequence")
+    copied = fields.Boolean()
+    description = fields.Char()
+    sequence = fields.Integer()
     vendor_despatch = fields.Boolean(string="Vendor Dispatch Voucher")

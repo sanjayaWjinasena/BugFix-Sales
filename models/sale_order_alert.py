@@ -13,7 +13,7 @@ class SaleOrderAlert(models.Model):
     _inherit = "sale.order.alert"
 
     char_field_dpQHc = fields.Char(string="New Text", copy=True)
-    comments = fields.Char(string="Comments", copy=True)
+    comments = fields.Char(copy=True)
     selection_field_ogQSe = fields.Selection(
         selection=[],
         string="New Selection",
@@ -21,6 +21,5 @@ class SaleOrderAlert(models.Model):
     )
     status = fields.Selection(
         selection=[],
-        string="Status",
         copy=True,
     )

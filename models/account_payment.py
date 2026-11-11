@@ -15,7 +15,6 @@ class AccountPayment(models.Model):
     # outliving its SO shouldn't be blindly deleted.
     sales_order = fields.Many2one(
         "sale.order",
-        string="Sales Order",
     )
     # Selection kept in sync with sale.order.quotation_type
     # (Sales / Project / Repair). Same three values so the payment's
@@ -26,5 +25,4 @@ class AccountPayment(models.Model):
             ("Project", "Project"),
             ("Repair", "Repair"),
         ],
-        string="Quotation Type",
     )

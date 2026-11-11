@@ -22,29 +22,23 @@ class ProductProduct(models.Model):
     boolean_field_XrNz2 = fields.Boolean(string="New Checkbox")
     boolean_field_qKrKh = fields.Boolean(string="New Checkbox")
     char_field_2ug_1iullp7gr = fields.Char(string="New Text")
-    charge = fields.Boolean(string="Charge")
-    duty = fields.Boolean(string="Duty")
+    charge = fields.Boolean()
+    duty = fields.Boolean()
     float_field_KIV5v = fields.Float(string="New Decimal")
-    item_approval_request_sent = fields.Boolean(
-        string="Item Approval Request Sent"
-    )
-    item_approval_request_sent_2 = fields.Boolean(
-        string="Item Approval Request Sent 2"
-    )
-    item_approval_request_sent_temp = fields.Boolean(
-        string="Item Approval Request Sent Temp"
-    )
-    item_approved = fields.Boolean(string="Item Approved")
-    item_approved_temp = fields.Boolean(string="Item Approved Temp")
+    item_approval_request_sent = fields.Boolean()
+    item_approval_request_sent_2 = fields.Boolean()
+    item_approval_request_sent_temp = fields.Boolean()
+    item_approved = fields.Boolean()
+    item_approved_temp = fields.Boolean()
     many2one_field_AS0wC = fields.Many2one(
         "tariffmaster", string="TariffMaster", ondelete="set null"
     )
     maximum_discount_ = fields.Float(string="Maximum  Discount %")
-    melt = fields.Boolean(string="Melt")
+    melt = fields.Boolean()
     related_field_59m_1iv4fum1u = fields.Boolean(string="New Related Field")
     related_field_850_1iv4flunc = fields.Boolean(string="New Related Field")
     related_field_YoMQf = fields.Integer(string="New Related Field")
     selection_field_Coru2 = fields.Selection([], string="New Selection")
     selection_field_MSMlW = fields.Selection([], string="New Selection")
     serial = fields.Char(string="Serial Number")
-    tax = fields.Boolean(string="Tax")
+    tax = fields.Boolean()
