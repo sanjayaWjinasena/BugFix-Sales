@@ -147,12 +147,12 @@
       <field name="mode">extension</field>
       <field name="arch" type="xml">
         <data>
-  <!-- STRIPPED sentinel x_studio_available_qty: field pinned only to studio_migrations, not loaded in runtime class --><xpath expr="//field[@name='id']" position="after">
+  <!-- STRIPPED sentinel available_qty: field pinned only to studio_migrations, not loaded in runtime class --><xpath expr="//field[@name='id']" position="after">
     <field name="default_code" optional="show"/>
   </xpath>
   <!-- STRIPPED xpath avg_cost: not on ported parent view -->
   <xpath expr="//field[@name='incoming_qty']" position="after">
-    <!-- STRIPPED x_studio_available_qty: ghost field pinned only to studio_migrations -->
+    <!-- STRIPPED available_qty: ghost field pinned only to studio_migrations -->
 </xpath>
 </data>
       </field>

@@ -30,9 +30,9 @@
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_product_product__x_studio_item_approved"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_product_product__item_approved"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_item_approved</field>
+    <field name="update_path">item_approved</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -42,9 +42,9 @@
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_product_product__x_studio_item_approval_request_sent"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_product_product__item_approval_request_sent"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_item_approval_request_sent</field>
+    <field name="update_path">item_approval_request_sent</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>

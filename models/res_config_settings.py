@@ -22,7 +22,7 @@ class ResConfigSettings(models.TransientModel):
 
     Predecessor (v20) held stored fields on this transient and
     hand-rolled get_values / set_values to sync with rows on the
-    x_minimum_sales_margin Studio catalogue (including raw-SQL
+    minimum_sales_margin Studio catalogue (including raw-SQL
     INSERTs to bypass automation 146's cross-company single-row
     guard). All of that goes away — Odoo's related-field write path
     on res.company covers it cleanly.
@@ -30,19 +30,19 @@ class ResConfigSettings(models.TransientModel):
 
     _inherit = "res.config.settings"
 
-    x_studio_minimum_sales_margin_ = fields.Float(
-        related="company_id.x_studio_minimum_sales_margin_",
+    minimum_sales_margin_ = fields.Float(
+        related="company_id.minimum_sales_margin_",
         readonly=False,
     )
-    x_studio_advance_payment_ = fields.Float(
-        related="company_id.x_studio_advance_payment_",
+    advance_payment_ = fields.Float(
+        related="company_id.advance_payment_",
         readonly=False,
     )
-    x_studio_sales_order_validity = fields.Integer(
-        related="company_id.x_studio_sales_order_validity",
+    sales_order_validity = fields.Integer(
+        related="company_id.sales_order_validity",
         readonly=False,
     )
-    x_studio_last_purchase_price_validity_days = fields.Integer(
-        related="company_id.x_studio_last_purchase_price_validity_days",
+    last_purchase_price_validity_days = fields.Integer(
+        related="company_id.last_purchase_price_validity_days",
         readonly=False,
     )

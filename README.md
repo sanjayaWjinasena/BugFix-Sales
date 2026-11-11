@@ -46,7 +46,7 @@ report templates like C01 Sales Quotation, and configuration.
 - `res.partner` — Reference field UX
 - `res.config.settings` — Sales Configurations block with four
   per-company values that Fix-repair also reads
-- The `x_minimum_sales_margin` Studio catalogue — this module is the
+- The `minimum_sales_margin` Studio catalogue — this module is the
   authoritative writer of the four config values it carries
 - C01 Sales Quotation QWeb report — Intro / Conclusion overlay
   attached dynamically at install/upgrade time (portable across
@@ -88,7 +88,7 @@ BugFix-Sales/
 │   │                                 pin cleanup + C01 inheritance
 │   ├── res_config_settings.py      # Sales Configurations block —
 │   │                                 four fields passthrough to
-│   │                                 x_minimum_sales_margin row
+│   │                                 minimum_sales_margin row
 │   └── sale_order.py               # bugfix_sales_intro_id/text +
 │                                     bugfix_sales_conclusion_id/text
 │
@@ -157,14 +157,14 @@ generated list view:
 
 | Field | Type | Used by |
 |---|---|---|
-| `x_studio_minimum_sales_margin_` | float, % | Confirm-button margin gate |
-| `x_studio_advance_payment_` | float, % | Advance-payment threshold in Fix-repair's payment-register wizard; also gates the delivery Validate button until at least a partial payment lands |
-| `x_studio_sales_order_validity` | int, days | Quotation expiry on Confirm gate |
-| `x_studio_last_purchase_price_validity_days` | int, days | Last-purchase-price staleness threshold |
+| `minimum_sales_margin_` | float, % | Confirm-button margin gate |
+| `advance_payment_` | float, % | Advance-payment threshold in Fix-repair's payment-register wizard; also gates the delivery Validate button until at least a partial payment lands |
+| `sales_order_validity` | int, days | Quotation expiry on Confirm gate |
+| `last_purchase_price_validity_days` | int, days | Last-purchase-price staleness threshold |
 
 Now edited via **Settings → Sales → Sales Configurations**. The Settings
 block is a passthrough (fields have the same names as the underlying
-`x_minimum_sales_margin` row); `get_values` reads the row for
+`minimum_sales_margin` row); `get_values` reads the row for
 `self.env.company`, `set_values` writes it back.
 
 **One row per company**, guarded by Studio's automation 146 ("Only one
@@ -180,7 +180,7 @@ Files: `models/res_config_settings.py`, `views/res_config_settings_views.xml`.
 
 `bugfix_sales.minimum_sales_margin.seed._seed_minimum_sales_margin_per_company`
 runs on every install / upgrade. Ensures every active `res.company`
-has a row on `x_minimum_sales_margin` — creates the missing ones via
+has a row on `minimum_sales_margin` — creates the missing ones via
 raw SQL INSERT (bypasses automation 146's cross-company block).
 Idempotent: reruns skip companies that already have a row.
 
@@ -200,12 +200,12 @@ Rows can then be edited per-company via the Settings UI.
 Two Studio-generated "Sales Configurations" menus (paths
 *Sales → Configuration → Sales Configurations* and
 *TEST APP 05 → Sales → Sales Configurations*) opened the list view
-of `x_minimum_sales_margin`. Since v17 replaced this UX with the
+of `minimum_sales_margin`. Since v17 replaced this UX with the
 Settings block, the menus are redundant and confusing (users could
 accidentally create a second row, hitting automation 146's guard).
 
 `_hide_minimum_sales_margin_menus` deactivates every menu that opens
-a Studio action on `x_minimum_sales_margin`. Reversible: only
+a Studio action on `minimum_sales_margin`. Reversible: only
 `active=False` flips; records preserved.
 
 `_cleanup_orphan_studio_menu_pins` (v19) walks
@@ -265,15 +265,15 @@ Four native fields on every SO:
 ### 5.4 `res.config.settings` extensions (`models/res_config_settings.py`)
 
 Four Float / Integer fields that mirror the four
-`x_minimum_sales_margin` values by name for straight passthrough:
+`minimum_sales_margin` values by name for straight passthrough:
 
-- `x_studio_minimum_sales_margin_` — Float
-- `x_studio_advance_payment_` — Float
-- `x_studio_sales_order_validity` — Integer
-- `x_studio_last_purchase_price_validity_days` — Integer
+- `minimum_sales_margin_` — Float
+- `advance_payment_` — Float
+- `sales_order_validity` — Integer
+- `last_purchase_price_validity_days` — Integer
 
 `get_values` reads from and `set_values` writes to the
-`x_minimum_sales_margin` row for `self.env.company`. No new
+`minimum_sales_margin` row for `self.env.company`. No new
 persistent columns.
 
 ### 5.5 `bugfix_sales.minimum_sales_margin.seed` (`models/minimum_sales_margin_seed.py`)
@@ -304,7 +304,7 @@ work and no-op.
 
 | Function | Purpose |
 |---|---|
-| `_seed_minimum_sales_margin_per_company` | Ensure one row per active company on `x_minimum_sales_margin` — creates missing rows via raw SQL INSERT (bypasses automation 146). |
+| `_seed_minimum_sales_margin_per_company` | Ensure one row per active company on `minimum_sales_margin` — creates missing rows via raw SQL INSERT (bypasses automation 146). |
 | `_hide_minimum_sales_margin_menus` | Deactivate the two Studio-generated menus that opened the list view (redundant after Settings block). |
 | `_cleanup_orphan_studio_menu_pins` | Unlink `ir.model.data` pins under `studio_customization` on `ir.ui.menu` whose target no longer exists. |
 | `_attach_c01_intro_conclusion_view` | Look up the Studio C01 Sales Quotation report by name; derive the `_document` sub-template key; create the inheritance view. Skips silently when C01 isn't present on the current DB. |
@@ -317,7 +317,7 @@ The two modules cooperate via three surfaces:
    `BugFix-Sales`. Upgrade order is enforced by Odoo.
 
 2. **Shared config storage** — Fix-repair's threshold checks read
-   `env['x_minimum_sales_margin'].search([...], limit=1)` scoped by
+   `env['minimum_sales_margin'].search([...], limit=1)` scoped by
    `company_id`. BugFix-Sales owns the write path (Settings block +
    seed function); Fix-repair owns the read path (payment-register
    wizard, delivery-Validate gate).
@@ -343,7 +343,7 @@ The two modules cooperate via three surfaces:
   exists there.
 - **No new persistent columns on shared models** — Sales Configurations
   is a Settings-only field cluster that passes through to the existing
-  `x_minimum_sales_margin` row.
+  `minimum_sales_margin` row.
 
 For a runtime verification of Fix-repair's Studio → Python migration
 that touches shared surfaces (advance-payment threshold, delivery

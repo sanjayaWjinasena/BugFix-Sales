@@ -2,7 +2,7 @@
     # upgrade-testing branch: data files below are commented out - this branch installs
     # functions only, no data is seeded.
     "name": "Jinasena : Module : Sales",
-    "version": "17.0.1.0.175",
+    "version": "17.0.1.0.176",
     "summary": "Bug fixes and enhancements for the Sales workflow",
     "author": "Jinasena Agricultural Machinery (Pvt) Ltd.",
     "category": "Sales",
@@ -13,7 +13,7 @@
     # column present after Odoo's addon stack applies its inherits).
     # Rewrote xpath to //tree/field[@name='public_categ_ids']
     # position="after". Dropped 3 fields from the CDB arch:
-    #   * x_studio_charge_type + x_studio_non_billable (pinned to
+    #   * charge_type + non_billable (pinned to
     #     BugFix-Accounting - loads after Sales, not load-safe)
     #   * re-added <field name="id"/> (target has no id column)
     # Kept 4 std fields: weight, volume, landed_cost_ok,
@@ -39,7 +39,7 @@
     # modifier field refs remain (except benign 'gt'/'get' false
     # positives that Odoo's parser handles correctly).
     # v0.1.0.69: hotfix v0.1.0.68 - refine orphan-strip rule.
-    # v0.1.0.68 over-stripped (removed x_studio_customer_group and
+    # v0.1.0.68 over-stripped (removed customer_group and
     # similar Sales-owned/studio_usermodel_migration fields), also
     # missed vat_registration_status (pinned to Fix-repair
     # which depends on Sales - loads AFTER us).
@@ -56,8 +56,8 @@
     # v0.1.0.68: hotfix v0.1.0.67 - Studio-created orphan field refs
     # in view arch (fields that exist on CDB but were never ported to
     # any module). View 2299 embedded a Studio-custom <form> for
-    # editing res.partner.bank records that referenced x_studio_swift_code,
-    # x_studio_bank_code_1, x_studio_branch_code_1 - all Studio DB
+    # editing res.partner.bank records that referenced swift_code,
+    # bank_code_1, branch_code_1 - all Studio DB
     # records that never got a Python home. On target these names
     # exist on OTHER models (account.move.line, account.setup.bank.
     # manual.config) but NOT on res.partner.bank, so view load
@@ -160,59 +160,59 @@
     #   * sale.order.line: 7 (discount/commission validation, RUG
     #     sales price, project details, lock status, apply pricelist)
     #   * product.template: 3 (item master validation)
-    #   * x_delivery_terms + product.pricelist + res.partner + res.company:
+    #   * delivery_terms + product.pricelist + res.partner + res.company:
     #     JIN Company Id records
     # New file: data/server_actions.xml.
     # v0.1.0.58: close the 60 field gap identified by the migration audit.
     # New model files:
     #   * models/product_template.py: 15 fields (item approval flags,
     #     max discount, product_type selection with 4 options, tariff
-    #     code M2O to x_tariffmaster owned by BugFix-Stock, etc.)
+    #     code M2O to tariffmaster owned by BugFix-Stock, etc.)
     #   * models/product_product.py: 43 fields (superset of template
     #     fields + product.product-specific: many redundant checkboxes,
     #     related fields, extra selection with empty options preserved
     #     verbatim per Clear-DB fidelity).
-    #   * res_partner.py: un-TODO'd x_vendor_id__purchase_requisition_count
+    #   * res_partner.py: un-TODO'd vendor_id__purchase_requisition_count
     #     compute (store=False, counts PRs where vendor_id equals partner).
-    #   * sale_order.py: un-TODO'd x_studio_one2many_field_ERCBB O2M
+    #   * sale_order.py: un-TODO'd one2many_field_ERCBB O2M
     #     to sale.order.line via order_id.
     # NEW DEPS: purchase_requisition (for vendor count compute),
-    # BugFix-Stock (for x_tariffmaster comodel resolution).
+    # BugFix-Stock (for tariffmaster comodel resolution).
     # Field coverage: 202/262 -> 262/262 (100%).
     # v0.1.0.57: break the 3-way cycle Sales -> Purchase -> Accounting
     # -> Sales that was silently blocking module upgrades and causing
     # Python classes not to load. Removed BugFix-Purchase from depends.
     # The dep was added in v0.1.0.55/56 to prevent field shadowing on
-    # x_delivery_terms (both modules declare via _name). Fix: drop the
-    # mirrored x_studio_delivery_terms_id O2M from Sales's declaration.
+    # delivery_terms (both modules declare via _name). Fix: drop the
+    # mirrored delivery_terms_id O2M from Sales's declaration.
     # Purchase's declaration keeps the O2M and loads AFTER Sales, so
     # Purchase's class definition wins on merge (O2M present at runtime).
     # v0.1.0.56: cross-repo companion fix for BugFix-Purchase v0.1.0.71.
     # Purchase added _inherit = ['mail.thread', 'mail.activity.mixin']
-    # to its x_delivery_terms declaration. Both modules declare that
+    # to its delivery_terms declaration. Both modules declare that
     # model via _name; without matching the inherit here, chatter/
     # activity fields would get shadowed and view ports referencing
     # them would fail. Mirroring the inherit.
     # v0.1.0.55: cross-repo companion fix for BugFix-Purchase v0.1.0.33.
-    # Both this module and BugFix-Purchase declare x_delivery_terms via
+    # Both this module and BugFix-Purchase declare delivery_terms via
     # _name (not _inherit). Odoo merges the declarations, but the
     # LATER-loaded module's field list REPLACES the earlier one's --
-    # so Purchase's x_studio_delivery_terms_id O2M (shipped v0.1.0.33)
+    # so Purchase's delivery_terms_id O2M (shipped v0.1.0.33)
     # got shadowed at runtime ("Invalid field ... on model
-    # x_delivery_terms" error at read time).
+    # delivery_terms" error at read time).
     # Fix: mirror Purchase's declaration in Sales - add the O2M
     # declaration + default=True on active. Now field sets match
     # regardless of merge order. NEW DEP BugFix-Purchase (needed for
-    # x_delivery_term_charge comodel to resolve).
+    # delivery_term_charge comodel to resolve).
     # v54: added Jinasena_Masterdata_Reporting to depends.
-    # BugFix-Sales/models/x_sales_report_type.py was _name='x_sales_report_type'
+    # BugFix-Sales/models/sales_report_type.py was _name='sales_report_type'
     # (a competing "owner" declaration without dep on the real owner). With two
     # _name= declarations and no dep chain, Odoo's topological sort could pick
-    # BugFix-Sales's class as the live model, leaving x_studio_journal_items_id
-    # absent from x_sales_report_type._fields at setup_models() time. That
-    # caused KeyError on x_sales_report_model.x_studio_journal_item_ids
-    # (related='x_studio_report_type.x_studio_journal_items_id') and broke the
-    # registry on every startup. Fix: x_sales_report_type.py converted to
+    # BugFix-Sales's class as the live model, leaving journal_items_id
+    # absent from sales_report_type._fields at setup_models() time. That
+    # caused KeyError on sales_report_model.journal_item_ids
+    # (related='report_type.journal_items_id') and broke the
+    # registry on every startup. Fix: sales_report_type.py converted to
     # _inherit; Jinasena_Masterdata_Reporting (the canonical owner) added here.
     # studio_usermodel_migration removed in v52 (no load-time dep, cycle risk).
     "depends": [
@@ -226,13 +226,13 @@
         "sale_subscription",
         "sale_loyalty",  # is_reward_line used in Slice A1 price_unit tree readonly
         "account_followup",  # partner_id.total_overdue related target on sale.order
-        # res.partner.bank.x_studio_swift_code/bank_code_1/branch_code_1 refs
+        # res.partner.bank.swift_code/bank_code_1/branch_code_1 refs
         "bank-data",
         "Jinasena_Masterdata_Reporting",
         "BugFix-Stock",
         "base_automation",
         "BugFix-Approvals",  # group refs in CSV / automations
-        # res.partner.x_studio_customer_group / _vendor_group
+        # res.partner.customer_group / _vendor_group
         "studio_usermodel_migration",
         "seed_master_data_and_settings",  # company_jinasena_pvt_ltd ref
     ],
@@ -240,7 +240,7 @@
     # v47: bulk-port of remaining Studio artifacts via
     # scripts/scaffold_bugfix_module.py (adds 8 sale.order fields,
     # 36 sale.order.line fields, sale.order.alert model, 3 custom
-    # models: x_customer_group / x_vendor_group / x_delivery_terms).
+    # models: customer_group / vendor_group / delivery_terms).
     # ir_model_pins.xml MUST load before ir.model.access.csv so the
     # ACL rows can resolve the model_x_* xmlids for the custom
     # models.
@@ -262,11 +262,11 @@
         "data/res_partner_data.xml",
         "data/sale_order_data.xml",
         "data/sale_order_line_data.xml",
-        "data/x_minimum_sales_margin_data.xml",
+        "data/minimum_sales_margin_data.xml",
         "data/defaults_f2.xml",
         "data/bugfix_sales_minimum_sales_margin_seed_data.xml",
         "data/product_template_data.xml",
-        "data/x_delivery_terms_data.xml",
+        "data/delivery_terms_data.xml",
         "data/product_product_data.xml",
         "data/product_category_data.xml",
         "views/product_product_views.xml",
@@ -275,8 +275,8 @@
         "views/sale_order_views.xml",
         "views/product_template_views.xml",
         "views/sale_report_views.xml",
-        "views/x_delivery_terms_views.xml",
-        "views/x_sales_report_type_views.xml",
+        "views/delivery_terms_views.xml",
+        "views/sales_report_type_views.xml",
         "views/bugfix_sales_doc_intro_views.xml",
         "views/bugfix_sales_doc_conclusion_views.xml",
         "views/res_config_settings_views.xml",
@@ -284,7 +284,7 @@
         "views/product_pricelist_views.xml",
         "views/purchase_requisition_views.xml",
         "views/res_partner_views.xml",
-        "views/x_minimum_sales_margin_views.xml",
+        "views/minimum_sales_margin_views.xml",
         "views/bugfix_sales_views.xml",
         "views/bugfix_sales_templates.xml",
         "views/bugfix_sales_menus.xml",

@@ -5,18 +5,18 @@
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
     <field name="code"><![CDATA[if record.task_id != False:
-  if record.x_studio_project_no.x_studio_repair_project == True:
+  if record.project_no.repair_project == True:
     record['quotation_type'] = 'Repair'
   else:
-    record['quotation_type'] = record.x_studio_project_no.quotation_type
+    record['quotation_type'] = record.project_no.quotation_type
   
-  record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
-  record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
+  record['project_group'] = record.project_no.project_group
+  record['analytic_account_id'] = record.project_no.sale_order_id.analytic_account_id.id
   
   project_task = env['project.task'].search([('id', '=', record.task_id.id)],limit=1)  
   if project_task:
-    record['x_studio_project_start_date'] = project_task.sale_order_id.x_studio_project_start_date
-    record['x_studio_project_end_date'] = project_task.sale_order_id.x_studio_project_end_date
+    record['project_start_date'] = project_task.sale_order_id.project_start_date
+    record['project_end_date'] = project_task.sale_order_id.project_end_date
     
     if project_task.sale_order_id.warehouse_id == True:
       record['warehouse_id'] = project_task.sale_order_id.warehouse_id.id
@@ -33,14 +33,14 @@
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
     <field name="code"><![CDATA[if record.task_id != False:
-  record['quotation_type'] = record.x_studio_project_no.quotation_type
-  record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
-  record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
+  record['quotation_type'] = record.project_no.quotation_type
+  record['project_group'] = record.project_no.project_group
+  record['analytic_account_id'] = record.project_no.sale_order_id.analytic_account_id.id
   
   project_task = env['project.task'].search([('id', '=', record.task_id.id)],limit=1)  
   if project_task:
-    record['x_studio_project_start_date'] = project_task.sale_order_id.x_studio_project_start_date
-    record['x_studio_project_end_date'] = project_task.sale_order_id.x_studio_project_end_date
+    record['project_start_date'] = project_task.sale_order_id.project_start_date
+    record['project_end_date'] = project_task.sale_order_id.project_end_date
     record['warehouse_id'] = project_task.sale_order_id.warehouse_id.id
 
 
@@ -57,17 +57,17 @@
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
     <field name="code"><![CDATA[if record.id:
-    # x_studio_project_no is never set by FSM - use task link instead
+    # project_no is never set by FSM - use task link instead
     task = env['project.task'].search([
         ('sale_order_id', '=', record.id),
-        ('project_id.x_studio_repair_project', '=', True)
+        ('project_id.repair_project', '=', True)
     ], limit=1)
     if task:
         record['quotation_type'] = 'Repair'
-        record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
-    elif record.x_studio_project_no and record.x_studio_project_no.x_studio_repair_project == True:
+        record['order_payment_method'] = record.partner_id.payment_method
+    elif record.project_no and record.project_no.repair_project == True:
         record['quotation_type'] = 'Repair'
-        record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
+        record['order_payment_method'] = record.partner_id.payment_method
 ]]></field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
@@ -79,15 +79,15 @@
     <field name="code"><![CDATA[# fix_repair:idempotent-v1
 if record.quotation_type == 'Repair' and record.state == 'done':
   re_line = env['sale.order.line'].sudo().search(
-    [('order_id', '=', record.id), ('x_studio_re_estimated', '=', True)],
+    [('order_id', '=', record.id), ('re_estimated', '=', True)],
     limit=1, order='id desc')
-  target_count = re_line.x_studio_count_1 if re_line else 0
-  if (not record.x_studio_locked
-      or record.x_studio_unlocked
+  target_count = re_line.count_1 if re_line else 0
+  if (not record.sales_locked
+      or record.unlocked
       or record.re_estimate_count != target_count):
     record.write({
-      'x_studio_locked': True,
-      'x_studio_unlocked': False,
+      'sales_locked': True,
+      'unlocked': False,
       're_estimate_count': target_count,
     })
 ]]></field>
@@ -101,8 +101,8 @@ if record.quotation_type == 'Repair' and record.state == 'done':
     <field name="code"><![CDATA[# fix_repair:idempotent-v1
 if (record.quotation_type == 'Repair'
     and record.state == 'sale'
-    and record.x_studio_locked):
-  record.write({'x_studio_locked': False, 'x_studio_unlocked': True})
+    and record.sales_locked):
+  record.write({'sales_locked': False, 'unlocked': True})
 ]]></field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
@@ -112,7 +112,7 @@ if (record.quotation_type == 'Repair'
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
     <field name="code"><![CDATA[if record.quotation_type == 'Project':
-  pricelist = env['product.pricelist'].search([('x_studio_project_price_list', '=', True)], limit=1)
+  pricelist = env['product.pricelist'].search([('project_price_list', '=', True)], limit=1)
   if pricelist:
     record['pricelist_id'] = pricelist.id
 else:
@@ -127,8 +127,8 @@ else:
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="state">code</field>
     <field name="code"><![CDATA[if record.quotation_type == 'Project':
-  start_date = str(record.x_studio_project_start_date) 
-  end_date = str(record.x_studio_project_end_date) 
+  start_date = str(record.project_start_date) 
+  end_date = str(record.project_end_date) 
   
   if start_date > end_date:
     raise UserError('Contract Start Date cannot be later than the Contract End Date.')
@@ -156,10 +156,10 @@ else:
   company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
   company = env['res.company'].browse(company_id)
   
-  pricelist = env['product.pricelist'].search([('x_studio_order_payment_method', '=', record.partner_id.x_studio_payment_method),('x_studio_group_type', '=', record.partner_id.x_studio_customer_group.x_studio_group_type),('company_id', '=', company.id)], limit=1)
+  pricelist = env['product.pricelist'].search([('order_payment_method', '=', record.partner_id.payment_method),('group_type', '=', record.partner_id.customer_group.group_type),('company_id', '=', company.id)], limit=1)
   if pricelist:
     record['pricelist_id'] = pricelist.id
-record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
+record['order_payment_method'] = record.partner_id.payment_method
 
 
 
@@ -173,7 +173,7 @@ record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_met
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_customer_payment_method == 'Cash' and record.x_studio_order_payment_method == 'Credit':
+    <field name="code"><![CDATA[if record.customer_payment_method == 'Cash' and record.order_payment_method == 'Credit':
   raise UserError('Cash Sales Orders can not be Converted in to Credit Sales Orders.')
 
 
@@ -187,17 +187,17 @@ record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_met
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.id:
-    # x_studio_project_no is never set by FSM - use task link instead
+    # project_no is never set by FSM - use task link instead
     task = env['project.task'].search([
         ('sale_order_id', '=', record.id),
-        ('project_id.x_studio_repair_project', '=', True)
+        ('project_id.repair_project', '=', True)
     ], limit=1)
     if task:
         record['quotation_type'] = 'Repair'
-        record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
-    elif record.x_studio_project_no and record.x_studio_project_no.x_studio_repair_project == True:
+        record['order_payment_method'] = record.partner_id.payment_method
+    elif record.project_no and record.project_no.repair_project == True:
         record['quotation_type'] = 'Repair'
-        record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
+        record['order_payment_method'] = record.partner_id.payment_method
 ]]></field>
   </record>
   <record id="server_action_2114_rr_auto_generate_quotation_type_for_project_sos" model="ir.actions.server">
@@ -207,18 +207,18 @@ record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_met
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.task_id != False:
-  if record.x_studio_project_no.x_studio_repair_project == True:
+  if record.project_no.repair_project == True:
     record['quotation_type'] = 'Repair'
   else:
-    record['quotation_type'] = record.x_studio_project_no.quotation_type
+    record['quotation_type'] = record.project_no.quotation_type
   
-  record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
-  record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
+  record['project_group'] = record.project_no.project_group
+  record['analytic_account_id'] = record.project_no.sale_order_id.analytic_account_id.id
   
   project_task = env['project.task'].search([('id', '=', record.task_id.id)],limit=1)  
   if project_task:
-    record['x_studio_project_start_date'] = project_task.sale_order_id.x_studio_project_start_date
-    record['x_studio_project_end_date'] = project_task.sale_order_id.x_studio_project_end_date
+    record['project_start_date'] = project_task.sale_order_id.project_start_date
+    record['project_end_date'] = project_task.sale_order_id.project_end_date
     
     if project_task.sale_order_id.warehouse_id == True:
       record['warehouse_id'] = project_task.sale_order_id.warehouse_id.id
@@ -235,14 +235,14 @@ record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_met
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.task_id != False:
-  record['quotation_type'] = record.x_studio_project_no.quotation_type
-  record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
-  record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
+  record['quotation_type'] = record.project_no.quotation_type
+  record['project_group'] = record.project_no.project_group
+  record['analytic_account_id'] = record.project_no.sale_order_id.analytic_account_id.id
   
   project_task = env['project.task'].search([('id', '=', record.task_id.id)],limit=1)  
   if project_task:
-    record['x_studio_project_start_date'] = project_task.sale_order_id.x_studio_project_start_date
-    record['x_studio_project_end_date'] = project_task.sale_order_id.x_studio_project_end_date
+    record['project_start_date'] = project_task.sale_order_id.project_start_date
+    record['project_end_date'] = project_task.sale_order_id.project_end_date
     record['warehouse_id'] = project_task.sale_order_id.warehouse_id.id
 
 
@@ -261,15 +261,15 @@ record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_met
     <field name="code"><![CDATA[# fix_repair:idempotent-v1
 if record.quotation_type == 'Repair' and record.state == 'done':
   re_line = env['sale.order.line'].sudo().search(
-    [('order_id', '=', record.id), ('x_studio_re_estimated', '=', True)],
+    [('order_id', '=', record.id), ('re_estimated', '=', True)],
     limit=1, order='id desc')
-  target_count = re_line.x_studio_count_1 if re_line else 0
-  if (not record.x_studio_locked
-      or record.x_studio_unlocked
+  target_count = re_line.count_1 if re_line else 0
+  if (not record.sales_locked
+      or record.unlocked
       or record.re_estimate_count != target_count):
     record.write({
-      'x_studio_locked': True,
-      'x_studio_unlocked': False,
+      'sales_locked': True,
+      'unlocked': False,
       're_estimate_count': target_count,
     })
 ]]></field>
@@ -283,8 +283,8 @@ if record.quotation_type == 'Repair' and record.state == 'done':
     <field name="code"><![CDATA[# fix_repair:idempotent-v1
 if (record.quotation_type == 'Repair'
     and record.state == 'sale'
-    and record.x_studio_locked):
-  record.write({'x_studio_locked': False, 'x_studio_unlocked': True})
+    and record.sales_locked):
+  record.write({'sales_locked': False, 'unlocked': True})
 ]]></field>
   </record>
   <record id="server_action_2414_update_analytic_tag_parameters_sales_order_customer" model="ir.actions.server">
@@ -296,9 +296,9 @@ if (record.quotation_type == 'Repair'
     <field name="code"><![CDATA[if record.partner_id:
   tag_rule= env['account.analytic.distribution.model'].search([('partner_id', '=', record.partner_id.id)],limit=1)
   if tag_rule:
-    record['x_studio_account_mandatory'] = tag_rule.x_studio_partner_mandatory
+    record['account_mandatory'] = tag_rule.partner_mandatory
   else:
-    record['x_studio_account_mandatory'] = False
+    record['account_mandatory'] = False
  
   
     
@@ -320,8 +320,8 @@ if record.create_uid:
   tag_rule = env['account.analytic.distribution.model'].sudo().search(
     [('partner_id.user_id', '=', record.create_uid.id)], limit=1)
   target = tag_rule.x_studio_user_mandatory if tag_rule else False
-  if record.x_studio_account_mandatory != target:
-    record.write({'x_studio_account_mandatory': target})
+  if record.account_mandatory != target:
+    record.write({'account_mandatory': target})
 ]]></field>
   </record>
   <record id="server_action_2573_project_sales_order_seq_no" model="ir.actions.server">
@@ -362,8 +362,8 @@ if record.id:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.quotation_type == 'Project':
-  start_date = str(record.x_studio_project_start_date) 
-  end_date = str(record.x_studio_project_end_date) 
+  start_date = str(record.project_start_date) 
+  end_date = str(record.project_end_date) 
   
   if start_date > end_date:
     raise UserError('Contract Start Date cannot be later than the Contract End Date.')
@@ -385,7 +385,7 @@ if record.id:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.quotation_type == 'Project':
-  pricelist = env['product.pricelist'].search([('x_studio_project_price_list', '=', True)], limit=1)
+  pricelist = env['product.pricelist'].search([('project_price_list', '=', True)], limit=1)
   if pricelist:
     record['pricelist_id'] = pricelist.id
 else:
@@ -612,9 +612,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_project_item_approved"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__project_item_approved"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_project_item_approved</field>
+    <field name="update_path">project_item_approved</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -624,9 +624,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_project_item_request_sent"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__project_item_request_sent"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_project_item_request_sent</field>
+    <field name="update_path">project_item_request_sent</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -660,9 +660,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_re_estimate_request_sent"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__re_estimate_request_sent"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_re_estimate_request_sent</field>
+    <field name="update_path">re_estimate_request_sent</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -672,9 +672,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_bank_guarantee_approved"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__bank_guarantee_approved"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_bank_guarantee_approved</field>
+    <field name="update_path">bank_guarantee_approved</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -684,9 +684,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_credit_limit_approved"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__credit_limit_approved"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_credit_limit_approved</field>
+    <field name="update_path">credit_limit_approved</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -696,9 +696,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_margin_approved"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__margin_approved"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_margin_approved</field>
+    <field name="update_path">margin_approved</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -708,9 +708,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_margin_approval_request_sent"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__margin_approval_request_sent"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_margin_approval_request_sent</field>
+    <field name="update_path">margin_approval_request_sent</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -720,9 +720,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_over_commission_approved"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__over_commission_approved"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_over_commission_approved</field>
+    <field name="update_path">over_commission_approved</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -732,9 +732,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_over_comm_approval_request_sent"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__over_comm_approval_request_sent"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_over_comm_approval_request_sent</field>
+    <field name="update_path">over_comm_approval_request_sent</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -744,9 +744,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_overdue_request_sent"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__overdue_request_sent"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_overdue_request_sent</field>
+    <field name="update_path">overdue_request_sent</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -756,9 +756,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_approval_request_sent"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__approval_request_sent"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_approval_request_sent</field>
+    <field name="update_path">approval_request_sent</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -768,9 +768,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_bank_guarantee_request_sent"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__bank_guarantee_request_sent"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_bank_guarantee_request_sent</field>
+    <field name="update_path">bank_guarantee_request_sent</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -780,9 +780,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_overdue_approved"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__overdue_approved"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_overdue_approved</field>
+    <field name="update_path">overdue_approved</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -792,9 +792,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_temporary_credit_approved"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__temporary_credit_approved"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_temporary_credit_approved</field>
+    <field name="update_path">temporary_credit_approved</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -804,9 +804,9 @@ else:
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__x_studio_tem_credit_approval_request_sent"/>
+    <field name="update_field_id" ref="BugFix-Sales.field_sale_order__tem_credit_approval_request_sent"/>
     <field name="value">Yes</field>
-    <field name="update_path">x_studio_tem_credit_approval_request_sent</field>
+    <field name="update_path">tem_credit_approval_request_sent</field>
     <field name="evaluation_type">value</field>
     <field name="update_boolean_value">true</field>
   </record>
@@ -827,17 +827,17 @@ else:
   
   # --- FIX: Also check for main project plan ---
   analytic_acc_main_project = None
-  if record.x_studio_main_project_no:
+  if record.main_project_no:
     analytic_acc_main_project = env['account.analytic.account'].search([
-        ('name', '=', record.x_studio_main_project_no.name)
+        ('name', '=', record.main_project_no.name)
     ], limit=1)
   # --- END FIX ---
   
-  if record.x_studio_project_start_date == False and record.x_studio_project_end_date == False:
+  if record.project_start_date == False and record.project_end_date == False:
     raise UserError(' Project Start date and End date must be defined.')
-  elif record.x_studio_project_start_date == False:
+  elif record.project_start_date == False:
     raise UserError('Project Start date must be defined.')
-  elif record.x_studio_project_end_date == False:
+  elif record.project_end_date == False:
     raise UserError('Project End date must be defined.')
   
   # --- FIX: Add plan_id to create call ---
@@ -848,43 +848,43 @@ else:
   })
   # --- END FIX ---
     
-  if record.x_studio_project_no.id == False:
+  if record.project_no.id == False:
     seq = record.name
     if analytic_acc_main_project:
       budget = env['crossovered.budget'].create({
-          'x_studio_created_from_sales_order_1': record.id,
+          'created_from_sales_order_1': record.id,
           'name': seq,
-          'x_studio_analytic_account': analytic_acc_main_project.id,
-          'date_from': record.x_studio_project_start_date,
-          'date_to': record.x_studio_project_end_date
+          'analytic_account': analytic_acc_main_project.id,
+          'date_from': record.project_start_date,
+          'date_to': record.project_end_date
       })  
     else:
       budget = env['crossovered.budget'].create({
-          'x_studio_created_from_sales_order_1': record.id,
+          'created_from_sales_order_1': record.id,
           'name': seq,
-          'x_studio_analytic_account': analytic_acc.id,
-          'date_from': record.x_studio_project_start_date,
-          'date_to': record.x_studio_project_end_date
+          'analytic_account': analytic_acc.id,
+          'date_from': record.project_start_date,
+          'date_to': record.project_end_date
       })  
   else:
-    seq = (str(record.x_studio_project_no.name) + "/" + str(record.task_id.name) + "/" + str(record.name))
+    seq = (str(record.project_no.name) + "/" + str(record.task_id.name) + "/" + str(record.name))
     if analytic_acc_main_project:
       budget = env['crossovered.budget'].create({
-          'x_studio_created_from_sales_order_1': record.id,
+          'created_from_sales_order_1': record.id,
           'name': seq,
-          'x_studio_project_no': record.x_studio_project_no.id,
-          'x_studio_analytic_account': analytic_acc_main_project.id,
-          'date_from': record.x_studio_project_start_date,
-          'date_to': record.x_studio_project_end_date
+          'project_no': record.project_no.id,
+          'analytic_account': analytic_acc_main_project.id,
+          'date_from': record.project_start_date,
+          'date_to': record.project_end_date
       })   
     else:
       budget = env['crossovered.budget'].create({
-          'x_studio_created_from_sales_order_1': record.id,
+          'created_from_sales_order_1': record.id,
           'name': seq,
-          'x_studio_project_no': record.x_studio_project_no.id,
-          'x_studio_analytic_account': analytic_acc.id,
-          'date_from': record.x_studio_project_start_date,
-          'date_to': record.x_studio_project_end_date
+          'project_no': record.project_no.id,
+          'analytic_account': analytic_acc.id,
+          'date_from': record.project_start_date,
+          'date_to': record.project_end_date
       })  
   
   action = {
@@ -898,7 +898,7 @@ else:
           'context': False,
           } 
 
-  record.write({'x_studio_budget_created': True, 'x_studio_project_budget': budget.id, 'analytic_account_id': analytic_acc.id})]]></field>
+  record.write({'budget_created': True, 'project_budget': budget.id, 'analytic_account_id': analytic_acc.id})]]></field>
   </record>
   <record id="server_action_2188_proj_create_pr_from_sales_quotation" model="ir.actions.server">
     <field name="name">PROJ - Create PR from Sales Quotation</field>
@@ -922,7 +922,7 @@ status = True
 
 #######
 for update_line in record.order_line:
-  if update_line.x_studio_product_status != 'Blank':
+  if update_line.product_status != 'Blank':
     so_loc = env['stock.warehouse'].search([('id', '=', update_line.warehouse_id.id)],limit=1)
     if so_loc:
       for sup_lines in so_loc.resupply_wh_ids:
@@ -941,72 +941,72 @@ for update_line in record.order_line:
       if update_line.product_uom_qty > onhand_qty:
         qty_short = (update_line.product_uom_qty - onhand_qty)
         status = False
-    update_line.write({'x_studio_cost_value': update_line.product_template_id.standard_price, 'x_studio_warehouse_id': re_wh, 'x_studio_current_onhand': onhand_qty, 'x_studio_inventory_shortage': qty_short, 'x_studio_cost_amount_req_qty': (update_line.product_uom_qty * update_line.product_template_id.standard_price), 'x_studio_cost_amount_inventory_shortage': (qty_short * update_line.product_template_id.standard_price), 'x_studio_invt_status': status})
+    update_line.write({'cost_value': update_line.product_template_id.standard_price, 'sales_warehouse_id': re_wh, 'current_onhand': onhand_qty, 'inventory_shortage': qty_short, 'cost_amount_req_qty': (update_line.product_uom_qty * update_line.product_template_id.standard_price), 'cost_amount_inventory_shortage': (qty_short * update_line.product_template_id.standard_price), 'invt_status': status})
 #######
 
 for line in record.order_line:
-  if line.x_studio_sub_contract == True:
-    if (line.x_studio_purch_type == False):
+  if line.sub_contract == True:
+    if (line.purch_type == False):
       raise UserError("The 'Purchase Type' should be filled in for all the Sales lines with subcontracting service items to proceed.")  
       
-    if (line.x_studio_purch_type == 'Local'):
+    if (line.purch_type == 'Local'):
       sub_local_count += 1
       pr_lines3.append([0,0,{
-          'x_studio_many2one_field_WAqP4':line.product_id.id,
+          'many2one_field_WAqP4':line.product_id.id,
           'quantity':line.product_uom_qty,
-          'x_studio_requested_by':uid,
-          'x_studio_sales_line_id':line.id}])
+          'requested_by':uid,
+          'sales_line_id':line.id}])
       
-      line.write({'x_studio_pr_created':True}) 
+      line.write({'pr_created':True}) 
           
-    if (line.x_studio_purch_type == 'Import'):
+    if (line.purch_type == 'Import'):
       sub_import_count += 1
       pr_lines4.append([0,0,{
-          'x_studio_many2one_field_WAqP4':line.product_id.id,
+          'many2one_field_WAqP4':line.product_id.id,
           'quantity':line.product_uom_qty,
-          'x_studio_requested_by':uid,
-          'x_studio_sales_line_id':line.id}])
+          'requested_by':uid,
+          'sales_line_id':line.id}])
           
-      line.write({'x_studio_pr_created':True})
+      line.write({'pr_created':True})
   else:
-    if (line.x_studio_purch_type == False) and (line.x_studio_inventory_shortage > 0):
+    if (line.purch_type == False) and (line.inventory_shortage > 0):
       raise UserError("The Purchase Type should be filled in for all the SO lines with inventory items.")
       
-    if (line.x_studio_purch_type == 'Local') and (line.x_studio_inventory_shortage > 0):
+    if (line.purch_type == 'Local') and (line.inventory_shortage > 0):
       local_count += 1
       pr_lines.append([0,0,{
-          'x_studio_many2one_field_WAqP4':line.product_id.id,
-          'quantity':line.x_studio_inventory_shortage,
-          'x_studio_requested_by':uid,
-          'x_studio_sales_line_id':line.id}])
+          'many2one_field_WAqP4':line.product_id.id,
+          'quantity':line.inventory_shortage,
+          'requested_by':uid,
+          'sales_line_id':line.id}])
       
-      line.write({'x_studio_pr_created':True}) 
+      line.write({'pr_created':True}) 
           
-    if (line.x_studio_purch_type == 'Import') and (line.x_studio_inventory_shortage > 0):
+    if (line.purch_type == 'Import') and (line.inventory_shortage > 0):
       import_count += 1
       pr_lines2.append([0,0,{
-          'x_studio_many2one_field_WAqP4':line.product_id.id,
-          'quantity':line.x_studio_inventory_shortage,
-          'x_studio_requested_by':uid,
-          'x_studio_sales_line_id':line.id}])
+          'many2one_field_WAqP4':line.product_id.id,
+          'quantity':line.inventory_shortage,
+          'requested_by':uid,
+          'sales_line_id':line.id}])
           
-      line.write({'x_studio_pr_created':True}) 
+      line.write({'pr_created':True}) 
         
 wh = env['stock.picking.type'].search([('warehouse_id', '=', record.warehouse_id.id)],limit=1)
 
 if local_count > 0:
-  pr1 = env['x_purchase_request'].create({'x_studio_type': 'Local','x_studio_created_from_so':record.id,'x_studio_so_pr':True,'x_studio_warehouse':wh.id,'x_studio_requested_delivery_date':datetime.datetime.today(),'x_studio_requested_by':uid,'x_studio_order_lines_1':pr_lines})
+  pr1 = env['purchase_request'].create({'type': 'Local','created_from_so':record.id,'so_pr':True,'warehouse':wh.id,'requested_delivery_date':datetime.datetime.today(),'requested_by':uid,'order_lines_1':pr_lines})
 
 if import_count > 0:
-  pr2 = env['x_purchase_request'].create({'x_studio_type': 'Import','x_studio_created_from_so':record.id,'x_studio_so_pr':True,'x_studio_warehouse':wh.id,'x_studio_requested_delivery_date':datetime.datetime.today(),'x_studio_requested_by':uid,'x_studio_order_lines_1':pr_lines2})
+  pr2 = env['purchase_request'].create({'type': 'Import','created_from_so':record.id,'so_pr':True,'warehouse':wh.id,'requested_delivery_date':datetime.datetime.today(),'requested_by':uid,'order_lines_1':pr_lines2})
 
 if sub_local_count > 0:
-  pr3 = env['x_purchase_request'].create({'x_studio_type': 'Local','x_studio_created_from_so':record.id,'x_studio_subcontracting_pr':True,'x_studio_warehouse':wh.id,'x_studio_requested_delivery_date':datetime.datetime.today(),'x_studio_requested_by':uid,'x_studio_order_lines_1':pr_lines3})
+  pr3 = env['purchase_request'].create({'type': 'Local','created_from_so':record.id,'subcontracting_pr':True,'warehouse':wh.id,'requested_delivery_date':datetime.datetime.today(),'requested_by':uid,'order_lines_1':pr_lines3})
 
 if sub_import_count > 0:
-  pr4 = env['x_purchase_request'].create({'x_studio_type': 'Import','x_studio_created_from_so':record.id,'x_studio_subcontracting_pr':True,'x_studio_warehouse':wh.id,'x_studio_requested_delivery_date':datetime.datetime.today(),'x_studio_requested_by':uid,'x_studio_order_lines_1':pr_lines4})
+  pr4 = env['purchase_request'].create({'type': 'Import','created_from_so':record.id,'subcontracting_pr':True,'warehouse':wh.id,'requested_delivery_date':datetime.datetime.today(),'requested_by':uid,'order_lines_1':pr_lines4})
 
-record.write({'x_studio_pr_created':True})  
+record.write({'pr_created':True})  
 
 
 if (local_count > 0) and (import_count > 0) and (sub_local_count > 0) and (sub_import_count > 0):
@@ -1014,7 +1014,7 @@ if (local_count > 0) and (import_count > 0) and (sub_local_count > 0) and (sub_i
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr1.id,pr2.id,pr3.id,pr4.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1025,7 +1025,7 @@ elif (local_count > 0) and (import_count > 0) and (sub_local_count > 0):
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr1.id,pr2.id,pr3.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1036,7 +1036,7 @@ elif (local_count > 0) and (import_count > 0) and (sub_import_count > 0):
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr1.id,pr2.id,pr4.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1047,7 +1047,7 @@ elif (import_count > 0) and (sub_local_count > 0) and (sub_import_count > 0):
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr2.id,pr3.id,pr4.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1058,7 +1058,7 @@ elif (local_count > 0) and (sub_local_count > 0) and (sub_import_count > 0):
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr1.id,pr3.id,pr4.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1069,7 +1069,7 @@ elif (local_count > 0) and (sub_local_count > 0):
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr1.id,pr3.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1080,7 +1080,7 @@ elif (local_count > 0) and (sub_import_count > 0):
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr1.id,pr4.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1091,7 +1091,7 @@ elif (import_count > 0) and (sub_local_count > 0):
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr2.id,pr3.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1102,7 +1102,7 @@ elif (import_count > 0) and (sub_import_count > 0):
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr2.id,pr4.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1113,7 +1113,7 @@ elif (sub_local_count > 0) and (sub_import_count > 0):
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr3.id,pr4.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1124,7 +1124,7 @@ elif (local_count > 0) and (import_count > 0):
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr1.id,pr2.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1135,7 +1135,7 @@ elif sub_local_count > 0:
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr3.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1146,7 +1146,7 @@ elif sub_import_count > 0:
           'name': 'Purchase Requisition',
           'domain': [('id', '=', [pr4.id])],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1157,7 +1157,7 @@ elif local_count > 0:
           'name': 'Purchase Requisition',
           'domain': [('id', '=', pr1.id)],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1168,7 +1168,7 @@ elif import_count > 0:
           'name': 'Purchase Requisition',
           'domain': [('id', '=', pr2.id)],
           'type': 'ir.actions.act_window',
-          'res_model': 'x_purchase_request',
+          'res_model': 'purchase_request',
           'view_mode': 'tree,form',
           'view_type': 'form',
           'view_id': False,
@@ -1192,9 +1192,9 @@ elif import_count > 0:
 
 for items in record.order_line:
 
-  if items.x_studio_product_status == 'New Item':
+  if items.product_status == 'New Item':
 
-    if items.product_id.x_studio_item_approved == False:
+    if items.product_id.item_approved == False:
 
       desc +=  str(items.product_id.name) + "\n"
 
@@ -1210,15 +1210,15 @@ raise UserError("Pending Approval for Bellow Item/s." + "\n" + "\n" + desc)]]></
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.id:
   for line in record.order_line:
-    if line.x_studio_pr_created == True:
-      pr = env['x_purchase_request_lin'].search([('x_studio_sales_line_id', '=', line.id), ('x_studio_rfq_cost_updated', '=', True)],limit=1)
+    if line.pr_created == True:
+      pr = env['purchase_request_lin'].search([('sales_line_id', '=', line.id), ('rfq_cost_updated', '=', True)],limit=1)
       if pr:
-        line.write({'x_studio_cost_value': pr.x_studio_rfq_cost})
+        line.write({'cost_value': pr.rfq_cost})
       else:
         raise UserError('RFQs are not finalized to update the cost.')
 
 
-record.write({'x_studio_pr_cost_updated':True})  
+record.write({'pr_cost_updated':True})  
 
 
 
@@ -1232,8 +1232,8 @@ record.write({'x_studio_pr_cost_updated':True})
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[project_task = env['project.task'].search([('id', '=', record.task_id.id)],limit=1)  
 if project:
-  record['x_studio_project_start_date'] = project_task.sale_order_id.x_studio_project_start_date
-  record['x_studio_project_end_date'] = project_task.sale_order_id.x_studio_project_end_date
+  record['project_start_date'] = project_task.sale_order_id.project_start_date
+  record['project_end_date'] = project_task.sale_order_id.project_end_date
   record['warehouse_id'] = project_task.sale_order_id.warehouse_id.id
   record['x_studio_update_with_main_so'] = True
 
@@ -1341,10 +1341,10 @@ raise UserError(desc)
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.id:
-  record.write({'x_studio_rug_rejected': True})
+  record.write({'rug_rejected': True})
   
   for lines in record.order_line:
-    original_price = lines.x_studio_price_unit_original
+    original_price = lines.price_unit_original
     lines.write({'price_unit':original_price})
 
 
@@ -1358,7 +1358,7 @@ raise UserError(desc)
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.id:
-  record['x_studio_re_estimate_request_count_1'] += 1]]></field>
+  record['re_estimate_request_count_1'] += 1]]></field>
   </record>
   <record id="server_action_2253_rr_track_lock_status_4" model="ir.actions.server">
     <field name="name">RR - Track Lock Status - 4</field>
@@ -1369,15 +1369,15 @@ raise UserError(desc)
     <field name="code"><![CDATA[# fix_repair:idempotent-v1
 if record.quotation_type == 'Repair' and record.state == 'done':
   re_line = env['sale.order.line'].sudo().search(
-    [('order_id', '=', record.id), ('x_studio_re_estimated', '=', True)],
+    [('order_id', '=', record.id), ('re_estimated', '=', True)],
     limit=1, order='id desc')
-  target_count = re_line.x_studio_count_1 if re_line else 0
-  if (not record.x_studio_locked
-      or record.x_studio_unlocked
+  target_count = re_line.count_1 if re_line else 0
+  if (not record.sales_locked
+      or record.unlocked
       or record.re_estimate_count != target_count):
     record.write({
-      'x_studio_locked': True,
-      'x_studio_unlocked': False,
+      'sales_locked': True,
+      'unlocked': False,
       're_estimate_count': target_count,
     })
 ]]></field>
@@ -1433,7 +1433,7 @@ if record.id:
 
       if min_magin:
 
-        so_value = round(record.amount_total * (min_magin.x_studio_advance_payment_/100),2)
+        so_value = round(record.amount_total * (min_magin.advance_payment_/100),2)
 
       
 
@@ -1471,7 +1471,7 @@ if record.id:
 
   
 
-  customer_payment = env['account.payment'].create({'sales_order':record.id,'x_studio_project_no_1': record.x_studio_project_no.id if record.x_studio_project_no else False,'partner_id':record.partner_id.id,'amount':so_value,'date':datetime.date.today(),'x_studio_order_payment_method':record.x_studio_customer_payment_method,'journal_id':journal.id,'payment_method_line_id':journal.inbound_payment_method_line_ids[:1].id if journal.inbound_payment_method_line_ids else False})
+  customer_payment = env['account.payment'].create({'sales_order':record.id,'project_no_1': record.project_no.id if record.project_no else False,'partner_id':record.partner_id.id,'amount':so_value,'date':datetime.date.today(),'order_payment_method':record.customer_payment_method,'journal_id':journal.id,'payment_method_line_id':journal.inbound_payment_method_line_ids[:1].id if journal.inbound_payment_method_line_ids else False})
 
   
 
@@ -1506,7 +1506,7 @@ if record.id:
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[# bugfix_sales:config-cutover-v22
-if record.x_studio_margin_exceed == True:
+if record.margin_exceed == True:
 
   base_price = 0  
 
@@ -1538,7 +1538,7 @@ if record.x_studio_margin_exceed == True:
 
   for margin_lines in record.order_line:
 
-    if margin_lines.x_studio_margin_exceed == True:
+    if margin_lines.margin_exceed == True:
 
       item_code = margin_lines.product_id.name
 
@@ -1546,7 +1546,7 @@ if record.x_studio_margin_exceed == True:
 
       discounts = (margin_lines.price_unit * margin_lines.product_uom_qty) - margin_lines.price_subtotal
 
-      commission = margin_lines.price_subtotal * (margin_lines.x_studio_commission/100)
+      commission = margin_lines.price_subtotal * (margin_lines.commission/100)
 
       cost = margin_lines.product_id.standard_price
 
@@ -1554,9 +1554,9 @@ if record.x_studio_margin_exceed == True:
 
       if margin_lines.product_uom_qty != 0.00:
 
-        value_1 = ((margin_lines.price_subtotal/margin_lines.product_uom_qty)-(margin_lines.price_subtotal*(margin_lines.x_studio_commission/100))-margin_lines.product_id.standard_price)
+        value_1 = ((margin_lines.price_subtotal/margin_lines.product_uom_qty)-(margin_lines.price_subtotal*(margin_lines.commission/100))-margin_lines.product_id.standard_price)
 
-        value_2 = (margin_lines.price_subtotal/margin_lines.product_uom_qty)-(margin_lines.price_subtotal*(margin_lines.x_studio_commission/100))
+        value_2 = (margin_lines.price_subtotal/margin_lines.product_uom_qty)-(margin_lines.price_subtotal*(margin_lines.commission/100))
 
         
 
@@ -1584,7 +1584,7 @@ if record.x_studio_margin_exceed == True:
 
                     'Net Margin: ' + str(net_margin) + '\n' + 
 
-                    'Min. Sales Margin %: ' + str(min_magin.x_studio_minimum_sales_margin_) + '\n' + '\n')
+                    'Min. Sales Margin %: ' + str(min_magin.minimum_sales_margin_) + '\n' + '\n')
 
                     
 
@@ -1616,7 +1616,7 @@ if record.x_studio_margin_exceed == True:
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_overdue_request_sent == True:
+    <field name="code"><![CDATA[if record.overdue_request_sent == True:
 
   null_so_lines = env['sale.order.line'].search([('order_id', '=', record.id)])
 
@@ -1630,7 +1630,7 @@ if record.x_studio_margin_exceed == True:
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_approval_request_sent == True:
+    <field name="code"><![CDATA[if record.approval_request_sent == True:
 
   null_so_lines = env['sale.order.line'].search([('order_id', '=', record.id)])
 
@@ -1644,7 +1644,7 @@ if record.x_studio_margin_exceed == True:
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_bank_guarantee_request_sent == True:
+    <field name="code"><![CDATA[if record.bank_guarantee_request_sent == True:
 
   null_so_lines = env['sale.order.line'].search([('order_id', '=', record.id)])
 
@@ -1660,23 +1660,23 @@ if record.x_studio_margin_exceed == True:
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
 
-  if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+  if record.partner_id.customer_group.group_type != 'General':
 
     if record.partner_id.mandatory_bank_guarantee == False:
 
-      if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+      if record.partner_id.expiry_date and record.partner_id.expiry_date < datetime.date.today():
 
-        records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+        records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.expiry_date))
 
-        record['x_studio_bg_sent'] = True
+        record['bg_sent'] = True
 
       else:
 
-        if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
+        if record.partner_id.bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
 
-          records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
+          records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
 
-          record['x_studio_bg_sent'] = True
+          record['bg_sent'] = True
 
   
 
@@ -1715,15 +1715,15 @@ action = {
 
   if record.state == 'done':
 
-    if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+    if record.partner_id.customer_group.group_type != 'General':
 
       if record.partner_id.mandatory_bank_guarantee == True:
 
-        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+        if record.partner_id.expiry_date and record.partner_id.expiry_date < datetime.date.today():
 
           #raise UserError("Customer's bank guarantee is expired.")
 
-          raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+          raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.expiry_date))
 
           
 
@@ -1731,25 +1731,25 @@ action = {
 
           #if record.partner_id.mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
 
-          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
+          if record.partner_id.bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
 
             #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
 
-            raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
+            raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
 
       else:
 
-        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+        if record.partner_id.expiry_date and record.partner_id.expiry_date < datetime.date.today():
 
-          records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+          records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.expiry_date))
 
         else:
 
-          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
+          if record.partner_id.bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
 
             #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
 
-            records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
+            records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
 
 
 
@@ -1770,16 +1770,16 @@ action = {
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.state == 'done':
-  if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+  if record.partner_id.customer_group.group_type != 'General':
     if record.partner_id.mandatory_bank_guarantee == True:
-      if record.partner_id.x_studio_expiry_date < datetime.date.today():
+      if record.partner_id.expiry_date < datetime.date.today():
         raise UserError("Customer's bank guarantee is expired.")
       else:
         if record.partner_id.mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
           raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
     else:
-      if record.partner_id.x_studio_expiry_date < datetime.date.today():
-        records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+      if record.partner_id.expiry_date < datetime.date.today():
+        records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.expiry_date))
       else:
         if record.partner_id.mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
           records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
@@ -1812,12 +1812,12 @@ action = {
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.id:
-  if record.x_studio_clear_free_items == True:
+  if record.clear_free_items == True:
     free_items_delete = env['sale.order.line'].search([('order_id', '=', record.id),('is_reward_line', '=', True)]).unlink()
-    free_items_update = env['sale.order.line'].search([('order_id', '=', record.id),('x_studio_clear_free_items', '=', True)])
+    free_items_update = env['sale.order.line'].search([('order_id', '=', record.id),('clear_free_items', '=', True)])
     if free_items_update:
       for update in free_items_update:
-        update.write({'x_studio_clear_free_items':False})
+        update.write({'clear_free_items':False})
       
 ]]></field>
   </record>
@@ -1829,21 +1829,21 @@ action = {
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
 
-  if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+  if record.partner_id.customer_group.group_type != 'General':
 
     if record.partner_id.mandatory_bank_guarantee == True:
 
-      if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+      if record.partner_id.expiry_date and record.partner_id.expiry_date < datetime.date.today():
 
-        raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+        raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.expiry_date))
 
           
 
       else:
 
-        if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
+        if record.partner_id.bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
 
-          raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
+          raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
 
     
 
@@ -1861,7 +1861,7 @@ action = {
 
   if record.partner_id.id:
 
-    if record.x_studio_order_payment_method == 'Credit':
+    if record.order_payment_method == 'Credit':
 
       if (record.partner_invoice_id.credit + record.amount_total) > record.partner_invoice_id.credit_limit:
 
@@ -2076,7 +2076,7 @@ action = {
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_change</field>
-    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__x_studio_order_payment_method')])]"/>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__order_payment_method')])]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1434_sls_validate_order_payment_type_in_so')])]"/>
   </record>
   <record id="base_automation_176_rr_auto_generate_quotation_type_for_repair_sos" model="base.automation">
@@ -2155,7 +2155,7 @@ action = {
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sale.order')]"/>
     <field name="trigger">on_change</field>
-    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__x_studio_project_end_date'), ref('BugFix-Sales.field_sale_order__x_studio_project_start_date')])]"/>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_sale_order__project_end_date'), ref('BugFix-Sales.field_sale_order__project_start_date')])]"/>
     <field name="filter_domain">[["task_id","!=",False]]</field>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2576_proj_validate_start_date_and_end_date_for_project_sos')])]"/>
   </record>
@@ -2177,15 +2177,15 @@ if record.partner_id.customer_rank > 0:
 
   if record.state == 'done':
 
-    if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+    if record.partner_id.customer_group.group_type != 'General':
 
       if record.partner_id.mandatory_bank_guarantee == True:
 
-        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+        if record.partner_id.expiry_date and record.partner_id.expiry_date < datetime.date.today():
 
           #raise UserError("Customer's bank guarantee is expired.")
 
-          raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+          raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.expiry_date))
 
           
 
@@ -2193,25 +2193,25 @@ if record.partner_id.customer_rank > 0:
 
           #if record.partner_id.mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
 
-          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
+          if record.partner_id.bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
 
             #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
 
-            raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
+            raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
 
       else:
 
-        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+        if record.partner_id.expiry_date and record.partner_id.expiry_date < datetime.date.today():
 
-          records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+          records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.expiry_date))
 
         else:
 
-          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
+          if record.partner_id.bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
 
             #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
 
-            records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
+            records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
 
 
 
@@ -2233,17 +2233,17 @@ if record.partner_id.customer_rank > 0:
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
 if record.id:
-    # x_studio_project_no is never set by FSM - use task link instead
+    # project_no is never set by FSM - use task link instead
     task = env['project.task'].search([
         ('sale_order_id', '=', record.id),
-        ('project_id.x_studio_repair_project', '=', True)
+        ('project_id.repair_project', '=', True)
     ], limit=1)
     if task:
         record['quotation_type'] = 'Repair'
-        record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
-    elif record.x_studio_project_no and record.x_studio_project_no.x_studio_repair_project == True:
+        record['order_payment_method'] = record.partner_id.payment_method
+    elif record.project_no and record.project_no.repair_project == True:
         record['quotation_type'] = 'Repair'
-        record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
+        record['order_payment_method'] = record.partner_id.payment_method
 
     ]]></field>
   </record>
@@ -2254,18 +2254,18 @@ if record.id:
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
 if record.task_id != False:
-  if record.x_studio_project_no.x_studio_repair_project == True:
+  if record.project_no.repair_project == True:
     record['quotation_type'] = 'Repair'
   else:
-    record['quotation_type'] = record.x_studio_project_no.quotation_type
+    record['quotation_type'] = record.project_no.quotation_type
   
-  record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
-  record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
+  record['project_group'] = record.project_no.project_group
+  record['analytic_account_id'] = record.project_no.sale_order_id.analytic_account_id.id
   
   project_task = env['project.task'].search([('id', '=', record.task_id.id)],limit=1)  
   if project_task:
-    record['x_studio_project_start_date'] = project_task.sale_order_id.x_studio_project_start_date
-    record['x_studio_project_end_date'] = project_task.sale_order_id.x_studio_project_end_date
+    record['project_start_date'] = project_task.sale_order_id.project_start_date
+    record['project_end_date'] = project_task.sale_order_id.project_end_date
     
     if project_task.sale_order_id.warehouse_id == True:
       record['warehouse_id'] = project_task.sale_order_id.warehouse_id.id
@@ -2283,14 +2283,14 @@ if record.task_id != False:
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
 if record.task_id != False:
-  record['quotation_type'] = record.x_studio_project_no.quotation_type
-  record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
-  record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
+  record['quotation_type'] = record.project_no.quotation_type
+  record['project_group'] = record.project_no.project_group
+  record['analytic_account_id'] = record.project_no.sale_order_id.analytic_account_id.id
   
   project_task = env['project.task'].search([('id', '=', record.task_id.id)],limit=1)  
   if project_task:
-    record['x_studio_project_start_date'] = project_task.sale_order_id.x_studio_project_start_date
-    record['x_studio_project_end_date'] = project_task.sale_order_id.x_studio_project_end_date
+    record['project_start_date'] = project_task.sale_order_id.project_start_date
+    record['project_end_date'] = project_task.sale_order_id.project_end_date
     record['warehouse_id'] = project_task.sale_order_id.warehouse_id.id
 
 
@@ -2310,15 +2310,15 @@ if record.task_id != False:
 # fix_repair:idempotent-v1
 if record.quotation_type == 'Repair' and record.state == 'done':
   re_line = env['sale.order.line'].sudo().search(
-    [('order_id', '=', record.id), ('x_studio_re_estimated', '=', True)],
+    [('order_id', '=', record.id), ('re_estimated', '=', True)],
     limit=1, order='id desc')
-  target_count = re_line.x_studio_count_1 if re_line else 0
-  if (not record.x_studio_locked
-      or record.x_studio_unlocked
+  target_count = re_line.count_1 if re_line else 0
+  if (not record.sales_locked
+      or record.unlocked
       or record.re_estimate_count != target_count):
     record.write({
-      'x_studio_locked': True,
-      'x_studio_unlocked': False,
+      'sales_locked': True,
+      'unlocked': False,
       're_estimate_count': target_count,
     })
 
@@ -2333,8 +2333,8 @@ if record.quotation_type == 'Repair' and record.state == 'done':
 # fix_repair:idempotent-v1
 if (record.quotation_type == 'Repair'
     and record.state == 'sale'
-    and record.x_studio_locked):
-  record.write({'x_studio_locked': False, 'x_studio_unlocked': True})
+    and record.sales_locked):
+  record.write({'sales_locked': False, 'unlocked': True})
 
     ]]></field>
   </record>
@@ -2345,8 +2345,8 @@ if (record.quotation_type == 'Repair'
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
 if record.quotation_type == 'Project':
-  start_date = str(record.x_studio_project_start_date) 
-  end_date = str(record.x_studio_project_end_date) 
+  start_date = str(record.project_start_date) 
+  end_date = str(record.project_end_date) 
   
   if start_date > end_date:
     raise UserError('Contract Start Date cannot be later than the Contract End Date.')
@@ -2369,7 +2369,7 @@ if record.quotation_type == 'Project':
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
 if record.quotation_type == 'Project':
-  pricelist = env['product.pricelist'].search([('x_studio_project_price_list', '=', True)], limit=1)
+  pricelist = env['product.pricelist'].search([('project_price_list', '=', True)], limit=1)
   if pricelist:
     record['pricelist_id'] = pricelist.id
 else:
@@ -2396,7 +2396,7 @@ else:
     <field name="active" eval="False"/>
     <field name="model_id" ref="sale.model_sale_order"/>
     <field name="trigger">on_write</field>
-    <field name="filter_domain">['&amp;', '&amp;', '&amp;', ('state', '=', 'sale'), ('x_studio_locked', '=', True), ('quotation_type', '=', 'Repair'), ('x_studio_unlocked', '=', True)]</field>
+    <field name="filter_domain">['&amp;', '&amp;', '&amp;', ('state', '=', 'sale'), ('sales_locked', '=', True), ('quotation_type', '=', 'Repair'), ('unlocked', '=', True)]</field>
   </record>
   <record id="base_automation_259_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro" model="base.automation">
     <field name="name">JIN-Project Sales Order Seq.No (Maintain Separate Nos for Project SOs On Update)</field>
@@ -2409,38 +2409,38 @@ else:
       <field name="field_id" ref="BugFix-Sales.field_sale_order__over_credit"/>
       <field name="json_value">"0"</field>
     </record>
-    <!-- DROPPED default_325_sale_order_line_x_studio_product_status: selection value 'Blank' not in field allowed set -->
+    <!-- DROPPED default_325_sale_order_line_product_status: selection value 'Blank' not in field allowed set -->
 <record id="default_363_sale_order_re_estimate_count" model="ir.default">
       <field name="field_id" ref="BugFix-Sales.field_sale_order__re_estimate_count"/>
       <field name="json_value">"0"</field>
     </record>
-    <record id="default_364_sale_order_x_studio_re_estimate_request_count_1" model="ir.default">
-      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_re_estimate_request_count_1"/>
+    <record id="default_364_sale_order_re_estimate_request_count_1" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__re_estimate_request_count_1"/>
       <field name="json_value">"0"</field>
     </record>
-    <record id="default_374_sale_order_x_studio_repair_validation" model="ir.default">
-      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_repair_validation"/>
+    <record id="default_374_sale_order_repair_validation" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__repair_validation"/>
       <field name="json_value">"The current user doesn't have permission to create the invoice."</field>
     </record>
-    <record id="default_384_sale_order_x_studio_sales_order_validity" model="ir.default">
-      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_sales_order_validity"/>
+    <record id="default_384_sale_order_sales_order_validity" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__sales_order_validity"/>
       <field name="json_value">"0"</field>
     </record>
-    <record id="default_415_sale_order_x_studio_confirm_validation" model="ir.default">
-      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_confirm_validation"/>
+    <record id="default_415_sale_order_confirm_validation" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__confirm_validation"/>
       <field name="json_value">"The related project budget must be confirmed to proceed with SO confirmation."</field>
     </record>
-    <record id="default_417_sale_order_x_studio_confirm_validation_1" model="ir.default">
-      <field name="field_id" ref="BugFix-Sales.field_sale_order__x_studio_confirm_validation_1"/>
+    <record id="default_417_sale_order_confirm_validation_1" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_sale_order__confirm_validation_1"/>
       <field name="json_value">"Profit Margin %\" item is not added in sales lines. Add the margin % line."</field>
     </record>
     <!-- upgrade-testing: points at a specific record (company/user/partner/location/stage...), not shipped (company/user specific):
     <record id="default_581_x_minimum_sales_margin_x_studio_last_purchase_pr" model="ir.default">
-      <field name="field_id" ref="BugFix-Sales.field_x_minimum_sales_margin__x_studio_last_purchase_price_validity_days"/>
+      <field name="field_id" ref="BugFix-Sales.field_minimum_sales_margin__last_purchase_price_validity_days"/>
       <field name="json_value">"0"</field>
       <field name="company_id" ref="seed_master_data_and_settings.company_jinasena_pvt_ltd"/>
     </record>
     -->
-    <!-- DROPPED default_586_product_template_x_studio_product_type: selection value 'None' not in field allowed set -->
+    <!-- DROPPED default_586_product_template_product_type: selection value 'None' not in field allowed set -->
     </data>
 </odoo>

@@ -6,7 +6,7 @@
 
 *Extends a model created by `product`.*
 
-Other repos that use this model: `account.analytic.account.bugfix_analytics_product_category_id` (BugFix-Analytics)<br>`account.move.line.x_studio_product_category` (BugFix-Accounting)<br>`window action BugFix-Studio-Misc.act_window_2471_product_categories_d7` (BugFix-Studio-Misc)<br>`x_rm_none_moving.x_studio_product_category` (BugFix-Accounting)<br>`x_rm_sales_order_line.x_studio_product_category` (BugFix-Accounting)<br>`x_rm_sales_prod_purch.x_studio_product_category` (BugFix-Accounting)
+Other repos that use this model: `account.analytic.account.bugfix_analytics_product_category_id` (BugFix-Analytics)<br>`account.move.line.product_category` (BugFix-Accounting)<br>`window action BugFix-Studio-Misc.act_window_2471_product_categories_d7` (BugFix-Studio-Misc)<br>`rm_none_moving.product_category` (BugFix-Accounting)<br>`rm_sales_order_line.product_category` (BugFix-Accounting)<br>`rm_sales_prod_purch.product_category` (BugFix-Accounting)
 
 **Summary:**
 

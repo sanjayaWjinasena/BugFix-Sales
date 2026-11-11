@@ -12,14 +12,14 @@ from odoo import fields, models
 class SaleOrderAlert(models.Model):
     _inherit = "sale.order.alert"
 
-    x_studio_char_field_dpQHc = fields.Char(string="New Text", copy=True)
-    x_studio_comments = fields.Char(string="Comments", copy=True)
-    x_studio_selection_field_ogQSe = fields.Selection(
+    char_field_dpQHc = fields.Char(string="New Text", copy=True)
+    comments = fields.Char(string="Comments", copy=True)
+    selection_field_ogQSe = fields.Selection(
         selection=[],
         string="New Selection",
         copy=True,
     )
-    x_studio_status = fields.Selection(
+    status = fields.Selection(
         selection=[],
         string="Status",
         copy=True,

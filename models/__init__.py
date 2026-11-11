@@ -11,6 +11,6 @@ from . import res_partner
 from . import sale_order
 from . import sale_order_alert
 from . import sale_order_line
-from . import x_delivery_terms
-from . import x_sales_report_type
-from . import x_minimum_sales_margin
+from . import delivery_terms
+from . import sales_report_type
+from . import minimum_sales_margin

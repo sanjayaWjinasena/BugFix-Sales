@@ -98,9 +98,9 @@ Each model has its own page (the full reference is too large for one GitHub page
 | [`sale.order.line`](functional_docs/sale.order.line.md) | Sales Order Line | extends (sale) | 40 | 3 | 26 | 0 |
 | [`sale.order.template`](functional_docs/sale.order.template.md) | Quotation Template | extends (sale_management) | 0 | 0 | 0 | 0 |
 | [`sale.report`](functional_docs/sale.report.md) | Sales Analysis Report | extends (sale) | 0 | 1 | 0 | 0 |
-| [`x_delivery_terms`](functional_docs/x_delivery_terms.md) | Delivery Terms | created | 37 | 3 | 4 | 0 |
-| [`x_minimum_sales_margin`](functional_docs/x_minimum_sales_margin.md) | Minimum Sales Margin % | created | 39 | 5 | 3 | 0 |
-| [`x_sales_report_type`](functional_docs/x_sales_report_type.md) | Sales Report Type | extends (Jinasena_Masterdata_Reporting) | 0 | 0 | 0 | 0 |
+| [`delivery_terms`](functional_docs/delivery_terms.md) | Delivery Terms | created | 37 | 3 | 4 | 0 |
+| [`minimum_sales_margin`](functional_docs/minimum_sales_margin.md) | Minimum Sales Margin % | created | 39 | 5 | 3 | 0 |
+| [`sales_report_type`](functional_docs/sales_report_type.md) | Sales Report Type | extends (Jinasena_Masterdata_Reporting) | 0 | 0 | 0 | 0 |
 
 ## Menus
 
@@ -137,21 +137,21 @@ Records this module creates on install (lookup values, sequences, defaults, comp
 | Type | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
 | `ir.default` | `default_212_sale_order_over_credit` | Sets the default of **Over Credit (Sales Order)** to `"0"`. | `sale.order.over_credit` |  |
-| `ir.default` | `default_244_sale_order_line_x_studio_req_qty` | Sets the default of **Req. Qty (Sales Order Line)** to `"0"`. | `sale.order.line.x_studio_req_qty` |  |
-| `ir.default` | `default_285_x_minimum_sales_margin_active` | Sets the default of **Active (Minimum Sales Margin %)** to `true`. | `x_minimum_sales_margin.active` |  |
-| `ir.default` | `default_286_x_minimum_sales_margin_sequence` | Sets the default of **Sequence (Minimum Sales Margin %)** to `10`. | `x_minimum_sales_margin.sequence` |  |
+| `ir.default` | `default_244_sale_order_line_req_qty` | Sets the default of **Req. Qty (Sales Order Line)** to `"0"`. | `sale.order.line.req_qty` |  |
+| `ir.default` | `default_285_x_minimum_sales_margin_active` | Sets the default of **Active (Minimum Sales Margin %)** to `true`. | `minimum_sales_margin.active` |  |
+| `ir.default` | `default_286_x_minimum_sales_margin_sequence` | Sets the default of **Sequence (Minimum Sales Margin %)** to `10`. | `minimum_sales_margin.sequence` |  |
 | `ir.default` | `default_363_sale_order_re_estimate_count` | Sets the default of **Re-estimate Count (Sales Order)** to `"0"`. | `sale.order.re_estimate_count` |  |
-| `ir.default` | `default_364_sale_order_x_studio_re_estimate_request_count_1` | Sets the default of **Re-estimate Request Count (Sales Order)** to `"0"`. | `sale.order.x_studio_re_estimate_request_count_1` |  |
-| `ir.default` | `default_366_sale_order_line_x_studio_count_1` | Sets the default of **Re-estimate Instance (Sales Order Line)** to `"0"`. | `sale.order.line.x_studio_count_1` |  |
-| `ir.default` | `default_367_sale_order_line_x_studio_count_2` | Sets the default of **Count 2 (Sales Order Line)** to `"0"`. | `sale.order.line.x_studio_count_2` |  |
-| `ir.default` | `default_373_x_minimum_sales_margin_x_studio_sales_order_vali` | Sets the default of **Sales Order Validity (Days) (Minimum Sales Margin %)** to `"0"`. | `x_minimum_sales_margin.x_studio_sales_order_validity` |  |
-| `ir.default` | `default_374_sale_order_x_studio_repair_validation` | Sets the default of **Repair Validation (Sales Order)** to `"The current user doesn't have permission to create the invoice."`. | `sale.order.x_studio_repair_validation` |  |
-| `ir.default` | `default_384_sale_order_x_studio_sales_order_validity` | Sets the default of **Sales Order Validity (Sales Order)** to `"0"`. | `sale.order.x_studio_sales_order_validity` |  |
-| `ir.default` | `default_415_sale_order_x_studio_confirm_validation` | Sets the default of **Confirm Validation (Sales Order)** to `"The related project budget must be confirmed to proceed with SO confirmation."`. | `sale.order.x_studio_confirm_validation` |  |
-| `ir.default` | `default_417_sale_order_x_studio_confirm_validation_1` | Sets the default of **Confirm Validation (v2) (Sales Order)** to `"Profit Margin %\" item is not added in sales lines. Add the margin % line."`. | `sale.order.x_studio_confirm_validation_1` |  |
-| `ir.default` | `default_581_x_minimum_sales_margin_x_studio_last_purchase_pr` | Sets the default of **Last Purchase Price Validity (Days) (Minimum Sales Margin %)** to `"0"` for Jinasena (Pvt) Ltd.. | `x_minimum_sales_margin.x_studio_last_purchase_price_validity_days` |  |
-| `ir.default` | `default_586_product_template_x_studio_product_type` | Sets the default of **Internal Product Type (Product)** to `"None"`. | `product.template.x_studio_product_type` |  |
-| `ir.default` | `default_325_sale_order_line_x_studio_product_status` | Sets the default of **Product Status (Sales Order Line)** to `"Blank"`. | `sale.order.line.x_studio_product_status` |  |
+| `ir.default` | `default_364_sale_order_re_estimate_request_count_1` | Sets the default of **Re-estimate Request Count (Sales Order)** to `"0"`. | `sale.order.re_estimate_request_count_1` |  |
+| `ir.default` | `default_366_sale_order_line_count_1` | Sets the default of **Re-estimate Instance (Sales Order Line)** to `"0"`. | `sale.order.line.count_1` |  |
+| `ir.default` | `default_367_sale_order_line_count_2` | Sets the default of **Count 2 (Sales Order Line)** to `"0"`. | `sale.order.line.count_2` |  |
+| `ir.default` | `default_373_x_minimum_sales_margin_x_studio_sales_order_vali` | Sets the default of **Sales Order Validity (Days) (Minimum Sales Margin %)** to `"0"`. | `minimum_sales_margin.sales_order_validity` |  |
+| `ir.default` | `default_374_sale_order_repair_validation` | Sets the default of **Repair Validation (Sales Order)** to `"The current user doesn't have permission to create the invoice."`. | `sale.order.repair_validation` |  |
+| `ir.default` | `default_384_sale_order_sales_order_validity` | Sets the default of **Sales Order Validity (Sales Order)** to `"0"`. | `sale.order.sales_order_validity` |  |
+| `ir.default` | `default_415_sale_order_confirm_validation` | Sets the default of **Confirm Validation (Sales Order)** to `"The related project budget must be confirmed to proceed with SO confirmation."`. | `sale.order.confirm_validation` |  |
+| `ir.default` | `default_417_sale_order_confirm_validation_1` | Sets the default of **Confirm Validation (v2) (Sales Order)** to `"Profit Margin %\" item is not added in sales lines. Add the margin % line."`. | `sale.order.confirm_validation_1` |  |
+| `ir.default` | `default_581_x_minimum_sales_margin_x_studio_last_purchase_pr` | Sets the default of **Last Purchase Price Validity (Days) (Minimum Sales Margin %)** to `"0"` for Jinasena (Pvt) Ltd.. | `minimum_sales_margin.last_purchase_price_validity_days` |  |
+| `ir.default` | `default_586_product_template_product_type` | Sets the default of **Internal Product Type (Product)** to `"None"`. | `product.template.product_type` |  |
+| `ir.default` | `default_325_sale_order_line_product_status` | Sets the default of **Product Status (Sales Order Line)** to `"Blank"`. | `sale.order.line.product_status` |  |
 
 ## Install hooks (`hooks.py`)
 
@@ -172,8 +172,8 @@ Run once when the module is upgraded past that version.
 |---|---|---|
 | `17.0.1.0.32` | `post-migration.py` | One-shot upgrade cleanup for v32. |
 | `17.0.1.0.33` | `post-migration.py` | One-shot upgrade cleanup for v33. |
-| `17.0.1.0.42` | `post-migration.py` | v42 upgrade — force-recompute x_studio_valid_order_lines on every sale.order after converting it from plain Boolean to stored compute. |
-| `17.0.1.0.43` | `post-migration.py` | v43 upgrade — declare x_studio_price_unit_original on sale.order.line so Fix-repair v279's RUG-repricing override has somewhere to write the pre-reset price. |
+| `17.0.1.0.42` | `post-migration.py` | v42 upgrade — force-recompute valid_order_lines on every sale.order after converting it from plain Boolean to stored compute. |
+| `17.0.1.0.43` | `post-migration.py` | v43 upgrade — declare price_unit_original on sale.order.line so Fix-repair v279's RUG-repricing override has somewhere to write the pre-reset price. |
 | `17.0.1.0.44` | `post-migration.py` | v44 upgrade -- declare two line-level Studio fields required by Fix-repair v283's port of the Track Lock Status automations. |
 | `17.0.1.0.45` | `post-migration.py` | v45 upgrade -- declare two Studio fields on account.payment required by Fix-repair v284's port of Studio automation 241 (RR - Validate Payment %): |
 | `17.0.1.0.46` | `post-migration.py` | v46 upgrade -- declare 4 Studio fields on product.pricelist. |
@@ -186,14 +186,14 @@ Everything of other modules that this repo's attributes rely on. If one of these
 
 | Module | Kind | Count | Attributes |
 |---|---|---|---|
-| `BugFix-Accounting` | Jinasena repo | 2 | product.template.x_studio_charge_type, product.template.x_studio_non_billable |
+| `BugFix-Accounting` | Jinasena repo | 2 | product.template.charge_type, product.template.non_billable |
 | `BugFix-Approvals` | Jinasena repo | 7 | group BugFix-Approvals.group_125_jin_sales_credit_limit_approvers, group BugFix-Approvals.group_126_jin_sales_temporary_credit_approvers, group BugFix-Approvals.group_127_jin_sales_overdue_approvers, group BugFix-Approvals.group_128_jin_sales_bank_guarantee_approvers, group BugFix-Approvals.group_130_jin_sales_over_commission_approvers, group BugFix-Approvals.group_131_jin_sales_sales_margin_approvers, group BugFix-Approvals.group_132_jin_sales_pos_users |
-| `BugFix-Project` | Jinasena repo | 2 | model x_project_category, model x_project_groups |
-| `BugFix-Purchase` | Jinasena repo | 5 | model x_delivery_term_charge, model x_imports_ledger_setup, model x_purchase_request, model x_purchase_request_lin, x_delivery_terms.x_studio_delivery_terms_id |
-| `BugFix-Stock` | Jinasena repo | 2 | model x_misc_charge_codes, model x_tariffmaster |
+| `BugFix-Project` | Jinasena repo | 2 | model project_category, model project_groups |
+| `BugFix-Purchase` | Jinasena repo | 5 | model delivery_term_charge, model imports_ledger_setup, model purchase_request, model purchase_request_lin, delivery_terms.delivery_terms_id |
+| `BugFix-Stock` | Jinasena repo | 2 | model misc_charge_codes, model tariffmaster |
 | `BugFix-Studio-Misc` | Jinasena repo | 1 | product.category.accounting_company_id |
 | `Fix-repair` | Jinasena repo | 13 | res.partner.mandatory_bank_guarantee, res.partner.svat_registration_number, res.partner.svat_registration_status, res.partner.vat_exempted_number, res.partner.vat_registration_number, res.partner.vat_registration_status, sale.order._jin_compute_guarantee_status(), sale.order._jin_compute_over_bank_guarantee(), sale.order._jin_compute_over_bank_guarantee_amount(), sale.order._jin_compute_over_commission(), sale.order._jin_compute_over_credit(), sale.order._jin_compute_over_credit_amount(), sale.order._jin_compute_overdue() |
-| `Jinasena_Masterdata_Reporting` | Jinasena repo | 2 | model x_sales_report_type, sale.order.line.x_studio_sales_report_type |
+| `Jinasena_Masterdata_Reporting` | Jinasena repo | 2 | model sales_report_type, sale.order.line.sales_report_type |
 | `account` | Odoo | 16 | model account.journal, model account.payment, product.product.property_account_expense_id, res.partner.bank_account_count, res.partner.credit, res.partner.credit_limit, res.partner.customer_rank, res.partner.is_coa_installed, res.partner.property_account_payable_id, res.partner.property_account_receivable_id, res.partner.property_payment_term_id, res.partner.property_supplier_payment_term_id, res.partner.ref_company_ids, res.partner.supplier_invoice_count, res.partner.supplier_rank, res.partner.total_invoiced |
 | `account_budget` | Odoo | 2 | model account.budget.post, model crossovered.budget |
 | `account_followup` | Odoo | 2 | res.partner.total_due, res.partner.total_overdue |
@@ -225,7 +225,7 @@ Everything of other modules that this repo's attributes rely on. If one of these
 | `sms` | Odoo | 2 | res.partner.mobile_blacklisted, res.partner.phone_blacklisted |
 | `stock` | Odoo | 8 | group stock.group_adv_location, group stock.group_stock_manager, model product.replenish, model stock.picking.type, model stock.quant, model stock.warehouse, res.partner.property_stock_customer, view stock.product_product_stock_tree |
 | `stock_landed_costs` | Odoo | 2 | product.template.landed_cost_ok, product.template.split_method_landed_cost |
-| `studio_usermodel_migration` | Jinasena repo | 3 | res.partner.x_studio_customer_group, res.partner.x_studio_group_type, res.partner.x_studio_vendor_group |
+| `studio_usermodel_migration` | Jinasena repo | 3 | res.partner.customer_group, res.partner.group_type, res.partner.vendor_group |
 | `test_access_rights` | Odoo | 1 | res.partner.currency_id |
 | `uom` | Odoo | 1 | group uom.group_uom |
 | `web_map` | Odoo | 1 | res.partner.contact_address_complete |
@@ -237,10 +237,10 @@ This repo's attributes that other Jinasena repos rely on. Changing or removing o
 
 | Repo | Kind | Count | This repo's attributes they use |
 |---|---|---|---|
-| `BugFix-Accounting` | Jinasena repo | 20 | account.payment.quotation_type, account.payment.sales_order, product.product.x_studio_many2one_field_8eWzY, sale.order.x_studio_bank_guarantee_approved, sale.order.x_studio_budget_created, sale.order.x_studio_clear_free_items, sale.order.x_studio_credit_limit_approved, sale.order.x_studio_inventory_short, sale.order.x_studio_order_payment_method, sale.order.over_bank_guarantee, sale.order.quotation_type, sale.order.rug_confirmed, sale.order.x_studio_rug_rejected, sale.order.x_studio_valid_order_lines, sale.order.x_x_studio_created_from_sales_order_1_crossovered_budget_count, sale.order.x_x_studio_sales_order_account_payment_count, server action BugFix-Sales.server_action_1478_sls_overdue_approval, server action BugFix-Sales.server_action_2178_proj_create_budget_entries, server action BugFix-Sales.server_action_2337_sls_validate_sales, view BugFix-Sales.ported_product_template_studio_2551 |
+| `BugFix-Accounting` | Jinasena repo | 20 | account.payment.quotation_type, account.payment.sales_order, product.product.many2one_field_8eWzY, sale.order.bank_guarantee_approved, sale.order.budget_created, sale.order.clear_free_items, sale.order.credit_limit_approved, sale.order.inventory_short, sale.order.order_payment_method, sale.order.over_bank_guarantee, sale.order.quotation_type, sale.order.rug_confirmed, sale.order.rug_rejected, sale.order.valid_order_lines, sale.order.created_from_sales_order_1_crossovered_budget_count, sale.order.sales_order_account_payment_count, server action BugFix-Sales.server_action_1478_sls_overdue_approval, server action BugFix-Sales.server_action_2178_proj_create_budget_entries, server action BugFix-Sales.server_action_2337_sls_validate_sales, view BugFix-Sales.ported_product_template_studio_2551 |
 | `BugFix-Project` | Jinasena repo | 1 | sale.order.quotation_type |
-| `BugFix-Purchase` | Jinasena repo | 19 | sale.order.x_studio_inventory_short, sale.order.x_studio_new_item_from_project, sale.order.x_studio_pr_cost_updated, sale.order.x_studio_pr_created, sale.order.quotation_type, sale.order.x_studio_valid_order_lines_for_projects, sale.order.x_studio_valid_order_lines_for_update_rfq_cost, sale.order.x_x_studio_created_from_so_x_purchase_request_count, sale.order.x_x_studio_subcontracting_so_purchase_order_count, server action BugFix-Sales.server_action_2188_proj_create_pr_from_sales_quotation, server action BugFix-Sales.server_action_2192_proj_update_rfq_cost_to_sales_quotation, view BugFix-Sales.ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885, view BugFix-Sales.ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e, x_delivery_terms.active, x_delivery_terms.accounting_company_id, x_delivery_terms.x_studio_copied, x_delivery_terms.description, x_delivery_terms.sequence, x_delivery_terms.x_studio_vendor_despatch |
+| `BugFix-Purchase` | Jinasena repo | 19 | sale.order.inventory_short, sale.order.new_item_from_project, sale.order.pr_cost_updated, sale.order.pr_created, sale.order.quotation_type, sale.order.valid_order_lines_for_projects, sale.order.valid_order_lines_for_update_rfq_cost, sale.order.created_from_so_x_purchase_request_count, sale.order.subcontracting_so_purchase_order_count, server action BugFix-Sales.server_action_2188_proj_create_pr_from_sales_quotation, server action BugFix-Sales.server_action_2192_proj_update_rfq_cost_to_sales_quotation, view BugFix-Sales.ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885, view BugFix-Sales.ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e, delivery_terms.active, delivery_terms.accounting_company_id, delivery_terms.copied, delivery_terms.description, delivery_terms.sequence, delivery_terms.vendor_despatch |
 | `BugFix-Stock` | Jinasena repo | 1 | sale.order.quotation_type |
-| `BugFix-Studio-Misc` | Jinasena repo | 9 | res.partner.x_studio_payment_method, window action BugFix-Sales.act_window_1750_sales_configurations, window action BugFix-Sales.act_window_2060_delivery_terms, window action BugFix-Sales.act_window_2439_ss, window action BugFix-Sales.act_window_2588_product_product, window action BugFix-Sales.act_window_2840_companies_res_company, window action BugFix-Sales.aw_f4_product_product_product_product_1, window action BugFix-Sales.aw_f4_res_partner_res_partner, window action BugFix-Sales.aw_f4_sale_order_sale_order |
-| `Fix-Repair-Wizard-Nav, Fix-repair` | Odoo | 1 | sale.order.x_studio_rug_rejected |
-| `Fix-repair` | Jinasena repo | 20 | account.payment.quotation_type, account.payment.sales_order, res.partner.x_studio_bank_guarantee_amount, res.partner.x_studio_expiry_date, sale.order.guarantee_status, sale.order.x_studio_order_payment_method, sale.order.over_bank_guarantee, sale.order.over_bank_guarantee_amount, sale.order.over_commission, sale.order.over_credit, sale.order.over_credit_amount, sale.order.overdue, sale.order.quotation_type, sale.order.re_estimate_count, sale.order.rug_approved, sale.order.x_studio_rug_rejected, sale.order.rug_request_sent, sale.order.x_studio_valid_bank_guarantee, server action BugFix-Sales.server_action_1980_rr_request_rug_approval, view BugFix-Sales.ported_view_2299_odoo_studio_res_partner_form_customizati |
+| `BugFix-Studio-Misc` | Jinasena repo | 9 | res.partner.payment_method, window action BugFix-Sales.act_window_1750_sales_configurations, window action BugFix-Sales.act_window_2060_delivery_terms, window action BugFix-Sales.act_window_2439_ss, window action BugFix-Sales.act_window_2588_product_product, window action BugFix-Sales.act_window_2840_companies_res_company, window action BugFix-Sales.aw_f4_product_product_product_product_1, window action BugFix-Sales.aw_f4_res_partner_res_partner, window action BugFix-Sales.aw_f4_sale_order_sale_order |
+| `Fix-Repair-Wizard-Nav, Fix-repair` | Odoo | 1 | sale.order.rug_rejected |
+| `Fix-repair` | Jinasena repo | 20 | account.payment.quotation_type, account.payment.sales_order, res.partner.bank_guarantee_amount, res.partner.expiry_date, sale.order.guarantee_status, sale.order.order_payment_method, sale.order.over_bank_guarantee, sale.order.over_bank_guarantee_amount, sale.order.over_commission, sale.order.over_credit, sale.order.over_credit_amount, sale.order.overdue, sale.order.quotation_type, sale.order.re_estimate_count, sale.order.rug_approved, sale.order.rug_rejected, sale.order.rug_request_sent, sale.order.valid_bank_guarantee, server action BugFix-Sales.server_action_1980_rr_request_rug_approval, view BugFix-Sales.ported_view_2299_odoo_studio_res_partner_form_customizati |

@@ -20,22 +20,22 @@ human review before commit.
 | # | Clear-DB view ID | Type | Target model | Name | Inherits |
 |---|---|---|---|---|---|
 | 1 | 9162 | form | `sale.report` | Default form view for ir.model(600,) | — |
-| 2 | 3114 | form | `x_customer_group` | Default form view for x_customer_group | — |
-| 3 | 2712 | form | `x_delivery_terms` | Default form view for x_delivery_terms | — |
-| 4 | 3120 | form | `x_vendor_group` | Default form view for x_vendor_group | — |
-| 5 | 3113 | tree | `x_customer_group` | Default list view for x_customer_group | — |
-| 6 | 2711 | tree | `x_delivery_terms` | Default list view for x_delivery_terms | — |
-| 7 | 3119 | tree | `x_vendor_group` | Default list view for x_vendor_group | — |
+| 2 | 3114 | form | `customer_group` | Default form view for customer_group | — |
+| 3 | 2712 | form | `delivery_terms` | Default form view for delivery_terms | — |
+| 4 | 3120 | form | `vendor_group` | Default form view for vendor_group | — |
+| 5 | 3113 | tree | `customer_group` | Default list view for customer_group | — |
+| 6 | 2711 | tree | `delivery_terms` | Default list view for delivery_terms | — |
+| 7 | 3119 | tree | `vendor_group` | Default list view for vendor_group | — |
 | 8 | 3260 | pivot | `sale.order.line` | Default pivot view for ir.model(599,) | — |
-| 9 | 3115 | search | `x_customer_group` | Default search view for x_customer_group | — |
-| 10 | 2713 | search | `x_delivery_terms` | Default search view for x_delivery_terms | — |
-| 11 | 3121 | search | `x_vendor_group` | Default search view for x_vendor_group | — |
-| 12 | 3116 | form | `x_customer_group` | Odoo Studio: Default form view for x_customer_group customization | Default form view for x_customer_group |
-| 13 | 2714 | form | `x_delivery_terms` | Odoo Studio: Default form view for x_delivery_terms customization | Default form view for x_delivery_terms |
-| 14 | 3122 | form | `x_vendor_group` | Odoo Studio: Default form view for x_vendor_group customization | Default form view for x_vendor_group |
-| 15 | 3117 | tree | `x_customer_group` | Odoo Studio: Default list view for x_customer_group customization | Default list view for x_customer_group |
-| 16 | 2719 | tree | `x_delivery_terms` | Odoo Studio: Default list view for x_delivery_terms customization | Default list view for x_delivery_terms |
-| 17 | 3123 | tree | `x_vendor_group` | Odoo Studio: Default list view for x_vendor_group customization | Default list view for x_vendor_group |
+| 9 | 3115 | search | `customer_group` | Default search view for customer_group | — |
+| 10 | 2713 | search | `delivery_terms` | Default search view for delivery_terms | — |
+| 11 | 3121 | search | `vendor_group` | Default search view for vendor_group | — |
+| 12 | 3116 | form | `customer_group` | Odoo Studio: Default form view for customer_group customization | Default form view for customer_group |
+| 13 | 2714 | form | `delivery_terms` | Odoo Studio: Default form view for delivery_terms customization | Default form view for delivery_terms |
+| 14 | 3122 | form | `vendor_group` | Odoo Studio: Default form view for vendor_group customization | Default form view for vendor_group |
+| 15 | 3117 | tree | `customer_group` | Odoo Studio: Default list view for customer_group customization | Default list view for customer_group |
+| 16 | 2719 | tree | `delivery_terms` | Odoo Studio: Default list view for delivery_terms customization | Default list view for delivery_terms |
+| 17 | 3123 | tree | `vendor_group` | Odoo Studio: Default list view for vendor_group customization | Default list view for vendor_group |
 | 18 | 2304 | form | `sale.order` | Odoo Studio: sale.order.form customization | sale.order.form |
 | 19 | 3920 | form | `sale.order` | Odoo Studio: sale.order.form customization_button | sale.order.form |
 | 20 | 3922 | form | `sale.order` | Odoo Studio: sale.order.form customization_button_2 | sale.order.form |

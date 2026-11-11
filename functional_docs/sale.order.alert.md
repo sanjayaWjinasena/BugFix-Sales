@@ -16,7 +16,7 @@ This repo adds four Studio fields to subscription alerts (Comments, Status and t
 
 | Field | Label | Type | Function | How it gets its value | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| `x_studio_char_field_dpQHc` | New Text | char | Unnamed Studio text field on sale order alerts ('New Text'). Not used by any view or logic in this repo. | stored |  |  |
-| `x_studio_comments` | Comments | char | Free-text comments on a sale order alert record. Not used by any view or logic in this repo. | stored |  |  |
-| `x_studio_selection_field_ogQSe` | New Selection | selection | Unnamed Studio selection on sale order alerts with no options declared in code. Not used by any view or logic in this repo. | stored |  |  |
-| `x_studio_status` | Status | selection | Status of a sale order alert; its options are not declared in the Python field (empty selection). Not used by any view or logic in this repo. | stored |  |  |
+| `char_field_dpQHc` | New Text | char | Unnamed Studio text field on sale order alerts ('New Text'). Not used by any view or logic in this repo. | stored |  |  |
+| `comments` | Comments | char | Free-text comments on a sale order alert record. Not used by any view or logic in this repo. | stored |  |  |
+| `selection_field_ogQSe` | New Selection | selection | Unnamed Studio selection on sale order alerts with no options declared in code. Not used by any view or logic in this repo. | stored |  |  |
+| `status` | Status | selection | Status of a sale order alert; its options are not declared in the Python field (empty selection). Not used by any view or logic in this repo. | stored |  |  |

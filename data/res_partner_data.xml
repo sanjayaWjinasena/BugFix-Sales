@@ -19,7 +19,7 @@ record['company_id'] = company.id
     <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 company = env['res.company'].browse(company_id)
 
-pricelist = env['product.pricelist'].search([('x_studio_group_type', '=', record.x_studio_group_type),('company_id', '=', company.id)], limit=1) 
+pricelist = env['product.pricelist'].search([('group_type', '=', record.group_type),('company_id', '=', company.id)], limit=1) 
 if pricelist:
   record['property_product_pricelist'] = pricelist.id
   
@@ -47,16 +47,16 @@ if pricelist:
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
     <field name="code"><![CDATA[if record.id:
-  #if record.customer_rank > 0 and record.x_studio_payment_method == 'Credit' and record.credit_limit < 1:
+  #if record.customer_rank > 0 and record.payment_method == 'Credit' and record.credit_limit < 1:
     #raise UserError('Invalid Credit Limit.')
     
-  if record.customer_rank > 0 and record.x_studio_group_type == 'Distributor' and record.x_studio_bank_guarantee_amount == 0:
+  if record.customer_rank > 0 and record.group_type == 'Distributor' and record.bank_guarantee_amount == 0:
     raise UserError('Bank Guarantee Amount must be Specified for Distributors.')
 
-  if record.x_studio_bank_guarantee_amount > 0.00:
-    record['x_studio_valid_bank_guarantee'] = True
+  if record.bank_guarantee_amount > 0.00:
+    record['valid_bank_guarantee'] = True
   else:
-    record['x_studio_valid_bank_guarantee'] = False
+    record['valid_bank_guarantee'] = False
 
 ]]></field>
     <field name="usage">base_automation</field>
@@ -66,9 +66,9 @@ if pricelist:
     <field name="name">SLS - Validate Credit Limit &amp; Bank Guarantee Amount - 1</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.credit_limit > record.x_studio_bank_guarantee_amount:
+    <field name="code"><![CDATA[if record.credit_limit > record.bank_guarantee_amount:
 
-  records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Credit Limit: " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount: " + str(record.x_studio_bank_guarantee_amount))
+  records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Credit Limit: " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount: " + str(record.bank_guarantee_amount))
 
   
 
@@ -88,9 +88,9 @@ if pricelist:
     <field name="name">SLS - Update Payment Term - Customer</field>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_customer_group.id:
-  record['property_payment_term_id'] = record.x_studio_customer_group.x_studio_payment_term.id
-  record['property_account_receivable_id'] = record.x_studio_customer_group.x_studio_receivable_account.id
+    <field name="code"><![CDATA[if record.customer_group.id:
+  record['property_payment_term_id'] = record.customer_group.payment_term.id
+  record['property_account_receivable_id'] = record.customer_group.receivable_account.id
 
 
 
@@ -104,9 +104,9 @@ if pricelist:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_customer_group.id:
-  record['property_payment_term_id'] = record.x_studio_customer_group.x_studio_payment_term.id
-  record['property_account_receivable_id'] = record.x_studio_customer_group.x_studio_receivable_account.id
+    <field name="code"><![CDATA[if record.customer_group.id:
+  record['property_payment_term_id'] = record.customer_group.payment_term.id
+  record['property_account_receivable_id'] = record.customer_group.receivable_account.id
 
 
 
@@ -119,16 +119,16 @@ if pricelist:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.id:
-  #if record.customer_rank > 0 and record.x_studio_payment_method == 'Credit' and record.credit_limit < 1:
+  #if record.customer_rank > 0 and record.payment_method == 'Credit' and record.credit_limit < 1:
     #raise UserError('Invalid Credit Limit.')
     
-  if record.customer_rank > 0 and record.x_studio_group_type == 'Distributor' and record.x_studio_bank_guarantee_amount == 0:
+  if record.customer_rank > 0 and record.group_type == 'Distributor' and record.bank_guarantee_amount == 0:
     raise UserError('Bank Guarantee Amount must be Specified for Distributors.')
 
-  if record.x_studio_bank_guarantee_amount > 0.00:
-    record['x_studio_valid_bank_guarantee'] = True
+  if record.bank_guarantee_amount > 0.00:
+    record['valid_bank_guarantee'] = True
   else:
-    record['x_studio_valid_bank_guarantee'] = False
+    record['valid_bank_guarantee'] = False
 
 ]]></field>
   </record>
@@ -138,7 +138,7 @@ if pricelist:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_payment_method == 'Cash':
+    <field name="code"><![CDATA[if record.payment_method == 'Cash':
   record['credit_limit'] = 0
 
 
@@ -151,9 +151,9 @@ if pricelist:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_vendor_group.id:
-  record['property_supplier_payment_term_id'] = record.x_studio_vendor_group.x_studio_payment_term.id
-  record['property_account_payable_id'] = record.x_studio_vendor_group.x_studio_payable_account.id
+    <field name="code"><![CDATA[if record.vendor_group.id:
+  record['property_supplier_payment_term_id'] = record.vendor_group.payment_term.id
+  record['property_account_payable_id'] = record.vendor_group.payable_account.id
 
 
 
@@ -178,7 +178,7 @@ if pricelist:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_customer_group.x_studio_group_type == 'Distributor':
+    <field name="code"><![CDATA[if record.customer_group.group_type == 'Distributor':
   record['mandatory_bank_guarantee'] = True
 else:
   record['mandatory_bank_guarantee'] = False
@@ -194,12 +194,12 @@ else:
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.active == True:
   if record.customer_rank > 0:
-    if record.x_studio_customer_group == True:
-      if record.x_studio_customer_group.x_studio_group_type != 'General':
-        if record.x_studio_bank_guarantee_amount <= 0.00:
+    if record.customer_group == True:
+      if record.customer_group.group_type != 'General':
+        if record.bank_guarantee_amount <= 0.00:
           raise UserError('Bank Guarantee Amount for the Selected Customer must be Defined.')
           
-        if record.x_studio_expiry_date == False:
+        if record.expiry_date == False:
           raise UserError('Expiry Date of the Bank Guarantee Amount must be Defined.')
 
 
@@ -272,8 +272,8 @@ else:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_customer_group.name:
-  records.message_post(body="Customer Group Modified. --> " + record.x_studio_customer_group.name)
+    <field name="code"><![CDATA[if record.customer_group.name:
+  records.message_post(body="Customer Group Modified. --> " + record.customer_group.name)
 
 
 ]]></field>
@@ -296,8 +296,8 @@ else:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_payment_method:
-  records.message_post(body="Customer Payment Type Modified. --> " + str(record.x_studio_payment_method))
+    <field name="code"><![CDATA[if record.payment_method:
+  records.message_post(body="Customer Payment Type Modified. --> " + str(record.payment_method))
 
 
 ]]></field>
@@ -404,8 +404,8 @@ else:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_expiry_date:
-  records.message_post(body="Customer Bank Guarantee Expiration Date Modified. --> " + str(record.x_studio_expiry_date))
+    <field name="code"><![CDATA[if record.expiry_date:
+  records.message_post(body="Customer Bank Guarantee Expiration Date Modified. --> " + str(record.expiry_date))
 
 
 ]]></field>
@@ -475,7 +475,7 @@ record['company_id'] = company.id
     <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 company = env['res.company'].browse(company_id)
 
-pricelist = env['product.pricelist'].search([('x_studio_group_type', '=', record.x_studio_group_type),('company_id', '=', company.id)], limit=1) 
+pricelist = env['product.pricelist'].search([('group_type', '=', record.group_type),('company_id', '=', company.id)], limit=1) 
 if pricelist:
   record['property_product_pricelist'] = pricelist.id
   
@@ -489,9 +489,9 @@ if pricelist:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.credit_limit < record.x_studio_bank_guarantee_amount:
+    <field name="code"><![CDATA[if record.credit_limit < record.bank_guarantee_amount:
 
-  records.message_post(body="The bank guarantee amount is less than the credit limit." + "\n" + "Credit Limit--> " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount--> " + str(record.x_studio_bank_guarantee_amount))
+  records.message_post(body="The bank guarantee amount is less than the credit limit." + "\n" + "Credit Limit--> " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount--> " + str(record.bank_guarantee_amount))
 
   
 
@@ -523,9 +523,9 @@ if pricelist:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.credit_limit > record.x_studio_bank_guarantee_amount:
+    <field name="code"><![CDATA[if record.credit_limit > record.bank_guarantee_amount:
 
-  records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Credit Limit: " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount: " + str(record.x_studio_bank_guarantee_amount))
+  records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Credit Limit: " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount: " + str(record.bank_guarantee_amount))
 
   
 
@@ -545,7 +545,7 @@ if pricelist:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[record['x_studio_bank_guarantee_amount'] = 0
+    <field name="code"><![CDATA[record['bank_guarantee_amount'] = 0
 
 
 
@@ -578,8 +578,8 @@ if pricelist:
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_change</field>
-    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__x_studio_customer_group')])]"/>
-    <field name="filter_domain">[["x_studio_customer_group","!=",False]]</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__customer_group')])]"/>
+    <field name="filter_domain">[["customer_group","!=",False]]</field>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_810_sls_update_payment_term_customer')])]"/>
   </record>
   <record id="base_automation_77_sls_validate_credit_limit" model="base.automation">
@@ -594,7 +594,7 @@ if pricelist:
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_change</field>
-    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_res_partner__x_studio_payment_method')])]"/>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_res_partner__payment_method')])]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1428_sls_validate_payment_method')])]"/>
   </record>
   <record id="base_automation_82_sls_update_payment_term_vendor" model="base.automation">
@@ -602,8 +602,8 @@ if pricelist:
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_change</field>
-    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__x_studio_vendor_group')])]"/>
-    <field name="filter_domain">[["x_studio_customer_group","!=",False]]</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__vendor_group')])]"/>
+    <field name="filter_domain">[["customer_group","!=",False]]</field>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1445_sls_update_payment_term_vendor')])]"/>
   </record>
   <record id="base_automation_92_sls_track_credit_limit_in_customer" model="base.automation">
@@ -619,7 +619,7 @@ if pricelist:
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_change</field>
-    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__x_studio_customer_group')])]"/>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__customer_group')])]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1767_sls_customer_group_distributor_mandatory_bank_guarantee')])]"/>
   </record>
   <record id="base_automation_140_sls_customer_group_not_in_general_validation" model="base.automation">
@@ -627,7 +627,7 @@ if pricelist:
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__x_studio_customer_group')])]"/>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__customer_group')])]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1768_sls_customer_group_not_in_general_validation')])]"/>
   </record>
   <record id="base_automation_150_sls_track_name_in_customer" model="base.automation">
@@ -675,7 +675,7 @@ if pricelist:
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="trigger_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__x_studio_customer_group')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__customer_group')])]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1826_sls_track_customer_group_in_customer')])]"/>
   </record>
   <record id="base_automation_157_sls_track_payment_term_in_customer" model="base.automation">
@@ -691,7 +691,7 @@ if pricelist:
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_res_partner__x_studio_payment_method')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_res_partner__payment_method')])]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1829_sls_track_payment_type_in_customer')])]"/>
   </record>
   <record id="base_automation_159_sls_track_address4_in_customer" model="base.automation">
@@ -763,7 +763,7 @@ if pricelist:
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_res_partner__x_studio_expiry_date')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Sales.field_res_partner__expiry_date')])]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1838_sls_track_bank_guarantee_expiration_date_in_customer')])]"/>
   </record>
   <record id="base_automation_168_sls_track_mandatory_bank_guarantee_in_customer" model="base.automation">
@@ -803,7 +803,7 @@ if pricelist:
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'res.partner')]"/>
     <field name="trigger">on_change</field>
-    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__x_studio_customer_group')])]"/>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('studio_usermodel_migration.field_res_partner__customer_group')])]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2891_jin_pricelist_in_respartner_inherit_model')])]"/>
   </record>
   <record id="server_action_810_sls_update_payment_term_customer" model="ir.actions.server">
@@ -812,9 +812,9 @@ if pricelist:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-if record.x_studio_customer_group.id:
-  record['property_payment_term_id'] = record.x_studio_customer_group.x_studio_payment_term.id
-  record['property_account_receivable_id'] = record.x_studio_customer_group.x_studio_receivable_account.id
+if record.customer_group.id:
+  record['property_payment_term_id'] = record.customer_group.payment_term.id
+  record['property_account_receivable_id'] = record.customer_group.receivable_account.id
 
 
 
@@ -828,16 +828,16 @@ if record.x_studio_customer_group.id:
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
 if record.id:
-  #if record.customer_rank > 0 and record.x_studio_payment_method == 'Credit' and record.credit_limit < 1:
+  #if record.customer_rank > 0 and record.payment_method == 'Credit' and record.credit_limit < 1:
     #raise UserError('Invalid Credit Limit.')
     
-  if record.customer_rank > 0 and record.x_studio_group_type == 'Distributor' and record.x_studio_bank_guarantee_amount == 0:
+  if record.customer_rank > 0 and record.group_type == 'Distributor' and record.bank_guarantee_amount == 0:
     raise UserError('Bank Guarantee Amount must be Specified for Distributors.')
 
-  if record.x_studio_bank_guarantee_amount > 0.00:
-    record['x_studio_valid_bank_guarantee'] = True
+  if record.bank_guarantee_amount > 0.00:
+    record['valid_bank_guarantee'] = True
   else:
-    record['x_studio_valid_bank_guarantee'] = False
+    record['valid_bank_guarantee'] = False
 
 
     ]]></field>
@@ -862,9 +862,9 @@ if record.credit_limit:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-if record.credit_limit > record.x_studio_bank_guarantee_amount:
+if record.credit_limit > record.bank_guarantee_amount:
 
-  records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Credit Limit: " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount: " + str(record.x_studio_bank_guarantee_amount))
+  records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Credit Limit: " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount: " + str(record.bank_guarantee_amount))
 
   
 
@@ -901,7 +901,7 @@ record['company_id'] = company.id
 company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 company = env['res.company'].browse(company_id)
 
-pricelist = env['product.pricelist'].search([('x_studio_group_type', '=', record.x_studio_group_type),('company_id', '=', company.id)], limit=1) 
+pricelist = env['product.pricelist'].search([('group_type', '=', record.group_type),('company_id', '=', company.id)], limit=1) 
 if pricelist:
   record['property_product_pricelist'] = pricelist.id
   

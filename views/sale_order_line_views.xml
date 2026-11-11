@@ -45,15 +45,15 @@
     <field name="name">Line Items</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+    <field name="domain">[('project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
   <record id="act_window_2195_line_items" model="ir.actions.act_window">
     <field name="name">Line Items</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_main_project_2', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_main_project_2': active_id,'default_x_studio_main_project_2': active_id}</field>
+    <field name="domain">[('main_project_2', '=', active_id)]</field>
+    <field name="context">{'search_default_main_project_2': active_id,'default_main_project_2': active_id}</field>
   </record>
   <record id="act_window_2200_sales_production_request_status" model="ir.actions.act_window">
     <field name="name">Sales - Production Request Status</field>
@@ -98,7 +98,7 @@
           <field name="warehouse_id" column_invisible="1"/>
         </xpath>
         <xpath expr="//tree[1]/field[@name='name']" position="after">
-          <field optional="show" name="x_studio_price_unit_original" string="Price Unit Original" column_invisible="1"/>
+          <field optional="show" name="price_unit_original" string="Price Unit Original" column_invisible="1"/>
         </xpath>
         <xpath expr="//field[@name='product_uom_qty']" position="attributes">
           <attribute name="string">Order Qty</attribute>
@@ -119,9 +119,9 @@
           <attribute name="string">Qty To Invoice</attribute>
         </xpath>
         <xpath expr="//field[@name='qty_to_invoice']" position="after">
-          <field name="x_studio_req_qty" optional="show" widget="many2one_reference"/>
-          <field name="x_studio_production_completed" optional="show"/>
-          <field name="x_studio_many2one_field_btM1W" optional="show"/>
+          <field name="req_qty" optional="show" widget="many2one_reference"/>
+          <field name="production_completed" optional="show"/>
+          <field name="many2one_field_btM1W" optional="show"/>
         </xpath>
         <xpath expr="//field[@name='product_uom']" position="attributes">
           <attribute name="string">UOM</attribute>
@@ -133,8 +133,8 @@
           <xpath expr="//field[@name='salesman_id']" position="move"/>
           <field name="create_uid"/>
           <field name="create_date"/>
-          <field name="x_studio_category" optional="hide"/>
-          <field name="x_studio_project_no" optional="hide"/>
+          <field name="category" optional="hide"/>
+          <field name="project_no" optional="hide"/>
         </xpath>
       </data>
     </field>
@@ -143,15 +143,15 @@
     <field name="name">Line Items</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_main_project_2', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_main_project_2': active_id,'default_x_studio_main_project_2': active_id}</field>
+    <field name="domain">[('main_project_2', '=', active_id)]</field>
+    <field name="context">{'search_default_main_project_2': active_id,'default_main_project_2': active_id}</field>
   </record>
   <record id="act_window_2194_line_items" model="ir.actions.act_window">
     <field name="name">Line Items</field>
     <field name="res_model">sale.order.line</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+    <field name="domain">[('project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
   <record id="act_window_2193_line_items" model="ir.actions.act_window">
     <field name="name">Line Items</field>

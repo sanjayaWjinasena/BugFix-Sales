@@ -14,7 +14,7 @@
 
 </field>
   </record>
-  <!-- STRIPPED server_action_1776_sls_minimum_sales_margin_in_setup_page: model x_minimum_sales_margin not on target -->
+  <!-- STRIPPED server_action_1776_sls_minimum_sales_margin_in_setup_page: model minimum_sales_margin not on target -->
   <record id="base_automation_291_jin_company_id_in_product_category" model="base.automation">
     <field name="name">JIN - Company Id in Product Category</field>
     <field name="active" eval="True"/>
@@ -23,5 +23,5 @@
     <field name="trigger_field_ids" eval="[(6, 0, [ref('product.field_product_category__create_date')])]"/>
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2623_jin_company_id_in_product_category')])]"/>
   </record>
-  <!-- STRIPPED base_automation_146_sls_minimum_sales_margin_in_setup_page: model x_minimum_sales_margin not on target -->
+  <!-- STRIPPED base_automation_146_sls_minimum_sales_margin_in_setup_page: model minimum_sales_margin not on target -->
 </odoo>

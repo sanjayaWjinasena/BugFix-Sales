@@ -2,27 +2,27 @@ from odoo import api, models
 
 
 class MinimumSalesMarginSeed(models.AbstractModel):
-    """Seed a default row on the Studio-manual x_minimum_sales_margin
+    """Seed a default row on the Studio-manual minimum_sales_margin
     catalogue for every active res.company that doesn't already have
     one.
 
     Why this is needed
     ------------------
-    x_minimum_sales_margin is a Studio catalogue holding one row per
+    minimum_sales_margin is a Studio catalogue holding one row per
     company with fields that other Studio logic reads at runtime:
 
-      - x_studio_advance_payment_ (float, %) — minimum advance
+      - advance_payment_ (float, %) — minimum advance
         payment required on Repair sale orders
-      - x_studio_minimum_sales_margin_ (float, %)
-      - x_studio_sales_order_validity (int, days)
-      - x_studio_last_purchase_price_validity_days (int, days)
+      - minimum_sales_margin_ (float, %)
+      - sales_order_validity (int, days)
+      - last_purchase_price_validity_days (int, days)
 
     Three consumer sites read the row with
-    `env['x_minimum_sales_margin'].search([], limit=1)` (no company
+    `env['minimum_sales_margin'].search([], limit=1)` (no company
     filter — they rely on the model's record rule 638 to scope
     per-company at read time):
 
-      - compute on account.payment.x_studio_payment_validation
+      - compute on account.payment.payment_validation
       - server action 2427 'RR - Validate Payment %'
       - server action 2341 'SLS - Create Customer Payment'
 
@@ -36,7 +36,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
     A Studio base.automation (id 146, server action 1776) runs on
     every ORM create() of this model and raises
         UserError('Only one Minimum Sales Margin % can exist.')
-    whenever ANY x_studio_active=True row exists — regardless of
+    whenever ANY accounting_active=True row exists — regardless of
     company. That guard predates the multi-company setup and blocks
     any second row from being created via the ORM.
 
@@ -58,7 +58,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
 
     @api.model
     def _seed_minimum_sales_margin_per_company(self):
-        """Insert one x_minimum_sales_margin row for every active
+        """Insert one minimum_sales_margin row for every active
         company that doesn't already have one. Idempotent — re-runs
         no-op when every company is already seeded.
 
@@ -74,7 +74,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
 
         self.env.cr.execute(
             "SELECT DISTINCT accounting_company_id "
-            "FROM x_minimum_sales_margin "
+            "FROM minimum_sales_margin "
             "WHERE accounting_company_id IS NOT NULL"
         )
         already = {row[0] for row in self.env.cr.fetchall()}
@@ -86,15 +86,15 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         for company in missing:
             self.env.cr.execute(
                 """
-                INSERT INTO x_minimum_sales_margin (
+                INSERT INTO minimum_sales_margin (
                     name,
-                    x_studio_advance_payment_,
-                    x_studio_minimum_sales_margin_,
-                    x_studio_sales_order_validity,
-                    x_studio_last_purchase_price_validity_days,
+                    advance_payment_,
+                    minimum_sales_margin_,
+                    sales_order_validity,
+                    last_purchase_price_validity_days,
                     accounting_company_id,
                     active,
-                    x_studio_active,
+                    accounting_active,
                     create_uid,
                     create_date,
                     write_uid,
@@ -160,12 +160,12 @@ class MinimumSalesMarginSeed(models.AbstractModel):
                     continue
                 Icp.set_param(param_key, str(default))
 
-    # Formula for sale.order.line.x_studio_margin_exceed as a compute.
+    # Formula for sale.order.line.margin_exceed as a compute.
     # Mirrors the original SLS - Validate Margin in SO Line server
     # action 1508 exactly (same value_1 / value_2 dimensional quirk
     # preserved so results don't drift between installations that ran
     # the old on_change vs the new compute). The threshold now reads
-    # via record.company_id.x_studio_minimum_sales_margin_ (the
+    # via record.company_id.minimum_sales_margin_ (the
     # per-company proxy backed by ir.config_parameter), so a Settings
     # save re-evaluates every line on the next read — no stored flag
     # to go stale.
@@ -176,16 +176,16 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         "  if record.product_id and record.quotation_type != 'Project':\n"
         "    if record.product_uom_qty and record.product_uom_qty > 0:\n"
         "      value_1 = ((record.price_subtotal/record.product_uom_qty) - "
-        "(record.price_subtotal*(record.x_studio_commission/100)) - "
+        "(record.price_subtotal*(record.commission/100)) - "
         "record.product_id.standard_price)\n"
         "      value_2 = (record.price_subtotal/record.product_uom_qty) - "
-        "(record.price_subtotal*(record.x_studio_commission/100))\n"
+        "(record.price_subtotal*(record.commission/100))\n"
         "      if value_2 > 0:\n"
         "        net_margin = (value_1/value_2)*100\n"
         "        if net_margin and "
-        "net_margin < (record.company_id.x_studio_minimum_sales_margin_ or 0.0):\n"
+        "net_margin < (record.company_id.minimum_sales_margin_ or 0.0):\n"
         "          exceeded = True\n"
-        "  record['x_studio_margin_exceed'] = exceeded\n"
+        "  record['margin_exceed'] = exceeded\n"
     )
 
     _LINE_MARGIN_EXCEED_DEPENDS = (
@@ -193,21 +193,21 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         "product_id.standard_price,"
         "product_uom_qty,"
         "price_subtotal,"
-        "x_studio_commission,"
+        "commission,"
         "quotation_type"
     )
 
-    _HEADER_MARGIN_EXCEED_DEPENDS = "order_line.x_studio_margin_exceed"
+    _HEADER_MARGIN_EXCEED_DEPENDS = "order_line.margin_exceed"
 
     @api.model
     def _suppress_validate_sales_lines_button(self):
         """Suppress the 'Validate Sales Lines' button on sale.order.
 
-        The button appears when x_studio_clear_free_items on the SO
+        The button appears when clear_free_items on the SO
         header flips True. That flip is driven by base.automation 216
         (SLS - Clear Free Items SO Lines): when a salesperson adds a
         line to an SO that carries reward lines (is_reward_line=True),
-        the automation sets x_studio_clear_free_items=True on the
+        the automation sets clear_free_items=True on the
         newly-added line. The header's computed field rolls that up
         and the button becomes visible.
 
@@ -250,7 +250,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
 
     @api.model
     def _convert_line_margin_flag_to_computed(self):
-        """Convert sale.order.line.x_studio_margin_exceed from a
+        """Convert sale.order.line.margin_exceed from a
         stored boolean (set via base.automation 91's on_change into
         server action 1508) into a non-stored computed field that is
         re-evaluated on every read.
@@ -267,7 +267,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
 
         What
         ----
-        1. On sale.order.line.x_studio_margin_exceed:
+        1. On sale.order.line.margin_exceed:
              store   = False
              compute = <the same formula the on_change ran>
              depends = product / qty / price / commission / quotation
@@ -277,9 +277,9 @@ class MinimumSalesMarginSeed(models.AbstractModel):
                        computes recompute on every read anyway, so
                        cache invalidation via other fields is only a
                        within-transaction concern, not correctness)
-        2. Tighten sale.order.x_studio_margin_exceed's depends from
+        2. Tighten sale.order.margin_exceed's depends from
            "order_line" (link changes only) to
-           "order_line.x_studio_margin_exceed" so the header rollup
+           "order_line.margin_exceed" so the header rollup
            invalidates when a line's computed value changes within a
            transaction.
         3. Deactivate base.automation 91 — the on_change is dead
@@ -308,7 +308,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         line_field = Field.search(
             [
                 ("model", "=", "sale.order.line"),
-                ("name", "=", "x_studio_margin_exceed"),
+                ("name", "=", "margin_exceed"),
             ],
             limit=1,
         )
@@ -330,7 +330,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         header_field = Field.search(
             [
                 ("model", "=", "sale.order"),
-                ("name", "=", "x_studio_margin_exceed"),
+                ("name", "=", "margin_exceed"),
             ],
             limit=1,
         )
@@ -360,18 +360,18 @@ class MinimumSalesMarginSeed(models.AbstractModel):
     @api.model
     def _patch_studio_readers_to_use_company(self):
         """Surgically rewrite every Studio Python element that reads
-        env['x_minimum_sales_margin'].search(...) so it reads the new
+        env['minimum_sales_margin'].search(...) so it reads the new
         proxy fields on res.company instead.
 
         Substitution pattern
         --------------------
-        Because res.company.x_studio_minimum_sales_margin_ (and the
+        Because res.company.minimum_sales_margin_ (and the
         three siblings) keep the same names as the fields on the old
         Studio catalogue model, every downstream reference
-        `min_magin.x_studio_minimum_sales_margin_` continues to work
+        `min_magin.minimum_sales_margin_` continues to work
         verbatim. Only the ONE fetch line needs replacing:
 
-            env['x_minimum_sales_margin'].search([], limit=1)
+            env['minimum_sales_margin'].search([], limit=1)
                 → record.company_id   (or env.company / rec.company_id)
 
         Which right-hand side to pick depends on which local variable
@@ -405,21 +405,21 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             # 1508 — SLS - Validate Margin in SO Line (sale.order.line)
             (
                 1508,
-                "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
+                "min_magin = env['minimum_sales_margin'].search([], limit=1)",
                 "min_magin = record.company_id",
                 "Read minimum margin from the current SO line company.",
             ),
             # 1517 — SLS - Item Over Margin Details (sale.order)
             (
                 1517,
-                "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
+                "min_magin = env['minimum_sales_margin'].search([], limit=1)",
                 "min_magin = record.company_id",
                 "Read minimum margin from the current SO company.",
             ),
             # 2340 — SLS - Cancel SOs more than 3 Months (cron; no record in scope)
             (
                 2340,
-                "no_of_days = env['x_minimum_sales_margin'].search([])",
+                "no_of_days = env['minimum_sales_margin'].search([])",
                 "no_of_days = env.company",
                 "Read SO validity days from the caller company "
                 "(cron traditionally used first row).",
@@ -427,14 +427,14 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             # 2341 — SLS - Create Customer Payment (sale.order); has TWO occurrences
             (
                 2341,
-                "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
+                "min_magin = env['minimum_sales_margin'].search([], limit=1)",
                 "min_magin = record.company_id",
                 "Read advance payment % from the current SO company.",
             ),
             # 2427 — RR - Validate Payment % (account.payment)
             (
                 2427,
-                "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
+                "min_magin = env['minimum_sales_margin'].search([], limit=1)",
                 "min_magin = record.company_id",
                 "Read advance payment % from the current payment company.",
             ),
@@ -443,7 +443,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             (
                 2897,
                 (
-                    "sales_configuration = env['x_minimum_sales_margin'].search("
+                    "sales_configuration = env['minimum_sales_margin'].search("
                     "[('accounting_company_id', '=', company.id)],limit=1)"
                 ),
                 "sales_configuration = company",
@@ -469,15 +469,15 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         field_patches = [
             (
                 "account.payment",
-                "x_studio_payment_validation",
-                "min_magin = self.env['x_minimum_sales_margin'].search([], limit=1)",
+                "payment_validation",
+                "min_magin = self.env['minimum_sales_margin'].search([], limit=1)",
                 "min_magin = record.company_id",
                 "Read advance payment % from the current payment company.",
             ),
             (
                 "sale.order",
-                "x_studio_sales_order_validity",
-                "setup = self.env['x_minimum_sales_margin'].search([])",
+                "sales_order_validity",
+                "setup = self.env['minimum_sales_margin'].search([])",
                 "setup = rec.company_id",
                 "Read SO validity days from the current SO company.",
             ),
@@ -499,13 +499,13 @@ class MinimumSalesMarginSeed(models.AbstractModel):
 
     @api.model
     def _migrate_to_config_parameter(self):
-        """One-shot copy of each x_minimum_sales_margin row into
+        """One-shot copy of each minimum_sales_margin row into
         ir.config_parameter under company-scoped keys.
 
         Purpose
         -------
         v21 moves the four Sales config values from the Studio
-        catalogue model x_minimum_sales_margin (one row per company)
+        catalogue model minimum_sales_margin (one row per company)
         to ir.config_parameter (per-company keys). res.company exposes
         computed proxy fields backed by those keys; res.config.settings
         binds them via `related`.
@@ -513,7 +513,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         This function preserves the current per-company values across
         the storage change:
 
-          - For each x_minimum_sales_margin row, derive the four keys
+          - For each minimum_sales_margin row, derive the four keys
             from res.company._BUGFIX_SALES_CONFIG.
           - For each key that does NOT yet exist in ir.config_parameter,
             copy the value across.
@@ -521,7 +521,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
             overwrite a value the user has edited via Settings.
 
         The old catalogue rows are NOT touched. Studio server actions
-        that still read env['x_minimum_sales_margin'].search(...) keep
+        that still read env['minimum_sales_margin'].search(...) keep
         seeing the values they saw before the upgrade; those readers
         get migrated to env.company.x_studio_* in follow-up commits
         (they'll go stale relative to ir.config_parameter after the
@@ -530,15 +530,15 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         Idempotent — reruns find every key already present and no-op.
 
         Safe on stand-alone DBs: if the Studio catalogue model
-        x_minimum_sales_margin was never provisioned (fresh Odoo
+        minimum_sales_margin was never provisioned (fresh Odoo
         install with no Jinasena Studio state), there's nothing to
         migrate and we early-return before the missing-model KeyError.
         """
-        if "x_minimum_sales_margin" not in self.env:
+        if "minimum_sales_margin" not in self.env:
             return
         Icp = self.env["ir.config_parameter"].sudo()
         IcpModel = self.env["ir.config_parameter"].sudo()
-        rows = self.env["x_minimum_sales_margin"].sudo().search([])  # pylint: disable=no-search-all
+        rows = self.env["minimum_sales_margin"].sudo().search([])  # pylint: disable=no-search-all
         if not rows:
             return
         # Import the mapping from res.company so field-name / key-base
@@ -741,7 +741,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
     @api.model
     def _hide_minimum_sales_margin_menus(self):
         """Deactivate every menu that opens the Studio-generated
-        list/form view for x_minimum_sales_margin.
+        list/form view for minimum_sales_margin.
 
         Since v17 the four config values are edited from
         Settings → Sales via res.config.settings; the standalone
@@ -750,7 +750,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         hit automation 146's guard or bypass per-company scoping).
 
         Finds menus by walking `ir.actions.act_window` on
-        res_model='x_minimum_sales_margin' — so any menu Studio may
+        res_model='minimum_sales_margin' — so any menu Studio may
         add in the future (e.g. from a duplicate app configuration)
         also gets caught on the next upgrade. Model / actions / views
         / rows are all preserved: only menu visibility changes, so
@@ -760,7 +760,7 @@ class MinimumSalesMarginSeed(models.AbstractModel):
         Idempotent: reruns find no still-active menus and no-op.
         """
         ActWindow = self.env["ir.actions.act_window"].sudo()
-        actions = ActWindow.search([("res_model", "=", "x_minimum_sales_margin")])
+        actions = ActWindow.search([("res_model", "=", "minimum_sales_margin")])
         if not actions:
             return
         Menu = self.env["ir.ui.menu"].sudo().with_context(active_test=False)

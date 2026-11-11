@@ -32,7 +32,7 @@ class ResPartner(models.Model):
     # env.get() would be safer but env['purchase.requisition'] works
     # because purchase_requisition is guaranteed by Purchase deps.
     # Kept in BugFix-Sales because Studio pinned it here.
-    x_vendor_id__purchase_requisition_count = fields.Integer(
+    vendor_id__purchase_requisition_count = fields.Integer(
         string="Vendor count", store=False, compute="_compute_x_vendor_id_pr_count"
     )
 
@@ -41,7 +41,7 @@ class ResPartner(models.Model):
         PR = self.env.get("purchase.requisition")
         if PR is None:
             for r in self:
-                r.x_vendor_id__purchase_requisition_count = 0
+                r.vendor_id__purchase_requisition_count = 0
             return
         results = PR.read_group(
             [("vendor_id", "in", self.ids)], ["vendor_id"], ["vendor_id"]
@@ -52,23 +52,23 @@ class ResPartner(models.Model):
             if x.get("vendor_id")
         }
         for r in self:
-            r.x_vendor_id__purchase_requisition_count = dic.get(r.id, 0)
+            r.vendor_id__purchase_requisition_count = dic.get(r.id, 0)
 
-    x_studio_bank_guarantee_amount = fields.Float(
+    bank_guarantee_amount = fields.Float(
         string="Bank Guarantee Amount",
     )
-    x_studio_expiry_date = fields.Date(
+    expiry_date = fields.Date(
         string="Bank Guarantee Expiration Date",
     )
-    x_studio_payment_method = fields.Selection(
+    payment_method = fields.Selection(
         [("Cash", "Cash"), ("Credit", "Credit")],
         string="Payment Type",
     )
-    x_studio_valid_bank_guarantee = fields.Boolean(
+    valid_bank_guarantee = fields.Boolean(
         string="Valid Bank Guarantee",
         help=(
             "True when the partner has an active bank guarantee "
-            "(x_studio_expiry_date in the future). Used by sale.order "
+            "(expiry_date in the future). Used by sale.order "
             "credit-limit gates via a related field."
         ),
     )
@@ -77,4 +77,4 @@ class ResPartner(models.Model):
 class ResPartnerGap(models.Model):
     _inherit = "res.partner"
 
-    x_vendor_id__purchase_requisition_count = fields.Integer(string="Vendor count")
+    vendor_id__purchase_requisition_count = fields.Integer(string="Vendor count")

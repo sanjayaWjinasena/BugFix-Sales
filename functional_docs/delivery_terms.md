@@ -1,16 +1,16 @@
-# BugFix-Sales — `x_delivery_terms`
+# BugFix-Sales — `delivery_terms`
 
 [← back to Functional_Documentation.md](../Functional_Documentation.md)
 
-### `x_delivery_terms` — Delivery Terms
+### `delivery_terms` — Delivery Terms
 
-*Created by this repo.* Python: `models/x_delivery_terms.py`.
+*Created by this repo.* Python: `models/delivery_terms.py`.
 
-Other repos that use this model: `access right BugFix-Purchase.access_1249_delivery_terms_group_system` (BugFix-Purchase)<br>`access right BugFix-Purchase.access_1250_delivery_terms_group_user` (BugFix-Purchase)<br>`access right BugFix-Purchase.access_x_delivery_terms_user` (BugFix-Purchase)<br>`purchase.order.line.x_studio_delivery_term` (BugFix-Purchase)<br>`purchase.order.x_studio_delivery_term` (BugFix-Purchase)<br>`record rule BugFix-Purchase.rule_568_jin_multi_company_delivery_terms` (BugFix-Purchase)<br>`record rule BugFix-Purchase.rule_f7_x_delivery_terms_jin_multi_company_delivery_terms` (BugFix-Purchase)<br>`server action BugFix-Purchase.action_consignment_vendor_dispatch` (BugFix-Purchase)<details><summary>+10 more</summary>`server action BugFix-Purchase.server_action_2682_jin_company_id_in_delivery_terms` (BugFix-Purchase)<br>`server action BugFix-Stock.server_action_1305_imp_consignment_vendor_despatch` (BugFix-Stock)<br>`server action BugFix-Stock.server_action_2118_project_update_month_end_entries` (BugFix-Stock)<br>`server action BugFix-Stock.server_action_3647_consignment_vendor_dispatch_bugfix_purchase` (BugFix-Stock)<br>`window action BugFix-Purchase.action_1205_delivery_terms` (BugFix-Purchase)<br>`window action BugFix-Purchase.action_2060_delivery_terms` (BugFix-Purchase)<br>`x_con_consolidated_lin.x_studio_delivery_term` (BugFix-Purchase)<br>`x_consignment_header.x_studio_delivery_term` (BugFix-Purchase)<br>`x_delivery_term_charge.x_studio_delivery_terms_id` (BugFix-Purchase)<br>`x_temp_con_conso_line.x_studio_delivery_term` (BugFix-Purchase)</details>
+Other repos that use this model: `access right BugFix-Purchase.access_1249_delivery_terms_group_system` (BugFix-Purchase)<br>`access right BugFix-Purchase.access_1250_delivery_terms_group_user` (BugFix-Purchase)<br>`access right BugFix-Purchase.access_x_delivery_terms_user` (BugFix-Purchase)<br>`purchase.order.line.delivery_term` (BugFix-Purchase)<br>`purchase.order.delivery_term` (BugFix-Purchase)<br>`record rule BugFix-Purchase.rule_568_jin_multi_company_delivery_terms` (BugFix-Purchase)<br>`record rule BugFix-Purchase.rule_f7_x_delivery_terms_jin_multi_company_delivery_terms` (BugFix-Purchase)<br>`server action BugFix-Purchase.action_consignment_vendor_dispatch` (BugFix-Purchase)<details><summary>+10 more</summary>`server action BugFix-Purchase.server_action_2682_jin_company_id_in_delivery_terms` (BugFix-Purchase)<br>`server action BugFix-Stock.server_action_1305_imp_consignment_vendor_despatch` (BugFix-Stock)<br>`server action BugFix-Stock.server_action_2118_project_update_month_end_entries` (BugFix-Stock)<br>`server action BugFix-Stock.server_action_3647_consignment_vendor_dispatch_bugfix_purchase` (BugFix-Stock)<br>`window action BugFix-Purchase.action_1205_delivery_terms` (BugFix-Purchase)<br>`window action BugFix-Purchase.action_2060_delivery_terms` (BugFix-Purchase)<br>`con_consolidated_lin.delivery_term` (BugFix-Purchase)<br>`consignment_header.delivery_term` (BugFix-Purchase)<br>`delivery_term_charge.delivery_terms_id` (BugFix-Purchase)<br>`temp_con_conso_line.delivery_term` (BugFix-Purchase)</details>
 
 **Summary:**
 
-<!-- SUMMARY:model:x_delivery_terms -->
+<!-- SUMMARY:model:delivery_terms -->
 A Delivery Term is a named shipping or delivery condition, with a description, sequence, company, Vendor Despatch flag and archive flag. Purchase orders and their lines in BugFix-Purchase use it. Buttons copy a charge line onto the term for every Misc Charge Code in the Charges group, or clear those charges, and an automation sets the term's company to the user's current company.
 <!-- /SUMMARY -->
 
@@ -22,11 +22,11 @@ A Delivery Term is a named shipping or delivery condition, with a description, s
 | `activity_date_deadline` | Next Activity Deadline | date | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | not stored |  |  |
 | `activity_exception_decoration` | Activity Exception Decoration | selection: warning=Alert; warning=Alert; danger=Error; danger=Error | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | not stored |  |  |
 | `activity_exception_icon` | Icon | char | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | not stored |  |  |
-| `activity_ids` | Activities | one2many → `mail.activity` | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | stored | `model mail.activity` (mail) | `x_delivery_terms.activity_summary`<br>`x_delivery_terms.activity_type_icon`<br>`x_delivery_terms.activity_type_id` |
+| `activity_ids` | Activities | one2many → `mail.activity` | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | stored | `model mail.activity` (mail) | `delivery_terms.activity_summary`<br>`delivery_terms.activity_type_icon`<br>`delivery_terms.activity_type_id` |
 | `activity_state` | Activity State | selection: overdue=Overdue; overdue=Overdue; today=Today; today=Today; planned=Planned; planned=Planned | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | not stored |  |  |
-| `activity_summary` | Next Activity Summary | char | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | related `activity_ids.summary`; not stored | `mail.activity.summary` (mail)<br>`x_delivery_terms.activity_ids` |  |
-| `activity_type_icon` | Activity Type Icon | char | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | related `activity_ids.icon`; not stored | `mail.activity.icon` (mail)<br>`x_delivery_terms.activity_ids` |  |
-| `activity_type_id` | Next Activity Type | many2one → `mail.activity.type` | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | related `activity_ids.activity_type_id`; not stored | `mail.activity.activity_type_id` (mail)<br>`model mail.activity.type` (mail)<br>`x_delivery_terms.activity_ids` |  |
+| `activity_summary` | Next Activity Summary | char | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | related `activity_ids.summary`; not stored | `mail.activity.summary` (mail)<br>`delivery_terms.activity_ids` |  |
+| `activity_type_icon` | Activity Type Icon | char | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | related `activity_ids.icon`; not stored | `mail.activity.icon` (mail)<br>`delivery_terms.activity_ids` |  |
+| `activity_type_id` | Next Activity Type | many2one → `mail.activity.type` | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | related `activity_ids.activity_type_id`; not stored | `mail.activity.activity_type_id` (mail)<br>`model mail.activity.type` (mail)<br>`delivery_terms.activity_ids` |  |
 | `activity_user_id` | Responsible User | many2one → `res.users` | Standard activity field (scheduled to-dos, calls, meetings on the record) provided by Odoo’s activity mixin. | not stored | `model res.users` (base) |  |
 | `create_date` | Created on | datetime | Date and time the record was created (automatic). | stored |  | `automation BugFix-Sales.base_automation_316_jin_company_id_in_delivery_terms` |
 | `create_uid` | Created by | many2one → `res.users` | User who created the record (automatic). | stored | `model res.users` (base) |  |
@@ -51,57 +51,57 @@ A Delivery Term is a named shipping or delivery condition, with a description, s
 | `active` | Active | boolean | Archive flag of a delivery term (default active); archived terms are hidden. | default `True`; stored |  | `default BugFix-Purchase.default_127_x_delivery_terms_active` (BugFix-Purchase)<br>`view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase)<br>`view BugFix-Sales.ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885`<br>`view BugFix-Sales.ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe` |
 | `name` | Delivery Term | char | Name of the delivery term (e.g. shipping term), shown in its views and used by the 'IMP Copy Charges to Delivery Terms' action. | stored; required |  | `server action BugFix-Sales.server_action_1207_imp_copy_charges_to_delivery_terms`<br>`view BugFix-Sales.ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885`<br>`view BugFix-Sales.ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e`<br>`view BugFix-Sales.ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe` |
 | `accounting_company_id` | Company | many2one → `res.company` | Company owning the delivery term; set by the 'JIN company id in delivery terms' actions and used by multi-company record rules. | stored | `model res.company` (base) | `record rule BugFix-Purchase.rule_568_jin_multi_company_delivery_terms` (BugFix-Purchase)<br>`record rule BugFix-Purchase.rule_f7_x_delivery_terms_jin_multi_company_delivery_terms` (BugFix-Purchase)<br>`server action BugFix-Purchase.server_action_2682_jin_company_id_in_delivery_terms` (BugFix-Purchase)<br>`server action BugFix-Sales.server_action_2682_jin_company_id_in_delivery_terms`<br>`view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase)<details><summary>+1 more</summary>`view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase)</details> |
-| `x_studio_copied` | Copied | boolean | Marks that charges have been copied to the delivery term; set and cleared by the IMP Copy/Clear Charges actions. | stored |  | `server action BugFix-Sales.server_action_1207_imp_copy_charges_to_delivery_terms`<br>`server action BugFix-Sales.server_action_1208_imp_clear_charges_from_delivery_terms`<br>`view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase) |
+| `copied` | Copied | boolean | Marks that charges have been copied to the delivery term; set and cleared by the IMP Copy/Clear Charges actions. | stored |  | `server action BugFix-Sales.server_action_1207_imp_copy_charges_to_delivery_terms`<br>`server action BugFix-Sales.server_action_1208_imp_clear_charges_from_delivery_terms`<br>`view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase) |
 | `description` | Description | char | Description of the delivery term; shown in its form and list and used by 'IMP Copy Charges to Delivery Terms'. | stored |  | `server action BugFix-Sales.server_action_1207_imp_copy_charges_to_delivery_terms`<br>`view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase)<br>`view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase) |
 | `sequence` | Sequence | integer | Integer sort order for Delivery Terms records (has a default value); shown in the Delivery Terms form and the default list view used to order entries. | stored |  | `default BugFix-Purchase.default_128_x_delivery_terms_sequence` (BugFix-Purchase)<br>`view BugFix-Sales.ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e` |
-| `x_studio_vendor_despatch` | Vendor Despatch | boolean | Checkbox on a Delivery Terms record marking it as a vendor-despatch term; entered by the user and shown on the Delivery Terms form and list views. | stored |  | `view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase)<br>`view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase) |
+| `vendor_despatch` | Vendor Despatch | boolean | Checkbox on a Delivery Terms record marking it as a vendor-despatch term; entered by the user and shown on the Delivery Terms form and list views. | stored |  | `view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase)<br>`view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase) |
 
 **Server actions (3):**
 
 - **IMP - Clear Charges from Delivery Terms** (`server_action_1208_imp_clear_charges_from_delivery_terms`, type `code`)
   - Function: Deletes all charge lines linked to the Delivery Terms record and clears its Copied flag.
-  - Depends on: `model x_delivery_term_charge` (BugFix-Purchase), `model x_delivery_terms`, `x_delivery_terms.x_studio_copied`, `x_delivery_terms.x_studio_delivery_terms_id` (BugFix-Purchase)
+  - Depends on: `model delivery_term_charge` (BugFix-Purchase), `model delivery_terms`, `delivery_terms.copied`, `delivery_terms.delivery_terms_id` (BugFix-Purchase)
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (7 lines)</summary>
 
 ```python
 if record.id:
-    temp_rec = env["x_delivery_term_charge"].search(
-        [("x_studio_delivery_terms_id", "=", record.id)]
+    temp_rec = env["delivery_term_charge"].search(
+        [("delivery_terms_id", "=", record.id)]
     )
     if temp_rec:
         for del_temp_rec in temp_rec:
             del_temp_rec.unlink()
 
-    record["x_studio_copied"] = False
+    record["copied"] = False
 ```
   </details>
 - **IMP - Copy Charges to Delivery Terms** (`server_action_1207_imp_copy_charges_to_delivery_terms`, type `code`)
   - Function: Creates a delivery-term charge line on the Delivery Terms record for every Misc Charge Code in group 'Charges', then sets Copied. Can create duplicates if run twice.
-  - Depends on: `model x_delivery_term_charge` (BugFix-Purchase), `model x_delivery_terms`, `model x_misc_charge_codes` (BugFix-Stock), `x_delivery_terms.name`, `x_delivery_terms.x_studio_copied`<details><summary>+2 more</summary>`x_delivery_terms.x_studio_delivery_terms_id` (BugFix-Purchase), `x_delivery_terms.description`</details>
+  - Depends on: `model delivery_term_charge` (BugFix-Purchase), `model delivery_terms`, `model misc_charge_codes` (BugFix-Stock), `delivery_terms.name`, `delivery_terms.copied`<details><summary>+2 more</summary>`delivery_terms.delivery_terms_id` (BugFix-Purchase), `delivery_terms.description`</details>
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (6 lines)</summary>
 
 ```python
-loop_misc_charge_codes_c = env["x_misc_charge_codes"].search(
-    [("x_studio_charge_group", "=", "Charges")]
+loop_misc_charge_codes_c = env["misc_charge_codes"].search(
+    [("charge_group", "=", "Charges")]
 )
 if loop_misc_charge_codes_c:
     for find_charges in loop_misc_charge_codes_c:
-        create_delivery_charges = env["x_delivery_term_charge"].create(
+        create_delivery_charges = env["delivery_term_charge"].create(
             {
-                "x_studio_delivery_terms_id": record.id,
+                "delivery_terms_id": record.id,
                 "name": find_charges.name,
                 "description": find_charges.description,
             }
         )
 
-    record["x_studio_copied"] = True
+    record["copied"] = True
 ```
   </details>
 - **JIN - Company Id in Delivery Terms** (`server_action_2682_jin_company_id_in_delivery_terms`, type `code`)
   - Function: Sets the Delivery Terms record's Company to the user's currently selected company.
-  - Depends on: `model res.company` (base), `model x_delivery_terms`, `x_delivery_terms.accounting_company_id`
+  - Depends on: `model res.company` (base), `model delivery_terms`, `delivery_terms.accounting_company_id`
   - Used by: `automation BugFix-Sales.base_automation_316_jin_company_id_in_delivery_terms`
   <details><summary>code (4 lines)</summary>
 
@@ -116,25 +116,25 @@ record["accounting_company_id"] = company.id
 
 | Name | Record name | State | Function | Depends on | Used by |
 |---|---|---|---|---|---|
-| JIN - Company Id in Delivery Terms | `base_automation_316_jin_company_id_in_delivery_terms` |  | When a record is created or updated on Delivery Terms, runs _JIN - Company Id in Delivery Terms_. | `model x_delivery_terms`<br>`server action BugFix-Sales.server_action_2682_jin_company_id_in_delivery_terms`<br>`x_delivery_terms.create_date` |  |
+| JIN - Company Id in Delivery Terms | `base_automation_316_jin_company_id_in_delivery_terms` |  | When a record is created or updated on Delivery Terms, runs _JIN - Company Id in Delivery Terms_. | `model delivery_terms`<br>`server action BugFix-Sales.server_action_2682_jin_company_id_in_delivery_terms`<br>`delivery_terms.create_date` |  |
 
 **Window actions (2):**
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Delivery Terms | `act_window_1205_delivery_terms` | Opens **Delivery Terms** records (tree,form). | `model x_delivery_terms` |  |
-| Delivery Terms | `act_window_2060_delivery_terms` | Opens **Delivery Terms** records (tree,form). | `model x_delivery_terms` | `menu BugFix-Studio-Misc.menu_f6r3_purchase_configuration_imports_configurations_delivery_terms` (BugFix-Studio-Misc)<br>`menu BugFix-Studio-Misc.menu_f6r3_purchase_configuration_setups_delivery_terms` (BugFix-Studio-Misc)<br>`menu BugFix-Studio-Misc.menu_f6r3_purchase_imports_01_imports_configuration_delivery_terms` (BugFix-Studio-Misc) |
+| Delivery Terms | `act_window_1205_delivery_terms` | Opens **Delivery Terms** records (tree,form). | `model delivery_terms` |  |
+| Delivery Terms | `act_window_2060_delivery_terms` | Opens **Delivery Terms** records (tree,form). | `model delivery_terms` | `menu BugFix-Studio-Misc.menu_f6r3_purchase_configuration_imports_configurations_delivery_terms` (BugFix-Studio-Misc)<br>`menu BugFix-Studio-Misc.menu_f6r3_purchase_configuration_setups_delivery_terms` (BugFix-Studio-Misc)<br>`menu BugFix-Studio-Misc.menu_f6r3_purchase_imports_01_imports_configuration_delivery_terms` (BugFix-Studio-Misc) |
 
 **Views (3):**
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Default form view for x_delivery_terms | `ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885` | form | full form layout with 2 fields | Form view for Delivery Terms records: name and an Archived ribbon when the record is inactive. | `x_delivery_terms.active`<br>`x_delivery_terms.name` | `view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase) |
-| Default list view for x_delivery_terms | `ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e` | tree | full tree layout with 2 fields | List view for Delivery Terms with a drag handle for ordering and the name. | `x_delivery_terms.name`<br>`x_delivery_terms.sequence` | `view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase) |
-| Default search view for x_delivery_terms | `ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe` | search | full search layout with 1 fields | Search view for Delivery Terms: search by name and an Archived filter. | `x_delivery_terms.active`<br>`x_delivery_terms.name` |  |
+| Default form view for delivery_terms | `ported_default_form_view_fo_ccd4306a_1ac9_43c7_847f_965bdab82885` | form | full form layout with 2 fields | Form view for Delivery Terms records: name and an Archived ribbon when the record is inactive. | `delivery_terms.active`<br>`delivery_terms.name` | `view BugFix-Purchase.ported_view_2714_customization_x_delivery_terms_form` (BugFix-Purchase) |
+| Default list view for delivery_terms | `ported_default_list_view_fo_35abcb0b_2581_4156_9e23_d75bfb8d6b5e` | tree | full tree layout with 2 fields | List view for Delivery Terms with a drag handle for ordering and the name. | `delivery_terms.name`<br>`delivery_terms.sequence` | `view BugFix-Purchase.ported_view_2719_customization_x_delivery_terms_tree` (BugFix-Purchase) |
+| Default search view for delivery_terms | `ported_default_search_view__f98a2314_f551_4142_ba32_a74bde2e40fe` | search | full search layout with 1 fields | Search view for Delivery Terms: search by name and an Archived filter. | `delivery_terms.active`<br>`delivery_terms.name` |  |
 
 **Access rights (1):**
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| x_delivery_terms user access | `access_x_delivery_terms_user` | Gives **User types / Internal User** read/write/create/delete access to Delivery Terms records. | `group base.group_user` (base)<br>`model x_delivery_terms` |  |
+| delivery_terms user access | `access_x_delivery_terms_user` | Gives **User types / Internal User** read/write/create/delete access to Delivery Terms records. | `group base.group_user` (base)<br>`model delivery_terms` |  |

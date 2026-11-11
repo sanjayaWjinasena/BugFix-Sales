@@ -18,4 +18,4 @@ This repo adds a single Price Confirmed checkbox to pricelist rules. It is not u
 
 | Field | Label | Type | Function | How it gets its value | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| `x_studio_price_confirmed` | Price Confirmed | boolean | Checkbox on a pricelist rule indicating the price is confirmed. Not used by any view or logic in this repo. | stored |  |  |
+| `price_confirmed` | Price Confirmed | boolean | Checkbox on a pricelist rule indicating the price is confirmed. Not used by any view or logic in this repo. | stored |  |  |

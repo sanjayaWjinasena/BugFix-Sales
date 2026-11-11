@@ -19,56 +19,56 @@ _logger = logging.getLogger(__name__)
 
 # Kept in sync with models/sale_order.py (v30 + v33 ports).
 _PORTED_SALE_FIELDS = (
-    "x_studio_credit_limit_approved",
-    "x_studio_bank_guarantee_approved",
+    "credit_limit_approved",
+    "bank_guarantee_approved",
     "over_bank_guarantee",
     "over_bank_guarantee_amount",
-    "x_studio_valid_bank_guarantee",
+    "valid_bank_guarantee",
     "over_credit",
     "over_credit_amount",
     "over_commission",
-    "x_studio_over_commission_approved",
+    "over_commission_approved",
     "overdue",
-    "x_studio_overdue_approved",
-    "x_studio_margin_approved",
-    "x_studio_margin_exceed",
-    "x_studio_order_payment_method",
-    "x_studio_locked",
-    "x_studio_unlocked",
-    "x_studio_expired",
-    "x_studio_expiry_date",
-    "x_studio_price_not_confirmed",
-    "x_studio_valid_order_lines",
-    "x_studio_sales_order_validity",
-    "x_studio_re_estimate_request_count",
-    "x_studio_re_estimate_request_count_1",
-    "x_studio_re_estimate_request_sent",
-    "x_studio_account_mandatory",
-    "x_studio_new_item_from_project",
+    "overdue_approved",
+    "margin_approved",
+    "margin_exceed",
+    "order_payment_method",
+    "sales_locked",
+    "unlocked",
+    "expired",
+    "expiry_date",
+    "price_not_confirmed",
+    "valid_order_lines",
+    "sales_order_validity",
+    "re_estimate_request_count",
+    "re_estimate_request_count_1",
+    "re_estimate_request_sent",
+    "account_mandatory",
+    "new_item_from_project",
     "guarantee_status",
-    "x_studio_inventory_short",
-    "x_studio_project_no",
-    "x_studio_main_project_no",
+    "inventory_short",
+    "project_no",
+    "main_project_no",
     # v33
     "x_studio_",  # boolean, funky name kept verbatim
-    "x_studio_approval_request_sent",
-    "x_studio_authorized_repair_user",
+    "approval_request_sent",
+    "authorized_repair_user",
     # v37 — needed by Fix-repair's related= chain on project.task
     "quotation_type",
     # v38 — RUG-flow gates + re-estimate counter read by Fix-repair
     "rug_approved",
-    "x_studio_rug_rejected",
+    "rug_rejected",
     "re_estimate_count",
 )
 # Kept in sync with models/res_partner.py (v30 port).
 _PORTED_PARTNER_FIELDS = (
-    "x_studio_bank_guarantee_amount",
-    "x_studio_expiry_date",
-    "x_studio_payment_method",
-    "x_studio_valid_bank_guarantee",
+    "bank_guarantee_amount",
+    "expiry_date",
+    "payment_method",
+    "valid_bank_guarantee",
 )
 # Kept in sync with models/sale_order_line.py (v33 port).
-_PORTED_SALE_LINE_FIELDS = ("x_studio_account_mandatory",)
+_PORTED_SALE_LINE_FIELDS = ("account_mandatory",)
 
 
 def strip_studio_xmlids_for_ported_fields(env):
@@ -197,13 +197,13 @@ def patch_sls_validate_mobile_action(env):
 # (model, field, value, label, sequence)
 _FIELD_SELECTIONS = [
     ("sale.order.line", "quotation_type", "Sales", "Sales", 10),
-    ("sale.order.line", "x_studio_product_status", "Blank", "Blank", 10),
-    ("sale.order.line", "x_studio_purch_type", "Local", "Local", 10),
+    ("sale.order.line", "product_status", "Blank", "Blank", 10),
+    ("sale.order.line", "purch_type", "Local", "Local", 10),
     ("sale.order.line", "quotation_type", "Project", "Project", 1),
-    ("sale.order.line", "x_studio_product_status", "New Item", "New Item", 1),
-    ("sale.order.line", "x_studio_purch_type", "Import", "Import", 1),
+    ("sale.order.line", "product_status", "New Item", "New Item", 1),
+    ("sale.order.line", "purch_type", "Import", "Import", 1),
     ("sale.order.line", "quotation_type", "Repair", "Repair", 2),
-    ("sale.order.line", "x_studio_product_status", "Existing Item", "Existing Item", 2),
+    ("sale.order.line", "product_status", "Existing Item", "Existing Item", 2),
 ]
 
 

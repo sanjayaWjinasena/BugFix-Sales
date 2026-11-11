@@ -16,7 +16,7 @@ class ResCompany(models.Model):
     Storage rationale
     -----------------
     Before v21, these values lived on the Studio-manual catalogue model
-    x_minimum_sales_margin (one row per company). That worked but felt
+    minimum_sales_margin (one row per company). That worked but felt
     off — configuration values are conceptually a res.config.settings
     concern, not a business-data model. The Studio catalogue also
     complicated menu UX (list-view editing, automation 146's
@@ -30,7 +30,7 @@ class ResCompany(models.Model):
     Access surface
     --------------
     Callers still read via the familiar
-        self.env.company.x_studio_minimum_sales_margin_
+        self.env.company.minimum_sales_margin_
     pattern — the fields on this class are computed/inverse proxies
     that transparently proxy to ir.config_parameter. Same field names
     as the Studio catalogue so any Python or view expression that
@@ -40,9 +40,9 @@ class ResCompany(models.Model):
 
     Transitional dual-storage
     -------------------------
-    The old x_minimum_sales_margin rows are preserved (per the
+    The old minimum_sales_margin rows are preserved (per the
     "never delete x_ data" rule). Studio server actions that read
-    env['x_minimum_sales_margin'].search([], limit=1) continue to see
+    env['minimum_sales_margin'].search([], limit=1) continue to see
     the seeded row values — they'll go stale relative to the
     ir.config_parameter source-of-truth after the first Settings edit,
     but that's the accepted cutover point. Each remaining consumer
@@ -55,21 +55,21 @@ class ResCompany(models.Model):
     # Kept as a class-level constant so _migrate_to_config_parameter in
     # minimum_sales_margin_seed can reuse the exact same mapping.
     _BUGFIX_SALES_CONFIG = {
-        "x_studio_minimum_sales_margin_": (
+        "minimum_sales_margin_": (
             "bugfix_sales.minimum_sales_margin",
             float,
             0.0,
         ),
-        "x_studio_sales_order_validity": ("bugfix_sales.sales_order_validity", int, 0),
-        "x_studio_advance_payment_": ("bugfix_sales.advance_payment_pct", float, 0.0),
-        "x_studio_last_purchase_price_validity_days": (
+        "sales_order_validity": ("bugfix_sales.sales_order_validity", int, 0),
+        "advance_payment_": ("bugfix_sales.advance_payment_pct", float, 0.0),
+        "last_purchase_price_validity_days": (
             "bugfix_sales.last_purchase_price_validity_days",
             int,
             0,
         ),
     }
 
-    x_studio_minimum_sales_margin_ = fields.Float(
+    minimum_sales_margin_ = fields.Float(
         string="Minimum Sales Margin %",
         compute="_compute_bugfix_sales_config",
         inverse="_inverse_bugfix_sales_config",
@@ -77,7 +77,7 @@ class ResCompany(models.Model):
         help="Minimum margin percentage enforced on Sales / Project "
         "quotations at the Confirm gate.",
     )
-    x_studio_sales_order_validity = fields.Integer(
+    sales_order_validity = fields.Integer(
         string="Sales Order Validity (Days)",
         compute="_compute_bugfix_sales_config",
         inverse="_inverse_bugfix_sales_config",
@@ -85,7 +85,7 @@ class ResCompany(models.Model):
         help="How many days a quotation remains valid before it is "
         "flagged expired on the Confirm gate.",
     )
-    x_studio_advance_payment_ = fields.Float(
+    advance_payment_ = fields.Float(
         string="Advance Payment %",
         compute="_compute_bugfix_sales_config",
         inverse="_inverse_bugfix_sales_config",
@@ -94,7 +94,7 @@ class ResCompany(models.Model):
         "deliveries can be validated on non-RUG repair sale "
         "orders.",
     )
-    x_studio_last_purchase_price_validity_days = fields.Integer(
+    last_purchase_price_validity_days = fields.Integer(
         string="Last Purchase Price Validity (Days)",
         compute="_compute_bugfix_sales_config",
         inverse="_inverse_bugfix_sales_config",

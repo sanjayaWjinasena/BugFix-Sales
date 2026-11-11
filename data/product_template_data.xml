@@ -11,44 +11,44 @@
   company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
   company = env['res.company'].browse(company_id)
   
-  if record.x_studio_charge_type == 'Charge' and record.x_studio_non_billable == False:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Charge'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
+  if record.charge_type == 'Charge' and record.non_billable == False:
+    product = env['product.template'].search([('charge_type', '=', 'Charge'), ('non_billable', '=', False),('company_id', '=', company.id)], limit=1)
     if product:
       for p in product:
         if p.id != record.id:
           raise UserError("Only One Service Item can be Setup as Charge/ Not Non Billable Item!")
 
-  if record.x_studio_charge_type == 'Duty' and record.x_studio_non_billable == False:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Duty'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
+  if record.charge_type == 'Duty' and record.non_billable == False:
+    product = env['product.template'].search([('charge_type', '=', 'Duty'), ('non_billable', '=', False),('company_id', '=', company.id)], limit=1)
     if product:
       for p in product:
         if p.id != record.id:
           raise UserError("Ony One Service Item can be Setup as Duty/ Not Non Billable Item!")
 
-  if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == False:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Tax'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
+  if record.charge_type == 'Tax' and record.non_billable == False:
+    product = env['product.template'].search([('charge_type', '=', 'Tax'), ('non_billable', '=', False),('company_id', '=', company.id)], limit=1)
     if product:
       for p in product:
         if p.id != record.id:
           raise UserError("Ony One Service Item can be Setup as Tax/ Not Non Billable Item!")
           
           
-  if record.x_studio_charge_type == 'Charge' and record.x_studio_non_billable == True:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Charge'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
+  if record.charge_type == 'Charge' and record.non_billable == True:
+    product = env['product.template'].search([('charge_type', '=', 'Charge'), ('non_billable', '=', True),('company_id', '=', company.id)], limit=1)
     if product:
       for p in product:
         if p.id != record.id:
           raise UserError("Ony One Service Item can be Setup as Charge/ Non Billable Item!")
 
-  if record.x_studio_charge_type == 'Duty' and record.x_studio_non_billable == True:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Duty'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
+  if record.charge_type == 'Duty' and record.non_billable == True:
+    product = env['product.template'].search([('charge_type', '=', 'Duty'), ('non_billable', '=', True),('company_id', '=', company.id)], limit=1)
     if product:
       for p in product:
         if p.id != record.id:
           raise UserError("Ony One Service Item can be Setup as Duty/ Non Billable Item!")
 
-  """if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == True:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Tax'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
+  """if record.charge_type == 'Tax' and record.non_billable == True:
+    product = env['product.template'].search([('charge_type', '=', 'Tax'), ('non_billable', '=', True),('company_id', '=', company.id)], limit=1)
     if product:
       for p in product:
         if p.id != record.id:
@@ -62,9 +62,9 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.landed_cost_ok == True:
-  def_split = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+  def_split = env['imports_ledger_setup'].search([('id', '=', 1)], limit=1)
   if def_split:
-    if record.split_method_landed_cost != def_split.x_studio_cost_allocation_method:
+    if record.split_method_landed_cost != def_split.cost_allocation_method:
       raise UserError('Default Split Method Should be Equal to Cost Allocation Method in Imports Ledger Setup')
 
 
@@ -78,9 +78,9 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.landed_cost_ok == True:
-  def_split = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+  def_split = env['imports_ledger_setup'].search([('id', '=', 1)], limit=1)
   if def_split:
-    record['split_method_landed_cost'] = def_split.x_studio_cost_allocation_method
+    record['split_method_landed_cost'] = def_split.cost_allocation_method
     ]]></field>
   </record>
   <record id="server_action_2587_jin_company_id_in_product" model="ir.actions.server">
@@ -155,11 +155,11 @@ record['company_id'] = company.id
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[record['x_studio_item_approved'] = True
+    <field name="code"><![CDATA[record['item_approved'] = True
 
 product_product = env['product.product'].search([('id', '=', record.product_variant_id.id)],limit=1)
 if product_product:
-  product_product.write({'x_studio_item_approved':True,'x_studio_item_approved_temp':True})
+  product_product.write({'item_approved':True,'item_approved_temp':True})
 ]]></field>
   </record>
   <record id="server_action_2299_plm_item_approval_validate" model="ir.actions.server">
@@ -178,11 +178,11 @@ if product_product:
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[record['x_studio_item_approval_request_sent'] = True
+    <field name="code"><![CDATA[record['item_approval_request_sent'] = True
 
 product_product = env['product.product'].search([('id', '=', record.product_variant_id.id)],limit=1)
 if product_product:
-  product_product.write({'x_studio_item_approval_request_sent':True,'x_studio_item_approval_request_sent_temp':True})
+  product_product.write({'item_approval_request_sent':True,'item_approval_request_sent_temp':True})
 
 
 
@@ -244,8 +244,8 @@ if product_product:
     <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_2587_jin_company_id_in_product')])]"/>
   </record>
     <data noupdate="1">
-    <record id="default_586_product_template_x_studio_product_type" model="ir.default">
-      <field name="field_id" ref="BugFix-Sales.field_product_template__x_studio_product_type"/>
+    <record id="default_586_product_template_product_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Sales.field_product_template__product_type"/>
       <field name="json_value">"None"</field>
     </record>
     </data>

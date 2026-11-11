@@ -2,28 +2,28 @@ from odoo import fields, models
 
 
 class X_minimum_sales_margin(models.Model):
-    _name = "x_minimum_sales_margin"
+    _name = "minimum_sales_margin"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Minimum Sales Margin %"
 
     active = fields.Boolean(string="Active")
     name = fields.Char(string="Name")
-    x_studio_active = fields.Boolean(string="Active")
-    x_studio_advance_payment_ = fields.Float(string="Advance Payment %")
+    accounting_active = fields.Boolean(string="Active")
+    advance_payment_ = fields.Float(string="Advance Payment %")
     accounting_company_id = fields.Many2one(
         comodel_name="res.company", string="Company"
     )
-    x_studio_last_purchase_price_validity_days = fields.Integer(
+    last_purchase_price_validity_days = fields.Integer(
         string="Last Purchase Price Validity (Days)"
     )
-    x_studio_minimum_sales_margin_ = fields.Float(string="Minimum Sales Margin %")
-    x_studio_sales_order_validity = fields.Integer(string="Sales Order Validity (Days)")
+    minimum_sales_margin_ = fields.Float(string="Minimum Sales Margin %")
+    sales_order_validity = fields.Integer(string="Sales Order Validity (Days)")
     sequence = fields.Integer(string="Sequence")
 
 
 class XMinimumSalesMarginGap(models.Model):
-    _inherit = "x_minimum_sales_margin"
+    _inherit = "minimum_sales_margin"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
     active = fields.Boolean(string="Active")
