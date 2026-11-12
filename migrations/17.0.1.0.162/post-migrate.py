@@ -12,14 +12,14 @@ from odoo import SUPERUSER_ID, api
 _logger = logging.getLogger(__name__)
 
 _FIELD_SELECTIONS = [
-    ("sale.order.line", "x_studio_quotation_type", "Sales", "Sales", 10),
-    ("sale.order.line", "x_studio_product_status", "Blank", "Blank", 10),
-    ("sale.order.line", "x_studio_purch_type", "Local", "Local", 10),
-    ("sale.order.line", "x_studio_quotation_type", "Project", "Project", 1),
-    ("sale.order.line", "x_studio_product_status", "New Item", "New Item", 1),
-    ("sale.order.line", "x_studio_purch_type", "Import", "Import", 1),
-    ("sale.order.line", "x_studio_quotation_type", "Repair", "Repair", 2),
-    ("sale.order.line", "x_studio_product_status", "Existing Item", "Existing Item", 2),
+    ("sale.order.line", "quotation_type", "Sales", "Sales", 10),
+    ("sale.order.line", "product_status", "Blank", "Blank", 10),
+    ("sale.order.line", "purch_type", "Local", "Local", 10),
+    ("sale.order.line", "quotation_type", "Project", "Project", 1),
+    ("sale.order.line", "product_status", "New Item", "New Item", 1),
+    ("sale.order.line", "purch_type", "Import", "Import", 1),
+    ("sale.order.line", "quotation_type", "Repair", "Repair", 2),
+    ("sale.order.line", "product_status", "Existing Item", "Existing Item", 2),
 ]
 
 
