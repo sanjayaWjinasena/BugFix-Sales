@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales: 19 gap server actions -->
+<odoo>
+
+
+  <record id="server_action_810_sls_update_payment_term_customer" model="ir.actions.server">
+    <field name="name">SLS - Update Payment Term - Customer</field>
+    <field name="model_id" ref="hr.model_res_partner"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_customer_group.id:
+  record['property_payment_term_id'] = record.x_studio_customer_group.x_studio_payment_term.id
+  record['property_account_receivable_id'] = record.x_studio_customer_group.x_studio_receivable_account.id
+
+
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_1427_sls_validate_credit_limit" model="ir.actions.server">
+    <field name="name">SLS - Validate Credit Limit</field>
+    <field name="model_id" ref="hr.model_res_partner"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.id:
+  #if record.customer_rank > 0 and record.x_studio_payment_method == 'Credit' and record.credit_limit < 1:
+    #raise UserError('Invalid Credit Limit.')
+    
+  if record.customer_rank > 0 and record.x_studio_group_type == 'Distributor' and record.x_studio_bank_guarantee_amount == 0:
+    raise UserError('Bank Guarantee Amount must be Specified for Distributors.')
+
+  if record.x_studio_bank_guarantee_amount > 0.00:
+    record['x_studio_valid_bank_guarantee'] = True
+  else:
+    record['x_studio_valid_bank_guarantee'] = False
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_1518_sls_track_credit_limit_in_customer" model="ir.actions.server">
+    <field name="name">SLS - Track Credit Limit in Customer</field>
+    <field name="model_id" ref="hr.model_res_partner"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.credit_limit:
+  #records.message_post(body="Credit Limit Modified. --> " + record.name + "-->" + str(record.credit_limit))  #... No need to include the customer name in to the log record since the log is already within the customer.
+  records.message_post(body="Credit Limit Modified. --> " + str(record.credit_limit))
+
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_1771_sls_validate_credit_limit_bank_guarantee_amount_1" model="ir.actions.server">
+    <field name="name">SLS - Validate Credit Limit &amp; Bank Guarantee Amount - 1</field>
+    <field name="model_id" ref="hr.model_res_partner"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.credit_limit > record.x_studio_bank_guarantee_amount:
+  records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Credit Limit: " + str(record.credit_limit) + "\n" + "Bank Guarantee Amount: " + str(record.x_studio_bank_guarantee_amount))
+  
+  
+ 
+  
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_1776_sls_minimum_sales_margin_in_setup_page" model="ir.actions.server">
+    <field name="name">SLS - Minimum Sales Margin % - in Setup Page</field>
+    <field name="model_id" ref="BugFix-Sales.model_x_minimum_sales_margin"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.id:
+  update = env['x_minimum_sales_margin'].search([('x_studio_active', '=', True)], limit=1)
+  if update:
+    raise UserError("Only one Minimum Sales Margin % can exist.") 
+  else:
+    record['x_studio_active'] = True
+    
+  
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_1783_sls_validate_bank_guarantee_in_so_confirm" model="ir.actions.server">
+    <field name="name">SLS - Validate Bank Guarantee in SO Confirm</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.partner_id.customer_rank > 0:
+  if record.state == 'done':
+    if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+      if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+          #raise UserError("Customer's bank guarantee is expired.")
+          raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+          
+        else:
+          #if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_invoice_id.credit + record.amount_total):
+          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
+            #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+            raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
+      else:
+        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+          records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+        else:
+          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):
+            #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_invoice_id.credit + record.amount_total)))
+            records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_invoice_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_invoice_id.credit + record.amount_total))
+
+  
+  
+
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_1995_rr_auto_generate_quotation_type_for_repair_sos" model="ir.actions.server">
+    <field name="name">RR - Auto Generate Quotation Type for Repair SOs</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.id:
+    # x_studio_project_no is never set by FSM - use task link instead
+    task = env['project.task'].search([
+        ('sale_order_id', '=', record.id),
+        ('project_id.x_studio_repair_project', '=', True)
+    ], limit=1)
+    if task:
+        record['x_studio_quotation_type'] = 'Repair'
+        record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
+    elif record.x_studio_project_no and record.x_studio_project_no.x_studio_repair_project == True:
+        record['x_studio_quotation_type'] = 'Repair'
+        record['x_studio_order_payment_method'] = record.partner_id.x_studio_payment_method
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_2114_rr_auto_generate_quotation_type_for_project_sos" model="ir.actions.server">
+    <field name="name">RR - Auto Generate Quotation Type for Project SOs</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.task_id != False:
+  if record.x_studio_project_no.x_studio_repair_project == True:
+    record['x_studio_quotation_type'] = 'Repair'
+  else:
+    record['x_studio_quotation_type'] = record.x_studio_project_no.x_studio_quotation_type
+  
+  record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
+  record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
+  
+  project_task = env['project.task'].search([('id', '=', record.task_id.id)],limit=1)  
+  if project_task:
+    record['x_studio_project_start_date'] = project_task.sale_order_id.x_studio_project_start_date
+    record['x_studio_project_end_date'] = project_task.sale_order_id.x_studio_project_end_date
+    
+    if project_task.sale_order_id.warehouse_id == True:
+      record['warehouse_id'] = project_task.sale_order_id.warehouse_id.id
+    
+
+
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_2117_rr_auto_generate_quotation_type_for_project_sos_2" model="ir.actions.server">
+    <field name="name">RR - Auto Generate Quotation Type for Project SOs - 2</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.task_id != False:
+  record['x_studio_quotation_type'] = record.x_studio_project_no.x_studio_quotation_type
+  record['x_studio_project_group'] = record.x_studio_project_no.x_studio_project_group
+  record['analytic_account_id'] = record.x_studio_project_no.sale_order_id.analytic_account_id.id
+  
+  project_task = env['project.task'].search([('id', '=', record.task_id.id)],limit=1)  
+  if project_task:
+    record['x_studio_project_start_date'] = project_task.sale_order_id.x_studio_project_start_date
+    record['x_studio_project_end_date'] = project_task.sale_order_id.x_studio_project_end_date
+    record['warehouse_id'] = project_task.sale_order_id.warehouse_id.id
+
+
+
+
+
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_2144_rr_sales_price_for_rug_items" model="ir.actions.server">
+    <field name="name">RR - Sales Price For RUG Items</field>
+    <field name="model_id" ref="sale.model_sale_order_line"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_quotation_type == 'Repair':
+  original_price = record.price_unit
+  if record.x_studio_rug_confirmed == True:
+    record.write({'price_unit': record.product_template_id.standard_price,'x_studio_price_unit_original': original_price})
+
+
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_2250_rr_track_lock_status" model="ir.actions.server">
+    <field name="name">RR - Track Lock Status</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+# fix_repair:idempotent-v1
+if record.x_studio_quotation_type == 'Repair' and record.state == 'done':
+  re_line = env['sale.order.line'].sudo().search(
+    [('order_id', '=', record.id), ('x_studio_re_estimated', '=', True)],
+    limit=1, order='id desc')
+  target_count = re_line.x_studio_count_1 if re_line else 0
+  if (not record.x_studio_locked
+      or record.x_studio_unlocked
+      or record.x_studio_re_estimate_count != target_count):
+    record.write({
+      'x_studio_locked': True,
+      'x_studio_unlocked': False,
+      'x_studio_re_estimate_count': target_count,
+    })
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_2251_rr_track_lock_status_2" model="ir.actions.server">
+    <field name="name">RR - Track Lock Status - 2</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+# fix_repair:idempotent-v1
+if (record.x_studio_quotation_type == 'Repair'
+    and record.state == 'sale'
+    and record.x_studio_locked):
+  record.write({'x_studio_locked': False, 'x_studio_unlocked': True})
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_2252_rr_track_lock_status_3" model="ir.actions.server">
+    <field name="name">RR - Track Lock Status - 3</field>
+    <field name="model_id" ref="sale.model_sale_order_line"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_quotation_type == 'Repair': 
+ if record.x_studio_unlocked == True:
+    record['x_studio_re_estimated'] = True
+    record['x_studio_count_1'] = record.x_studio_re_estimate_count + 1
+    
+  
+  
+ 
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_2576_proj_validate_start_date_and_end_date_for_project_sos" model="ir.actions.server">
+    <field name="name">PROJ - Validate Start date and End date for Project SOs</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_quotation_type == 'Project':
+  start_date = str(record.x_studio_project_start_date) 
+  end_date = str(record.x_studio_project_end_date) 
+  
+  if start_date > end_date:
+    raise UserError('Contract Start Date cannot be later than the Contract End Date.')
+    
+ 
+    
+  
+
+
+
+
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_2826_jin_company_id_in_pricelist" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Pricelist</field>
+    <field name="model_id" ref="product.model_product_pricelist"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['company_id'] = company.id
+    ]]></field>
+  </record>
+
+  <record id="server_action_2828_jin_company_id_in_respartner_inherit_model" model="ir.actions.server">
+    <field name="name">JIN - Company Id in ResPartner Inherit Model</field>
+    <field name="model_id" ref="hr.model_res_partner"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['company_id'] = company.id
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_2891_jin_pricelist_in_respartner_inherit_model" model="ir.actions.server">
+    <field name="name">JIN - Pricelist in ResPartner Inherit Model</field>
+    <field name="model_id" ref="hr.model_res_partner"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+pricelist = env['product.pricelist'].search([('x_studio_group_type', '=', record.x_studio_group_type),('company_id', '=', company.id)], limit=1) 
+if pricelist:
+  record['property_product_pricelist'] = pricelist.id
+  
+
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_2896_proj_apply_project_price_list" model="ir.actions.server">
+    <field name="name">PROJ - Apply Project Price List</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_quotation_type == 'Project':
+  pricelist = env['product.pricelist'].search([('x_studio_project_price_list', '=', True)], limit=1)
+  if pricelist:
+    record['pricelist_id'] = pricelist.id
+else:
+  customer_pricelist = env['res.partner'].search([('id', '=', record.partner_id.id)], limit=1)
+  if customer_pricelist.property_product_pricelist.id: 
+    record['pricelist_id'] = customer_pricelist.property_product_pricelist.id
+    ]]></field>
+  </record>
+
+  <record id="server_action_2898_proj_update_price_confirmed_status" model="ir.actions.server">
+    <field name="name">PROJ - Update Price Confirmed Status</field>
+    <field name="model_id" ref="sale.model_sale_order_line"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_quotation_type == 'Project':
+  if record.product_id.id  != False:
+    pricelist = env['product.pricelist.item'].search([('pricelist_id', '=', record.x_studio_pricelist_id.id),('product_tmpl_id', '=', record.product_template_id.id)],limit=1)
+    if pricelist:
+      record['x_studio_price_confirmed'] = pricelist.x_studio_price_confirmed
+    else:
+      record['discount'] = False
+else:
+  record['x_studio_price_confirmed'] = False
+
+    ]]></field>
+  </record>
+
+</odoo>

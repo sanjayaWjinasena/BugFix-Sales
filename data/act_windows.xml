@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- TODO: 15 act_windows records need hand-porting. -->
+  <!-- Clear-DB id=1443: Customer Groups -->
+  <!-- Clear-DB id=1205: Delivery Terms -->
+  <!-- Clear-DB id=2060: Delivery Terms -->
+  <!-- Clear-DB id=1444: Vendor Groups -->
+  <!-- Clear-DB id=2195: Line Items -->
+  <!-- Clear-DB id=2194: Line Items -->
+  <!-- Clear-DB id=2193: Line Items -->
+  <!-- Clear-DB id=2338: Project Sales Orders -->
+  <!-- Clear-DB id=2330: Repair Sales Order List -->
+  <!-- Clear-DB id=2283: sale.order -->
+  <!-- Clear-DB id=1568: Sales Order Lines -->
+  <!-- Clear-DB id=2571: Sales Orders -->
+  <!-- Clear-DB id=785: Sales orders -->
+  <!-- Clear-DB id=2200: Sales - Production Request Status -->
+  <!-- Clear-DB id=2439: SS -->
+</odoo>

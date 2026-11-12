@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales: 10 gap automations -->
+<odoo>
+
+
+  <record id="base_automation_88_sls_validate_customer_group" model="base.automation">
+    <field name="name">SLS - Validate Customer Group</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="hr.model_res_partner"/>
+    <field name="trigger">on_change</field>
+  </record>
+
+  <record id="base_automation_91_sls_validate_margin_in_so_line" model="base.automation">
+    <field name="name">SLS - Validate Margin in SO Line</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="sale.model_sale_order_line"/>
+    <field name="trigger">on_change</field>
+  </record>
+
+  <record id="base_automation_141_sls_validate_credit_limit_bank_guarantee_amount_1" model="base.automation">
+    <field name="name">SLS - Validate Credit Limit &amp; Bank Guarantee Amount - 1</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="hr.model_res_partner"/>
+    <field name="trigger">on_change</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1771_sls_validate_credit_limit_bank_guarantee_amount_1')])]"/>
+  </record>
+
+  <record id="base_automation_147_sls_validate_bank_guarantee_in_so_confirm" model="base.automation">
+    <field name="name">SLS - Validate Bank Guarantee in SO Confirm</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="trigger">on_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Sales.server_action_1783_sls_validate_bank_guarantee_in_so_confirm')])]"/>
+  </record>
+
+  <record id="base_automation_156_sls_track_phone_in_customer" model="base.automation">
+    <field name="name">SLS - Track  Phone in Customer</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="hr.model_res_partner"/>
+    <field name="trigger">on_create_or_write</field>
+  </record>
+
+  <record id="base_automation_169_sls_validate_sos_without_lines" model="base.automation">
+    <field name="name">SLS - Validate SOs without Lines</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="trigger">on_create_or_write</field>
+  </record>
+
+  <record id="base_automation_205_rr_track_lock_status_4" model="base.automation">
+    <field name="name">RR - Track Lock Status - 4</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="trigger">on_write</field>
+    <field name="filter_domain">['&amp;', '&amp;', '&amp;', ('state', '=', 'sale'), ('x_studio_locked', '=', True), ('x_studio_quotation_type', '=', 'Repair'), ('x_studio_unlocked', '=', True)]</field>
+  </record>
+
+  <record id="base_automation_216_sls_clear_free_items_so_lines" model="base.automation">
+    <field name="name">SLS - Clear Free Items SO Lines</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="sale.model_sale_order_line"/>
+    <field name="trigger">on_change</field>
+    <field name="filter_domain">[]</field>
+  </record>
+
+  <record id="base_automation_217_sls_validate_phone" model="base.automation">
+    <field name="name">SLS - Validate Phone</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="hr.model_res_partner"/>
+    <field name="trigger">on_change</field>
+  </record>
+
+  <record id="base_automation_259_jin_project_sales_order_seq_no_maintain_separate_nos_for_pro" model="base.automation">
+    <field name="name">JIN-Project Sales Order Seq.No (Maintain Separate Nos for Project SOs On Update)</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="trigger">on_create_or_write</field>
+  </record>
+
+</odoo>

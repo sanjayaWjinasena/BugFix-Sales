@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 1 record rule(s) moved from BugFix-Analytics v0.1.0.7 -->
+<!-- Target model belongs to this repo's scope; Analytics only wrapped them -->
+<odoo>
+  <data noupdate="0">
+  <record id="rule_190_project_manager_sales_orders_line" model="ir.rule">
+    <field name="name">Project Manager Sales Orders Line</field>
+    <field name="model_id" ref="sale.model_sale_order_line"/>
+    <field name="domain_force">['&amp;', '&amp;', ('state', 'in', ['sale', 'sale']), ('is_service', '=', True), '|', ('project_id', '!=', False), ('task_id', '!=', False)]</field>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+    <field name="active" eval="True"/>
+    <field name="groups" eval="[(6, 0, [ref('project.group_project_manager')])]"/>
+  </record>
+  </data>
+</odoo>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Sales: 22 gap window actions -->
+<odoo>
+
+
+  <record id="act_window_1750_sales_configurations" model="ir.actions.act_window">
+    <field name="name">Sales Configurations</field>
+    <field name="res_model">x_minimum_sales_margin</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="act_window_1447_customers" model="ir.actions.act_window">
+    <field name="name">Customers</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_customer_group', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_customer_group': active_id,'default_x_studio_customer_group': active_id}</field>
+  </record>
+
+  <record id="act_window_782_customers_of_this_group" model="ir.actions.act_window">
+    <field name="name">Customers of this group</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+
+  <record id="act_window_783_customers_of_this_group" model="ir.actions.act_window">
+    <field name="name">Customers of this group:</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+
+  <record id="act_window_2195_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_main_project_2', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_main_project_2': active_id,'default_x_studio_main_project_2': active_id}</field>
+  </record>
+
+  <record id="act_window_2194_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+  </record>
+
+  <record id="act_window_2193_line_items" model="ir.actions.act_window">
+    <field name="name">Line Items</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('project_id', '=', active_id)]</field>
+    <field name="context">{'search_default_project_id': active_id,'default_project_id': active_id}</field>
+  </record>
+
+  <record id="act_window_781_new_button" model="ir.actions.act_window">
+    <field name="name">New Button</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_many2one_field_3LBKs', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_many2one_field_3LBKs': active_id,'default_x_studio_many2one_field_3LBKs': active_id}</field>
+  </record>
+
+  <record id="act_window_2588_product_product" model="ir.actions.act_window">
+    <field name="name">product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+  </record>
+
+  <record id="act_window_2881_product_product" model="ir.actions.act_window">
+    <field name="name">product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+  </record>
+
+  <record id="act_window_1373_product_product" model="ir.actions.act_window">
+    <field name="name">Product.product</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">kanban,tree,form,graph,activity</field>
+  </record>
+
+  <record id="act_window_2338_project_sales_orders" model="ir.actions.act_window">
+    <field name="name">Project Sales Orders</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
+    <field name="domain">[('x_studio_quotation_type', '=', 'Project')]</field>
+    <field name="context">{'search_default_my_quotation': 1}</field>
+  </record>
+
+  <record id="act_window_2330_repair_sales_order_list" model="ir.actions.act_window">
+    <field name="name">Repair Sales Order List</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
+    <field name="domain">[('x_studio_quotation_type', '=', 'Repair')]</field>
+    <field name="context">{'search_default_my_quotation': 1}</field>
+  </record>
+
+  <record id="act_window_2840_companies_res_company" model="ir.actions.act_window">
+    <field name="name">Companies (res.company)</field>
+    <field name="res_model">res.company</field>
+    <field name="view_mode">kanban,tree,form</field>
+  </record>
+
+  <record id="act_window_1425_res_partner" model="ir.actions.act_window">
+    <field name="name">res.partner</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">kanban,tree,form,map,activity</field>
+  </record>
+
+  <record id="act_window_2283_sale_order" model="ir.actions.act_window">
+    <field name="name">sale.order</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
+  </record>
+
+  <record id="act_window_1568_sales_order_lines" model="ir.actions.act_window">
+    <field name="name">Sales Order Lines</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,form,pivot</field>
+  </record>
+
+  <record id="act_window_2571_sales_orders" model="ir.actions.act_window">
+    <field name="name">Sales Orders</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('task_id', '=', active_id)]</field>
+    <field name="context">{'search_default_task_id': active_id,'default_task_id': active_id}</field>
+  </record>
+
+  <record id="act_window_785_sales_orders" model="ir.actions.act_window">
+    <field name="name">Sales orders</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_related_field_f6P0a', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_related_field_f6P0a': active_id,'default_x_studio_related_field_f6P0a': active_id}</field>
+  </record>
+
+  <record id="act_window_2200_sales_production_request_status" model="ir.actions.act_window">
+    <field name="name">Sales - Production Request Status</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">tree,kanban,form,pivot</field>
+  </record>
+
+  <record id="act_window_2439_ss" model="ir.actions.act_window">
+    <field name="name">SS</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
+  </record>
+
+  <record id="act_window_1448_vendors" model="ir.actions.act_window">
+    <field name="name">Vendors</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_vendor_group', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_vendor_group': active_id,'default_x_studio_vendor_group': active_id}</field>
+  </record>
+
+</odoo>

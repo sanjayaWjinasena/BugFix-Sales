@@ -114,6 +114,423 @@ class MinimumSalesMarginSeed(models.AbstractModel):
                 ),
             )
 
+    # ---------- v22: full cutover to ir.config_parameter -----------------
+    # Marker embedded in every Studio code reader we've patched. Presence
+    # of the marker means the code has already been swept once, so future
+    # upgrades skip that reader and any manual Studio edit stays intact.
+    _CUTOVER_MARKER = '# bugfix_sales:config-cutover-v22'
+
+    # Sensible defaults used when seeding ir.config_parameter for a
+    # freshly-added company. Mirror the same defaults the old row seed
+    # was using (see _seed_minimum_sales_margin_per_company).
+    _DEFAULT_IR_CONFIG_VALUES = {
+        'bugfix_sales.minimum_sales_margin': _DEFAULT_MARGIN_PCT,
+        'bugfix_sales.sales_order_validity': _DEFAULT_SO_VALIDITY_DAYS,
+        'bugfix_sales.advance_payment_pct': _DEFAULT_ADVANCE_PCT,
+        'bugfix_sales.last_purchase_price_validity_days': _DEFAULT_PURCHASE_VALIDITY_DAYS,
+    }
+
+    @api.model
+    def _seed_ir_config_parameter_defaults(self):
+        """Write default values for every Sales config key that is
+        missing on any active company.
+
+        v21 introduced ir.config_parameter as the source of truth but
+        relied on _seed_minimum_sales_margin_per_company running first
+        (to insert old-model rows) and _migrate_to_config_parameter
+        running second (to copy those into ir.config_parameter). v22
+        drops the old-model seed — new companies would end up with no
+        parameter row at all, which the res.company compute treats as
+        "0", i.e. margin gate disabled. Seed real defaults instead so
+        the enforcement stays live from day one on any new company.
+
+        Idempotent — only writes keys that are currently absent, so
+        Settings edits done between upgrades never get clobbered.
+        """
+        Icp = self.env['ir.config_parameter'].sudo()
+        companies = self.env['res.company'].sudo().search([])
+        for company in companies:
+            for base_key, default in self._DEFAULT_IR_CONFIG_VALUES.items():
+                param_key = '%s.%s' % (base_key, company.id)
+                existing = Icp.search(
+                    [('key', '=', param_key)], limit=1,
+                )
+                if existing:
+                    continue
+                Icp.set_param(param_key, str(default))
+
+    # Formula for sale.order.line.x_studio_margin_exceed as a compute.
+    # Mirrors the original SLS - Validate Margin in SO Line server
+    # action 1508 exactly (same value_1 / value_2 dimensional quirk
+    # preserved so results don't drift between installations that ran
+    # the old on_change vs the new compute). The threshold now reads
+    # via record.company_id.x_studio_minimum_sales_margin_ (the
+    # per-company proxy backed by ir.config_parameter), so a Settings
+    # save re-evaluates every line on the next read — no stored flag
+    # to go stale.
+    _LINE_MARGIN_EXCEED_COMPUTE = (
+        "# bugfix_sales:margin-exceed-computed-v23\n"
+        "for record in self:\n"
+        "  exceeded = False\n"
+        "  if record.product_id and record.x_studio_quotation_type != 'Project':\n"
+        "    if record.product_uom_qty and record.product_uom_qty > 0:\n"
+        "      value_1 = ((record.price_subtotal/record.product_uom_qty) - "
+        "(record.price_subtotal*(record.x_studio_commission/100)) - "
+        "record.product_id.standard_price)\n"
+        "      value_2 = (record.price_subtotal/record.product_uom_qty) - "
+        "(record.price_subtotal*(record.x_studio_commission/100))\n"
+        "      if value_2 > 0:\n"
+        "        net_margin = (value_1/value_2)*100\n"
+        "        if net_margin and "
+        "net_margin < (record.company_id.x_studio_minimum_sales_margin_ or 0.0):\n"
+        "          exceeded = True\n"
+        "  record['x_studio_margin_exceed'] = exceeded\n"
+    )
+
+    _LINE_MARGIN_EXCEED_DEPENDS = (
+        'product_id,'
+        'product_id.standard_price,'
+        'product_uom_qty,'
+        'price_subtotal,'
+        'x_studio_commission,'
+        'x_studio_quotation_type'
+    )
+
+    _HEADER_MARGIN_EXCEED_DEPENDS = 'order_line.x_studio_margin_exceed'
+
+    @api.model
+    def _suppress_validate_sales_lines_button(self):
+        """Suppress the 'Validate Sales Lines' button on sale.order.
+
+        The button appears when x_studio_clear_free_items on the SO
+        header flips True. That flip is driven by base.automation 216
+        (SLS - Clear Free Items SO Lines): when a salesperson adds a
+        line to an SO that carries reward lines (is_reward_line=True),
+        the automation sets x_studio_clear_free_items=True on the
+        newly-added line. The header's computed field rolls that up
+        and the button becomes visible.
+
+        Users don't want that flow right now. Deactivating the
+        automation prevents the flag from being flipped in the first
+        place, so the button never shows on new line edits — while
+        every other line-change automation (margin, credit, discount,
+        commission) continues to fire normally.
+
+        Rationale for choosing this layer
+        ---------------------------------
+        The button target — server action 2337 — deletes all reward
+        lines and resets flags. That's the destructive path we're
+        turning off. But hiding just the button via view arch would
+        leave the flag flipping around silently and any future arch
+        change could re-expose it. Cutting the flag setter is the
+        one place where the whole feature branches from, and
+        activating the automation later re-enables everything with
+        zero code changes.
+
+        Idempotent — reruns find the automation already inactive
+        and no-op.
+
+        Reversibility — set base.automation 216 active=True from
+        Developer Mode to bring the feature back.
+        """
+        auto = self.env['base.automation'].sudo().search([
+            ('model_name', '=', 'sale.order.line'),
+            ('name', '=', 'SLS - Clear Free Items SO Lines'),
+        ], limit=1)
+        if auto and auto.active:
+            auto.write({'active': False})
+
+    @api.model
+    def _convert_line_margin_flag_to_computed(self):
+        """Convert sale.order.line.x_studio_margin_exceed from a
+        stored boolean (set via base.automation 91's on_change into
+        server action 1508) into a non-stored computed field that is
+        re-evaluated on every read.
+
+        Why
+        ---
+        Stored booleans go stale when the surrounding config changes
+        without touching the record. That is exactly what happened
+        after the v22 cutover: users saw the "Insufficient Margin"
+        modal fire on lines with 91.67% margin against a 50%
+        threshold because the flag had been set True under an older
+        (higher) threshold and no on_change fired since. Making the
+        flag a compute means the check is fresh at every render.
+
+        What
+        ----
+        1. On sale.order.line.x_studio_margin_exceed:
+             store   = False
+             compute = <the same formula the on_change ran>
+             depends = product / qty / price / commission / quotation
+                       type (skipping the config value itself: it's a
+                       non-stored proxy field so depends can't
+                       reliably chain through it — but non-stored
+                       computes recompute on every read anyway, so
+                       cache invalidation via other fields is only a
+                       within-transaction concern, not correctness)
+        2. Tighten sale.order.x_studio_margin_exceed's depends from
+           "order_line" (link changes only) to
+           "order_line.x_studio_margin_exceed" so the header rollup
+           invalidates when a line's computed value changes within a
+           transaction.
+        3. Deactivate base.automation 91 — the on_change is dead
+           weight once the compute takes over, and leaving it active
+           would still fire (idempotently) at every line edit,
+           writing the same non-stored value to nothing.
+        4. Also tighten sale.order.line._description of the field to
+           its computed form so the label is unchanged.
+
+        Idempotent via the marker at the top of the compute string
+        — reruns detect the marker and no-op. Manual Studio edits
+        that removed the marker will trigger a re-write; if that
+        matters, the marker can be re-added by hand in Studio.
+
+        Once these fields are declared in Python (state='base'),
+        Odoo forbids ORM writes to their properties on
+        ir.model.fields (`Properties of base fields cannot be
+        altered in this manner`). At that point the Python
+        declaration itself owns the compute/depends/store, so
+        this method has nothing to do — skip.
+        """
+        Field = self.env['ir.model.fields'].sudo()
+        marker = '# bugfix_sales:margin-exceed-computed-v23'
+
+        # Step 1 — line field
+        line_field = Field.search([
+            ('model', '=', 'sale.order.line'),
+            ('name', '=', 'x_studio_margin_exceed'),
+        ], limit=1)
+        if (line_field and line_field.state == 'manual'
+                and marker not in (line_field.compute or '')):
+            line_field.write({
+                'store': False,
+                'compute': self._LINE_MARGIN_EXCEED_COMPUTE,
+                'depends': self._LINE_MARGIN_EXCEED_DEPENDS,
+                'readonly': True,
+            })
+
+        # Step 2 — header field depends tightening
+        header_field = Field.search([
+            ('model', '=', 'sale.order'),
+            ('name', '=', 'x_studio_margin_exceed'),
+        ], limit=1)
+        if (header_field and header_field.state == 'manual'
+                and header_field.depends != self._HEADER_MARGIN_EXCEED_DEPENDS):
+            header_field.write({
+                'depends': self._HEADER_MARGIN_EXCEED_DEPENDS,
+            })
+
+        # Step 3 — retire the automation that used to set the stored value
+        Auto = self.env['base.automation'].sudo()
+        auto_91 = Auto.search([
+            ('model_name', '=', 'sale.order.line'),
+            ('name', '=', 'SLS - Validate Margin in SO Line'),
+        ], limit=1)
+        if auto_91 and auto_91.active:
+            auto_91.write({'active': False})
+
+    @api.model
+    def _patch_studio_readers_to_use_company(self):
+        """Surgically rewrite every Studio Python element that reads
+        env['x_minimum_sales_margin'].search(...) so it reads the new
+        proxy fields on res.company instead.
+
+        Substitution pattern
+        --------------------
+        Because res.company.x_studio_minimum_sales_margin_ (and the
+        three siblings) keep the same names as the fields on the old
+        Studio catalogue model, every downstream reference
+        `min_magin.x_studio_minimum_sales_margin_` continues to work
+        verbatim. Only the ONE fetch line needs replacing:
+
+            env['x_minimum_sales_margin'].search([], limit=1)
+                → record.company_id   (or env.company / rec.company_id)
+
+        Which right-hand side to pick depends on which local variable
+        the surrounding code already carries:
+
+          * If the enclosing scope has `record` (a per-record server
+            action or a compute loop iteration variable) — use
+            record.company_id.
+          * If the compute loop uses `rec` — use rec.company_id.
+          * If the enclosing scope has a `company` variable already
+            derived from allowed_company_ids — use that.
+          * Otherwise (crons where no record is in scope) — fall back
+            to env.company (single-company cron process; matches
+            pre-v22 behaviour where search([], limit=1) returned one
+            arbitrary row).
+
+        Idempotence
+        -----------
+        Each patch checks for the marker `# bugfix_sales:config-cutover-v22`
+        at the top of the target string; skipped if already present. A
+        second guard `if patch_from not in code` (verbatim match)
+        prevents overwriting Studio edits that removed the original
+        fetch line — safer than blind replace.
+        """
+        marker = self._CUTOVER_MARKER
+        Server = self.env['ir.actions.server'].sudo()
+        Field = self.env['ir.model.fields'].sudo()
+
+        # Server-action patches: (id, old_snippet, new_snippet, comment)
+        server_patches = [
+            # 1508 — SLS - Validate Margin in SO Line (sale.order.line)
+            (
+                1508,
+                "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
+                "min_magin = record.company_id",
+                'Read minimum margin from the current SO line company.',
+            ),
+            # 1517 — SLS - Item Over Margin Details (sale.order)
+            (
+                1517,
+                "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
+                "min_magin = record.company_id",
+                'Read minimum margin from the current SO company.',
+            ),
+            # 2340 — SLS - Cancel SOs more than 3 Months (cron; no record in scope)
+            (
+                2340,
+                "no_of_days = env['x_minimum_sales_margin'].search([])",
+                "no_of_days = env.company",
+                'Read SO validity days from the caller company '
+                '(cron traditionally used first row).',
+            ),
+            # 2341 — SLS - Create Customer Payment (sale.order); has TWO occurrences
+            (
+                2341,
+                "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
+                "min_magin = record.company_id",
+                'Read advance payment % from the current SO company.',
+            ),
+            # 2427 — RR - Validate Payment % (account.payment)
+            (
+                2427,
+                "min_magin = env['x_minimum_sales_margin'].search([], limit=1)",
+                "min_magin = record.company_id",
+                'Read advance payment % from the current payment company.',
+            ),
+            # 2897 — PROJ - Update Project Pricelist (product.pricelist);
+            # already had explicit company scoping via x_studio_company_id
+            (
+                2897,
+                ("sales_configuration = env['x_minimum_sales_margin'].search("
+                 "[('x_studio_company_id', '=', company.id)],limit=1)"),
+                'sales_configuration = company',
+                'Read last-purchase-price validity from the resolved company.',
+            ),
+        ]
+        for action_id, old, new, _why in server_patches:
+            action = Server.browse(action_id).exists()
+            if not action:
+                continue
+            code = action.code or ''
+            if marker in code:
+                continue
+            if old not in code:
+                continue
+            # replace(count=-1) covers the double-occurrence in action 2341
+            new_code = code.replace(old, new)
+            action.write({'code': marker + '\n' + new_code})
+
+        # Compute-field patches: same idea but on ir.model.fields.compute.
+        # Identify by model + field-name (safer than id — surviving Studio
+        # rebuilds that may renumber ids).
+        field_patches = [
+            (
+                'account.payment', 'x_studio_payment_validation',
+                "min_magin = self.env['x_minimum_sales_margin'].search([], limit=1)",
+                'min_magin = record.company_id',
+                'Read advance payment % from the current payment company.',
+            ),
+            (
+                'sale.order', 'x_studio_sales_order_validity',
+                "setup = self.env['x_minimum_sales_margin'].search([])",
+                'setup = rec.company_id',
+                'Read SO validity days from the current SO company.',
+            ),
+        ]
+        for model, name, old, new, _why in field_patches:
+            field = Field.search(
+                [('model', '=', model), ('name', '=', name)], limit=1,
+            )
+            if not field:
+                continue
+            code = field.compute or ''
+            if marker in code:
+                continue
+            if old not in code:
+                continue
+            new_code = code.replace(old, new)
+            field.write({'compute': marker + '\n' + new_code})
+
+    @api.model
+    def _migrate_to_config_parameter(self):
+        """One-shot copy of each x_minimum_sales_margin row into
+        ir.config_parameter under company-scoped keys.
+
+        Purpose
+        -------
+        v21 moves the four Sales config values from the Studio
+        catalogue model x_minimum_sales_margin (one row per company)
+        to ir.config_parameter (per-company keys). res.company exposes
+        computed proxy fields backed by those keys; res.config.settings
+        binds them via `related`.
+
+        This function preserves the current per-company values across
+        the storage change:
+
+          - For each x_minimum_sales_margin row, derive the four keys
+            from res.company._BUGFIX_SALES_CONFIG.
+          - For each key that does NOT yet exist in ir.config_parameter,
+            copy the value across.
+          - Existing keys are left alone — subsequent upgrades never
+            overwrite a value the user has edited via Settings.
+
+        The old catalogue rows are NOT touched. Studio server actions
+        that still read env['x_minimum_sales_margin'].search(...) keep
+        seeing the values they saw before the upgrade; those readers
+        get migrated to env.company.x_studio_* in follow-up commits
+        (they'll go stale relative to ir.config_parameter after the
+        first Settings edit, per the accepted cutover plan).
+
+        Idempotent — reruns find every key already present and no-op.
+
+        Safe on stand-alone DBs: if the Studio catalogue model
+        x_minimum_sales_margin was never provisioned (fresh Odoo
+        install with no Jinasena Studio state), there's nothing to
+        migrate and we early-return before the missing-model KeyError.
+        """
+        if 'x_minimum_sales_margin' not in self.env:
+            return
+        Icp = self.env['ir.config_parameter'].sudo()
+        IcpModel = self.env['ir.config_parameter'].sudo()
+        rows = self.env['x_minimum_sales_margin'].sudo().search([])
+        if not rows:
+            return
+        # Import the mapping from res.company so field-name / key-base
+        # pairs stay in lockstep with the reader side. Model may not
+        # have been registered yet on the very first install pass; the
+        # data XML calls this AFTER models are loaded, so the lookup
+        # is safe here.
+        keymap = self.env['res.company']._BUGFIX_SALES_CONFIG
+        for row in rows:
+            company = row.x_studio_company_id
+            if not company:
+                continue
+            for fname, (key_base, _ttype, _default) in keymap.items():
+                param_key = '%s.%s' % (key_base, company.id)
+                # Use a direct search so we can distinguish "key
+                # exists with value 0" from "key missing". get_param
+                # returns False for both cases.
+                existing = IcpModel.search(
+                    [('key', '=', param_key)], limit=1,
+                )
+                if existing:
+                    continue
+                Icp.set_param(param_key, str(row[fname]))
+
     _C01_REPORT_NAME = 'C01 Sales Quotation'
     _C01_INHERIT_XMLID = 'bugfix_sales_c01_quotation_intro_conclusion'
     _C01_INHERIT_ARCH = (

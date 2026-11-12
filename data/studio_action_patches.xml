@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!--
+        Studio server action 2336 ("SLS - Validate Mobile") is
+        wired via base.automation id 218 (trigger: on_change of
+        res.partner.mobile). The original code was:
+
+            if record.mobile != False:
+              if len(record.mobile) != 0:
+                if len(record.mobile) != 10:
+                  raise UserError('Invalid mobile number.')
+
+        Two problems:
+          1. Strict character-count check assumes local 10-digit
+             format (0771234567). Any user pasting a properly
+             formatted number ("077 123 4567", "+94 77 123 4567")
+             was blocked.
+          2. In the on_change eval context, `record.mobile` doesn't
+             reliably reflect the client-typed value, so the check
+             raised paradoxically even on clean 10-char inputs.
+
+        Rewrite: strip non-digit characters and accept digit counts
+        of 10, 11, or 12. Blank stays allowed.
+
+        Owned by BugFix-Sales — original Studio action becomes
+        dead code (its code field is now managed here). Reversible:
+        module uninstall removes our ir.model.data link, leaving
+        the action in place with whatever code it had at that
+        moment. If you need to restore the Studio original, edit
+        the action in Studio Server Actions UI.
+
+        Two-step pattern:
+          1. Create an ir.model.data row assigning XML ID
+             BugFix-Sales.action_sls_validate_mobile to the
+             existing ir.actions.server(2336).
+          2. Reference that XML ID in a <record> to overwrite the
+             `code` field on action 2336.
+    -->
+
+    <record id="ir_model_data_link_action_2336" model="ir.model.data">
+        <field name="module">BugFix-Sales</field>
+        <field name="name">action_sls_validate_mobile</field>
+        <field name="model">ir.actions.server</field>
+        <field name="res_id" eval="2336"/>
+        <field name="noupdate" eval="False"/>
+    </record>
+
+    <record id="action_sls_validate_mobile" model="ir.actions.server">
+        <field name="code"><![CDATA[
+if record.mobile:
+    stripped = ''.join(c for c in str(record.mobile) if c.isdigit())
+    # Blank / all-non-digit strings are allowed through — either a
+    # legitimate empty field or a data-cleanup task, not our concern
+    # here. Only enforce when the user has typed actual digits.
+    if stripped and len(stripped) not in (10, 11, 12):
+        raise UserError(
+            'Invalid mobile number. Enter a valid mobile '
+            '(10 digits, optionally with country code).')
+        ]]></field>
+    </record>
+
+</odoo>
