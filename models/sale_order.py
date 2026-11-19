@@ -560,8 +560,7 @@ class SaleOrder(models.Model):
 
     def _bugfix_sales_check_required_on_confirm(self):
         """Block confirming a Sales-type quotation that is missing
-        Payment Terms, Salesperson or Sales Team, or that has a product
-        line with an empty Taxes field. Project and Repair
+        Payment Terms, Salesperson or Sales Team. Project and Repair
         quotations are not affected."""
         for order in self:
             if order.x_studio_quotation_type not in (False, 'Sales'):
@@ -576,18 +575,6 @@ class SaleOrder(models.Model):
                     "Quotation %(name)s cannot be confirmed. Please fill in: %(fields)s.",
                     name=order.name,
                     fields=", ".join(missing),
-                ))
-            untaxed_lines = order.order_line.filtered(
-                lambda l: not l.display_type
-                and l.product_id
-                and not l.is_downpayment
-                and not l.tax_id
-            )
-            if untaxed_lines:
-                raise UserError(_(
-                    "Quotation %(name)s cannot be confirmed. Please set Taxes on the order lines: %(products)s.",
-                    name=order.name,
-                    products=", ".join(untaxed_lines.mapped('product_id.display_name')),
                 ))
 
     def action_confirm(self):
