@@ -2,7 +2,7 @@
 {
     # upgrade-testing branch: data files below are commented out - this branch installs functions only, no data is seeded.
     'name': 'Jinasena : Module : Sales',
-    'version': '17.0.1.0.175',
+    'version': '17.0.1.0.177',
     'summary': 'Bug fixes and enhancements for the Sales workflow',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Sales',
@@ -244,6 +244,11 @@
     #     -> studio_migrations -> BugFix-Sales
     # Removed alongside dropping studio_migrations from
     # studio_usermodel_migration's depends (v0.0.9 of that module).
+    'assets': {
+        'web.assets_backend': [
+            'BugFix-Sales/static/src/js/sale_order_tax_check.js',
+        ],
+    },
     'data': [
         'data/defaults_final.xml',
         'data/server_actions_f5.xml',
